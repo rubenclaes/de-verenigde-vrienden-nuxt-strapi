@@ -9,19 +9,53 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "dev-spa": "nuxt dev --spa",
+    "build-spa": "nuxt build --spa",
+    "start-spa": "nuxt start --spa",
+    "tsc": "tsc --showConfig",
+    "test:watch": "jest --watchAll",
+    "testc": "tsc -p tsconfig.json",
+    "lint": "tslint --project .",
+    "lintfix": "tslint --fix --project ."
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/pwa": "^2.6.0",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.8.1",
+    "ts-node": "^8.2.0",
+    "vue-property-decorator": "^8.1.1"
   },
   "devDependencies": {
+    "@nuxt/typescript": "^2.8.1",
+    "@types/jest": "^24.0.14",
     "@vue/test-utils": "^1.0.0-beta.27",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^24.1.0",
     "jest": "^24.1.0",
-    "vue-jest": "^3.0.3",
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.18.9",
+    "prettier": "^1.18.2",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "vue-jest": "^3.0.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "json",
+      "vue"
+    ],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/$1"
+    },
+    "transform": {
+      ".*\\.(vue)$": "vue-jest",
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.ts$",
+    "snapshotSerializers": [
+      "jest-serializer-vue"
+    ]
   }
 }
