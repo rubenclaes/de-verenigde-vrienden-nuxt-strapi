@@ -13,8 +13,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator"
-import Logo from "~/components/Logo.vue"
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import Logo from '~/components/Logo.vue';
 
 @Component({
   components: {
@@ -35,8 +35,8 @@ export default class Index extends Vue {}
 }
 
 .title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;

@@ -14,7 +14,8 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./*"],
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@/lib/*": ["./lib"]
     },
     "types": ["@types/jest", "@types/node", "@nuxt/vue-app"]
   }

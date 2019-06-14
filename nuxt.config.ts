@@ -1,32 +1,34 @@
-const isDev = process.env.NODE_ENV !== "production"
+const isDev = process.env.NODE_ENV !== 'production';
 
-const config = {
-  mode: "universal",
+import NuxtConfiguration from '@nuxt/config';
+
+const config: NuxtConfiguration = {
+  mode: 'universal',
   /*
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || "",
+    title: process.env.npm_package_name || '',
     meta: [
-      { charset: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
-        hid: "description",
-        name: "description",
-        content: process.env.npm_package_description || ""
+        hid: 'description',
+        name: 'description',
+        content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: "#fff" },
+  loading: { color: '#fff' },
   manifest: {
-    name: "Nuxt Hacker News Typescript",
-    short_name: "Nuxt HN TS",
-    description: "HackerNews clone built with Nuxt.js & Typescript",
-    theme_color: "#188269"
+    name: 'Nuxt Hacker News Typescript',
+    short_name: 'Nuxt HN TS',
+    description: 'HackerNews clone built with Nuxt.js & Typescript',
+    theme_color: '#188269'
   },
   /*
    ** Global CSS
@@ -41,8 +43,8 @@ const config = {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    "@nuxtjs/axios",
-    "@nuxtjs/pwa"
+    '@nuxtjs/axios',
+    '@nuxtjs/pwa'
   ],
   /*
    ** Axios module configuration
@@ -58,6 +60,6 @@ const config = {
      */
     extend(config, ctx) {}
   }
-}
+};
 
-export default config
+export default config;
