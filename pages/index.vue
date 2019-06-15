@@ -504,12 +504,21 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import Logo from '@/components/Logo.vue';
 import BaseButton from '@/components/BaseButton.vue';
+import Card from '@/components/Card.vue';
+import Icon from '@/components/Icon.vue';
+import Badge from '@/components/Badge.vue';
+import BaseInput from '@/components/BaseInput.vue';
+
 
 @Component({
   layout: 'appHeader',
   components: {
     Logo,
-    BaseButton
+    BaseButton,
+    Card,
+    Badge,
+    Icon,
+    BaseInput,
   },
   
 })

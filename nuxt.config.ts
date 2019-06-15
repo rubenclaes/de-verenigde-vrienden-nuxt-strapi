@@ -37,7 +37,10 @@ const config: NuxtConfiguration = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/click-outside.js'],
+  plugins: [
+    { src: '~/plugins/argon-kit.js', ssr: false },
+    '~/plugins/click-outside.js'
+  ],
   /*
    ** Nuxt.js modules
    */
