@@ -33,11 +33,11 @@ const config: NuxtConfiguration = {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['@/assets/scss/argon.scss'],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['~/plugins/click-outside.js'],
   /*
    ** Nuxt.js modules
    */

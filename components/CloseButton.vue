@@ -27,5 +27,4 @@ export default class CloseButton extends Vue {
   }
 }
 </script>
-<style>
-</style>
+
