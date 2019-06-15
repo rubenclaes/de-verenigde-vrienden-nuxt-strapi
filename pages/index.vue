@@ -17,6 +17,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 import Logo from '~/components/Logo.vue';
 
 @Component({
+  layout: 'appHeader',
   components: {
     Logo
   }

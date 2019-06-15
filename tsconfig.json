@@ -15,7 +15,8 @@
     "paths": {
       "~/*": ["./*"],
       "@/*": ["./*"],
-      "@/lib/*": ["./lib"]
+      "@/lib/*": ["./lib"],
+      "@/compontents/*": ["./components"]
     },
     "types": ["@types/jest", "@types/node", "@nuxt/vue-app"]
   }
