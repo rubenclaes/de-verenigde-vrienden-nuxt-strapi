@@ -58,6 +58,9 @@ const config: NuxtConfiguration = {
     //Always at the end
     '@nuxtjs/sitemap'
   ],
+  env: {
+    API_URL: 'https://strapi-de-verenigde-vrienden.herokuapp.com'
+  },
   sitemap: {
     hostname: 'https://example.com',
     gzip: true,
