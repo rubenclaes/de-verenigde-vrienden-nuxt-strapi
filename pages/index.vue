@@ -19,8 +19,8 @@
             <div class="row">
               <div class="col-lg-6">
                 <h1 class="display-3 text-white">
-                  A beautiful Design System
-                  <span>completed with examples</span>
+                  Koninklijke Harmonie
+                  <span>De Verenigde Vrienden Heusden-Zolder</span>
                 </h1>
                 <p class="lead text-white">
                   The design system comes with four pre-built pages to help
@@ -61,52 +61,21 @@
         <div class="row justify-content-center">
           <div class="col-lg-12">
             <div class="row row-grid">
-              <div class="col-lg-4">
+              <div
+                v-for="(restaurant, index) in latestRestaurants"
+                :key="restaurant.id"
+                class="col-lg-4"
+              >
                 <card class="border-0" hover shadow body-classes="py-5">
-                  <icon name="ni ni-check-bold" type="primary" rounded class="mb-4"></icon>
-                  <h6 class="text-primary text-uppercase">Download Argon</h6>
-                  <p class="description mt-3">
-                    Argon is a great free UI package based on Bootstrap 4
-                    that includes the most important components and features.
-                  </p>
+                  <icon name="ni ni-check-bold" :type="colors[index]" rounded class="mb-4"></icon>
+                  <h6 v-bind:class="text[index]" class="text-uppercase">Download Argon</h6>
+                  <p class="description mt-3">{{index}}</p>
                   <div>
-                    <badge type="primary" rounded>design</badge>
-                    <badge type="primary" rounded>system</badge>
-                    <badge type="primary" rounded>creative</badge>
+                    <badge :type="colors[index]" rounded>design</badge>
+                    <badge :type="colors[index]" rounded>system</badge>
+                    <badge :type="colors[index]" rounded>creative</badge>
                   </div>
-                  <base-button tag="a" href="#" type="primary" class="mt-4">Learn more</base-button>
-                </card>
-              </div>
-              <div class="col-lg-4">
-                <card class="border-0" hover shadow body-classes="py-5">
-                  <icon name="ni ni-istanbul" type="success" rounded class="mb-4"></icon>
-                  <h6 class="text-success text-uppercase">Build Something</h6>
-                  <p class="description mt-3">
-                    Argon is a great free UI package based on Bootstrap
-                    4 that includes the most important components and features.
-                  </p>
-                  <div>
-                    <badge type="success" rounded>business</badge>
-                    <badge type="success" rounded>vision</badge>
-                    <badge type="success" rounded>success</badge>
-                  </div>
-                  <base-button tag="a" href="#" type="success" class="mt-4">Learn more</base-button>
-                </card>
-              </div>
-              <div class="col-lg-4">
-                <card class="border-0" hover shadow body-classes="py-5">
-                  <icon name="ni ni-planet" type="warning" rounded class="mb-4"></icon>
-                  <h6 class="text-warning text-uppercase">Prepare Launch</h6>
-                  <p class="description mt-3">
-                    Argon is a great free UI package based on Bootstrap
-                    4 that includes the most important components and features.
-                  </p>
-                  <div>
-                    <badge type="warning" rounded>marketing</badge>
-                    <badge type="warning" rounded>product</badge>
-                    <badge type="warning" rounded>launch</badge>
-                  </div>
-                  <base-button tag="a" href="#" type="warning" class="mt-4">Learn more</base-button>
+                  <base-button tag="a" href="#" :type="colors[index]" class="mt-4">Lees meer</base-button>
                 </card>
               </div>
             </div>
@@ -515,27 +484,33 @@
       <div class="container">
         <div class="row justify-content-center mt--300">
           <div class="col-lg-8">
-            <card gradient="secondary" shadow body-classes="p-lg-5">
-              <h4 class="mb-1">Want to work with us?</h4>
-              <p class="mt-0">Your project is very important to us.</p>
-              <base-input
-                class="mt-5"
-                alternative
-                placeholder="Your name"
-                addon-left-icon="ni ni-user-run"
-              ></base-input>
-              <base-input alternative placeholder="Email address" addon-left-icon="ni ni-email-83"></base-input>
-              <base-input class="mb-4">
-                <textarea
-                  class="form-control form-control-alternative"
-                  name="name"
-                  rows="4"
-                  cols="80"
-                  placeholder="Type a message..."
-                ></textarea>
-              </base-input>
-              <base-button type="default" round block size="lg">Send Message</base-button>
-            </card>
+            <form name="contact" method="POST" data-netlify="true">
+              <card gradient="secondary" shadow body-classes="p-lg-5">
+                <h4 class="mb-1">Want to work with us?</h4>
+                <p class="mt-0">Your project is very important to us.</p>
+                <base-input
+                  class="mt-5"
+                  alternative
+                  placeholder="Your name"
+                  addon-left-icon="ni ni-user-run"
+                ></base-input>
+                <base-input
+                  alternative
+                  placeholder="Email address"
+                  addon-left-icon="ni ni-email-83"
+                ></base-input>
+                <base-input class="mb-4">
+                  <textarea
+                    class="form-control form-control-alternative"
+                    name="name"
+                    rows="4"
+                    cols="80"
+                    placeholder="Type a message..."
+                  ></textarea>
+                </base-input>
+                <base-button type="default" nativeType="submit" round block size="lg">Send Message</base-button>
+              </card>
+            </form>
           </div>
         </div>
       </div>
@@ -657,13 +632,6 @@ import {
   Getter
 } from 'nuxt-property-decorator';
 
-//import Logo from '@/components/Logo.vue';
-//import BaseButton from '@/components/BaseButton.vue';
-import Card from '@/components/Card.vue';
-import Icon from '@/components/Icon.vue';
-import Badge from '@/components/Badge.vue';
-import BaseInput from '@/components/BaseInput.vue';
-
 import { counterVuexNamespace } from '~/store/counter/const';
 import { restaurantVuexNamespace } from '~/store/restaurant/const';
 
@@ -675,10 +643,10 @@ const TodoAction = namespace('restaurant/');
   components: {
     Logo: () => import('@/components/Logo.vue'),
     BaseButton: () => import('@/components/BaseButton.vue'),
-    Card,
-    Badge,
-    Icon,
-    BaseInput
+    Card: () => import('@/components/Card.vue'),
+    Badge: () => import('@/components/Badge.vue'),
+    Icon: () => import('@/components/Icon.vue'),
+    BaseInput: () => import('@/components/BaseInput.vue')
   }
 })
 export default class IndexPage extends Vue {
@@ -700,6 +668,9 @@ export default class IndexPage extends Vue {
 
   @restaurantVuexNamespace.State('restaurants')
   private restaurants!: [];
+
+  private colors = ['primary', 'success', 'warning'];
+  private text = ['text-primary', 'text-success', 'text-warning'];
 
   //@Action('fetchData', { 'restaurant' }) fetchData: any;
   created() {
@@ -730,11 +701,13 @@ export default class IndexPage extends Vue {
   }
 
   // computed variable based on user's email
-  @restaurantVuexNamespace.Getter
-  get email() {
+  get latestRestaurants() {
     //const user = this.profile && this.profile.user;
     //return (user && user.email) || '';
-    return '';
+    const latestRestaurants = this.restaurants.slice(
+      Math.max(this.restaurants.length - 3, 1)
+    );
+    return latestRestaurants;
   }
 }
 </script>
