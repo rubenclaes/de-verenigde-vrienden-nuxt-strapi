@@ -42,12 +42,6 @@
                     type="white"
                     icon="ni ni-cloud-download-95"
                   >Download HTML</base-button>
-                  <div>
-                    <span class="count">{{ count }}</span>
-                    <span class="count">{{ restaurants }}</span>
-                    <span class="square">(square: {{ square }})</span>
-                    <button @click="lol">Increment</button>
-                  </div>
                 </div>
               </div>
             </div>
@@ -68,8 +62,8 @@
               >
                 <card class="border-0" hover shadow body-classes="py-5">
                   <icon name="ni ni-check-bold" :type="colors[index]" rounded class="mb-4"></icon>
-                  <h6 v-bind:class="text[index]" class="text-uppercase">Download Argon</h6>
-                  <p class="description mt-3">{{index}}</p>
+                  <h6 v-bind:class="text[index]" class="text-uppercase">{{restaurant.name}}</h6>
+                  <p class="description mt-3">{{restaurant.description}}</p>
                   <div>
                     <badge :type="colors[index]" rounded>design</badge>
                     <badge :type="colors[index]" rounded>system</badge>
@@ -484,12 +478,18 @@
       <div class="container">
         <div class="row justify-content-center mt--300">
           <div class="col-lg-8">
-            <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <form
+              name="contact"
+              id="contact"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+            >
               <card gradient="secondary" shadow body-classes="p-lg-5">
                 <h4 class="mb-1">Want to work with us?</h4>
                 <p class="mt-0">Your project is very important to us.</p>
 
-                <input name="form-name" value="contact"/>
+                <input name="form-name" value="contact">
                 <base-input
                   name="name"
                   class="mt-5"
