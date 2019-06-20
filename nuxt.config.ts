@@ -48,8 +48,30 @@ const config: NuxtConfiguration = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    'bootstrap-vue/nuxt'
+    'bootstrap-vue/nuxt',
+    [
+      '@nuxtjs/google-analytics',
+      {
+        id: 'UA-12301-2'
+      }
+    ],
+    //Always at the end
+    '@nuxtjs/sitemap'
   ],
+  sitemap: {
+    hostname: 'https://example.com',
+    gzip: true,
+    exclude: ['/secret', '/admin/**'],
+    routes: [
+      '/page/1',
+      {
+        url: '/page/2',
+        changefreq: 'daily',
+        priority: 1,
+        lastmodISO: '2017-06-30T13:30:00.000Z'
+      }
+    ]
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
