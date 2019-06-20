@@ -489,20 +489,23 @@
                 <h4 class="mb-1">Want to work with us?</h4>
                 <p class="mt-0">Your project is very important to us.</p>
                 <base-input
+                  name="name"
                   class="mt-5"
                   alternative
                   placeholder="Your name"
                   addon-left-icon="ni ni-user-run"
                 ></base-input>
                 <base-input
+                  name="email"
+                  type="email"
                   alternative
                   placeholder="Email address"
                   addon-left-icon="ni ni-email-83"
                 ></base-input>
                 <base-input class="mb-4">
                   <textarea
+                    name="message"
                     class="form-control form-control-alternative"
-                    name="name"
                     rows="4"
                     cols="80"
                     placeholder="Type a message..."
