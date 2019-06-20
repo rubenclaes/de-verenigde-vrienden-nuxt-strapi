@@ -488,12 +488,8 @@
               <card gradient="secondary" shadow body-classes="p-lg-5">
                 <h4 class="mb-1">Want to work with us?</h4>
                 <p class="mt-0">Your project is very important to us.</p>
-                <p class="hidden">
-                  <label>
-                    Don’t fill this out if you're human:
-                    <input name="bot-field">
-                  </label>
-                </p>
+
+                <input name="form-name" value="contact"/>
                 <base-input
                   name="name"
                   class="mt-5"
