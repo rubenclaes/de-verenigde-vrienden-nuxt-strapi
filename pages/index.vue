@@ -63,13 +63,20 @@
                 <card class="border-0" hover shadow body-classes="py-5">
                   <icon name="ni ni-check-bold" :type="colors[index]" rounded class="mb-4"></icon>
                   <h6 v-bind:class="text[index]" class="text-uppercase">{{restaurant.name}}</h6>
-                  <p class="description mt-3">{{restaurant.description}}</p>
+                  <p
+                    class="description mt-3"
+                  >{{restaurant.description || 'No description provided'}}</p>
                   <div>
                     <badge :type="colors[index]" rounded>design</badge>
                     <badge :type="colors[index]" rounded>system</badge>
                     <badge :type="colors[index]" rounded>creative</badge>
                   </div>
                   <base-button tag="a" href="#" :type="colors[index]" class="mt-4">Lees meer</base-button>
+                  <router-link
+                    :to="{ name: 'restaurants-id', params: { id: restaurant.id }}"
+                    tag="a"
+                    class="btn btn-primary"
+                  >See dishes</router-link>
                 </card>
               </div>
             </div>
