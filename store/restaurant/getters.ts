@@ -15,6 +15,13 @@ export const getters: GetterTree<RestaurantState, RootState> = {
       restaurant => restaurant.id === state.selected
     );
     return restaurant;
+  },
+
+  byId(state, id) {
+    const restaurant = state.restaurants.find(
+      restaurants => restaurants.id === id
+    );
+    return restaurant;
   }
 };
 

@@ -33,6 +33,7 @@ export const actions: ActionTree<RestaurantState, RootState> = {
           `
       }
     });
+
     response.data.restaurants.forEach(restaurant => {
       restaurant.image.url = `${apiUrl}${restaurant.image.url}`;
       console.log(restaurant);
@@ -74,6 +75,33 @@ export const actions: ActionTree<RestaurantState, RootState> = {
           //commit('profileError');
         }
       ); */
+  },
+  async fetchRestaurant({ commit }: RestaurantActionContext, { id }) {
+    const response = await strapi.request('post', '/graphql', {
+      data: {
+        query: `query {
+          restaurant(id: "${id}") {
+              id
+              name
+              description
+              image {
+                url
+              }
+            }
+          }
+          `
+      }
+    });
+
+    console.log(response.data.restaurant);
+    const restaurant = response.data.restaurant;
+
+    restaurant.image.url = `${apiUrl}${restaurant.image.url}`;
+    console.log(restaurant);
+    commit('add', {
+      id: restaurant.id,
+      ...restaurant
+    });
   }
 };
 

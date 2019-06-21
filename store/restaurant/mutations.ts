@@ -22,6 +22,14 @@ export const mutations: MutationTree<RestaurantState> = {
     console.log('clear');
     state.restaurants = [];
   }
+
+  /*  setRestaurant(
+    state,
+    { id, restaurant }: { id: any; restaurant: Restaurant }
+  ) {
+    console.log(state.restaurants[id] + 'setting restaurant');
+    state.restaurants[id] = restaurant;
+  } */
 };
 
 export default mutations;

@@ -2,6 +2,10 @@ const isDev = process.env.NODE_ENV !== 'production';
 
 import NuxtConfiguration from '@nuxt/config';
 
+import Strapi from 'strapi-sdk-javascript/build/main';
+const apiUrl = process.env.API_URL || 'http://localhost:1337';
+const strapi = new Strapi(apiUrl);
+
 const config: NuxtConfiguration = {
   mode: 'universal',
   /*
@@ -88,6 +92,33 @@ const config: NuxtConfiguration = {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+  /*
+   ** Generating dynamic routes
+   */
+  generate: {
+    routes: async () => {
+      const response = await strapi.request('post', '/graphql', {
+        data: {
+          query: `query {
+              restaurants {
+                id
+                name
+                description
+                image {
+                  url
+                }
+              }
+            }
+            `
+        }
+      });
+
+      let routes = response.data.restaurants.forEach(restaurant => {
+        routes.push('restaurants/' + restaurant.id);
+      });
+      return routes;
+    }
   }
 };
 

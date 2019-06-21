@@ -106,7 +106,6 @@
               </span>
               <span class="nav-link-inner--text">Download</span>
             </a>
-            <b-nav-item to="#contact">link text</b-nav-item>
           </li>
         </ul>
       </base-nav>

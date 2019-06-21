@@ -71,12 +71,12 @@
                     <badge :type="colors[index]" rounded>system</badge>
                     <badge :type="colors[index]" rounded>creative</badge>
                   </div>
-                  <base-button tag="a" href="#" :type="colors[index]" class="mt-4">Lees meer</base-button>
                   <router-link
                     :to="{ name: 'restaurants-id', params: { id: restaurant.id }}"
                     tag="a"
-                    class="btn btn-primary"
-                  >See dishes</router-link>
+                    class="btn mt-4"
+                    :class="buttons[index]"
+                  >Lees meer</router-link>
                 </card>
               </div>
             </div>
@@ -647,7 +647,7 @@ import {
 import { counterVuexNamespace } from '~/store/counter/const';
 import { restaurantVuexNamespace } from '~/store/restaurant/const';
 
-const TodoAction = namespace('restaurant/');
+const RestaurantAction = namespace('restaurant/');
 
 @Component({
   layout: 'appHeader',
@@ -673,39 +673,19 @@ export default class IndexPage extends Vue {
   @counterVuexNamespace.Action('increment')
   public increment!: () => void;
 
-  @TodoAction.Action('fetchData') fetchData!: () => any;
-  //fetchData: any;
-
-  //@Action('foo') actionFoo;
+  @RestaurantAction.Action('fetchData')
+  fetchData!: () => any;
 
   @restaurantVuexNamespace.State('restaurants')
   private restaurants!: [];
 
   private colors = ['primary', 'success', 'warning'];
+  private buttons = ['btn-primary', 'btn-success', 'btn-warning'];
   private text = ['text-primary', 'text-success', 'text-warning'];
 
-  //@Action('fetchData', { 'restaurant' }) fetchData: any;
-  created() {
-    console.log('created');
-    this.increment();
-  }
-  asyncData() {
-    //this.fetchData();
-    //this.increment();
-    console.log('asyncData');
-  }
+  created() {}
 
-  lol() {
-    this.fetchData();
-  }
-
-  //async fetch() {
   // fetching data as soon as the component's been mounted
-  //console.log('fetch');
-  //this.actionFoo();
-  //await this.fetchData(); // store.dispatch('restauran/fetchData');
-  //}
-
   async fetch({ store, params }) {
     //if (typeof store.state.products.byId[params.id] === 'undefined') {
     return await store.dispatch('restaurant/fetchData');
