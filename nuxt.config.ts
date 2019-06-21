@@ -1,8 +1,10 @@
 const isDev = process.env.NODE_ENV !== 'production';
 
 import NuxtConfiguration from '@nuxt/config';
+import axios from 'axios';
 
 import Strapi from 'strapi-sdk-javascript/build/main';
+
 const apiUrl = process.env.API_URL || 'http://localhost:1337';
 const strapi = new Strapi(apiUrl);
 
@@ -96,11 +98,11 @@ const config: NuxtConfiguration = {
   /*
    ** Generating dynamic routes
    */
-  generate: {
+  /*  generate: {
     routes: ['/restaurants/1', '/restaurants/2', '/users/3']
-  }
+  } */
   /*   generate: {
-    routes: async () => {
+    routes: async function() {
       const response = await strapi.request('post', '/graphql', {
         data: {
           query: `query {
@@ -117,12 +119,26 @@ const config: NuxtConfiguration = {
         }
       });
 
-      let routes = response.data.restaurants.forEach(restaurant => {
-        routes.push('restaurants/' + restaurant.id);
+      return response.data.restaurants.forEach(restaurant => {
+        let route = 'restaurants/' + restaurant.id;
       });
-      return routes;
     }
   } */
+
+  generate: {
+    routes: async function() {
+      return await axios
+        .get('https://strapi-de-verenigde-vrienden.herokuapp.com/restaurants')
+        .then(res => {
+          return res.data.map(restaurant => {
+            return {
+              route: '/restaurants/' + restaurant.id,
+              payload: restaurant
+            };
+          });
+        });
+    }
+  }
 };
 
 export default config;
