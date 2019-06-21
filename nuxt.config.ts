@@ -97,7 +97,7 @@ const config: NuxtConfiguration = {
    ** Generating dynamic routes
    */
   generate: {
-    routes: ['/restaurants/1', '/restaurants/2', '/restaurants/3']
+    routes: ['/restaurants/1', '/restaurants/2', '/users/3']
   }
   /*   generate: {
     routes: async () => {
