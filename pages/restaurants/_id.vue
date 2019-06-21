@@ -103,7 +103,10 @@ export default class RestaurantView extends Vue {
   //private restaurant!: (id) => any;
 
   async fetch({ store, params, error, payload }) {
-    if (payload) return { restaurant: payload };
+    if (payload) {
+      console.log('we have a payload');
+      return { restaurant: payload.restaurant };
+    }
     //if (typeof store.state.restaurants.id[params.id] === 'undefined') {
     else {
       console.log('Fetching restaurant');
