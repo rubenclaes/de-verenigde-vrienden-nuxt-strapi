@@ -48,8 +48,7 @@
             </div>
             <div class="text-center mt-5">
               <h3>
-                Jessica Jones
-                {{restaurant}}
+                {{restaurant.name}}
                 <span class="font-weight-light">, 27</span>
               </h3>
               <div class="h6 font-weight-300">
@@ -65,7 +64,7 @@
             <div class="mt-5 py-5 border-top text-center">
               <div class="row justify-content-center">
                 <div class="col-lg-9">
-                  <p>An artist of considerable range, Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. An artist of considerable range.</p>
+                  <p>{{restaurant.description}}</p>
                   <a href="#">Show more</a>
                 </div>
               </div>
@@ -102,11 +101,11 @@ export default class RestaurantView extends Vue {
   //@RestaurantAction.Getter('getById')
   //private restaurant!: (id) => any;
 
-  async asyncData({ app, params, error, payload }) {
+  /*   async asyncData({ app, params, error, payload }) {
     if (payload) {
       return { restaurant: payload };
     }
-  }
+  } */
   async fetch({ store, params, error, payload }) {
     if (payload) {
       console.log('we have a payload');
