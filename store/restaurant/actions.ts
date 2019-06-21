@@ -76,7 +76,7 @@ export const actions: ActionTree<RestaurantState, RootState> = {
         }
       ); */
   },
-  async fetchRestaurant({ commit }: RestaurantActionContext, { id }) {
+  async fetchRestaurant({ commit }: RestaurantActionContext, id) {
     const response = await strapi.request('post', '/graphql', {
       data: {
         query: `query {
@@ -93,12 +93,10 @@ export const actions: ActionTree<RestaurantState, RootState> = {
       }
     });
 
-    console.log(response.data.restaurant);
     const restaurant = response.data.restaurant;
-
     restaurant.image.url = `${apiUrl}${restaurant.image.url}`;
-    console.log(restaurant);
-    commit('add', {
+
+    commit('setCurrentRestaurant', {
       id: restaurant.id,
       ...restaurant
     });

@@ -5,7 +5,13 @@ import { RestaurantState } from './types';
  */
 export const initState = (): RestaurantState => ({
   selected: 1,
-  restaurants: []
+  restaurants: [],
+  currentRestaurant: {
+    id: 0,
+    name: '',
+    description: '',
+    image: {}
+  }
 });
 
 export default initState;

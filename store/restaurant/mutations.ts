@@ -21,6 +21,10 @@ export const mutations: MutationTree<RestaurantState> = {
   clear: state => {
     console.log('clear');
     state.restaurants = [];
+  },
+
+  setCurrentRestaurant(state, payload) {
+    state.currentRestaurant = payload;
   }
 
   /*  setRestaurant(

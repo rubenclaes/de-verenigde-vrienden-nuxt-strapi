@@ -81,6 +81,7 @@
 import { Component, Vue, namespace } from 'nuxt-property-decorator';
 
 import { restaurantVuexNamespace } from '~/store/restaurant/const';
+import { Restaurant } from '~/store/restaurant/types';
 
 const RestaurantAction = namespace('restaurant/');
 
@@ -95,18 +96,18 @@ const RestaurantAction = namespace('restaurant/');
   }
 })
 export default class RestaurantView extends Vue {
-  @RestaurantAction.Action('fetchData')
-  fetchData!: () => any;
-
-  @restaurantVuexNamespace.State('restaurants')
-  private restaurants!: [];
+  @restaurantVuexNamespace.State('currentRestaurant')
+  private restaurant!: {};
 
   //@RestaurantAction.Getter('getById')
   //private restaurant!: (id) => any;
 
-  async fetch({ store, params }) {
+  async fetch({ store, params, error, payload }) {
+    if (payload) return { restaurant: payload };
     //if (typeof store.state.restaurants.id[params.id] === 'undefined') {
-    return await store.dispatch('restaurant/fetchData');
+    else {
+      return await store.dispatch('restaurant/fetchRestaurant', params.id);
+    }
     // }
   }
 

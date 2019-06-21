@@ -6,6 +6,7 @@
 export interface RestaurantState {
   selected: number;
   restaurants: Restaurant[];
+  currentRestaurant: Restaurant;
 }
 
 // Model
