@@ -101,12 +101,15 @@ export default class RestaurantView extends Vue {
   //@RestaurantAction.Getter('getById')
   //private restaurant!: (id) => any;
 
-  /*   async asyncData({ app, params, error, payload }) {
+  async asyncData({ store, params, error, payload }) {
     if (payload) {
       return { restaurant: payload };
+    } else {
+      console.log('Fetching restaurant');
+      return await store.dispatch('restaurant/fetchRestaurant', params.id);
     }
-  } */
-  async fetch({ store, params, error, payload }) {
+  }
+  /*  async fetch({ store, params, error, payload }) {
     if (payload) {
       console.log('we have a payload');
       return { restaurant: payload.restaurant };
@@ -117,7 +120,7 @@ export default class RestaurantView extends Vue {
       return await store.dispatch('restaurant/fetchRestaurant', params.id);
     }
     // }
-  }
+  } */
 
   created() {
     //this.restaurant(this.$route.params.id);
