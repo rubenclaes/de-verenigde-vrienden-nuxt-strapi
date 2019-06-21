@@ -102,6 +102,11 @@ export default class RestaurantView extends Vue {
   //@RestaurantAction.Getter('getById')
   //private restaurant!: (id) => any;
 
+  async asyncData({ app, params, error, payload }) {
+    if (payload) {
+      return { restaurant: payload };
+    }
+  }
   async fetch({ store, params, error, payload }) {
     if (payload) {
       console.log('we have a payload');
