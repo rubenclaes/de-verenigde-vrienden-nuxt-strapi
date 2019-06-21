@@ -92,11 +92,11 @@ const config: NuxtConfiguration = {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
-  },
+  }
   /*
    ** Generating dynamic routes
    */
-  generate: {
+  /*   generate: {
     routes: async () => {
       const response = await strapi.request('post', '/graphql', {
         data: {
@@ -119,7 +119,7 @@ const config: NuxtConfiguration = {
       });
       return routes;
     }
-  }
+  } */
 };
 
 export default config;
