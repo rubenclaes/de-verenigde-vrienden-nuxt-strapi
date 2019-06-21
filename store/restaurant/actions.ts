@@ -95,7 +95,7 @@ export const actions: ActionTree<RestaurantState, RootState> = {
 
     const restaurant = response.data.restaurant;
     restaurant.image.url = `${apiUrl}${restaurant.image.url}`;
-
+    console.log(restaurant);
     commit('setCurrentRestaurant', {
       id: restaurant.id,
       ...restaurant

@@ -106,6 +106,7 @@ export default class RestaurantView extends Vue {
     if (payload) return { restaurant: payload };
     //if (typeof store.state.restaurants.id[params.id] === 'undefined') {
     else {
+      console.log('Fetching restaurant');
       return await store.dispatch('restaurant/fetchRestaurant', params.id);
     }
     // }
