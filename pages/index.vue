@@ -27,22 +27,6 @@
                   you get started faster. You can change the text and images and you're good to
                   go.
                 </p>
-                <div class="btn-wrapper">
-                  <base-button
-                    tag="a"
-                    href="https://demos.creative-tim.com/argon-design-system/docs/components/alerts.html"
-                    class="mb-3 mb-sm-0"
-                    type="info"
-                    icon="fa fa-code"
-                  >Components</base-button>
-                  <base-button
-                    tag="a"
-                    href="https://www.creative-tim.com/product/argon-design-system"
-                    class="mb-3 mb-sm-0"
-                    type="white"
-                    icon="ni ni-cloud-download-95"
-                  >Download HTML</base-button>
-                </div>
               </div>
             </div>
           </div>
@@ -87,6 +71,7 @@
       </div>
     </section>
     <!-- end news -->
+
     <!-- start important message -->
     <section class="section section-lg pt-0">
       <div class="container">
@@ -214,8 +199,10 @@
         </div>
       </div>
     </section>
-    <section class="section section section-shaped my-0 overflow-hidden">
-      <div class="shape shape-style-1 bg-gradient-warning shape-skew">
+
+    <!-- carousel -->
+    <section class="section section-lg section-shaped overflow-hidden my-0">
+      <div class="shape shape-style-1 bg-gradient-success shape-skew">
         <span></span>
         <span></span>
         <span></span>
@@ -223,67 +210,29 @@
         <span></span>
         <span></span>
       </div>
-      <div class="container py-0">
-        <div class="row row-grid align-items-center">
-          <div class="col-md-6 order-lg-2 ml-lg-auto">
-            <div class="position-relative pl-md-5">
-              <img src="img/ill/ill-2.svg" class="img-center img-fluid">
-            </div>
+      <div class="container py-0 pb-lg">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-lg-5 mb-5 mb-lg-0">
+            <h1 class="text-white font-weight-light">Bootstrap carousel</h1>
+            <p class="lead text-white mt-4">
+              Argon Design System comes with four pre-built pages to help you get
+              started faster. You can change the text and images and you're good to go.
+            </p>
           </div>
-          <div class="col-lg-6 order-lg-1">
-            <div class="d-flex px-3">
-              <div>
-                <icon
-                  name="ni ni-building"
-                  size="lg"
-                  class="bg-gradient-white"
-                  color="primary"
-                  shadow
-                  rounded
-                ></icon>
-              </div>
-              <div class="pl-4">
-                <h4 class="display-3 text-white">Modern Interface</h4>
-                <p class="text-white">
-                  The Arctic Ocean freezes every winter and much of the sea-ice then
-                  thaws every summer, and that process will continue whatever happens.
-                </p>
-              </div>
+          <div class="col-lg-6 mb-lg-auto">
+            <div class="rounded shadow-lg overflow-hidden transform-perspective-right">
+              <b-carousel id="carousel1" controls indicators>
+                <!-- Text slides with image -->
+                <b-carousel-slide img-src="img/theme/img-1-1200x1000.jpg"></b-carousel-slide>
+                <b-carousel-slide img-src="img/theme/img-2-1200x1000.jpg"></b-carousel-slide>
+              </b-carousel>
             </div>
-            <card shadow class="shadow-lg--hover mt-5">
-              <div class="d-flex px-3">
-                <div>
-                  <icon name="ni ni-satisfied" gradient="success" color="white" shadow rounded></icon>
-                </div>
-                <div class="pl-4">
-                  <h5 class="title text-success">Awesome Support</h5>
-                  <p>
-                    The Arctic Ocean freezes every winter and much of the sea-ice then thaws
-                    every summer, and that process will continue whatever happens.
-                  </p>
-                  <a href="#" class="text-success">Learn more</a>
-                </div>
-              </div>
-            </card>
-            <card shadow class="shadow-lg--hover mt-5">
-              <div class="d-flex px-3">
-                <div>
-                  <icon name="ni ni-active-40" gradient="warning" color="white" shadow rounded></icon>
-                </div>
-                <div class="pl-4">
-                  <h5 class="title text-warning">Modular Components</h5>
-                  <p>
-                    The Arctic Ocean freezes every winter and much of the sea-ice then thaws
-                    every summer, and that process will continue whatever happens.
-                  </p>
-                  <a href="#" class="text-warning">Learn more</a>
-                </div>
-              </div>
-            </card>
           </div>
         </div>
       </div>
     </section>
+    <!-- end carousel -->
+
     <section class="section section-lg">
       <div class="container">
         <div class="row justify-content-center text-center mb-lg">
@@ -351,37 +300,11 @@
       <div class="container pt-lg pb-300">
         <div class="row text-center justify-content-center">
           <div class="col-lg-10">
-            <h2 class="display-3 text-white">Build something</h2>
+            <h2 class="display-3 text-white">Contacteer ons</h2>
             <p class="lead text-white">
               According to the National Oceanic and Atmospheric Administration,
               Ted, Scambos, NSIDClead scentist, puts the potentially record low maximum sea ice extent
               tihs year down to low ice.
-            </p>
-          </div>
-        </div>
-        <div class="row row-grid mt-5">
-          <div class="col-lg-4">
-            <icon name="ni ni-settings" size="lg" gradient="white" shadow round color="primary"></icon>
-            <h5 class="text-white mt-3">Building tools</h5>
-            <p class="text-white mt-3">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-          </div>
-          <div class="col-lg-4">
-            <icon name="ni ni-ruler-pencil" size="lg" gradient="white" shadow round color="primary"></icon>
-            <h5 class="text-white mt-3">Grow your market</h5>
-            <p class="text-white mt-3">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-          </div>
-          <div class="col-lg-4">
-            <icon name="ni ni-atom" size="lg" gradient="white" shadow round color="primary"></icon>
-            <h5 class="text-white mt-3">Launch time</h5>
-            <p class="text-white mt-3">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
             </p>
           </div>
         </div>
@@ -461,7 +384,10 @@ const RestaurantAction = namespace('restaurant/');
     Card: () => import('@/components/Card.vue'),
     Badge: () => import('@/components/Badge.vue'),
     Icon: () => import('@/components/Icon.vue'),
-    BaseInput: () => import('@/components/BaseInput.vue')
+    BaseInput: () => import('@/components/BaseInput.vue'),
+    BCarousel: () => import('bootstrap-vue/es/components/carousel/carousel'),
+    BCarouselSlide: () =>
+      import('bootstrap-vue/es/components/carousel/carousel-slide')
   }
 })
 export default class IndexPage extends Vue {

@@ -78,7 +78,6 @@
 
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator';
-
 import { restaurantVuexNamespace } from '~/store/restaurant/const';
 import { Restaurant } from '~/store/restaurant/types';
 

@@ -21,7 +21,7 @@
     "@nuxtjs/google-analytics": "^2.2.0",
     "@nuxtjs/pwa": "^2.6.0",
     "@nuxtjs/sitemap": "^1.2.0",
-    "bootstrap-vue": "^2.0.0-rc.23",
+    "bootstrap-vue": "^2.0.0-rc.24",
     "nouislider": "^13.1.5",
     "nuxt": "^2.8.1",
     "nuxt-property-decorator": "^2.3.0",
