@@ -91,6 +91,7 @@ import { Restaurant } from '~/store/restaurant/types';
 const RestaurantAction = namespace('restaurant/');
 
 @Component({
+  layout: 'appHeader',
   components: {
     Logo: () => import('@/components/Logo.vue'),
     BaseButton: () => import('@/components/BaseButton.vue'),
