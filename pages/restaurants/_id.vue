@@ -110,6 +110,11 @@ export default class RestaurantView extends Vue {
       return await store.dispatch('restaurant/fetchRestaurant', params.id);
     }
   }
+  // Called to know which transition to apply
+  transition(to, from) {
+    if (!from) return 'slide-left';
+    return +to.query.page < +from.query.page ? 'slide-right' : 'slide-left';
+  }
   /*  async fetch({ store, params, error, payload }) {
     if (payload) {
       console.log('we have a payload');
