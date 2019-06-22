@@ -35,7 +35,7 @@ export const actions: ActionTree<RestaurantState, RootState> = {
     });
 
     response.data.restaurants.forEach(restaurant => {
-      restaurant.image.url = `${apiUrl}${restaurant.image.url}`;
+      //restaurant.image.url = `${apiUrl}${restaurant.image.url}`;
       console.log(restaurant);
       commit('add', {
         id: restaurant.id,
@@ -94,7 +94,7 @@ export const actions: ActionTree<RestaurantState, RootState> = {
     });
 
     const restaurant = response.data.restaurant;
-    restaurant.image.url = `${apiUrl}${restaurant.image.url}`;
+    //restaurant.image.url = `${apiUrl}${restaurant.image.url}`;
     console.log(restaurant);
     commit('setCurrentRestaurant', {
       id: restaurant.id,
