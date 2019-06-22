@@ -495,8 +495,10 @@
               <card gradient="secondary" shadow body-classes="p-lg-5">
                 <h4 class="mb-1">Want to work with us?</h4>
                 <p class="mt-0">Your project is very important to us.</p>
+                <div v-show="false">
+                  <input name="form-name" value="contact">
+                </div>
 
-                <input name="form-name" value="contact">
                 <base-input
                   name="name"
                   class="mt-5"

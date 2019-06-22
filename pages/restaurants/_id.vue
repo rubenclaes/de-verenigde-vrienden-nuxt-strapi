@@ -18,15 +18,21 @@
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
-                  <a href="#">
-                    <img v-lazy="'img/theme/team-4-800x800.jpg'" class="rounded-circle">
+                  <a :href="restaurant.image.url">
+                    <img v-lazy="restaurant.image.url" class="rounded-circle">
                   </a>
                 </div>
               </div>
               <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
                 <div class="card-profile-actions py-4 mt-lg-0">
-                  <base-button type="info" size="sm" class="mr-4">Connect</base-button>
-                  <base-button type="default" size="sm" class="float-right">Message</base-button>
+                  <base-button
+                    tag="a"
+                    href="#"
+                    type="primary"
+                    icon="fa fa-facebook"
+                    rounded
+                    icon-only
+                  ></base-button>
                 </div>
               </div>
               <div class="col-lg-4 order-lg-1">
