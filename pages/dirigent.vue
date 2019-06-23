@@ -18,43 +18,15 @@
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
-                  <a :href="restaurant.image.url">
-                    <img v-lazy="restaurant.image.url" class="rounded-circle">
+                  <a :href="'img/home/dirigent.jpg'">
+                    <img v-lazy="'img/home/dirigent.jpg'" class="rounded-circle">
                   </a>
-                </div>
-              </div>
-              <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
-                <div class="card-profile-actions py-4 mt-lg-0">
-                  <base-button
-                    tag="a"
-                    href="#"
-                    type="facebook"
-                    icon="fa fa-facebook"
-                    rounded
-                    icon-only
-                  ></base-button>
-                </div>
-              </div>
-              <div class="col-lg-4 order-lg-1">
-                <div class="card-profile-stats d-flex justify-content-center">
-                  <div>
-                    <span class="heading">22</span>
-                    <span class="description">Friends</span>
-                  </div>
-                  <div>
-                    <span class="heading">10</span>
-                    <span class="description">Photos</span>
-                  </div>
-                  <div>
-                    <span class="heading">89</span>
-                    <span class="description">Comments</span>
-                  </div>
                 </div>
               </div>
             </div>
             <div class="text-center mt-5">
               <h3>
-                {{restaurant.name}}
+                KEVIN ABSILLIS
                 <span class="font-weight-light">, 27</span>
               </h3>
               <div class="h6 font-weight-300">
@@ -64,8 +36,10 @@
             <div class="mt-5 py-5 border-top text-center">
               <div class="row justify-content-center">
                 <div class="col-lg-9">
-                  <p>{{restaurant.description}}</p>
-                  <a href="#">Show more</a>
+                  <p>Onze harmonie wordt thans geleid door Kevin Absillis. Kevin zette op 7-jarige leeftijd zijn eerste stappen in de muziek bij Brassband Sint-Cecilia in Leest. Toen hij 17 jaar was, besloot hij van zijn hobby zijn beroep te maken. Hij begon studies tenortrombone aan het Lemmensinstituut te Leuven, maar ruilde er al vlug zijn instrument in voor een bastrombone. In 2009 rondde hij zijn studie af als Master in de muziek, optie bastrombone.</p>
+                  <p>Hoewel hij nog jong is, kan Kevin al een indrukwekkend palmares voorleggen. Zo speelde hij mee in verschillende vooraanstaande orkesten en ensembles, waaronder het Brussels Philharmonic Orchestra, het Golden Symphonic Orchestra, het orkest van de Vlaamse Opera, het Limburgs Symfonie Orkest, het Kamerorkest van Vlaanderen, het ensemble Il Novecento, het Orkest van de Koninklijke Muntschouwberg, het Nationaal Orkest van België, de Philharmonie van Luik en het kamerorkest Continuo uit Rotterdam.</p>
+
+                  <p>Kevin is bijzonder bekommerd om de opleiding van jonge muzikanten, die de toekomst van onze harmonie moeten waarborgen. Al onmiddellijk na zijn aantreden als dirigent, begin 2017, ging hij met veel enthousiasme een aantal jongeren begeleiden bij hun eerste stapjes in de blaasmuziek.</p>
                 </div>
               </div>
             </div>
@@ -78,10 +52,6 @@
 
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator';
-import { restaurantVuexNamespace } from '~/store/restaurant/const';
-import { Restaurant } from '~/store/restaurant/types';
-
-const RestaurantAction = namespace('restaurant/');
 
 @Component({
   layout: 'appHeader',
@@ -94,41 +64,6 @@ const RestaurantAction = namespace('restaurant/');
     BaseInput: () => import('@/components/BaseInput.vue')
   }
 })
-export default class RestaurantView extends Vue {
-  @restaurantVuexNamespace.State('currentRestaurant')
-  private restaurant!: {};
-
-  //@RestaurantAction.Getter('getById')
-  //private restaurant!: (id) => any;
-
-  async asyncData({ store, params, error, payload }) {
-    if (payload) {
-      return { restaurant: payload };
-    } else {
-      console.log('Fetching restaurant');
-      return await store.dispatch('restaurant/fetchRestaurant', params.id);
-    }
-  }
-  /*  async fetch({ store, params, error, payload }) {
-    if (payload) {
-      console.log('we have a payload');
-      return { restaurant: payload.restaurant };
-    }
-    //if (typeof store.state.restaurants.id[params.id] === 'undefined') {
-    else {
-      console.log('Fetching restaurant');
-      return await store.dispatch('restaurant/fetchRestaurant', params.id);
-    }
-    // }
-  } */
-
-  created() {
-    //this.restaurant(this.$route.params.id);
-  }
-
-  /*  get restaurant() {
-    return this.restaurants[this.$route.params.id];
-  } */
-}
+export default class RestaurantView extends Vue {}
 </script>
 

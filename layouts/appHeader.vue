@@ -21,7 +21,7 @@
           <base-dropdown class="nav-item" menu-classes="dropdown-menu-xl">
             <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
               <i class="ni ni-ui-04 d-lg-none"></i>
-              <span class="nav-link-inner--text">Components</span>
+              <span class="nav-link-inner--text">Harmonie</span>
             </a>
             <div class="dropdown-menu-inner">
               <a
@@ -32,7 +32,7 @@
                   <i class="ni ni-spaceship"></i>
                 </div>
                 <div class="media-body ml-3">
-                  <h6 class="heading text-primary mb-md-1">Getting started</h6>
+                  <h6 class="heading text-primary mb-md-1">Dirigent</h6>
                   <p class="description d-none d-md-inline-block mb-0">
                     Get started with Bootstrap, the
                     world's most popular framework for building responsive sites.
@@ -47,7 +47,7 @@
                   <i class="ni ni-ui-04"></i>
                 </div>
                 <div class="media-body ml-3">
-                  <h5 class="heading text-warning mb-md-1">Components</h5>
+                  <h5 class="heading text-warning mb-md-1">Geschiedenis</h5>
                   <p class="description d-none d-md-inline-block mb-0">
                     Learn how to use Argon
                     compiling Scss, change brand colors and more.
@@ -59,7 +59,7 @@
           <base-dropdown tag="li" class="nav-item">
             <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
               <i class="ni ni-collection d-lg-none"></i>
-              <span class="nav-link-inner--text">Examples</span>
+              <span class="nav-link-inner--text">Nieuws</span>
             </a>
             <router-link to="/landing" class="dropdown-item">Landing</router-link>
             <router-link to="/profile" class="dropdown-item">Profile</router-link>
@@ -102,9 +102,9 @@
               class="btn btn-neutral btn-icon"
             >
               <span class="btn-inner--icon">
-                <i class="fa fa-cloud-download mr-2"></i>
+                <i class="fa fa-envelope mr-2"></i>
               </span>
-              <span class="nav-link-inner--text">Download</span>
+              <span class="nav-link-inner--text">Contact</span>
             </a>
           </li>
         </ul>

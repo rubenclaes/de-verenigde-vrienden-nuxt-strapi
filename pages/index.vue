@@ -2,7 +2,10 @@
   <div>
     <div class="position-relative">
       <!-- shape Hero -->
-      <section class="section-shaped my-0">
+      <section
+        class="section-shaped my-0"
+        style="background: url('img/home/MineDance_2.JPG')no-repeat;background-size: cover;"
+      >
         <div class="shape shape-style-1 shape-default shape-skew">
           <span></span>
           <span></span>
@@ -244,41 +247,25 @@
             </p>
           </div>
         </div>
-        <div class="row">
+        <div class="row justify-content-center">
           <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
             <div class="px-4">
               <img
-                v-lazy="'img/theme/team-4-800x800.jpg'"
+                v-lazy="'img/home/dirigent.jpg'"
                 class="rounded-circle img-center img-fluid shadow shadow-lg--hover"
                 style="width: 200px;"
               >
               <div class="pt-4 text-center">
                 <h5 class="title">
-                  <span class="d-block mb-1">John Doe</span>
-                  <small class="h6 text-muted">Founder and CEO</small>
+                  <span class="d-block mb-1">Kevin Absillis</span>
+                  <small class="h6 text-muted">Dirigent</small>
                 </h5>
                 <div class="mt-3">
                   <base-button
                     tag="a"
-                    href="#"
+                    href="dirigent"
                     type="success"
-                    icon="fa fa-twitter"
-                    rounded
-                    icon-only
-                  ></base-button>
-                  <base-button
-                    tag="a"
-                    href="#"
-                    type="success"
-                    icon="fa fa-facebook"
-                    rounded
-                    icon-only
-                  ></base-button>
-                  <base-button
-                    tag="a"
-                    href="#"
-                    type="success"
-                    icon="fa fa-dribbble"
+                    icon="fa fa-globe"
                     rounded
                     icon-only
                   ></base-button>
