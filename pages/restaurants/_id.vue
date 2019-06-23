@@ -116,8 +116,8 @@ export default class RestaurantView extends Vue {
     return +to.query.page < +from.query.page ? 'slide-right' : 'slide-left';
   }
 
-  get restaurantName() {
-    return this.restaurant.name;
+  get restaurantImage() {
+    return this.restaurant.image[0].url;
   }
 
   head() {
@@ -131,7 +131,7 @@ export default class RestaurantView extends Vue {
           'og:type': 'article',
           'og:title': this.restaurant.name,
           'og:description': this.restaurant.description,
-          'og:image': ''
+          'og:image': this.restaurant.image.url
         }
       ]
     };
