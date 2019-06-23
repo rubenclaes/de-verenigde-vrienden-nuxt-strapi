@@ -50,11 +50,11 @@
                 class="col-lg-4"
               >
                 <card class="border-0" hover shadow body-classes="py-5">
-                  <icon name="ni ni-check-bold" :type="colors[index]" rounded class="mb-4"></icon>
+                  <icon name="ni ni-note-03" :type="colors[index]" rounded class="mb-4"></icon>
                   <h6 v-bind:class="text[index]" class="text-uppercase">{{restaurant.name}}</h6>
                   <p
                     class="description mt-3"
-                  >{{restaurant.description || 'No description provided'}}</p>
+                  >{{restaurant.description.substring(0,100) || 'No description provided'}}...</p>
                   <div>
                     <badge :type="colors[index]" rounded>design</badge>
                     <badge :type="colors[index]" rounded>system</badge>
@@ -287,12 +287,10 @@
       <div class="container pt-lg pb-300">
         <div class="row text-center justify-content-center">
           <div class="col-lg-10">
-            <h2 class="display-3 text-white">Contacteer ons</h2>
-            <p class="lead text-white">
-              According to the National Oceanic and Atmospheric Administration,
-              Ted, Scambos, NSIDClead scentist, puts the potentially record low maximum sea ice extent
-              tihs year down to low ice.
-            </p>
+            <h2 class="display-3 text-white">Adres</h2>
+            <p class="lead text-white">Koninlijke Harmonie De Verenigde Vrienden Heusden</p>
+            <p class="lead text-white">Kerkenblook z/n</p>
+            <p class="lead text-white">3550 Heusden-Zolder</p>
           </div>
         </div>
       </div>
@@ -310,7 +308,7 @@
             >
               <card gradient="secondary" shadow body-classes="p-lg-5">
                 <h4 class="mb-1">Want to work with us?</h4>
-                <p class="mt-0">Your project is very important to us.</p>
+                <p class="mt-0">Geef ons een seintje.</p>
                 <div v-show="false">
                   <input name="form-name" value="contact">
                 </div>
