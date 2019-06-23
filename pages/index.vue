@@ -82,10 +82,13 @@
           <div class="p-5">
             <div class="row align-items-center">
               <div class="col-lg-8">
-                <h3 class="text-white">We made website building easier for you.</h3>
+                <h3 class="text-white">Muziekkamp HEMELTJE - HEL</h3>
                 <p class="lead text-white mt-3">
-                  I will be the leader of a company that ends up being
-                  worth billions of dollars, because I got the answers. I understand culture.
+                  Samen muziek maken, samen actief zijn,... je beleeft het allemaal in dit muziekkamp.
+                  Info en inschrijven voor 10 juni bij
+                  <a
+                    href="mailto:lieselotte_kleykens@hotmail.com?SUBJECT=Muziekkamp"
+                  >lieselotte_kleykens@hotmail.com</a>
                 </p>
               </div>
               <div class="col-lg-3 ml-lg-auto">
@@ -95,7 +98,7 @@
                   type="white"
                   block
                   size="lg"
-                >Download Vue</base-button>
+                >Lees Meer</base-button>
               </div>
             </div>
           </div>
@@ -112,15 +115,8 @@
           </div>
           <div class="col-md-6 order-md-1">
             <div class="pr-md-5">
-              <icon
-                name="ni ni-settings-gear-65"
-                class="mb-5"
-                size="lg"
-                type="success"
-                shadow
-                rounded
-              ></icon>
-              <h3>Awesome features</h3>
+              <icon name="ni ni-satisfied" class="mb-5" size="lg" type="success" shadow rounded></icon>
+              <h3>Jeugdorkest</h3>
               <p>
                 The kit comes with three pre-built pages to help you get started faster. You can change
                 the text and images and you're good to go.
@@ -128,20 +124,20 @@
               <ul class="list-unstyled mt-5">
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge type="success" circle class="mr-3" icon="ni ni-settings-gear-65"></badge>
-                    <h6 class="mb-0">Carefully crafted components</h6>
+                    <badge type="success" circle class="mr-3" icon="ni ni-notification-70"></badge>
+                    <h6 class="mb-0">Muziekkamp</h6>
                   </div>
                 </li>
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge type="success" circle class="mr-3" icon="ni ni-html5"></badge>
-                    <h6 class="mb-0">Amazing page examples</h6>
+                    <badge type="success" circle class="mr-3" icon="ni ni-like-2"></badge>
+                    <h6 class="mb-0">Social media</h6>
                   </div>
                 </li>
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge type="success" circle class="mr-3" icon="ni ni-satisfied"></badge>
-                    <h6 class="mb-0">Super friendly support team</h6>
+                    <badge type="success" circle class="mr-3" icon="ni ni-active-40"></badge>
+                    <h6 class="mb-0">Wekelijkse Repetitie</h6>
                   </div>
                 </li>
               </ul>
@@ -156,7 +152,7 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <img v-lazy="'img/theme/img-1-1200x1000.jpg'" class="card-img-top">
+              <img v-lazy="'/img/home/close_up.JPG'" class="card-img-top">
               <blockquote class="card-blockquote">
                 <svg
                   preserveAspectRatio="none"
@@ -178,9 +174,16 @@
           </div>
           <div class="col-md-6">
             <div class="pl-md-5">
-              <icon name="ni ni-settings" class="mb-5" size="lg" type="warning" shadow rounded></icon>
+              <icon
+                name="ni ni-calendar-grid-58"
+                class="mb-5"
+                size="lg"
+                type="warning"
+                shadow
+                rounded
+              ></icon>
 
-              <h3>Our customers</h3>
+              <h3>Jaarlijks concert</h3>
               <p class="lead">
                 Don't let your uses guess by attaching tooltips and popoves to any element.
                 Just make sure you enable them first via JavaScript.
