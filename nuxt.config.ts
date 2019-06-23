@@ -26,9 +26,9 @@ const config: NuxtConfiguration = {
    */
   loading: { color: '#fff' },
   manifest: {
-    name: 'Nuxt Hacker News Typescript',
-    short_name: 'Nuxt HN TS',
-    description: 'HackerNews clone built with Nuxt.js & Typescript',
+    name: 'Harmonie De Vernigde Vrienden',
+    short_name: 'KH VV HZ',
+    description: 'Koninklijke harmonie de Verenige Vrienden Heusden-Zolder app',
     theme_color: '#188269'
   },
   /*

@@ -219,7 +219,7 @@
       <div class="container py-0 pb-lg">
         <div class="row justify-content-between align-items-center">
           <div class="col-lg-5 mb-5 mb-lg-0">
-            <h1 class="text-white font-weight-light">Bootstrap carousel</h1>
+            <h1 class="text-white font-weight-light">Activieiten</h1>
             <p class="lead text-white mt-4">
               Argon Design System comes with four pre-built pages to help you get
               started faster. You can change the text and images and you're good to go.
@@ -229,7 +229,7 @@
             <div class="rounded shadow-lg overflow-hidden transform-perspective-right">
               <b-carousel id="carousel1" controls indicators>
                 <!-- Text slides with image -->
-                <b-carousel-slide img-src="img/theme/img-1-1200x1000.jpg"></b-carousel-slide>
+                <b-carousel-slide img-src="/img/home/jazz.JPG"></b-carousel-slide>
                 <b-carousel-slide img-src="img/theme/img-2-1200x1000.jpg"></b-carousel-slide>
               </b-carousel>
             </div>

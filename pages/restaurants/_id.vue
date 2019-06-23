@@ -61,7 +61,7 @@
                 <i class="ni location_pin mr-2"></i>Bucharest, Romania
               </div>
             </div>
-            <div class="mt-5 py-5 border-top text-center">
+            <div class="mt-5 py-5 border-top text-justify">
               <div class="row justify-content-center">
                 <div class="col-lg-9">
                   <p>{{restaurant.description}}</p>

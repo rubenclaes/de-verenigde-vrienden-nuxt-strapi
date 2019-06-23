@@ -23,6 +23,34 @@
                   </a>
                 </div>
               </div>
+              <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
+                <div class="card-profile-actions py-4 mt-lg-0">
+                  <base-button
+                    tag="a"
+                    href="#"
+                    type="facebook"
+                    icon="fa fa-facebook"
+                    rounded
+                    icon-only
+                  ></base-button>
+                </div>
+              </div>
+              <div class="col-lg-4 order-lg-1">
+                <div class="card-profile-stats d-flex justify-content-center">
+                  <div>
+                    <span class="heading">22</span>
+                    <span class="description">Friends</span>
+                  </div>
+                  <div>
+                    <span class="heading">10</span>
+                    <span class="description">Photos</span>
+                  </div>
+                  <div>
+                    <span class="heading">89</span>
+                    <span class="description">Comments</span>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="text-center mt-5">
               <h3>
@@ -33,7 +61,7 @@
                 <i class="ni location_pin mr-2"></i>Bucharest, Romania
               </div>
             </div>
-            <div class="mt-5 py-5 border-top text-center">
+            <div class="mt-5 py-5 border-top text-justify">
               <div class="row justify-content-center">
                 <div class="col-lg-9">
                   <p>Onze harmonie wordt thans geleid door Kevin Absillis. Kevin zette op 7-jarige leeftijd zijn eerste stappen in de muziek bij Brassband Sint-Cecilia in Leest. Toen hij 17 jaar was, besloot hij van zijn hobby zijn beroep te maken. Hij begon studies tenortrombone aan het Lemmensinstituut te Leuven, maar ruilde er al vlug zijn instrument in voor een bastrombone. In 2009 rondde hij zijn studie af als Master in de muziek, optie bastrombone.</p>
