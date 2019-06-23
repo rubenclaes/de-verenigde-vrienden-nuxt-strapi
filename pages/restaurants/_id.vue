@@ -97,7 +97,7 @@ const RestaurantAction = namespace('restaurant/');
 })
 export default class RestaurantView extends Vue {
   @restaurantVuexNamespace.State('currentRestaurant')
-  private restaurant!: {};
+  private restaurant!: Restaurant;
 
   //@RestaurantAction.Getter('getById')
   //private restaurant!: (id) => any;
@@ -114,6 +114,27 @@ export default class RestaurantView extends Vue {
   transition(to, from) {
     if (!from) return 'slide-left';
     return +to.query.page < +from.query.page ? 'slide-right' : 'slide-left';
+  }
+
+  get restaurantName() {
+    return this.restaurant.name;
+  }
+
+  head() {
+    return {
+      title: this.restaurant.name,
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        {
+          hid: this.restaurant.id,
+          'og:url': this.$nuxt.$route.name,
+          'og:type': 'article',
+          'og:title': this.restaurant.name,
+          'og:description': this.restaurant.description,
+          'og:image': ''
+        }
+      ]
+    };
   }
   /*  async fetch({ store, params, error, payload }) {
     if (payload) {

@@ -230,7 +230,9 @@
               <b-carousel id="carousel1" controls indicators>
                 <!-- Text slides with image -->
                 <b-carousel-slide img-src="/img/home/jazz.JPG"></b-carousel-slide>
-                <b-carousel-slide img-src="img/theme/img-2-1200x1000.jpg"></b-carousel-slide>
+                <b-carousel-slide
+                  img-src="/img/home/buitengebeuren-mijn-kracht-lijdt-onder-het-weer.jpg"
+                ></b-carousel-slide>
               </b-carousel>
             </div>
           </div>
