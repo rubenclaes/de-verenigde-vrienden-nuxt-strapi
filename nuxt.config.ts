@@ -26,7 +26,7 @@ const config: NuxtConfiguration = {
    */
   loading: { color: '#fff' },
   manifest: {
-    name: 'Harmonie De Vernigde Vrienden',
+    name: 'Harmonie De Verenigde Vrienden',
     short_name: 'KH VV HZ',
     description: 'Koninklijke harmonie de Verenige Vrienden Heusden-Zolder app',
     theme_color: '#188269'

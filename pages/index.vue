@@ -2,11 +2,11 @@
   <div>
     <div class="position-relative">
       <!-- shape Hero -->
-      <section
-        class="section-shaped my-0"
-        style="background: url('img/home/MineDance_2.JPG')no-repeat;background-size: cover;"
-      >
-        <div class="shape shape-style-1 shape-default shape-skew">
+      <section class="section-shaped my-0">
+        <div
+          class="shape shape-style-1 shape-default"
+          style="background: url('img/home/MineDance_2.JPG')no-repeat;background-size: cover;"
+        >
           <span></span>
           <span></span>
           <span></span>
@@ -107,7 +107,8 @@
     </section>
     <!-- end important message -->
 
-    <section class="section section-lg">
+    <!-- Jeugdorkest -->
+    <section class="section section-lg pt-0">
       <div class="container">
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
@@ -146,7 +147,9 @@
         </div>
       </div>
     </section>
+    <!-- end Jeugdorkest -->
 
+    <!-- important message -->
     <section class="section bg-secondary">
       <div class="container">
         <div class="row row-grid align-items-center">
@@ -205,6 +208,7 @@
         </div>
       </div>
     </section>
+    <!-- end important message -->
 
     <!-- carousel -->
     <section class="section section-lg section-shaped overflow-hidden my-0">
@@ -241,6 +245,7 @@
     </section>
     <!-- end carousel -->
 
+    <!-- Dirigent -->
     <section class="section section-lg">
       <div class="container">
         <div class="row justify-content-center text-center mb-lg">
@@ -281,7 +286,9 @@
         </div>
       </div>
     </section>
+    <!-- end Dirigent -->
 
+    <!-- Adres -->
     <section class="section section-shaped my-0 overflow-hidden">
       <div class="shape shape-style-3 bg-gradient-default shape-skew">
         <span></span>
@@ -348,6 +355,7 @@
         </div>
       </div>
     </section>
+    <!-- end Adres -->
   </div>
 </template>
 
