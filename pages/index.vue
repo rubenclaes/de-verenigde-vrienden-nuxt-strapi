@@ -329,14 +329,14 @@
                   name="name"
                   class="mt-5"
                   alternative
-                  placeholder="Your name"
+                  placeholder="Naam"
                   addon-left-icon="ni ni-user-run"
                 ></base-input>
                 <base-input
                   name="email"
                   type="email"
                   alternative
-                  placeholder="Email address"
+                  placeholder="Email"
                   addon-left-icon="ni ni-email-83"
                 ></base-input>
                 <base-input class="mb-4">
@@ -345,7 +345,7 @@
                     class="form-control form-control-alternative"
                     rows="4"
                     cols="80"
-                    placeholder="Type a message..."
+                    placeholder="Schrijf een bericht..."
                   ></textarea>
                 </base-input>
                 <base-button type="default" nativeType="submit" round block size="lg">Send Message</base-button>

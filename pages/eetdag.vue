@@ -77,8 +77,21 @@
     </div>
   </section>
 </template>
-<script>
-export default {};
+
+<script lang="ts">
+import { Component, Vue, namespace } from 'nuxt-property-decorator';
+
+@Component({
+  layout: 'appHeader',
+  components: {
+    Logo: () => import('@/components/Logo.vue'),
+    BaseButton: () => import('@/components/BaseButton.vue'),
+    Card: () => import('@/components/Card.vue'),
+    Badge: () => import('@/components/Badge.vue'),
+    Icon: () => import('@/components/Icon.vue'),
+    BaseInput: () => import('@/components/BaseInput.vue'),
+    BaseCheckbox: () => import('@/components/BaseCheckbox.vue')
+  }
+})
+export default class RestaurantView extends Vue {}
 </script>
-<style>
-</style>

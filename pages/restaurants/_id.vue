@@ -117,7 +117,7 @@ export default class RestaurantView extends Vue {
   }
 
   get restaurantImage() {
-    return this.restaurant.image[0].url;
+    return this.restaurant.image.url;
   }
 
   head() {
