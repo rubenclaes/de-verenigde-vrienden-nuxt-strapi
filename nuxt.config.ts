@@ -9,14 +9,15 @@ const config: NuxtConfiguration = {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
+    title: '%s - ' + process.env.npm_package_name,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
-        name: 'description',
-        content: process.env.npm_package_description || ''
+        name: 'Harmonie De Verenigde Vrienden',
+        content:
+          'Koninklijke Harmonie de Verenige Vrienden Heusden-Zolder Website'
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
@@ -24,7 +25,7 @@ const config: NuxtConfiguration = {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: { color: '#39b982' },
   manifest: {
     name: 'Harmonie De Verenigde Vrienden',
     short_name: 'KH VV HZ',
@@ -53,7 +54,7 @@ const config: NuxtConfiguration = {
     [
       '@nuxtjs/google-analytics',
       {
-        id: 'UA-12301-2'
+        id: 'UA-36999937-1'
       }
     ],
     //Always at the end
@@ -63,17 +64,18 @@ const config: NuxtConfiguration = {
     API_URL: 'https://strapi-de-verenigde-vrienden.herokuapp.com'
   },
   sitemap: {
-    hostname: 'https://example.com',
+    hostname: 'https://www.deverenigdevriendenheusden.be',
     gzip: true,
     exclude: ['/secret', '/admin/**'],
     routes: [
-      '/page/1',
-      {
+      '/dirigent',
+      '/geschiedenis'
+      /* {
         url: '/page/2',
         changefreq: 'daily',
         priority: 1,
         lastmodISO: '2017-06-30T13:30:00.000Z'
-      }
+      } */
     ]
   },
   /*
