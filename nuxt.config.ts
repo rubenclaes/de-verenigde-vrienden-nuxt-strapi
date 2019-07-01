@@ -29,7 +29,8 @@ const config: NuxtConfiguration = {
   manifest: {
     name: 'Harmonie De Verenigde Vrienden',
     short_name: 'KH VV HZ',
-    description: 'Koninklijke harmonie de Verenige Vrienden Heusden-Zolder app',
+    description:
+      'Website Koninklijke Harmonie De Verenige Vrienden Heusden-Zolder',
     theme_color: '#188269'
   },
   /*

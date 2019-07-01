@@ -151,7 +151,7 @@ export default class RestaurantView extends Vue {
           'og:url': this.$nuxt.$route.name,
           'og:type': 'article',
           'og:title': this.restaurant.name,
-          'og:description': this.restaurant.description,
+          'og:description': 'test',
           'og:image': this.restaurant.image.url
         }
       ]
