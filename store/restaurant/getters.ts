@@ -22,6 +22,17 @@ export const getters: GetterTree<RestaurantState, RootState> = {
       restaurants => restaurants.id === id
     );
     return restaurant;
+  },
+
+  formattedDate(state) {
+    const options = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    };
+    let time = new Date(state.currentRestaurant.created_at);
+    return time.toLocaleDateString('nl-BE', options);
   }
 };
 

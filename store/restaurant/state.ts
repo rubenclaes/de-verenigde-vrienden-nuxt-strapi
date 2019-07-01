@@ -10,7 +10,8 @@ export const initState = (): RestaurantState => ({
     id: 0,
     name: '',
     description: '',
-    image: {}
+    image: { url: '' },
+    created_at: new Date()
   }
 });
 

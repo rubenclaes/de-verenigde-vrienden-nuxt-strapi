@@ -28,6 +28,7 @@ export const actions: ActionTree<RestaurantState, RootState> = {
               image {
                 url
               }
+              created_at
             }
           }
           `
@@ -87,6 +88,7 @@ export const actions: ActionTree<RestaurantState, RootState> = {
               image {
                 url
               }
+              created_at
             }
           }
           `

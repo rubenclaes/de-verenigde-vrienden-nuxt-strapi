@@ -55,7 +55,7 @@
             </div>
             <div class="text-center mt-5">
               <h3>
-                KEVIN ABSILLIS
+                Geschiedenis
                 <span class="font-weight-light">, 27</span>
               </h3>
               <div class="h6 font-weight-300">
@@ -65,6 +65,24 @@
             <div class="mt-5 py-5 border-top text-justify">
               <div class="row justify-content-center">
                 <div class="col-lg-9">
+                  <h3 class="h4 text-success font-weight-bold mb-5">Komaan gast</h3>
+                  <tabs :fill="false" circle>
+                    <tab-pane>
+                      <span slot="title" class="nav-link-icon d-block">
+                        <i class="ni ni-atom"></i>
+                      </span>
+                    </tab-pane>
+                    <tab-pane>
+                      <span slot="title" class="nav-link-icon d-block">
+                        <i class="ni ni-chat-round"></i>
+                      </span>
+                    </tab-pane>
+                    <tab-pane>
+                      <span slot="title" class="nav-link-icon d-block">
+                        <i class="ni ni-cloud-download-95"></i>
+                      </span>
+                    </tab-pane>
+                  </tabs>
                   <p>Onze harmonie wordt thans geleid door Kevin Absillis. Kevin zette op 7-jarige leeftijd zijn eerste stappen in de muziek bij Brassband Sint-Cecilia in Leest. Toen hij 17 jaar was, besloot hij van zijn hobby zijn beroep te maken. Hij begon studies tenortrombone aan het Lemmensinstituut te Leuven, maar ruilde er al vlug zijn instrument in voor een bastrombone. In 2009 rondde hij zijn studie af als Master in de muziek, optie bastrombone.</p>
                   <p>Hoewel hij nog jong is, kan Kevin al een indrukwekkend palmares voorleggen. Zo speelde hij mee in verschillende vooraanstaande orkesten en ensembles, waaronder het Brussels Philharmonic Orchestra, het Golden Symphonic Orchestra, het orkest van de Vlaamse Opera, het Limburgs Symfonie Orkest, het Kamerorkest van Vlaanderen, het ensemble Il Novecento, het Orkest van de Koninklijke Muntschouwberg, het Nationaal Orkest van België, de Philharmonie van Luik en het kamerorkest Continuo uit Rotterdam.</p>
 
@@ -90,7 +108,10 @@ import { Component, Vue, namespace } from 'nuxt-property-decorator';
     Card: () => import('@/components/Card.vue'),
     Badge: () => import('@/components/Badge.vue'),
     Icon: () => import('@/components/Icon.vue'),
-    BaseInput: () => import('@/components/BaseInput.vue')
+    BaseInput: () => import('@/components/BaseInput.vue'),
+    Tabs: () => import('@/components/Tabs/Tabs.vue'),
+    TabPane: () => import('@/components/Tabs/TabPane.vue'),
+    TabsLayout: () => import('@/components/Tabs/TabsLayout.vue')
   }
 })
 export default class RestaurantView extends Vue {}

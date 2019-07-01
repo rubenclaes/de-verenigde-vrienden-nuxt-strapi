@@ -14,5 +14,6 @@ export interface Restaurant {
   id: number;
   name: string;
   description: string;
-  image: Object;
+  image: any;
+  created_at: Date;
 }

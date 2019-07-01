@@ -16,13 +16,7 @@
         <card shadow class="card-profile mt--300" no-body>
           <div class="px-4">
             <div class="row justify-content-center">
-              <div class="col-lg-3 order-lg-2">
-                <div class="card-profile-image">
-                  <a :href="restaurant.image.url">
-                    <img v-lazy="restaurant.image.url" class="rounded-circle">
-                  </a>
-                </div>
-              </div>
+              <div class="col-lg-3 order-lg-2"></div>
               <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
                 <div class="card-profile-actions py-4 mt-lg-0">
                   <base-button
@@ -53,17 +47,18 @@
               </div>
             </div>
             <div class="text-center mt-5">
-              <h3>
-                {{restaurant.name}}
-                <span class="font-weight-light">, 27</span>
-              </h3>
+              <h3>{{restaurant.name}}</h3>
               <div class="h6 font-weight-300">
-                <i class="ni location_pin mr-2"></i>Bucharest, Romania
+                <i class="ni location_pin mr-2"></i>
+                {{ formattedDate }}
               </div>
             </div>
             <div class="mt-5 py-5 border-top text-justify">
               <div class="row justify-content-center">
                 <div class="col-lg-9">
+                  <a :href="restaurant.image.url">
+                    <img v-lazy="restaurant.image.url" class="rounded shadow-lg">
+                  </a>
                   <p>{{restaurant.description}}</p>
                   <a href="#">Show more</a>
                 </div>
@@ -99,6 +94,9 @@ export default class RestaurantView extends Vue {
   @restaurantVuexNamespace.State('currentRestaurant')
   private restaurant!: Restaurant;
 
+  @restaurantVuexNamespace.Getter('formattedDate')
+  private formattedDate!: Date;
+
   //@RestaurantAction.Getter('getById')
   //private restaurant!: (id) => any;
 
@@ -119,6 +117,29 @@ export default class RestaurantView extends Vue {
   get restaurantImage() {
     return this.restaurant.image.url;
   }
+
+  //get formattedDate() {
+  /* let day = this.restaurant.createdAt.getDate();
+    let monthIndex = this.restaurant.createdAt.getMonth();
+    var year = this.restaurant.createdAt.getFullYear();
+    var minutes = this.restaurant.createdAt.getMinutes();
+    var hours = this.restaurant.createdAt.getHours();
+    let seconds = this.restaurant.createdAt.getSeconds();
+    let myFormattedDate =
+      day +
+      '-' +
+      (monthIndex + 1) +
+      '-' +
+      year +
+      ' ' +
+      hours +
+      ':' +
+      minutes +
+      ':' +
+      seconds; */
+  // console.log(this.restaurant.createdAt);
+  // return this.restaurant.createdAt;
+  //}
 
   head() {
     return {
