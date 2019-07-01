@@ -15,7 +15,7 @@ const config: NuxtConfiguration = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
-        name: 'Harmonie De Verenigde Vrienden',
+        name: 'description',
         content:
           'Koninklijke Harmonie de Verenige Vrienden Heusden-Zolder Website'
       }
