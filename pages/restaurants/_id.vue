@@ -147,7 +147,7 @@ export default class RestaurantView extends Vue {
           hid: `og:url`,
           name: 'og:url',
           property: 'og:url',
-          content: `${this.$route.fullPath}`
+          content: `https://admiring-panini-652d81.netlify.com/${this.$route.fullPath}`
         },
         {
           hid: `og:type`,
@@ -171,7 +171,7 @@ export default class RestaurantView extends Vue {
           hid: `og:image`,
           name: 'og:image',
           property: 'og:image',
-          content: `https://admiring-panini-652d81.netlify.com/${this.restaurant.image.url}`
+          content: `${this.restaurant.image.url}`
         }
       ]
     };
