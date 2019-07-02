@@ -147,34 +147,34 @@ export default class RestaurantView extends Vue {
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {
-          hid: 'og:url',
+          hid: `og:url`,
           name: 'og:url',
           property: 'og:url',
-          content: this.$nuxt.$route.name
+          content: `${this.$route.fullPath}`
         },
         {
-          hid: 'og:type',
+          hid: `og:type`,
           name: 'og:type',
           property: 'og:type',
           content: 'article'
         },
         {
-          hid: 'og:title',
+          hid: `og:title`,
           name: 'og:title',
           property: 'og:title',
-          content: this.restaurant.name
+          content: `${this.restaurant.name}`
         },
         {
-          hid: 'og:description',
+          hid: `og:description`,
           name: 'og:description',
           property: 'og:description',
-          content: this.restaurant.description
+          content: `${this.restaurant.description}`
         },
         {
-          hid: 'og:image',
+          hid: `og:image`,
           name: 'og:image',
           property: 'og:image',
-          content: this.restaurant.image.url
+          content: `${this.restaurant.image.url}`
         }
       ]
     };
