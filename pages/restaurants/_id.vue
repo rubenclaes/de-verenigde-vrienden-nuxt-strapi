@@ -97,9 +97,6 @@ export default class RestaurantView extends Vue {
   @restaurantVuexNamespace.Getter('formattedDate')
   private formattedDate!: Date;
 
-  //@RestaurantAction.Getter('getById')
-  //private restaurant!: (id) => any;
-
   async asyncData({ store, params, error, payload }) {
     if (payload) {
       return { restaurant: payload };
