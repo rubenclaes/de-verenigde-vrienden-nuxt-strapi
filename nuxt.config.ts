@@ -63,7 +63,9 @@ const config: NuxtConfiguration = {
     '@nuxtjs/sitemap'
   ],
   env: {
-    API_URL: 'https://strapi-de-verenigde-vrienden.herokuapp.com'
+    API_URL: 'https://strapi-de-verenigde-vrienden.herokuapp.com',
+    SENTRY_AUTH_TOKEN:
+      'f4bd51e7f1574fce9bdc8dfec8b4ae2364f69993994944bf9c6cd375d3446560'
   },
   sitemap: {
     hostname: 'https://www.deverenigdevriendenheusden.be',
@@ -83,6 +85,7 @@ const config: NuxtConfiguration = {
   sentry: {
     dsn: 'https://fb2ee10337c04b69acc2256208c7ecd7@sentry.io/1508964', // Enter your project's DSN here
     publishRelease: true,
+    disabled: isDev,
     config: {} // Additional config
   },
   /*
