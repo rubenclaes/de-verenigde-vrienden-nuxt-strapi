@@ -51,6 +51,7 @@ const config: NuxtConfiguration = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/sentry',
     'bootstrap-vue/nuxt',
     [
       '@nuxtjs/google-analytics',
@@ -78,6 +79,11 @@ const config: NuxtConfiguration = {
         lastmodISO: '2017-06-30T13:30:00.000Z'
       } */
     ]
+  },
+  sentry: {
+    dsn: 'https://fb2ee10337c04b69acc2256208c7ecd7@sentry.io/1508964', // Enter your project's DSN here
+    publishRelease: true,
+    config: {} // Additional config
   },
   /*
    ** Axios module configuration

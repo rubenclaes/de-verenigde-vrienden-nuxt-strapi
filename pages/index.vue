@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="position-relative">
-      <!-- shape Hero -->
-      <section class="section-shaped my-0">
-        <div
-          class="shape shape-style-1 shape-default"
-          style="background: url('img/home/MineDance_2.JPG')no-repeat;background-size: cover;"
-        >
+      <section
+        class="page-header header-filter clear-filter"
+        data-parallax="true"
+        style="background-image: url('img/home/MineDance_2.JPG'); transform: translate3d(0px, 0px, 0px);"
+      >
+        <div class="shape shape-style-1 shape-default">
           <span></span>
           <span></span>
           <span></span>
@@ -35,7 +35,7 @@
           </div>
         </div>
       </section>
-      <!-- 1st Hero Variation -->
+      <!-- shape Hero -->
     </div>
 
     <!-- start news -->
@@ -112,7 +112,7 @@
       <div class="container">
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
-            <img src="img/theme/promo-1.png" class="img-fluid floating">
+            <img src="img/theme/promo-1.png" class="img-fluid floating" />
           </div>
           <div class="col-md-6 order-md-1">
             <div class="pr-md-5">
@@ -155,7 +155,7 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <img v-lazy="'/img/home/close_up.JPG'" class="card-img-top">
+              <img v-lazy="'/img/home/close_up.JPG'" class="card-img-top" />
               <blockquote class="card-blockquote">
                 <svg
                   preserveAspectRatio="none"
@@ -163,8 +163,8 @@
                   viewBox="0 0 583 95"
                   class="svg-bg"
                 >
-                  <polygon points="0,52 583,95 0,95" class="fill-default"></polygon>
-                  <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default"></polygon>
+                  <polygon points="0,52 583,95 0,95" class="fill-default" />
+                  <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default" />
                 </svg>
                 <h4 class="display-3 font-weight-bold text-white">Design System</h4>
                 <p class="lead text-italic text-white">
@@ -264,7 +264,7 @@
                 v-lazy="'img/home/dirigent.jpg'"
                 class="rounded-circle img-center img-fluid shadow shadow-lg--hover"
                 style="width: 200px;"
-              >
+              />
               <div class="pt-4 text-center">
                 <h5 class="title">
                   <span class="d-block mb-1">Kevin Absillis</span>
@@ -322,7 +322,7 @@
                 <h4 class="mb-1">Want to work with us?</h4>
                 <p class="mt-0">Geef ons een seintje.</p>
                 <div v-show="false">
-                  <input name="form-name" value="contact">
+                  <input name="form-name" value="contact" />
                 </div>
 
                 <base-input
@@ -430,4 +430,19 @@ export default class IndexPage extends Vue {
   }
 }
 </script>
+<style>
+.page-header {
+  background-position: center center;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.page-header .container {
+  padding-top: 150px;
+  color: #ffffff;
+}
+</style>
+
 
