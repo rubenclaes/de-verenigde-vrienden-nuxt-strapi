@@ -63,9 +63,7 @@ const config: NuxtConfiguration = {
     '@nuxtjs/sitemap'
   ],
   env: {
-    API_URL: 'https://strapi-de-verenigde-vrienden.herokuapp.com',
-    SENTRY_AUTH_TOKEN:
-      'f4bd51e7f1574fce9bdc8dfec8b4ae2364f69993994944bf9c6cd375d3446560'
+    API_URL: 'https://strapi-de-verenigde-vrienden.herokuapp.com'
   },
   sitemap: {
     hostname: 'https://www.deverenigdevriendenheusden.be',
