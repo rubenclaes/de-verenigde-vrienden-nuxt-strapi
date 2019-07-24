@@ -3,7 +3,7 @@ const isDev = process.env.NODE_ENV !== 'production';
 import NuxtConfiguration from '@nuxt/config';
 import axios from 'axios';
 
-const config: NuxtConfiguration = {
+const config = {
   mode: 'universal',
   /*
    ** Headers of the page
@@ -18,6 +18,11 @@ const config: NuxtConfiguration = {
         name: 'description',
         content:
           'Koninklijke Harmonie de Verenige Vrienden Heusden-Zolder Website'
+      }
+    ],
+    script: [
+      {
+        src: '//downloads.mailchimp.com/js/signup-forms/popup/embed.js'
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
@@ -41,7 +46,9 @@ const config: NuxtConfiguration = {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    { src: '~/plugins/argon-kit.js', ssr: false },
+    { src: '~/plugins/argon-kit.js', mode: 'client' },
+    { src: '~/plugins/mailChimp.js', mode: 'client' },
+
     '~/plugins/click-outside.js'
   ],
   /*

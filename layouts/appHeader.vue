@@ -3,13 +3,13 @@
     <header class="header-global">
       <base-nav class="navbar-main" transparent type effect="light" expand>
         <router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
-          <img :src="brand" alt="logo">
+          <img :src="brand" alt="logo" />
         </router-link>
 
         <div class="row" slot="content-header" slot-scope="{closeMenu}">
           <div class="col-6 collapse-brand">
             <router-link to="/">
-              <img src="img/brand/logo_color3.svg">
+              <img src="img/brand/logo_color3.svg" />
             </router-link>
           </div>
           <div class="col-6 collapse-close">
@@ -104,7 +104,7 @@
         </ul>
       </base-nav>
     </header>
-    <nuxt/>
+    <nuxt />
     <footer class="footer has-cards">
       <div class="container">
         <div class="row row-grid align-items-center my-md">
@@ -125,7 +125,7 @@
             </a>
           </div>
         </div>
-        <hr>
+        <hr />
         <div class="row align-items-center justify-content-md-between">
           <div class="col-md-6">
             <div class="copyright">
@@ -202,6 +202,47 @@ export default class extends Vue {
     return {
       year: new Date().getFullYear()
     };
+  }
+
+  mounted() {
+    console.log('woww');
+    this.setupMailchimpPopup();
+  }
+
+  setupMailchimpPopup() {
+    var mailchimpConfig = {
+      baseUrl: 'mc.us3.list-manage.com',
+      uuid: '3eec687836a96a8b1daf23510',
+      lid: '252e420417',
+      uniqueMethods: true
+    };
+    // No edits below this line are required
+    var chimpPopupLoader = document.createElement('script');
+
+    chimpPopupLoader.src =
+      '//downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js';
+
+    chimpPopupLoader.setAttribute(
+      'data-dojo-config',
+      'usePlainJson: true, isDebug: false'
+    );
+
+    var s = `
+          
+          require(["mojo/signup-forms/Loader"], function (L) { 
+            window._showMailchimpPopup = function() {
+              L.start({baseUrl: "${mailchimpConfig.baseUrl}", uuid: "${mailchimpConfig.uuid}", lid: "${mailchimpConfig.lid}", uniqueMethods: ${mailchimpConfig.uniqueMethods}});
+            };
+          });
+        `;
+    console.log(s);
+    var chimpPopup = document.createElement('script');
+    chimpPopup.appendChild(document.createTextNode(s));
+
+    chimpPopupLoader.onload = function() {
+      document.body.appendChild(chimpPopup);
+    };
+    document.body.appendChild(chimpPopupLoader);
   }
 }
 </script>

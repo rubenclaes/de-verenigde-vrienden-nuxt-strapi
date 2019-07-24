@@ -1,12 +1,8 @@
 <template>
   <div>
     <div class="position-relative">
-      <section
-        class="page-header header-filter clear-filter"
-        data-parallax="true"
-        style="background-image: url('img/home/MineDance_2.JPG'); transform: translate3d(0px, 0px, 0px);"
-      >
-        <div class="shape shape-style-1 shape-default">
+      <section class="section-shaped my-0">
+        <div class="shape shape-style-1 shape-default shape-skew">
           <span></span>
           <span></span>
           <span></span>
@@ -49,12 +45,13 @@
                 :key="restaurant.id"
                 class="col-lg-4"
               >
+                <!-- start card -->
                 <card class="border-0" hover shadow body-classes="py-5">
                   <icon name="ni ni-note-03" :type="colors[index]" rounded class="mb-4"></icon>
                   <h6 v-bind:class="text[index]" class="text-uppercase">{{restaurant.name}}</h6>
                   <p
                     class="description mt-3"
-                  >{{restaurant.description.substring(0,100) || 'No description provided'}}...</p>
+                  >{{restaurant.description.substring(0,100) || 'Geen omschrijving'}}...</p>
                   <div>
                     <badge :type="colors[index]" rounded>design</badge>
                     <badge :type="colors[index]" rounded>system</badge>
@@ -429,20 +426,10 @@ export default class IndexPage extends Vue {
     return latestRestaurants;
   }
 }
+
+
 </script>
 <style>
-.page-header {
-  background-position: center center;
-  background-size: cover;
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-.page-header .container {
-  padding-top: 150px;
-  color: #ffffff;
-}
 </style>
 
 
