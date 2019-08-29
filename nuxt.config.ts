@@ -20,11 +20,7 @@ const config = {
           'Koninklijke Harmonie de Verenige Vrienden Heusden-Zolder Website'
       }
     ],
-    script: [
-      {
-        src: '//downloads.mailchimp.com/js/signup-forms/popup/embed.js'
-      }
-    ],
+    script: [{}],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   /*

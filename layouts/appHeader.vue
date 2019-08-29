@@ -55,10 +55,10 @@
               <i class="ni ni-collection d-lg-none"></i>
               <span class="nav-link-inner--text">Nieuws</span>
             </a>
-            <router-link to="/landing" class="dropdown-item">Landing</router-link>
-            <router-link to="/profile" class="dropdown-item">Profile</router-link>
-            <router-link to="/login" class="dropdown-item">Login</router-link>
-            <router-link to="/register" class="dropdown-item">Register</router-link>
+            <router-link to="/landing" class="dropdown-item">Home</router-link>
+            <router-link to="/profile" class="dropdown-item">Geschiedenis</router-link>
+            <router-link to="/login" class="dropdown-item">Dirigent</router-link>
+            <router-link to="/register" class="dropdown-item">Contact</router-link>
           </base-dropdown>
         </ul>
         <ul class="navbar-nav align-items-lg-center ml-lg-auto">
@@ -105,12 +105,13 @@
       </base-nav>
     </header>
     <nuxt />
+
     <footer class="footer has-cards">
       <div class="container">
         <div class="row row-grid align-items-center my-md">
           <div class="col-lg-6">
-            <h3 class="text-primary font-weight-light mb-2">Thank you for supporting us!</h3>
-            <h4 class="mb-0 font-weight-light">Blijf ons zeker volgen op social media.</h4>
+            <h3 class="text-primary font-weight-light mb-2">Begint het al een beetje te kriebelen?</h3>
+            <h4 class="mb-0 font-weight-light">Volg ons ook op social media!</h4>
           </div>
           <div class="col-lg-6 text-lg-center btn-wrapper">
             <a
@@ -145,7 +146,7 @@
                   class="nav-link"
                   target="_blank"
                   rel="noopener"
-                >Creative Tim</a>
+                >Home</a>
               </li>
               <li class="nav-item">
                 <a
@@ -153,10 +154,7 @@
                   class="nav-link"
                   target="_blank"
                   rel="noopener"
-                >
-                  About
-                  Us
-                </a>
+                >Geschiedenis</a>
               </li>
               <li class="nav-item">
                 <a
@@ -164,7 +162,7 @@
                   class="nav-link"
                   target="_blank"
                   rel="noopener"
-                >Blog</a>
+                >Dirigent</a>
               </li>
               <li class="nav-item">
                 <a
@@ -172,7 +170,7 @@
                   class="nav-link"
                   target="_blank"
                   rel="noopener"
-                >MIT License</a>
+                >Contact</a>
               </li>
             </ul>
           </div>
@@ -196,7 +194,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
   components: { BaseNav, CloseButton, BaseDropdown, BaseButton }
 })
 export default class extends Vue {
-  brand = '/img/brand/logo_white_big.svg';
+  brand = '/img/brand/logo_full.svg';
 
   data() {
     return {
@@ -204,45 +202,6 @@ export default class extends Vue {
     };
   }
 
-  mounted() {
-    console.log('woww');
-    this.setupMailchimpPopup();
-  }
-
-  setupMailchimpPopup() {
-    var mailchimpConfig = {
-      baseUrl: 'mc.us3.list-manage.com',
-      uuid: '3eec687836a96a8b1daf23510',
-      lid: '252e420417',
-      uniqueMethods: true
-    };
-    // No edits below this line are required
-    var chimpPopupLoader = document.createElement('script');
-
-    chimpPopupLoader.src =
-      '//downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js';
-
-    chimpPopupLoader.setAttribute(
-      'data-dojo-config',
-      'usePlainJson: true, isDebug: false'
-    );
-
-    var s = `
-          
-          require(["mojo/signup-forms/Loader"], function (L) { 
-            window._showMailchimpPopup = function() {
-              L.start({baseUrl: "${mailchimpConfig.baseUrl}", uuid: "${mailchimpConfig.uuid}", lid: "${mailchimpConfig.lid}", uniqueMethods: ${mailchimpConfig.uniqueMethods}});
-            };
-          });
-        `;
-    console.log(s);
-    var chimpPopup = document.createElement('script');
-    chimpPopup.appendChild(document.createTextNode(s));
-
-    chimpPopupLoader.onload = function() {
-      document.body.appendChild(chimpPopup);
-    };
-    document.body.appendChild(chimpPopupLoader);
-  }
+  mounted() {}
 }
 </script>
