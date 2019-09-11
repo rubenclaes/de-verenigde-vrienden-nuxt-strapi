@@ -2,7 +2,7 @@
   <div>
     <div class="position-relative">
       <section class="section-shaped my-0">
-        <div class="shape shape-style-1 shape-default shape-skew">
+        <div class="shape shape-style-1 shape-background shape-skew">
           <span></span>
           <span></span>
           <span></span>
@@ -74,7 +74,7 @@
     <!-- end news -->
 
     <!-- start important message -->
-    <section class="section section-lg pt-0">
+    <!--     <section class="section section-lg pt-0">
       <div class="container">
         <card gradient="warning" no-body shadow-size="lg" class="border-0">
           <div class="p-5">
@@ -102,7 +102,7 @@
           </div>
         </card>
       </div>
-    </section>
+    </section>-->
     <!-- end important message -->
 
     <!-- Jeugdorkest -->
@@ -110,7 +110,7 @@
       <div class="container">
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
-            <img src="img/theme/jeugdorkest.png" class="img-fluid floating" />
+            <img src="img/home/jeugdorkest-01.jpeg" class="img-fluid floating" />
           </div>
           <div class="col-md-6 order-md-1">
             <div class="pr-md-5">
@@ -299,8 +299,7 @@
       <div class="container pt-lg pb-300">
         <div class="row text-center justify-content-center">
           <div class="col-lg-10">
-            <h2 class="display-3 text-white">Adres</h2>
-            <p class="lead text-white">Koninlijke Harmonie De Verenigde Vrienden Heusden</p>
+            <h2 class="display-3 text-white">Waar kan je ons vinden?</h2>
             <p class="lead text-white">Kerkenblook z/n</p>
             <p class="lead text-white">3550 Heusden-Zolder</p>
           </div>
@@ -493,6 +492,7 @@ import {
 
 import { counterVuexNamespace } from '~/store/counter/const';
 import { restaurantVuexNamespace } from '~/store/restaurant/const';
+import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
 
 const RestaurantAction = namespace('restaurant/');
 
@@ -507,10 +507,7 @@ const RestaurantAction = namespace('restaurant/');
     Badge: () => import('@/components/Badge.vue'),
     Icon: () => import('@/components/Icon.vue'),
     BaseInput: () => import('@/components/BaseInput.vue'),
-    Modal: () => import('@/components/Modal.vue'),
-    BCarousel: () => import('bootstrap-vue/es/components/carousel/carousel'),
-    BCarouselSlide: () =>
-      import('bootstrap-vue/es/components/carousel/carousel-slide')
+    Modal: () => import('@/components/Modal.vue')
   }
 })
 export default class IndexPage extends Vue {

@@ -230,6 +230,9 @@ import {
 import { counterVuexNamespace } from '~/store/counter/const';
 import { restaurantVuexNamespace } from '~/store/restaurant/const';
 
+import { BCarousel, BCarouselSlide } from 'bootstrap-vue'
+
+
 const RestaurantAction = namespace('restaurant/');
 
 @Component({
@@ -243,10 +246,7 @@ const RestaurantAction = namespace('restaurant/');
     Badge: () => import('@/components/Badge.vue'),
     Icon: () => import('@/components/Icon.vue'),
     BaseInput: () => import('@/components/BaseInput.vue'),
-    Modal: () => import('@/components/Modal.vue'),
-    BCarousel: () => import('bootstrap-vue/es/components/carousel/carousel'),
-    BCarouselSlide: () =>
-      import('bootstrap-vue/es/components/carousel/carousel-slide')
+    Modal: () => import('@/components/Modal.vue')
   }
 })
 export default class IndexPage extends Vue {

@@ -1,15 +1,16 @@
 const isDev = process.env.NODE_ENV !== 'production';
 
-import NuxtConfiguration from '@nuxt/config';
+import { Configuration } from '@nuxt/types';
 import axios from 'axios';
+import { Restaurant } from './store/type';
 
-const config = {
+const config: Configuration = {
   mode: 'universal',
-  /*
-   ** Headers of the page
-   */
   head: {
     title: '%s - ' + process.env.npm_package_name,
+    /**
+     *  Headers of the page
+     */
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -20,13 +21,12 @@ const config = {
           'Koninklijke Harmonie de Verenige Vrienden Heusden-Zolder Website'
       }
     ],
-    script: [{}],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#39b982' },
+  //loading: { color: '#39b982' },
   manifest: {
     name: 'Harmonie De Verenigde Vrienden',
     short_name: 'KH VV HZ',
@@ -97,12 +97,8 @@ const config = {
   /*
    ** Build configuration
    */
-  build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {}
-  },
+  buildModules: ['@nuxt/typescript-build'],
+
   /*
    ** Generating dynamic routes
    */
@@ -138,7 +134,7 @@ const config = {
       return await axios
         .get('https://strapi-de-verenigde-vrienden.herokuapp.com/restaurants')
         .then(res => {
-          return res.data.map(restaurant => {
+          return res.data.map((restaurant: any) => {
             return {
               route: '/restaurants/' + restaurant.id,
               payload: restaurant
