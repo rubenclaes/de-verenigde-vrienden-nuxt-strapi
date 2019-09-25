@@ -13,11 +13,21 @@ export const mutations: MutationTree<RestaurantState> = {
     state.restaurants = restaurants;
   },
 
+  /**
+   * Adding Restaurant models to the Resturant array in the state
+   *
+   * @param state
+   * @param restaurant
+   */
   add(state, restaurant: Restaurant) {
-    console.log('add');
+    console.log('add restaurant');
     state.restaurants.push(restaurant);
   },
 
+  /**
+   *  Clearing the Restaurant state
+   *
+   */
   clear: state => {
     console.log('clear');
     state.restaurants = [];

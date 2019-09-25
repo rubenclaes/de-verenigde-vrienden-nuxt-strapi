@@ -3,7 +3,7 @@ import { RestaurantState, Restaurant } from './types';
 import { RootState } from '../type';
 
 /**
- * Counter getters
+ * Restaurant getters
  */
 export const getters: GetterTree<RestaurantState, RootState> = {
   list: (state): Restaurant[] => {
@@ -22,6 +22,11 @@ export const getters: GetterTree<RestaurantState, RootState> = {
       restaurants => restaurants.id === id
     );
     return restaurant;
+  },
+
+  // Fetch the total number of items in the cart
+  totalNumberOfRestaurantsItems: state => {
+    return state.restaurants.length;
   },
 
   formattedDate(state) {

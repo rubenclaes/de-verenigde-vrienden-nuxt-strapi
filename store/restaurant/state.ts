@@ -1,7 +1,7 @@
 import { RestaurantState } from './types';
 
 /**
- * Counter state initializer
+ * Restaurant state initializer
  */
 export const initState = (): RestaurantState => ({
   selected: 1,

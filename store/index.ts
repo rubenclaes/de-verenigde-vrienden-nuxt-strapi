@@ -1,8 +1,12 @@
 //import { Store } from 'vuex';
 
 // More info about store: https://vuex.vuejs.org/en/core-concepts.html
-// See https://nuxtjs.org/guide/vuex-store#classic-mode
+
+// the nuxtServerInit Action
+// If you are using the Modules mode of the Vuex store, only the primary module (in store/index.js)
+// will receive this action. You'll need to chain your module actions from there.
 // Here we assemble modules and export the store
+
 // structure of the store:
 // types: Types that represent the keys of the mutations to commit
 // state: The information of our app, we can get or update it.

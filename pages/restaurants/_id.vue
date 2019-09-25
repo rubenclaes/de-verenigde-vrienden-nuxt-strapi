@@ -57,7 +57,7 @@
               <div class="row justify-content-center">
                 <div class="col-lg-9">
                   <a :href="restaurant.image.url">
-                    <img v-lazy="restaurant.image.url" class="rounded shadow-lg">
+                    <img v-lazy="restaurant.image.url" class="rounded shadow-lg" />
                   </a>
                   <p>{{restaurant.description}}</p>
                   <a href="#">Show more</a>
@@ -97,18 +97,18 @@ export default class RestaurantView extends Vue {
   @restaurantVuexNamespace.Getter('formattedDate')
   private formattedDate!: Date;
 
-  async asyncData({ store, params, error, payload }) {
+  /**
+   * asyncData o make sure it is always 100% up to date and so
+   * refetch it every time this page is viewed
+   *
+   */
+  async fetch({ store, params, error, payload }) {
     if (payload) {
       return { restaurant: payload };
     } else {
-      console.log('Fetching restaurant');
+      console.log('Fetching restaurant with ID');
       return await store.dispatch('restaurant/fetchRestaurant', params.id);
     }
-  }
-  // Called to know which transition to apply
-  transition(to, from) {
-    if (!from) return 'slide-left';
-    return +to.query.page < +from.query.page ? 'slide-right' : 'slide-left';
   }
 
   get restaurantImage() {

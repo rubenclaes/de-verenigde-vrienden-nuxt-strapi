@@ -4,7 +4,6 @@
     :class="[
        {'input-group': hasIcon},
        {'has-danger': error},
-      
        {'input-group-alternative': alternative},
        {'has-label': label || $slots.label},
        {'has-success': valid === true},
@@ -34,7 +33,7 @@
         class="form-control"
         :class="[{'is-valid': valid === true}, {'is-invalid': valid === false}, inputClasses]"
         aria-describedby="addon-right addon-left"
-      >
+      />
     </slot>
     <div v-if="addonRightIcon || $slots.addonRight" class="input-group-append">
       <span class="input-group-text">

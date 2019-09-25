@@ -1,8 +1,8 @@
 /**
- * Restaurant state definition
+ * Type definitions of the Restaurant state
  */
 
-// Store
+// State
 export interface RestaurantState {
   selected: number;
   restaurants: Restaurant[];
@@ -14,6 +14,6 @@ export interface Restaurant {
   id: number;
   name: string;
   description: string;
-  image: any;
+  image: { url: string };
   created_at: Date;
 }

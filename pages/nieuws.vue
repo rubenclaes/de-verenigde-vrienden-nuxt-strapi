@@ -230,7 +230,8 @@ import {
 import { counterVuexNamespace } from '~/store/counter/const';
 import { restaurantVuexNamespace } from '~/store/restaurant/const';
 
-import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
+import { BCarousel, BCarouselSlide } from 'bootstrap-vue'
+
 
 const RestaurantAction = namespace('restaurant/');
 
@@ -260,6 +261,12 @@ export default class IndexPage extends Vue {
   @counterVuexNamespace.Action('increment')
   public increment!: () => void;
 
+  @restaurantVuexNamespace.Action('fetchData')
+  fetchData!: () => any;
+
+  @restaurantVuexNamespace.State('restaurants')
+  private restaurants!: [];
+
   private colors = ['primary', 'success', 'warning'];
   private buttons = ['btn-primary', 'btn-success', 'btn-warning'];
   private text = ['text-primary', 'text-success', 'text-warning'];
@@ -274,6 +281,36 @@ export default class IndexPage extends Vue {
 
   checkForm(e) {
     console.log(this.email);
+  }
+
+  onSubmit() {
+    console.log('jello');
+    let data = {
+      email_address: 'urist.mcvankab@freddiesjokes.com',
+      status: 'subscribed',
+      merge_fields: {
+        FNAME: 'Urist',
+        LNAME: 'McVankab'
+      }
+    };
+    return this.$store.dispatch('restaurant/create', data);
+  }
+
+  // fetching data as soon as the component's been mounted
+  async fetch({ store, params }) {
+    //if (typeof store.state.products.byId[params.id] === 'undefined') {
+    return await store.dispatch('restaurant/fetchData');
+    //}
+  }
+
+  // computed variable based on user's email
+  get latestRestaurants() {
+    //const user = this.profile && this.profile.user;
+    //return (user && user.email) || '';
+    const latestRestaurants = this.restaurants.slice(
+      Math.max(this.restaurants.length - 3, 1)
+    );
+    return latestRestaurants;
   }
 }
 </script>

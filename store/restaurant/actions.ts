@@ -6,23 +6,24 @@ import Strapi from 'strapi-sdk-javascript/build/main';
 const apiUrl = process.env.API_URL || 'http://localhost:1337';
 const strapi = new Strapi(apiUrl);
 
-import axios from 'axios';
-
 /**
- * Action context specific to counter module
+ * Action context specific to Restaurants module
  */
 interface RestaurantActionContext
   extends ActionContext<RestaurantState, RootState> {}
 
 /**
- * Counter actions
+ * Restaurant actions
  */
 export const actions: ActionTree<RestaurantState, RootState> = {
+  /**
+   * Fetch restaurants data en put them in the state
+   */
   async fetchData({ commit }: RestaurantActionContext) {
-    commit('clear');
-    const response = await strapi.request('post', '/graphql', {
-      data: {
-        query: `query {
+    const response = await strapi
+      .request('post', '/graphql', {
+        data: {
+          query: `query {
             restaurants {
               id
               name
@@ -32,19 +33,20 @@ export const actions: ActionTree<RestaurantState, RootState> = {
               }
               created_at
             }
-          }
-          `
-      }
-    });
+          }`
+        }
+      })
+      .then(response => {
+        commit('clear');
 
-    response.data.restaurants.forEach(restaurant => {
-      //restaurant.image.url = `${apiUrl}${restaurant.image.url}`;
-      console.log(restaurant);
-      commit('add', {
-        id: restaurant.id,
-        ...restaurant
+        response.data.restaurants.forEach(restaurant => {
+          //restaurant.image.url = `${apiUrl}${restaurant.image.url}`;
+          commit('add', {
+            id: restaurant.id,
+            ...restaurant
+          });
+        });
       });
-    });
 
     /* const response = strapi
       .request('post', '/graphql', {
@@ -79,6 +81,9 @@ export const actions: ActionTree<RestaurantState, RootState> = {
         }
       ); */
   },
+  /**
+   * Fetching a Restaurant with ID and adding it to currentRestaurant state.
+   */
   async fetchRestaurant({ commit }: RestaurantActionContext, id) {
     const response = await strapi.request('post', '/graphql', {
       data: {

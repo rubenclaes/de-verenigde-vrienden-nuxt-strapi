@@ -25,9 +25,6 @@
             </a>
             <div class="dropdown-menu-inner">
               <router-link to="/dirigent" class="media d-flex align-items-center">
-                <div class="icon icon-shape bg-gradient-primary rounded-circle text-white">
-                  <i class="ni ni-spaceship"></i>
-                </div>
                 <div class="media-body ml-3">
                   <h6 class="heading text-primary mb-md-1">Dirigent</h6>
                   <p class="description d-none d-md-inline-block mb-0">
@@ -37,9 +34,6 @@
                 </div>
               </router-link>
               <router-link to="/geschiedenis" class="media d-flex align-items-center">
-                <div class="icon icon-shape bg-gradient-warning rounded-circle text-white">
-                  <i class="ni ni-ui-04"></i>
-                </div>
                 <div class="media-body ml-3">
                   <h5 class="heading text-warning mb-md-1">Geschiedenis</h5>
                   <p class="description d-none d-md-inline-block mb-0">
@@ -55,21 +49,21 @@
               <i class="ni ni-collection d-lg-none"></i>
               <span class="nav-link-inner--text">Nieuws</span>
             </a>
-            <router-link to="/landing" class="dropdown-item">Home</router-link>
-            <router-link to="/profile" class="dropdown-item">Geschiedenis</router-link>
-            <router-link to="/login" class="dropdown-item">Dirigent</router-link>
-            <router-link to="/register" class="dropdown-item">Contact</router-link>
+            <router-link to="/" class="dropdown-item">Home</router-link>
+            <router-link to="/geschiedenis" class="dropdown-item">Geschiedenis</router-link>
+            <router-link to="/dirigent" class="dropdown-item">Dirigent</router-link>
+            <router-link to="#contact" class="dropdown-item">Contact</router-link>
           </base-dropdown>
         </ul>
         <ul class="navbar-nav align-items-lg-center ml-lg-auto">
           <li class="nav-item">
             <a
               class="nav-link nav-link-icon"
-              href="https://www.facebook.com/creativetim"
+              href="hhttps://www.facebook.com/koninklijkeharmoniedeverenigdevriendenheusden/"
               target="_blank"
               rel="noopener"
               data-toggle="tooltip"
-              title="Like us on Facebook"
+              title="Vind ons op Facebook"
             >
               <i class="fa fa-facebook-square"></i>
               <span class="nav-link-inner--text d-lg-none">Facebook</span>
@@ -89,17 +83,12 @@
             </a>
           </li>
           <li class="nav-item d-none d-lg-block ml-lg-4">
-            <a
-              href="https://www.creative-tim.com/product/vue-argon-design-system"
-              target="_blank"
-              rel="noopener"
-              class="btn btn-neutral btn-icon"
-            >
+            <router-link to="#contact" class="btn btn-neutral btn-icon">
               <span class="btn-inner--icon">
                 <i class="fa fa-envelope mr-2"></i>
               </span>
               <span class="nav-link-inner--text">Contact</span>
-            </a>
+            </router-link>
           </li>
         </ul>
       </base-nav>
@@ -141,36 +130,16 @@
           <div class="col-md-6">
             <ul class="nav nav-footer justify-content-end">
               <li class="nav-item">
-                <a
-                  href="https://www.creative-tim.com"
-                  class="nav-link"
-                  target="_blank"
-                  rel="noopener"
-                >Home</a>
+                <a href="/" class="nav-link" target="_blank" rel="noopener">Home</a>
               </li>
               <li class="nav-item">
-                <a
-                  href="https://www.creative-tim.com/presentation"
-                  class="nav-link"
-                  target="_blank"
-                  rel="noopener"
-                >Geschiedenis</a>
+                <a href="/geschiedenis" class="nav-link" target="_blank" rel="noopener">Geschiedenis</a>
               </li>
               <li class="nav-item">
-                <a
-                  href="http://blog.creative-tim.com"
-                  class="nav-link"
-                  target="_blank"
-                  rel="noopener"
-                >Dirigent</a>
+                <a href="/dirigent" class="nav-link" target="_blank" rel="noopener">Dirigent</a>
               </li>
               <li class="nav-item">
-                <a
-                  href="https://github.com/creativetimofficial/argon-design-system/blob/master/LICENSE.md"
-                  class="nav-link"
-                  target="_blank"
-                  rel="noopener"
-                >Contact</a>
+                <router-link to="#contact" class="nav-link">Contact</router-link>
               </li>
             </ul>
           </div>

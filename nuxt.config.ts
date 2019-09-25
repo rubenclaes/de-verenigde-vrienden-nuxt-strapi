@@ -17,8 +17,7 @@ const config: Configuration = {
       {
         hid: 'description',
         name: 'description',
-        content:
-          'Koninklijke Harmonie de Verenige Vrienden Heusden-Zolder Website'
+        content: 'Koninklijke Harmonie de Verenige Vrienden Heusden-Zolder web'
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
@@ -43,8 +42,7 @@ const config: Configuration = {
    */
   plugins: [
     { src: '~/plugins/argon-kit.js', mode: 'client' },
-    { src: '~/plugins/mailChimp.js', mode: 'client' },
-
+    { src: '~/plugins/aos.js', mode: 'client' },
     '~/plugins/click-outside.js'
   ],
   /*
@@ -73,6 +71,7 @@ const config: Configuration = {
     gzip: true,
     exclude: ['/secret', '/admin/**'],
     routes: [
+      '/nieuws',
       '/dirigent',
       '/geschiedenis'
       /* {

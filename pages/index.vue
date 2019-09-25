@@ -2,7 +2,7 @@
   <div>
     <div class="position-relative">
       <section class="section-shaped my-0">
-        <div class="shape shape-style-1 shape-background shape-skew">
+        <div class="shape shape-style-1 shape-background">
           <span></span>
           <span></span>
           <span></span>
@@ -113,7 +113,7 @@
             <img src="img/home/jeugdorkest-01.jpeg" class="img-fluid floating" />
           </div>
           <div class="col-md-6 order-md-1">
-            <div class="pr-md-5">
+            <div class="pr-md-5" data-aos="fade">
               <icon name="ni ni-satisfied" class="mb-5" size="lg" type="success" shadow rounded></icon>
               <h3>Jeugdorkest</h3>
               <p>
@@ -180,7 +180,7 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="pl-md-5">
+            <div data-aos="fade" class="pl-md-5">
               <h3>Harmonie</h3>
               <p class="lead">
                 De Koninklijke Harmonie De Verenigde Vrienden is een toffe groep muzikanten
@@ -193,15 +193,6 @@
                 begeleiding van jeugd naar de ‘grote Harmonie’.
               </p>
               <p>Onze zorg gaat vooral uit naar de opleiding van de jeugd in samenwerking met de academie.</p>
-              <img
-                v-lazy="'img/home/dirigent.jpg'"
-                class="rounded-circle img-center img-fluid shadow shadow-lg--hover"
-                style="width: 150px;"
-              />
-              <a href="#" class="font-weight-bold text-warning mt-5">
-                A beautiful UI Kit for impactful
-                websites
-              </a>
             </div>
           </div>
         </div>
@@ -248,13 +239,9 @@
     <!-- Dirigent -->
     <section class="section section-lg">
       <div class="container">
-        <div class="row justify-content-center text-center mb-lg">
+        <div class="row justify-content-center text-center mb-sm">
           <div class="col-lg-8">
             <h2 class="display-3">Dirigent</h2>
-            <p class="lead text-muted">
-              According to the National Oceanic and Atmospheric Administration,
-              Ted, Scambos, NSIDClead scentist, puts the potentially record maximum.
-            </p>
           </div>
         </div>
         <div class="row justify-content-center">
@@ -289,18 +276,25 @@
     <!-- end Dirigent -->
 
     <!-- Adres -->
+
     <section class="section section-shaped my-0 overflow-hidden">
-      <div class="shape shape-style-1 bg-gradient-default shape-skew">
+      <div class="shape shape-style-1 shape-default shape-skew">
         <span></span>
         <span></span>
         <span></span>
         <span></span>
       </div>
+
       <div class="container pt-lg pb-300">
         <div class="row text-center justify-content-center">
           <div class="col-lg-10">
+            <icon name="ni ni-pin-3" class="mb-5" size="lg" type="white" shadow rounded></icon>
             <h2 class="display-3 text-white">Waar kan je ons vinden?</h2>
-            <p class="lead text-white">Kerkenblook z/n</p>
+
+            <a href="https://goo.gl/maps/YgziKZGExWnQW9cd7" class="lead text-white" target="blank">
+              <icon name="ni ni-map-big" size="sm" type="white"></icon>Kerkenblook z/n
+            </a>
+
             <p class="lead text-white">3550 Heusden-Zolder</p>
           </div>
         </div>
@@ -330,6 +324,8 @@
                   alternative
                   placeholder="Naam"
                   addon-left-icon="ni ni-user-run"
+                  error="Naam is ongekend"
+                  :valid="false"
                 ></base-input>
                 <base-input
                   name="email"
@@ -354,7 +350,8 @@
         </div>
       </div>
 
-      <div class="row">
+      <!-- Begin Sendgrid Signup Form -->
+      <!--       <div class="row">
         <div class="col-md-4">
           <base-button @click="modals.modal3 = true" outline type="default">Form</base-button>
 
@@ -397,104 +394,28 @@
                 <div class="text-center text-muted mb-4">
                   <small>Of gebruik je emailadres</small>
                 </div>
-                <!-- Begin Sendgrid Signup Form -->
+
                 <iframe
                   src="https://cdn.forms-content.sg-form.com/f4e4ff54-b20d-11e9-81e9-d6e32a6de3fe"
                 />
-                <!--End Sendgrid Signup Form -->
-                <!-- Begin Mailchimp Signup Form -->
-                <form
-                  v-on:submit.prevent="onSubmit"
-                  action="https://gmail.us3.list-manage.com/subscribe/post?u=3eec687836a96a8b1daf23510&amp;id=252e420417"
-                  method="post"
-                  id="mc-embedded-subscribe-form"
-                  name="mc-embedded-subscribe-form"
-                  target="_blank"
-                  role="form"
-                  novalidate
-                >
-                  <div id="mc_embed_signup_scroll">
-                    <base-input
-                      alternative
-                      class="mb-3"
-                      placeholder="Email"
-                      addon-left-icon="ni ni-email-83"
-                      name="EMAIL"
-                      :required="true"
-                      v-model="email"
-                      value
-                    ></base-input>
-                    <div
-                      id="mergeRow-gdpr"
-                      class="mergeRow gdpr-mergeRow content__gdprBlock mc-field-group"
-                    >
-                      <div class="content__gdpr">
-                        <label>Mailing</label>
-                        <p>Selecteer alle manieren waarop u van ons wilt horen:</p>
-                        <fieldset
-                          class="mc_fieldset gdprRequired mc-field-group"
-                          name="interestgroup_field"
-                        >
-                          <label class="checkbox subfield" for="gdpr_25817">
-                            <base-checkbox value="Y" name="gdpr[25817]">Nieuwsbrief</base-checkbox>
-                          </label>
-                        </fieldset>
-                        <p>U kunt zich op elk moment afmelden door op de link in de voettekst van onze e-mails te klikken. Bezoek onze website voor informatie over onze privacypraktijken.</p>
-                      </div>
-                      <div class="content__gdprLegal">
-                        <p>
-                          We gebruiken Mailchimp als mailingplatform. Door hieronder te klikken om u te abonneren, erkent u dat uw informatie wordt overgebracht naar Mailchimp voor verwerking.
-                          <a
-                            href="https://mailchimp.com/legal/"
-                            target="_blank"
-                          >Lees hier meer over.</a>
-                        </p>
-                      </div>
-                    </div>
-                    <div id="mce-responses" class="clear">
-                      <div class="response" id="mce-error-response" style="display:none"></div>
-                      <div class="response" id="mce-success-response" style="display:none"></div>
-                    </div>
-                    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                    <div style="position: absolute; left: -5000px;" aria-hidden="true">
-                      <input
-                        type="text"
-                        name="b_3eec687836a96a8b1daf23510_252e420417"
-                        tabindex="-1"
-                        value
-                      />
-                    </div>
-                    <div class="text-center">
-                      <base-button type="primary" nativeType="submit" class="my-4">Abbonneer</base-button>
-                    </div>
-                  </div>
-                </form>
-
-                <!--End mc_embed_signup-->
               </template>
             </card>
           </modal>
         </div>
-      </div>
+      </div>-->
+      <!-- End Sendgrid Signup Form -->
     </section>
     <!-- end Adres -->
   </div>
 </template>
 
 <script lang="ts">
-import {
-  Component,
-  Vue,
-  Prop,
-  namespace,
-  Getter
-} from 'nuxt-property-decorator';
+import { Component, Vue, Prop, Getter } from 'nuxt-property-decorator';
 
 import { counterVuexNamespace } from '~/store/counter/const';
 import { restaurantVuexNamespace } from '~/store/restaurant/const';
-import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
 
-const RestaurantAction = namespace('restaurant/');
+import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
 
 @Component({
   layout: 'appHeader',
@@ -511,6 +432,16 @@ const RestaurantAction = namespace('restaurant/');
   }
 })
 export default class IndexPage extends Vue {
+  private colors = ['primary', 'success', 'warning'];
+  private buttons = ['btn-primary', 'btn-success', 'btn-warning'];
+  private text = ['text-primary', 'text-success', 'text-warning'];
+
+  private modals = {
+    modal3: false
+  };
+
+  private email = '';
+
   // computed properties are defined as non-null variables
   @counterVuexNamespace.State('count')
   private count!: number;
@@ -522,21 +453,8 @@ export default class IndexPage extends Vue {
   @counterVuexNamespace.Action('increment')
   public increment!: () => void;
 
-  @restaurantVuexNamespace.Action('fetchData')
-  fetchData!: () => any;
-
   @restaurantVuexNamespace.State('restaurants')
   private restaurants!: [];
-
-  private colors = ['primary', 'success', 'warning'];
-  private buttons = ['btn-primary', 'btn-success', 'btn-warning'];
-  private text = ['text-primary', 'text-success', 'text-warning'];
-
-  private modals = {
-    modal3: false
-  };
-
-  private email = '';
 
   created() {}
 
@@ -557,7 +475,7 @@ export default class IndexPage extends Vue {
     return this.$store.dispatch('restaurant/create', data);
   }
 
-  // fetching data as soon as the component's been mounted
+  // Fetching data as soon as the component's been mounted
   async fetch({ store, params }) {
     //if (typeof store.state.products.byId[params.id] === 'undefined') {
     return await store.dispatch('restaurant/fetchData');

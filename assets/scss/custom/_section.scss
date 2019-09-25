@@ -80,9 +80,9 @@
   }
 
   .shape-background {
-    margin: 2em /* width*sin(abs(skew_angle)) */ 0 0;
-    background: url(https://www.webinspector.com/blog/wp-content/uploads/2018/06/url-scanner.jpg)
-      50% 50%;
+    // background: url('onte18/06/url-scanner.jpg') 50% 50%;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
+      url('/img/home/MineDance_2.jpg') no-repeat center center fixed;
   }
 
   // Color variations
