@@ -113,7 +113,7 @@
             <img src="img/home/jeugdorkest-01.jpeg" class="img-fluid floating" />
           </div>
           <div class="col-md-6 order-md-1">
-            <div class="pr-md-5" data-aos="fade">
+            <div class="pr-md-5" data-aos="fade-in" data-aos-delay="150">
               <icon name="ni ni-satisfied" class="mb-5" size="lg" type="success" shadow rounded></icon>
               <h3>Jeugdorkest</h3>
               <p>
@@ -180,7 +180,7 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div data-aos="fade" class="pl-md-5">
+            <div data-aos="fade-in" data-aos-delay="150" class="pl-md-5">
               <h3>Harmonie</h3>
               <p class="lead">
                 De Koninklijke Harmonie De Verenigde Vrienden is een toffe groep muzikanten
@@ -199,7 +199,7 @@
       </div>
     </section>
     <!-- end Harmonie -->
-    <!-- carousel -->
+    <!-- Activiteiten -->
     <section class="section section-lg section-shaped overflow-hidden my-0">
       <div class="shape shape-style-1 bg-gradient-success shape-skew">
         <span></span>
@@ -210,7 +210,11 @@
         <span></span>
       </div>
       <div class="container py-0 pb-lg">
-        <div class="row justify-content-between align-items-center">
+        <div
+          data-aos="fade"
+          data-aos-delay="150"
+          class="row justify-content-between align-items-center"
+        >
           <div class="col-lg-5 mb-5 mb-lg-0">
             <icon name="ni ni-calendar-grid-58" class="mb-5" size="lg" type="white" shadow rounded></icon>
             <h1 class="text-white font-weight-light">Activiteiten</h1>
@@ -234,7 +238,7 @@
         </div>
       </div>
     </section>
-    <!-- end carousel -->
+    <!-- end Activiteiten -->
 
     <!-- Dirigent -->
     <section class="section section-lg">

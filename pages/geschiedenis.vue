@@ -27,7 +27,7 @@
           <div class="col-md-6 order-md-2">
             <img v-lazy="'/img/geschiedenis/1.jpg'" class="img-fluid floating" />
           </div>
-          <div class="col-md-6 order-md-1">
+          <div data-aos="fade-in" data-aos-delay="150" class="col-md-6 order-md-1">
             <div class="pr-md-5">
               <h3>1902</h3>
               <p>
@@ -55,7 +55,7 @@
               <img v-lazy="'/img/geschiedenis/2.jpg'" class="card-img" />
             </div>
           </div>
-          <div class="col-md-6">
+          <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
             <div class="pl-md-5">
               <h3>1905</h3>
               <p>
@@ -79,7 +79,7 @@
           <div class="col-md-6 order-md-2">
             <img v-lazy="'/img/geschiedenis/3.jpg'" class="img-fluid floating" />
           </div>
-          <div class="col-md-6 order-md-1">
+          <div data-aos="fade-in" data-aos-delay="150" class="col-md-6 order-md-1">
             <div class="pr-md-5">
               <h3>1944</h3>
               <p>
@@ -107,7 +107,7 @@
               <img v-lazy="'/img/geschiedenis/4.jpg'" class="card-img" />
             </div>
           </div>
-          <div class="col-md-6">
+          <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
             <div class="pl-md-5">
               <h3>Jaren 50 - Begin Jaren 70</h3>
               <p>
@@ -130,7 +130,7 @@
           <div class="col-md-6 order-md-2">
             <img v-lazy="'/img/geschiedenis/5.jpg'" class="img-fluid floating" />
           </div>
-          <div class="col-md-6 order-md-1">
+          <div data-aos="fade-in" data-aos-delay="150" class="col-md-6 order-md-1">
             <div class="pr-md-5">
               <h3>Jaren 70</h3>
               <p>
@@ -155,7 +155,7 @@
               <img v-lazy="'/img/geschiedenis/1.jpg'" class="card-img" />
             </div>
           </div>
-          <div class="col-md-6">
+          <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
             <div class="pl-md-5">
               <h3>1977</h3>
               <p>
@@ -178,7 +178,7 @@
           <div class="col-md-6 order-md-2">
             <img v-lazy="'/img/geschiedenis/7.jpg'" class="img-fluid floating" />
           </div>
-          <div class="col-md-6 order-md-1">
+          <div data-aos="fade-in" data-aos-delay="150" class="col-md-6 order-md-1">
             <div class="pr-md-5">
               <h3>1995</h3>
               <p>
@@ -205,7 +205,7 @@
               <img v-lazy="'/img/geschiedenis/9.jpg'" class="card-img" />
             </div>
           </div>
-          <div class="col-md-6">
+          <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
             <div class="pl-md-5">
               <h3>2008 - NU</h3>
               <p>???</p>
