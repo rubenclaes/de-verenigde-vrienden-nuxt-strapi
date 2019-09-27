@@ -54,9 +54,21 @@
                     class="description mt-3"
                   >{{restaurant.description.substring(0,100) || 'Geen omschrijving'}}...</p>
                   <div>
-                    <badge :type="colors[index]" rounded>design</badge>
-                    <badge :type="colors[index]" rounded>system</badge>
-                    <badge :type="colors[index]" rounded>creative</badge>
+                    <badge
+                      v-if="restaurant.Categories.Tag1"
+                      :type="colors[index]"
+                      rounded
+                    >{{restaurant.Categories.Tag1}}</badge>
+                    <badge
+                      v-if="restaurant.Categories.Tag2"
+                      :type="colors[index]"
+                      rounded
+                    >{{restaurant.Categories.Tag2}}</badge>
+                    <badge
+                      v-if="restaurant.Categories.Tag3"
+                      :type="colors[index]"
+                      rounded
+                    >{{restaurant.Categories.Tag3}}</badge>
                   </div>
                   <router-link
                     :to="{ name: 'restaurants-id', params: { id: restaurant.id }}"
@@ -110,11 +122,27 @@
       <div class="container">
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
-            <img src="img/home/jeugdorkest-01.jpeg" class="img-fluid floating" />
+            <div class="rounded shadow-lg overflow-hidden">
+              <b-carousel id="carousel1" controls indicators>
+                <!-- Text slides with image -->
+                <b-carousel-slide img-src="/img/home/jeugdorkest.jpg"></b-carousel-slide>
+                <b-carousel-slide img-src="/img/home/jeugdorkest2.png"></b-carousel-slide>
+                <b-carousel-slide img-src="/img/home/jeugdorkest3.jpg"></b-carousel-slide>
+                <b-carousel-slide img-src="/img/home/jeugdorkest4.jpg"></b-carousel-slide>
+                <b-carousel-slide img-src="/img/home/jeugdorkest5.jpg"></b-carousel-slide>
+              </b-carousel>
+            </div>
           </div>
           <div class="col-md-6 order-md-1">
             <div class="pr-md-5" data-aos="fade-in" data-aos-delay="150">
-              <icon name="ni ni-satisfied" class="mb-5" size="lg" type="success" shadow rounded></icon>
+              <icon
+                name="ni ni-satisfied"
+                class="mb-5 floating"
+                size="lg"
+                type="success"
+                shadow
+                rounded
+              ></icon>
               <h3>Jeugdorkest</h3>
               <p>
                 Heb je de muziekmicrobe te pakken? Wil je op een leuke en speelse manier samen muziek maken?
@@ -216,7 +244,14 @@
           class="row justify-content-between align-items-center"
         >
           <div class="col-lg-5 mb-5 mb-lg-0">
-            <icon name="ni ni-calendar-grid-58" class="mb-5" size="lg" type="white" shadow rounded></icon>
+            <icon
+              name="ni ni-calendar-grid-58"
+              class="mb-5 floating"
+              size="lg"
+              type="white"
+              shadow
+              rounded
+            ></icon>
             <h1 class="text-white font-weight-light">Activiteiten</h1>
             <p class="lead text-white mt-4">
               Ieder jaar zijn er een aantal vaste
@@ -292,7 +327,7 @@
       <div class="container pt-lg pb-300">
         <div class="row text-center justify-content-center">
           <div class="col-lg-10">
-            <icon name="ni ni-pin-3" class="mb-5" size="lg" type="white" shadow rounded></icon>
+            <icon name="ni ni-pin-3" class="mb-5 floating" size="lg" type="white" shadow rounded></icon>
             <h2 class="display-3 text-white">Waar kan je ons vinden?</h2>
 
             <a href="https://goo.gl/maps/YgziKZGExWnQW9cd7" class="lead text-white" target="blank">

@@ -31,6 +31,11 @@ export const actions: ActionTree<RestaurantState, RootState> = {
               image {
                 url
               }
+              Categories{
+                Tag1,
+                Tag2,
+                Tag3
+              }
               created_at
             }
           }`
@@ -40,6 +45,7 @@ export const actions: ActionTree<RestaurantState, RootState> = {
         commit('clear');
 
         response.data.restaurants.forEach(restaurant => {
+          console.log(restaurant);
           //restaurant.image.url = `${apiUrl}${restaurant.image.url}`;
           commit('add', {
             id: restaurant.id,
