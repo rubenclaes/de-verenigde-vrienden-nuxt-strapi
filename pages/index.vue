@@ -155,7 +155,7 @@
                 rounded
               ></icon>
               <h3 id="jeugdorkest">Jeugdorkest</h3>
-              <p>
+              <p class="lead">
                 Heb je de muziekmicrobe te pakken? Wil je op een leuke en speelse manier samen muziek maken?
                 Dan moet je bij deze jeugdige muzikale bende zijn.
               </p>

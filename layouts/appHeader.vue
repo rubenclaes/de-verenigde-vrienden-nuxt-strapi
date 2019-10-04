@@ -18,6 +18,11 @@
         </div>
 
         <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <span class="nav-link-inner--text">Home</span>
+            </a>
+          </li>
           <base-dropdown class="nav-item" menu-classes="dropdown-menu-xl">
             <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
               <i class="ni ni-ui-04 d-lg-none"></i>
@@ -27,33 +32,29 @@
               <router-link to="/dirigent" class="media d-flex align-items-center">
                 <div class="media-body ml-3">
                   <h6 class="heading text-primary mb-md-1">Dirigent</h6>
-                  <p class="description d-none d-md-inline-block mb-0">
-                    Get started with Bootstrap, the
-                    world's most popular framework for building responsive sites.
-                  </p>
+                  <p class="description d-none d-md-inline-block mb-0">Lees meer over onze dirigent.</p>
                 </div>
               </router-link>
               <router-link to="/geschiedenis" class="media d-flex align-items-center">
                 <div class="media-body ml-3">
                   <h5 class="heading text-warning mb-md-1">Geschiedenis</h5>
-                  <p class="description d-none d-md-inline-block mb-0">
-                    Learn how to use Argon
-                    compiling Scss, change brand colors and more.
-                  </p>
+                  <p
+                    class="description d-none d-md-inline-block mb-0"
+                  >Lees hoe onze harmonie is ontstaan.</p>
                 </div>
               </router-link>
             </div>
           </base-dropdown>
-          <base-dropdown tag="li" class="nav-item">
-            <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
-              <i class="ni ni-collection d-lg-none"></i>
+          <li class="nav-item">
+            <a class="nav-link" href="/nieuws">
               <span class="nav-link-inner--text">Nieuws</span>
             </a>
-            <router-link to="/" class="dropdown-item">Home</router-link>
-            <router-link to="/geschiedenis" class="dropdown-item">Geschiedenis</router-link>
-            <router-link to="/dirigent" class="dropdown-item">Dirigent</router-link>
-            <router-link to="#contact" class="dropdown-item">Contact</router-link>
-          </base-dropdown>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/drumband">
+              <span class="nav-link-inner--text">Drumband</span>
+            </a>
+          </li>
         </ul>
         <ul class="navbar-nav align-items-lg-center ml-lg-auto">
           <li class="nav-item">
