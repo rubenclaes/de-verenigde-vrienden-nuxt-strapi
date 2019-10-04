@@ -154,7 +154,7 @@
                 shadow
                 rounded
               ></icon>
-              <h3 id="jeugdorkest">Jeugdorkest</h3>
+              <h1 id="jeugdorkest">Jeugdorkest</h1>
               <p class="lead">
                 Heb je de muziekmicrobe te pakken? Wil je op een leuke en speelse manier samen muziek maken?
                 Dan moet je bij deze jeugdige muzikale bende zijn.
@@ -164,26 +164,26 @@
                 <li class="py-2">
                   <div class="d-flex align-items-center">
                     <badge type="success" circle class="mr-3" icon="ni ni-check-bold"></badge>
-                    <h6 class="mb-0">
+                    <p>
                       Speel je al een blaasinstrument (trompet, klarinet, hoorn, trombone,
                       bariton, tuba, dwarsfluit, hobo, fagot, saxofoon) of doe je slagwerk, dan
                       kan je bij ons aansluiten.
-                    </h6>
+                    </p>
                   </div>
                 </li>
                 <li class="py-2">
                   <div class="d-flex align-items-center">
                     <badge type="success" circle class="mr-3" icon="ni ni-like-2"></badge>
-                    <h6 class="mb-0">
+                    <p>
                       Je kan meespelen na je 1ste jaar instrumentles.
                       Kevin Absillis slaat er de maat. De harmonie stelt gratis een instrument ter beschikking.
-                    </h6>
+                    </p>
                   </div>
                 </li>
                 <li class="py-2">
                   <div class="d-flex align-items-center">
                     <badge type="success" circle class="mr-3" icon="ni ni-calendar-grid-58"></badge>
-                    <h6 class="mb-0">De jeugdharmonie repeteert elke maandagavond van 19u tot 19u45</h6>
+                    <p>De jeugdharmonie repeteert elke maandagavond van 19u tot 19u45.</p>
                   </div>
                 </li>
               </ul>
@@ -220,7 +220,7 @@
           </div>
           <div class="col-md-6">
             <div data-aos="fade-in" data-aos-delay="150" class="pl-md-5">
-              <h3>Harmonie</h3>
+              <h1>Harmonie</h1>
               <p class="lead">
                 De Koninklijke Harmonie De Verenigde Vrienden is een toffe groep muzikanten
                 van alle leeftijden die samen muzikaal plezier maken. Al wie graag muziek speelt is welkom om even
@@ -288,7 +288,7 @@
       <div class="container">
         <div class="row justify-content-center text-center mb-sm">
           <div class="col-lg-8">
-            <h2 class="display-3">Dirigent</h2>
+            <h1>Dirigent</h1>
           </div>
         </div>
         <div class="row justify-content-center">
@@ -325,7 +325,7 @@
     <!-- Adres -->
 
     <section class="section section-shaped my-0 overflow-hidden">
-      <div class="shape shape-style-1 shape-default shape-skew">
+      <div class="shape shape-style-1 bg-gradient-default shape-skew">
         <span></span>
         <span></span>
         <span></span>
@@ -336,7 +336,7 @@
         <div class="row text-center justify-content-center">
           <div class="col-lg-10">
             <icon name="ni ni-pin-3" class="mb-5 floating" size="lg" type="white" shadow rounded></icon>
-            <h2 class="display-3 text-white">Waar kan je ons vinden?</h2>
+            <h1 class="text-white font-weight-light">Waar kan je ons vinden?</h1>
 
             <a href="https://goo.gl/maps/YgziKZGExWnQW9cd7" class="lead text-white" target="blank">
               <icon name="ni ni-map-big" size="sm" type="white"></icon>Kerkenblook z/n
