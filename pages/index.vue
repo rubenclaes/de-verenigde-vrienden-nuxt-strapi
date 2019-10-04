@@ -548,9 +548,7 @@ export default class IndexPage extends Vue {
   get latestRestaurants() {
     //const user = this.profile && this.profile.user;
     //return (user && user.email) || '';
-    const latestRestaurants = this.restaurants.slice(
-      Math.max(this.restaurants.length - 3, 1)
-    );
+    const latestRestaurants = this.restaurants.slice(0, 3);
     return latestRestaurants;
   }
 }
