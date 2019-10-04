@@ -136,11 +136,11 @@
             <div class="rounded shadow-lg overflow-hidden">
               <b-carousel id="carousel1" controls indicators>
                 <!-- Text slides with image -->
-                <b-carousel-slide img-src="/img/home/jeugdorkest.jpg"></b-carousel-slide>
-                <b-carousel-slide img-src="/img/home/jeugdorkest2.png"></b-carousel-slide>
-                <b-carousel-slide img-src="/img/home/jeugdorkest3.jpg"></b-carousel-slide>
-                <b-carousel-slide img-src="/img/home/jeugdorkest4.jpg"></b-carousel-slide>
-                <b-carousel-slide img-src="/img/home/jeugdorkest5.jpg"></b-carousel-slide>
+                <b-carousel-slide img-src="/img/home/t/jeugdorkest.jpeg"></b-carousel-slide>
+                <b-carousel-slide img-src="/img/home/t/jeugdorkest2.png"></b-carousel-slide>
+                <b-carousel-slide img-src="/img/home/t/jeugdorkest3.jpeg"></b-carousel-slide>
+                <b-carousel-slide img-src="/img/home/t/jeugdorkest4.jpeg"></b-carousel-slide>
+                <b-carousel-slide img-src="/img/home/t/jeugdorkest5.jpeg"></b-carousel-slide>
               </b-carousel>
             </div>
           </div>
