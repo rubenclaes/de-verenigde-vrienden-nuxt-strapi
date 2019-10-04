@@ -52,6 +52,9 @@ export const actions: ActionTree<RestaurantState, RootState> = {
             ...restaurant
           });
         });
+      })
+      .catch(err => {
+        console.log('error', err);
       });
 
     /* const response = strapi
