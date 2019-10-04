@@ -545,11 +545,11 @@ export default class IndexPage extends Vue {
   }
 
   // computed variable based on user's email
-  get latestRestaurants() {
+  latestRestaurants({ store }) {
     //const user = this.profile && this.profile.user;
     //return (user && user.email) || '';
-    const latestRestaurants = this.restaurants.slice(
-      Math.max(this.restaurants.length - 3, 1)
+    const latestRestaurants = store.getters['restaurant/sort'].slice(
+      Math.max(store.getters['restaurant/list'].length - 3, 1)
     );
     return latestRestaurants;
   }

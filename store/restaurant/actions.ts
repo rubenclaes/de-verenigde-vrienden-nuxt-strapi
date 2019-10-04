@@ -24,7 +24,7 @@ export const actions: ActionTree<RestaurantState, RootState> = {
       .request('post', '/graphql', {
         data: {
           query: `query {
-            restaurants {
+            restaurants(sort: "created_at:desc") {
               id
               name
               description

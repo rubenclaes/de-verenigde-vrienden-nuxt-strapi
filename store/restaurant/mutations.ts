@@ -33,6 +33,12 @@ export const mutations: MutationTree<RestaurantState> = {
     state.restaurants = [];
   },
 
+  sort: state => {
+    state.restaurants.sort(function(a, b) {
+      return a.id - b.id || a.name.localeCompare(b.name);
+    });
+  },
+
   setCurrentRestaurant(state, payload) {
     state.currentRestaurant = payload;
   }
