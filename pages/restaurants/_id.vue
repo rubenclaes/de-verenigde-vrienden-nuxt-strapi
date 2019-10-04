@@ -59,7 +59,20 @@
                   <a :href="restaurant.image.url">
                     <img v-lazy="restaurant.image.url" class="rounded shadow-lg" />
                   </a>
-                  <p>{{restaurant.description}}</p>
+
+                  <template>
+                    <div v-html="$md.render(restaurant.description)"></div>
+                  </template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </card>
+      </div>
+    </section>
+  </div>
+</template>
+                  </p>
                   <a href="#">Show more</a>
                 </div>
               </div>

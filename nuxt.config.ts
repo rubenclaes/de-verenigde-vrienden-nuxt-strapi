@@ -55,6 +55,7 @@ const config: Configuration = {
     '@nuxtjs/sentry',
     'bootstrap-vue/nuxt',
     'vue-scrollto/nuxt',
+    '@nuxtjs/markdownit',
     '@bazzite/nuxt-optimized-images',
     [
       '@nuxtjs/google-analytics',
@@ -90,6 +91,13 @@ const config: Configuration = {
    */
   optimizedImages: {
     optimizeImages: true
+  },
+  /*
+   ** markdownit module configuration
+   **
+   */
+  markdownit: {
+    injected: true
   },
   sentry: {
     dsn: 'https://fb2ee10337c04b69acc2256208c7ecd7@sentry.io/1508964', // Enter your project's DSN here
