@@ -2,6 +2,7 @@ const isDev = process.env.NODE_ENV !== 'production';
 
 import { Configuration } from '@nuxt/types';
 import axios from 'axios';
+import webpack from 'webpack';
 import { Restaurant } from './store/type';
 
 const config: Configuration = {
@@ -43,7 +44,11 @@ const config: Configuration = {
   plugins: [
     { src: '~/plugins/argon-kit.js', mode: 'client' },
     { src: '~/plugins/aos.js', mode: 'client' },
-    '~/plugins/click-outside.js'
+    '~/plugins/click-outside.js',
+    new webpack.ProvidePlugin({
+      _: 'lodash'
+      // ...etc.
+    })
   ],
   /*
    ** Nuxt.js modules
