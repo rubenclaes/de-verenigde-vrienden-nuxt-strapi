@@ -196,7 +196,51 @@
       </div>
     </section>
     <!-- end 1995 -->
-    <!-- Nu  -->
+    <!-- 2002  -->
+    <section class="section bg-secondary">
+      <div class="container">
+        <div class="row row-grid align-items-center">
+          <div class="col-md-6">
+            <div class="card bg-default shadow border-0">
+              <img v-lazy="'/img/geschiedenis/10.png'" class="card-img" />
+            </div>
+          </div>
+          <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
+            <div class="pl-md-5">
+              <h3>2002</h3>
+              <p>
+                In 2002 start de harmonie ook met het inrichten van een jaarlijks muziekkamp. Meestal gaat deze vierdaagse door in onze eigen muziekzaal, maar in de loop der jaren werd toch ook al enkele keren “op verplaatsing” gespeeld. Zo ging het kamp in 2002 door in Hoepertingen, in 2006 in Dilsen-Lanklaar,
+                in 2008 in Lommel en in 2012 werd het een zeekamp in Bredene. De bedoeling van de muziekkampen is het aantrekken van jonge muzikanten. Het kamp is dan ook in de eerste plaats gericht op de jeugd, niet alleen van onze eigen harmonie, maar ook op die van andere muziekmaatschappijen.
+                Het betekent natuurlijk niet dat oudere muzikanten niet welkom zouden zijn, integendeel ! Gedurende vier volle dagen wordt een volledig nieuw repertoire ingestudeerd, opgebouwd rond een bepaald kampthema. Op het slotconcert wordt dit dan gepresenteerd aan familie, vrienden en gasten.
+                Omdat de muzikale boog niet altijd gespannen kan staan, worden de repetities afgewisseld met een hele waaier ontspannende activiteiten en uitstappen.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end 2002 -->
+    <!-- 2007  -->
+    <section class="section section-lg">
+      <div class="container">
+        <div class="row row-grid align-items-center">
+          <div class="col-md-6 order-md-2">
+            <img v-lazy="'/img/geschiedenis/9.jpg'" class="img-fluid floating" />
+          </div>
+          <div data-aos="fade-in" data-aos-delay="150" class="col-md-6 order-md-1">
+            <div class="pl-md-5">
+              <h3>2007</h3>
+              <p>
+                In 2007 wordt Peter Claes de nieuwe voorzitter in opvolging van Paul Lambrichts. Om persoonlijke redenen geeft Johan Martens in 2014 zijn ontslag als dirigent. Hij wordt opgevolgd door Wim Lauryssen, trombonist bij de Koninklijke Muziekkapel van de Belgische Luchtmacht.
+                Onder zijn leiding wordt opnieuw gestart met een eigen opleiding van jonge muzikanten. Te drukke beroepsbezigheden dwingen Wim ertoe in 2017 het dirigeerstokje door te geven aan Kevin Absillis, die sindsdien de harmonie muzikaal leidt. Ook Kevin is zeer begaan met de opleiding van jongeren, die de toekomst van de harmonie moeten waarborgen. Al onmiddellijk na zijn aantreden gaat hij verder met het begeleiden van jonge muzikanten bij hun eerste stapjes in de blaasmuziek. Op die manier worden eind 2019 acht jongeren klaargestoomd voor hun opname in de grote harmonie.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end 2007 -->
+    <!-- 2013  -->
     <section class="section bg-secondary">
       <div class="container">
         <div class="row row-grid align-items-center">
@@ -207,14 +251,14 @@
           </div>
           <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
             <div class="pl-md-5">
-              <h3>2008 - NU</h3>
-              <p>???</p>
+              <h3>2013 - NU</h3>
+              <p>Sinds 2013 vormen een 12-tal muzikanten van de harmonie ook het “huisorkest” van de Heusdense reuzen : Leyn Wecks, de putheks, en Lambert Hoelen, de kluizenaar van Bolderberg. Tijdens reuzenoptochten in binnen- en buitenland zorgen ze voor de nodige muzikale ambiance. Sinds 2018 geven ze zichzelf de ludieke naam “Zootje Ongeregeld”.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- end NU -->
+    <!-- end 2013 -->
   </div>
 </template>
 

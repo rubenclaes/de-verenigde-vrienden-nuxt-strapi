@@ -16,17 +16,28 @@
         <div class="container shape-container d-flex">
           <div class="col px-0">
             <div class="row">
-              <div class="col-lg-6">
+              <div class="col-lg-7">
                 <h1 class="display-3 text-white">
                   Koninklijke Harmonie
                   <span>De Verenigde Vrienden Heusden-Zolder</span>
+                  <span class="lead text-success font-weight-bold">Daar zit muziek in!</span>
                 </h1>
-                <p class="lead text-success font-weight-bold">Daar zit muziek in!</p>
+
                 <p></p>
                 <p class="lead text-white">
                   Samen muziek maken met passie en oog voor kwaliteit, zowel op beginnersniveau als voor
                   gevorderde muzikanten, is onze grootste uitdaging.
                 </p>
+                <div class="btn-wrapper">
+                  <base-button
+                    v-scroll-to="'#jeugdorkest'"
+                    tag="a"
+                    href="https://demos.creative-tim.com/argon-design-system/docs/components/alerts.html"
+                    class="mb-3 mb-sm-0"
+                    type="success"
+                    icon="ni ni-active-40"
+                  >Lees meer!</base-button>
+                </div>
               </div>
             </div>
           </div>
@@ -143,7 +154,7 @@
                 shadow
                 rounded
               ></icon>
-              <h3>Jeugdorkest</h3>
+              <h3 id="jeugdorkest">Jeugdorkest</h3>
               <p>
                 Heb je de muziekmicrobe te pakken? Wil je op een leuke en speelse manier samen muziek maken?
                 Dan moet je bij deze jeugdige muzikale bende zijn.

@@ -54,6 +54,7 @@ const config: Configuration = {
     '@nuxtjs/pwa',
     '@nuxtjs/sentry',
     'bootstrap-vue/nuxt',
+    'vue-scrollto/nuxt',
     [
       '@nuxtjs/google-analytics',
       {
