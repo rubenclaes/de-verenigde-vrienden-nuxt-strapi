@@ -246,7 +246,10 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <img v-lazy="'/img/geschiedenis/9.jpg'" class="card-img" />
+              <img
+                v-lazy="'/img/home/buitengebeuren-mijn-kracht-lijdt-onder-het-weer.jpg'"
+                class="card-img"
+              />
             </div>
           </div>
           <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">

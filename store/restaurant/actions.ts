@@ -28,6 +28,7 @@ export const actions: ActionTree<RestaurantState, RootState> = {
               id
               name
               description
+              icon
               image {
                 url
               }

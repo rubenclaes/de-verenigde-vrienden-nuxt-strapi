@@ -59,7 +59,7 @@
               >
                 <!-- start card -->
                 <card class="border-0" hover shadow body-classes="py-5">
-                  <icon name="ni ni-note-03" :type="colors[index]" rounded class="mb-4"></icon>
+                  <icon :name="icon(restaurant.icon)" :type="colors[index]" rounded class="mb-4"></icon>
                   <h6 v-bind:class="text[index]" class="text-uppercase">{{restaurant.name}}</h6>
                   <p
                     class="description mt-3"
@@ -275,9 +275,6 @@
               <b-carousel id="carousel1" controls indicators>
                 <!-- Text slides with image -->
                 <b-carousel-slide img-src="/img/home/jazz.JPG"></b-carousel-slide>
-                <b-carousel-slide
-                  img-src="/img/home/buitengebeuren-mijn-kracht-lijdt-onder-het-weer.jpg"
-                ></b-carousel-slide>
               </b-carousel>
             </div>
           </div>
@@ -467,6 +464,7 @@ import { restaurantVuexNamespace } from '~/store/restaurant/const';
 
 import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
 import isEmpty from 'lodash/isEmpty';
+import { switchCase } from '@babel/types';
 
 @Component({
   layout: 'appHeader',
@@ -542,6 +540,38 @@ export default class IndexPage extends Vue {
       console.log('Store not empty');
     }
     //}
+  }
+
+  icon(iconName) {
+    switch (iconName) {
+      case 'note': {
+        return 'ni ni-note-03';
+      }
+      case 'notification': {
+        //statements;
+        return 'ni ni-notification-70';
+      }
+      case 'satisfied': {
+        //statements;
+        return 'ni ni-satisfied';
+      }
+      case 'camera': {
+        //statements;
+        return 'ni ni-camera-compact';
+      }
+      case 'heart': {
+        //statements;
+        return 'ni ni-favourite-28';
+      }
+      case 'calendar': {
+        //statements;
+        return 'ni ni-calendar-grid-58';
+      }
+      default: {
+        //statements;
+        return 'ni ni-note-03';
+      }
+    }
   }
 
   // computed variable based on user's email

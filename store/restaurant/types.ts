@@ -13,6 +13,7 @@ export interface RestaurantState {
 export interface Restaurant {
   id: number;
   name: string;
+  icon: string;
   description: string;
   image: { url: string };
   Categories: { Tag1: string; Tag2: string; Tag3: string };
