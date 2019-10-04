@@ -36,7 +36,7 @@
                     class="mb-3 mb-sm-0"
                     type="success"
                     icon="ni ni-active-40"
-                  >Lees meer!</base-button>
+                  >Lees meer</base-button>
                 </div>
               </div>
             </div>
@@ -62,7 +62,9 @@
                   <icon name="ni ni-note-03" :type="colors[index]" rounded class="mb-4"></icon>
                   <h6 v-bind:class="text[index]" class="text-uppercase">{{restaurant.name}}</h6>
                   <p
+                    v-if="restaurant.description"
                     class="description mt-3"
+                    v-html="$md.render(restaurant.description.substring(0,100))"
                   >{{restaurant.description.substring(0,100) || 'Geen omschrijving'}}...</p>
                   <div>
                     <badge
