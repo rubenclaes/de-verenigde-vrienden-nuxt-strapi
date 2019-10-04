@@ -32,16 +32,16 @@
               <div class="col-lg-4 order-lg-1">
                 <div class="card-profile-stats d-flex justify-content-center">
                   <div>
-                    <span class="heading">22</span>
-                    <span class="description">Friends</span>
+                    <span class="heading"></span>
+                    <span class="description"></span>
                   </div>
                   <div>
-                    <span class="heading">10</span>
-                    <span class="description">Photos</span>
+                    <span class="heading"></span>
+                    <span class="description"></span>
                   </div>
                   <div>
-                    <span class="heading">89</span>
-                    <span class="description">Comments</span>
+                    <span class="heading"></span>
+                    <span class="description"></span>
                   </div>
                 </div>
               </div>
@@ -50,16 +50,21 @@
               <h3>{{restaurant.name}}</h3>
               <div class="h6 font-weight-300">
                 <i class="ni location_pin mr-2"></i>
-                {{ formattedDate }}
+                Gepost op {{ formattedDate }}
               </div>
             </div>
             <div class="mt-5 py-5 border-top text-justify">
               <div class="row justify-content-center">
+                <div class="col-md-6">
+                  <b-img-lazy
+                    v-bind="mainProps"
+                    :src="restaurant.image.url"
+                    fluid-grow
+                    alt="Fluid-grow image"
+                    class="rounded shadow-lg"
+                  ></b-img-lazy>
+                </div>
                 <div class="col-lg-9">
-                  <a :href="restaurant.image.url">
-                    <img v-lazy="restaurant.image.url" class="rounded shadow-lg" />
-                  </a>
-
                   <template>
                     <div v-html="$md.render(restaurant.description)"></div>
                   </template>
@@ -72,17 +77,7 @@
     </section>
   </div>
 </template>
-                  </p>
-                  <a href="#">Show more</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </card>
-      </div>
-    </section>
-  </div>
-</template>
+             
 
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator';
@@ -110,12 +105,22 @@ export default class RestaurantView extends Vue {
   @restaurantVuexNamespace.Getter('formattedDate')
   private formattedDate!: Date;
 
+  private mainProps = {
+    center: true,
+    fluidGrow: true,
+    blank: true,
+    blankColor: '#bbb',
+    width: 600,
+    height: 400,
+    class: 'my-5'
+  };
+
   /**
    * asyncData o make sure it is always 100% up to date and so
    * refetch it every time this page is viewed
    *
    */
-  async fetch({ store, params, error, payload }) {
+  async asyncData({ store, params, error, payload }) {
     if (payload) {
       return { restaurant: payload };
     } else {

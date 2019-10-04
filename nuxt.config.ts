@@ -146,6 +146,7 @@ const config: Configuration = {
   } */
 
   generate: {
+    fallback: true,
     routes: async function() {
       return await axios
         .get('https://strapi-de-verenigde-vrienden.herokuapp.com/restaurants')

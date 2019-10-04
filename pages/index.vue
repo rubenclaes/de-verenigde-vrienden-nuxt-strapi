@@ -36,7 +36,7 @@
                     class="mb-3 mb-sm-0"
                     type="success"
                     icon="ni ni-active-40"
-                  >Lees meer</base-button>
+                  >Lees verder</base-button>
                 </div>
               </div>
             </div>
