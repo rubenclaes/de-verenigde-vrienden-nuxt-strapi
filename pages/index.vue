@@ -62,9 +62,7 @@
                   <icon name="ni ni-note-03" :type="colors[index]" rounded class="mb-4"></icon>
                   <h6 v-bind:class="text[index]" class="text-uppercase">{{restaurant.name}}</h6>
                   <p
-                    v-if="restaurant.description"
                     class="description mt-3"
-                    v-html="$md.render(restaurant.description.substring(0,100))"
                   >{{restaurant.description.substring(0,100) || 'Geen omschrijving'}}...</p>
                   <div>
                     <badge
@@ -468,6 +466,7 @@ import { counterVuexNamespace } from '~/store/counter/const';
 import { restaurantVuexNamespace } from '~/store/restaurant/const';
 
 import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
+import isEmpty from 'lodash/isEmpty';
 
 @Component({
   layout: 'appHeader',
@@ -505,7 +504,7 @@ export default class IndexPage extends Vue {
   @counterVuexNamespace.Action('increment')
   public increment!: () => void;
 
-  @restaurantVuexNamespace.State('restaurants')
+  @restaurantVuexNamespace.Getter('list')
   private restaurants!: [];
 
   created() {}
@@ -531,9 +530,17 @@ export default class IndexPage extends Vue {
   // Both are *only executed for pages (NOT components).
   // Should be used for data intended for VueX store - it does not need to return anything and should instead commit to store any required data.
   // It can use async/await.
+  // Warning: You don't have access of the component instance through this inside fetch because it is called before initiating the component.
   async fetch({ store, params }) {
+    //TODO: if localstorages updated load new restaurants.
     //if (typeof store.state.products.byId[params.id] === 'undefined') {
-    return await store.dispatch('restaurant/fetchData');
+    if (isEmpty(store.getters['restaurant/list'])) {
+      //console.log(this.restaurants);
+      console.log('dispatch data in state ');
+      return await store.dispatch('restaurant/fetchData');
+    } else {
+      console.log('Store not empty');
+    }
     //}
   }
 
