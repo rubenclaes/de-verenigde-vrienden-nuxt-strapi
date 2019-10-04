@@ -528,6 +528,9 @@ export default class IndexPage extends Vue {
   }
 
   // Fetching data as soon as the component's been mounted
+  // Both are *only executed for pages (NOT components).
+  // Should be used for data intended for VueX store - it does not need to return anything and should instead commit to store any required data.
+  // It can use async/await.
   async fetch({ store, params }) {
     //if (typeof store.state.products.byId[params.id] === 'undefined') {
     return await store.dispatch('restaurant/fetchData');
