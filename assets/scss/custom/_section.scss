@@ -86,6 +86,12 @@
       url('/img/home/MineDance.JPG') no-repeat center center;
   }
 
+  .shape-background-drumband {
+    // background: url('onte18/06/url-scanner.jpg') 50% 50%;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
+      url('/img/drumband/drumband1.png') no-repeat center center;
+  }
+
   // Color variations
   .shape-primary {
     background: linear-gradient(
