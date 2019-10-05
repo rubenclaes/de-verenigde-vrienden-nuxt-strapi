@@ -1,36 +1,26 @@
 <template>
-  <div>
-    <div class="position-relative">
-      <section class="section-shaped my-0">
-        <div class="shape shape-style-1 shape-background-drumband">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="container shape-container d-flex">
-          <div class="col px-0">
-            <div class="row">
-              <div class="col-lg-7">
-                <h1 class="display-3 text-white">
-                  Drunband
-                  <span>Just for fun</span>
-                </h1>
-
-                <p></p>
-                <p class="lead text-white"></p>
-              </div>
+  <div class="profile-page">
+    <section class="section-profile-cover section-shaped my-0">
+      <div class="shape shape-style-1 shape-primary shape-skew alpha-1">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="container shape-container d-flex">
+        <div class="col px-0">
+          <div class="row">
+            <div class="col-lg-6 text-center">
+              <h1 class="display-3 text-white">Drumband</h1>
+              <h2 class="text-white">Just For Fun</h2>
             </div>
           </div>
         </div>
-      </section>
-      <!-- shape Hero -->
-    </div>
+      </div>
+    </section>
 
     <!-- Drumband  -->
     <section class="section section-lg">
@@ -70,51 +60,64 @@
       </div>
     </section>
     <!-- end Drumband -->
-    <!-- Geschiedenis -->
-    <section class="section section-lg section-shaped overflow-hidden my-0">
-      <div class="shape shape-style-1 bg-gradient-success shape-skew">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="container py-0 pb-lg">
-        <div
-          data-aos="fade"
-          data-aos-delay="150"
-          class="row justify-content-between align-items-center"
-        >
-          <div class="col-lg-5 mb-5 mb-lg-0">
-            <icon
-              name="ni ni-calendar-grid-58"
-              class="mb-5 floating"
-              size="lg"
-              type="white"
-              shadow
-              rounded
-            ></icon>
-            <h1 class="text-white font-weight-light">Geschiedenis</h1>
-            <p class="lead text-white mt-4">
-              Drumband De Toekomst was in de jaren ’90 een stille dood gestorven, maar in 2002 wordt een nieuwe start gemaakt onder de naam “Just for Fun”.
-              Het 100-jarig bestaan van de harmonie is aanleiding om de vroegere leden, intussen allemaal volwassen mannen en vrouwen geworden, nog eens samen te brengen en de trommelstokken opnieuw ter hand te nemen.
-              Ook instructeur Domien Poelmans is bereid om opnieuw de leiding te nemen. Het valt zo goed mee dat het niet bij deze eenmalige reünie blijft en de band sindsdien regelmatig opnieuw repeteert en deelneemt aan de activiteiten van de harmonie, zoals het jaarconcert en de opening van de kermis in juni.
-              Het is niet meer competitiegericht zoals in de vroegere jaren, maar “puur voor de lol”, zoals de naam het zegt.
-            </p>
-          </div>
-          <div class="col-lg-6 mb-lg-auto">
-            <div class="rounded shadow-lg overflow-hidden transform-perspective-right">
+
+    <!-- Jeugdorkest -->
+    <section class="section bg-secondary section-lg">
+      <div class="container">
+        <div class="row row-grid align-items-center">
+          <div class="col-md-6 order-md-2">
+            <div class="rounded shadow-lg overflow-hidden">
               <b-carousel id="carousel1" controls indicators>
                 <!-- Text slides with image -->
                 <b-carousel-slide img-src="/img/drumband/drumband1.png"></b-carousel-slide>
               </b-carousel>
             </div>
           </div>
+          <div class="col-md-6 order-md-1">
+            <div class="pr-md-5" data-aos="fade-in" data-aos-delay="150">
+              <icon
+                name="ni ni-satisfied"
+                class="mb-5 floating"
+                size="lg"
+                type="success"
+                shadow
+                rounded
+              ></icon>
+              <h1 id="jeugdorkest">Weetjes</h1>
+              <p class="lead"></p>
+
+              <ul class="list-unstyled mt-5">
+                <li class="py-2">
+                  <div class="d-flex align-items-center">
+                    <badge type="success" circle class="mr-3" icon="ni ni-like-2"></badge>
+                    <p>Drumband De Toekomst was in de jaren ’90 een stille dood gestorven, maar in 2002 is er een nieuwe start gemaakt onder de naam “Just for Fun”.</p>
+                  </div>
+                </li>
+                <li class="py-2">
+                  <div class="d-flex align-items-center">
+                    <badge type="success" circle class="mr-3" icon="ni ni-calendar-grid-58"></badge>
+                    <p>
+                      Het 100-jarig bestaan van de harmonie is aanleiding om de vroegere leden, intussen allemaal volwassen mannen en vrouwen geworden,
+                      nog eens samen te brengen en de trommelstokken opnieuw ter hand te nemen.
+                    </p>
+                  </div>
+                </li>
+                <li class="py-2">
+                  <div class="d-flex align-items-center">
+                    <badge type="success" circle class="mr-3" icon="ni ni-check-bold"></badge>
+                    <p>
+                      Sindsdien repeteert de drumband regelmatig en neemt het deel aan de activiteiten van de harmonie, zoals het jaarconcert en de opening van de kermis in juni.
+                      Het is niet meer competitiegericht zoals in de vroegere jaren, maar “puur voor de lol”, zoals de naam het zegt.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-    <!-- end Activiteiten -->
+    <!-- end Jeugdorkest -->
   </div>
 </template>
 

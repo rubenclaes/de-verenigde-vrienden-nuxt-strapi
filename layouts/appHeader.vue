@@ -45,11 +45,11 @@
               </router-link>
             </div>
           </base-dropdown>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="/nieuws">
               <span class="nav-link-inner--text">Nieuws</span>
             </a>
-          </li>
+          </li>-->
           <li class="nav-item">
             <a class="nav-link" href="/drumband">
               <span class="nav-link-inner--text">Drumband</span>
@@ -134,6 +134,9 @@
               </li>
               <li class="nav-item">
                 <a href="/dirigent" class="nav-link" target="_blank" rel="noopener">Dirigent</a>
+              </li>
+              <li class="nav-item">
+                <a href="/drumband" class="nav-link" target="_blank" rel="noopener">Drumband</a>
               </li>
               <li class="nav-item">
                 <router-link to="#contact" class="nav-link">Contact</router-link>
