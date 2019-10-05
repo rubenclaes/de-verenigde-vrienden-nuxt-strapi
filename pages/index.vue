@@ -32,7 +32,6 @@
                   <base-button
                     v-scroll-to="'#jeugdorkest'"
                     tag="a"
-                    href="https://demos.creative-tim.com/argon-design-system/docs/components/alerts.html"
                     class="mb-3 mb-sm-0"
                     type="success"
                   >Lees verder</base-button>
@@ -373,9 +372,7 @@
                   class="mt-5"
                   alternative
                   placeholder="Naam"
-                  addon-left-icon="ni ni-user-run"
-                  error="Naam is ongekend"
-                  :valid="false"
+                  addon-left-icon="ni ni-circle-08"
                 ></base-input>
                 <base-input
                   name="email"
@@ -393,7 +390,14 @@
                     placeholder="Schrijf je bericht..."
                   ></textarea>
                 </base-input>
-                <base-button type="default" nativeType="submit" round block size="lg">Verstuur</base-button>
+                <base-button
+                  type="default"
+                  nativeType="submit"
+                  round
+                  block
+                  size="lg"
+                  icon="ni ni-send"
+                >Verstuur</base-button>
               </card>
             </form>
           </div>
