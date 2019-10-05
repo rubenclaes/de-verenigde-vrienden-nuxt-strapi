@@ -127,16 +127,16 @@
           <div class="col-md-6">
             <ul class="nav nav-footer justify-content-end">
               <li class="nav-item">
-                <a href="/" class="nav-link" target="_blank" rel="noopener">Home</a>
+                <a href="/" class="nav-link" rel="noopener">Home</a>
               </li>
               <li class="nav-item">
-                <a href="/geschiedenis" class="nav-link" target="_blank" rel="noopener">Geschiedenis</a>
+                <a href="/geschiedenis" class="nav-link" rel="noopener">Geschiedenis</a>
               </li>
               <li class="nav-item">
-                <a href="/dirigent" class="nav-link" target="_blank" rel="noopener">Dirigent</a>
+                <a href="/dirigent" class="nav-link" rel="noopener">Dirigent</a>
               </li>
               <li class="nav-item">
-                <a href="/drumband" class="nav-link" target="_blank" rel="noopener">Drumband</a>
+                <a href="/drumband" class="nav-link" rel="noopener">Drumband</a>
               </li>
               <li class="nav-item">
                 <router-link to="#contact" class="nav-link">Contact</router-link>
@@ -163,7 +163,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
   components: { BaseNav, CloseButton, BaseDropdown, BaseButton }
 })
 export default class extends Vue {
-  brand = '/img/brand/logo_full.svg';
+  brand = '/img/brand/logo_fulllogo_white.svg';
 
   data() {
     return {
