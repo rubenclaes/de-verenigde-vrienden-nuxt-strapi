@@ -70,7 +70,7 @@
               <span class="nav-link-inner--text d-lg-none">Facebook</span>
             </a>
           </li>
-          <li class="nav-item">
+          <!--        <li class="nav-item">
             <a
               class="nav-link nav-link-icon"
               href="https://www.instagram.com/creativetimofficial"
@@ -82,7 +82,7 @@
               <i class="fa fa-instagram"></i>
               <span class="nav-link-inner--text d-lg-none">Instagram</span>
             </a>
-          </li>
+          </li>-->
           <li class="nav-item d-none d-lg-block ml-lg-4">
             <router-link to="#contact" class="btn btn-neutral btn-icon">
               <span class="btn-inner--icon">
@@ -107,7 +107,7 @@
             <a
               target="_blank"
               rel="noopener"
-              href="https://www.facebook.com/creativetim"
+              href="https://www.facebook.com/koninklijkeharmoniedeverenigdevriendenheusden/"
               class="btn btn-neutral btn-icon-only btn-facebook btn-round btn-lg"
               data-toggle="tooltip"
               data-original-title="Like us"
@@ -121,11 +121,7 @@
           <div class="col-md-6">
             <div class="copyright">
               &copy; {{year}}
-              <a
-                href="https://www.creative-tim.com"
-                target="_blank"
-                rel="noopener"
-              >D'ARK</a>
+              <a href="#" target="_blank" rel="noopener">D'ARK</a>
             </div>
           </div>
           <div class="col-md-6">
