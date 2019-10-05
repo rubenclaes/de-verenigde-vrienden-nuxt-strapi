@@ -32,7 +32,7 @@
       <!-- shape Hero -->
     </div>
 
-    <!-- Harmonie  -->
+    <!-- Drumband  -->
     <section class="section section-lg">
       <div class="container">
         <div class="row row-grid align-items-center">
@@ -48,7 +48,7 @@
 
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <img v-lazy="'/img/home/close_up.JPG'" class="card-img-top" />
+              <img v-lazy="'/img/drumband/drumband3.jpg'" class="card-img-top" />
               <blockquote class="card-blockquote">
                 <svg
                   preserveAspectRatio="none"
@@ -69,8 +69,8 @@
         </div>
       </div>
     </section>
-    <!-- end Harmonie -->
-    <!-- Activiteiten -->
+    <!-- end Drumband -->
+    <!-- Geschiedenis -->
     <section class="section section-lg section-shaped overflow-hidden my-0">
       <div class="shape shape-style-1 bg-gradient-success shape-skew">
         <span></span>
@@ -95,18 +95,19 @@
               shadow
               rounded
             ></icon>
-            <h1 class="text-white font-weight-light">Activiteiten</h1>
+            <h1 class="text-white font-weight-light">Geschiedenis</h1>
             <p class="lead text-white mt-4">
-              Ieder jaar zijn er een aantal vaste
-              activiteiten: jaarconcert, kaas- en wijnconcert, opening Heusden kermis, muziekkamp,
-              reuzenstoet, St. Cecilia,…
+              Drumband De Toekomst was in de jaren ’90 een stille dood gestorven, maar in 2002 wordt een nieuwe start gemaakt onder de naam “Just for Fun”.
+              Het 100-jarig bestaan van de harmonie is aanleiding om de vroegere leden, intussen allemaal volwassen mannen en vrouwen geworden, nog eens samen te brengen en de trommelstokken opnieuw ter hand te nemen.
+              Ook instructeur Domien Poelmans is bereid om opnieuw de leiding te nemen. Het valt zo goed mee dat het niet bij deze eenmalige reünie blijft en de band sindsdien regelmatig opnieuw repeteert en deelneemt aan de activiteiten van de harmonie, zoals het jaarconcert en de opening van de kermis in juni.
+              Het is niet meer competitiegericht zoals in de vroegere jaren, maar “puur voor de lol”, zoals de naam het zegt.
             </p>
           </div>
           <div class="col-lg-6 mb-lg-auto">
             <div class="rounded shadow-lg overflow-hidden transform-perspective-right">
               <b-carousel id="carousel1" controls indicators>
                 <!-- Text slides with image -->
-                <b-carousel-slide img-src="/img/home/jazz.JPG"></b-carousel-slide>
+                <b-carousel-slide img-src="/img/drumband/drumband1.png"></b-carousel-slide>
               </b-carousel>
             </div>
           </div>
