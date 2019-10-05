@@ -53,7 +53,7 @@
                 Gepost op {{ formattedDate }}
               </div>
             </div>
-            <div class="mt-5 py-5 border-top text-justify">
+            <div class="py-5 border-top">
               <div class="row justify-content-center">
                 <div class="col-md-6">
                   <b-img-lazy
@@ -64,7 +64,7 @@
                     class="rounded shadow-lg"
                   ></b-img-lazy>
                 </div>
-                <div class="col-lg-9">
+                <div class="col-lg-10">
                   <template>
                     <div v-html="$md.render(restaurant.description)"></div>
                   </template>
