@@ -21,6 +21,7 @@
       </div>
     </section>
     <!-- 1902 -->
+
     <section class="section section-lg">
       <div class="container">
         <div class="row row-grid align-items-center">
@@ -292,7 +293,9 @@ const RestaurantAction = namespace('restaurant/');
     Badge: () => import('@/components/Badge.vue'),
     Icon: () => import('@/components/Icon.vue'),
     BaseInput: () => import('@/components/BaseInput.vue'),
-    Modal: () => import('@/components/Modal.vue')
+    Modal: () => import('@/components/Modal.vue'),
+    Tabs: () => import('@/components/Tabs/Tabs.vue'),
+    TabPane: () => import('@/components/Tabs/TabPane.vue')
   }
 })
 export default class IndexPage extends Vue {

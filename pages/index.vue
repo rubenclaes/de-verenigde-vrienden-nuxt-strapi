@@ -35,7 +35,6 @@
                     href="https://demos.creative-tim.com/argon-design-system/docs/components/alerts.html"
                     class="mb-3 mb-sm-0"
                     type="success"
-                    icon="ni ni-active-40"
                   >Lees verder</base-button>
                 </div>
               </div>
@@ -47,7 +46,7 @@
     </div>
 
     <!-- start news -->
-    <section class="section section-lg pt-lg-0 mt--200">
+    <section class="section section-lg pt-lg-0 mt--100">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-12">
@@ -290,13 +289,17 @@
           <div class="col-lg-8">
             <h1>Dirigent</h1>
           </div>
+          <blockquote class="blockquote text-center">
+            <p class="mb-0">Het belangrijkste in de muziek staat niet in de noten.</p>
+            <footer class="blockquote-footer">Kevin Absillis</footer>
+          </blockquote>
         </div>
         <div class="row justify-content-center">
           <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
             <div class="px-4">
               <img
-                v-lazy="'img/home/dirigent.jpg'"
-                class="rounded-circle img-center img-fluid shadow shadow-lg--hover"
+                v-lazy="'img/home/dirigent2.JPG'"
+                class="rounded img-center img-fluid shadow shadow-lg--hover"
                 style="width: 200px;"
               />
               <div class="pt-4 text-center">
@@ -308,7 +311,7 @@
                   <base-button
                     tag="a"
                     href="dirigent"
-                    type="success"
+                    type="primary"
                     icon="fa fa-globe"
                     rounded
                     icon-only
@@ -339,7 +342,7 @@
             <h1 class="text-white font-weight-light">Waar kan je ons vinden?</h1>
 
             <a href="https://goo.gl/maps/YgziKZGExWnQW9cd7" class="lead text-white" target="blank">
-              <icon name="ni ni-map-big" size="sm" type="white"></icon>Kerkenblook z/n
+              <icon name="ni ni-map-big" size="sm" type="white"></icon>&nbsp;Kerkenblook z/n
             </a>
 
             <p class="lead text-white">3550 Heusden-Zolder</p>
