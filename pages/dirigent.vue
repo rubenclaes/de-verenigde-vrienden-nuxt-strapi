@@ -50,7 +50,7 @@
               <div class="h6 font-weight-300"></div>
             </div>
 
-            <div class="mt-5 py-5 border-top text-justify">
+            <div class="mt-5 py-5 border-top">
               <div class="row justify-content-center">
                 <div class="col-lg-9">
                   <p>Onze harmonie wordt thans geleid door Kevin Absillis. Kevin zette op 7-jarige leeftijd zijn eerste stappen in de muziek bij Brassband Sint-Cecilia in Leest. Toen hij 17 jaar was, besloot hij van zijn hobby zijn beroep te maken. Hij begon studies tenortrombone aan het Lemmensinstituut te Leuven, maar ruilde er al vlug zijn instrument in voor een bastrombone. In 2009 rondde hij zijn studie af als Master in de muziek, optie bastrombone.</p>
