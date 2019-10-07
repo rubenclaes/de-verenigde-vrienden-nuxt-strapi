@@ -20,6 +20,7 @@
       "@/*": ["./*"],
       "@/lib/*": ["./lib"],
       "@/compontents/*": ["./components"],
+      "@/pages/*": ["./pages/"],
       "@/store/*": ["./store/*"]
     },
     "types": ["@types/jest", "@types/node", "@nuxt/types"]
