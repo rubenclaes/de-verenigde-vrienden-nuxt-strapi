@@ -1,10 +1,4 @@
 <template>
-  <div class="news-list-nav">
-    <a v-else class="disabled">&lt; prev</a>
-
-    <a v-else class="disabled">more &gt;</a>
-  </div>
-
   <nav aria-label="Pagination">
     <ul class="pagination">
       <li class="page-item disabled">
@@ -37,14 +31,18 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+
 @Component({})
 export default class ItemListNav extends Vue {
   @Prop({ type: String, required: true })
   feed!: string;
+
   @Prop({ type: Number, required: true })
   page!: number;
+
   @Prop({ type: Number, required: true })
   maxPage!: number;
+
   get hasMore() {
     return this.page < this.maxPage;
   }

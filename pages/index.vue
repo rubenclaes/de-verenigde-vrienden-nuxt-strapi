@@ -464,7 +464,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Getter } from 'nuxt-property-decorator';
+import { Component, Vue, Prop } from 'nuxt-property-decorator';
 
 import { counterVuexNamespace } from '~/store/counter/const';
 import { restaurantVuexNamespace } from '~/store/restaurant/const';
@@ -540,7 +540,6 @@ export default class IndexPage extends Vue {
     //TODO: if localstorages updated load new restaurants.
     //if (typeof store.state.products.byId[params.id] === 'undefined') {
     if (isEmpty(store.getters['restaurant/list'])) {
-      //console.log(this.restaurants);
       console.log('dispatch data in state ');
       return await store.dispatch('restaurant/fetchData');
     } else {
