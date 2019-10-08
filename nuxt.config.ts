@@ -6,11 +6,13 @@ import { Restaurant } from './store/type';
 
 const config: Configuration = {
   mode: 'universal',
+  buildModules: ['@nuxt/typescript-build'],
+  /*
+   ** Headers of the page
+   */
   head: {
     title: '%s - ' + process.env.npm_package_name,
-    /**
-     *  Headers of the page
-     */
+
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -22,6 +24,7 @@ const config: Configuration = {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
+
   /*
    ** Customize the progress-bar color
    */
@@ -33,18 +36,22 @@ const config: Configuration = {
       'Website Koninklijke Harmonie De Verenige Vrienden Heusden-Zolder',
     theme_color: '#188269'
   },
+
   /*
    ** Global CSS
    */
   css: ['@/assets/scss/argon.scss'],
+
   /*
    ** Plugins to load before mounting the App
    */
   plugins: [
     { src: '~/plugins/argon-kit.js', mode: 'client' },
     { src: '~/plugins/aos.js', mode: 'client' },
+    '~/plugins/vue-lazysizes.client.js',
     '~/plugins/click-outside.js'
   ],
+
   /*
    ** Nuxt.js modules
    */
@@ -66,6 +73,7 @@ const config: Configuration = {
     //Always at the end
     '@nuxtjs/sitemap'
   ],
+
   env: {
     API_URL: 'https://strapi-de-verenigde-vrienden.herokuapp.com'
   },
@@ -85,16 +93,16 @@ const config: Configuration = {
       } */
     ]
   },
+
   /*
    ** bazzite/nuxt-optimized-images module configuration
-   **
    */
   optimizedImages: {
     optimizeImages: true
   },
+
   /*
    ** markdownit module configuration
-   **
    */
   markdownit: {
     injected: true
@@ -105,15 +113,27 @@ const config: Configuration = {
     disabled: isDev,
     config: {} // Additional config
   },
+
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {},
+
   /*
    ** Build configuration
    */
-  buildModules: ['@nuxt/typescript-build'],
+  build: {
+    /*
+     ** You can extend webpack config here
+     */
+    extend(config, { isDev, isClient, loaders: { vue } }) {
+      if (isClient) {
+        vue.transformAssetUrls.img = ['data-src', 'src'];
+        vue.transformAssetUrls.source = ['data-srcset', 'srcset'];
+      }
+    }
+  },
 
   /*
    ** Generating dynamic routes

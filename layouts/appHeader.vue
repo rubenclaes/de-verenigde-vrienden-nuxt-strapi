@@ -163,8 +163,6 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
   components: { BaseNav, CloseButton, BaseDropdown, BaseButton }
 })
 export default class extends Vue {
-  brand = '~/assets/brand/logo_fulllogo_white.svg';
-
   data() {
     return {
       year: new Date().getFullYear()

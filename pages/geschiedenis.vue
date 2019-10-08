@@ -26,7 +26,13 @@
       <div class="container">
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
-            <img v-lazy="'/img/geschiedenis/1.jpg'" class="img-fluid floating" />
+            <figure class="picture">
+              <img
+                data-src="~assets/img/geschiedenis/1.jpg"
+                class="lazyload img-fluid floating"
+                alt="Geschiednis in 1902"
+              />
+            </figure>
           </div>
           <div data-aos="fade-in" data-aos-delay="150" class="col-md-6 order-md-1">
             <div class="pr-md-5">
