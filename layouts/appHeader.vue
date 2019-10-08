@@ -3,7 +3,7 @@
     <header class="header-global">
       <base-nav class="navbar-main" transparent type effect="light" expand>
         <router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
-          <img :src="brand" alt="logo" />
+          <img src="~/assets/brand/logo_fulllogo_white.svg" alt="logo" />
         </router-link>
 
         <div class="row" slot="content-header" slot-scope="{closeMenu}">
@@ -163,7 +163,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
   components: { BaseNav, CloseButton, BaseDropdown, BaseButton }
 })
 export default class extends Vue {
-  brand = '~assets/brand/logo_fulllogo_white.svg';
+  brand = '~/assets/brand/logo_fulllogo_white.svg';
 
   data() {
     return {
