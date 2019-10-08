@@ -127,12 +127,12 @@ const config: Configuration = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, { isDev, isClient, loaders: { vue } }) {
-      if (isClient) {
-        /* vue.transformAssetUrls.img = ['data-src', 'src'];
+    /* extend(config, { isDev, isClient, loaders: { vue } }) {
+      if (isClient) { */
+    /* vue.transformAssetUrls.img = ['data-src', 'src'];
         vue.transformAssetUrls.source = ['data-srcset', 'srcset']; */
-      }
-    }
+    /*    } */
+    // }
   },
 
   /*
