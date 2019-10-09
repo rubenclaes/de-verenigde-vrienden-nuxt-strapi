@@ -161,7 +161,7 @@
               <ul class="list-unstyled mt-5">
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge type="success" circle class="mr-3" icon="ni ni-check-bold"></badge>
+                    <badge tag="b-badge" type="success" circle class="mr-3" icon="ni ni-check-bold"></badge>
                     <p>
                       Speel je al een blaasinstrument (trompet, klarinet, hoorn, trombone,
                       bariton, tuba, dwarsfluit, hobo, fagot, saxofoon) of doe je slagwerk, dan
@@ -171,7 +171,7 @@
                 </li>
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge type="success" circle class="mr-3" icon="ni ni-like-2"></badge>
+                    <badge tag="b-badge" type="success" circle class="mr-3" icon="ni ni-like-2"></badge>
                     <p>
                       Je kan meespelen na je 1ste jaar instrumentles.
                       Kevin Absillis slaat er de maat. De harmonie stelt gratis een instrument ter beschikking.
@@ -180,7 +180,13 @@
                 </li>
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge type="success" circle class="mr-3" icon="ni ni-calendar-grid-58"></badge>
+                    <badge
+                      tag="b-badge"
+                      type="success"
+                      circle
+                      class="mr-3"
+                      icon="ni ni-calendar-grid-58"
+                    ></badge>
                     <p>De jeugdharmonie repeteert elke maandagavond van 19u tot 19u45.</p>
                   </div>
                 </li>
