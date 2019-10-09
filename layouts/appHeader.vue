@@ -25,19 +25,19 @@
           </li>
           <base-dropdown class="nav-item" menu-classes="dropdown-menu-xl">
             <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
-              <i class="ni ni-ui-04 d-lg-none"></i>
+              <i class="ni ni-bold-down d-lg-none"></i>
               <span class="nav-link-inner--text">Harmonie</span>
             </a>
             <div class="dropdown-menu-inner">
               <router-link to="/dirigent" class="media d-flex align-items-center">
                 <div class="media-body ml-3">
-                  <h6 class="heading text-primary mb-md-1">Dirigent</h6>
+                  <h6 class="heading text-success mb-md-1">Dirigent</h6>
                   <p class="description d-none d-md-inline-block mb-0">Lees meer over onze dirigent.</p>
                 </div>
               </router-link>
               <router-link to="/geschiedenis" class="media d-flex align-items-center">
                 <div class="media-body ml-3">
-                  <h5 class="heading text-warning mb-md-1">Geschiedenis</h5>
+                  <h5 class="heading text-success mb-md-1">Geschiedenis</h5>
                   <p
                     class="description d-none d-md-inline-block mb-0"
                   >Lees hoe onze harmonie is ontstaan.</p>
