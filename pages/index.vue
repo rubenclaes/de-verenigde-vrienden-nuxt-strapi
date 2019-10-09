@@ -64,20 +64,20 @@
                   >{{restaurant.description.substring(0,100) || 'Geen omschrijving'}}...</p>
                   <div>
                     <badge
-                      v-if="restaurant.Categories.Tag1"
+                      v-if="restaurant.Categories[0].Tag1"
                       :type="colors[index]"
                       rounded
-                    >{{restaurant.Categories.Tag1}}</badge>
+                    >{{restaurant.Categories[0].Tag1}}</badge>
                     <badge
-                      v-if="restaurant.Categories.Tag2"
+                      v-if="restaurant.Categories[0].Tag2"
                       :type="colors[index]"
                       rounded
-                    >{{restaurant.Categories.Tag2}}</badge>
+                    >{{restaurant.Categories[0].Tag2}}</badge>
                     <badge
-                      v-if="restaurant.Categories.Tag3"
+                      v-if="restaurant.Categories[0].Tag3"
                       :type="colors[index]"
                       rounded
-                    >{{restaurant.Categories.Tag3}}</badge>
+                    >{{restaurant.Categories[0].Tag3}}</badge>
                   </div>
                   <router-link
                     :to="{ name: 'restaurants-id', params: { id: restaurant.id }}"
