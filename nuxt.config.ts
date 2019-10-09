@@ -7,12 +7,12 @@ import { Restaurant } from './store/type';
 const config: Configuration = {
   mode: 'universal',
   buildModules: ['@nuxt/typescript-build'],
+
   /*
    ** Headers of the page
    */
   head: {
     title: '%s - ' + process.env.npm_package_name,
-
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -31,7 +31,7 @@ const config: Configuration = {
   //loading: { color: '#39b982' },
   manifest: {
     name: 'Harmonie De Verenigde Vrienden',
-    short_name: 'KH VV HZ',
+    short_name: 'KH DVV H-Z',
     description:
       'Website Koninklijke Harmonie De Verenige Vrienden Heusden-Zolder',
     theme_color: '#188269'
@@ -48,7 +48,7 @@ const config: Configuration = {
   plugins: [
     { src: '~/plugins/argon-kit.js', mode: 'client' },
     { src: '~/plugins/aos.js', mode: 'client' },
-    '~/plugins/vue-lazysizes.client.js',
+    /* '~/plugins/vue-lazysizes.client.js', */
     '~/plugins/click-outside.js'
   ],
 
@@ -123,17 +123,17 @@ const config: Configuration = {
   /*
    ** Build configuration
    */
-  build: {
-    /*
-     ** You can extend webpack config here
-     */
-    /* extend(config, { isDev, isClient, loaders: { vue } }) {
+  //build: {
+  /*
+   ** You can extend webpack config here
+   */
+  /* extend(config, { isDev, isClient, loaders: { vue } }) {
       if (isClient) { */
-    /* vue.transformAssetUrls.img = ['data-src', 'src'];
+  /* vue.transformAssetUrls.img = ['data-src', 'src'];
         vue.transformAssetUrls.source = ['data-srcset', 'srcset']; */
-    /*    } */
-    // }
-  },
+  /*    } */
+  // }
+  //},
 
   /*
    ** Generating dynamic routes
