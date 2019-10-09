@@ -9,7 +9,7 @@
         <div class="row" slot="content-header" slot-scope="{closeMenu}">
           <div class="col-6 collapse-brand">
             <router-link to="/">
-              <img src="img/brand/logo_color3.svg" />
+              <img src="~/assets/brand/brand/logo_color3.svg" />
             </router-link>
           </div>
           <div class="col-6 collapse-close">
