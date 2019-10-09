@@ -107,6 +107,10 @@ const config: Configuration = {
   markdownit: {
     injected: true
   },
+
+  /*
+   ** sentry module configuration
+   */
   sentry: {
     dsn: 'https://fb2ee10337c04b69acc2256208c7ecd7@sentry.io/1508964', // Enter your project's DSN here
     publishRelease: true,
@@ -123,17 +127,17 @@ const config: Configuration = {
   /*
    ** Build configuration
    */
-  //build: {
-  /*
-   ** You can extend webpack config here
-   */
-  /* extend(config, { isDev, isClient, loaders: { vue } }) {
+  build: {
+    /*
+     ** You can extend webpack config here
+     */
+    /* extend(config, { isDev, isClient, loaders: { vue } }) {
       if (isClient) { */
-  /* vue.transformAssetUrls.img = ['data-src', 'src'];
+    /* vue.transformAssetUrls.img = ['data-src', 'src'];
         vue.transformAssetUrls.source = ['data-srcset', 'srcset']; */
-  /*    } */
-  // }
-  //},
+    /*    } */
+    // }
+  },
 
   /*
    ** Generating dynamic routes
