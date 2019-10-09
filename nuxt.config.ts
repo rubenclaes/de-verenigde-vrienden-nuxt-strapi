@@ -6,7 +6,6 @@ import { Restaurant } from './store/type';
 
 const config: Configuration = {
   mode: 'universal',
-  buildModules: ['@nuxt/typescript-build'],
 
   /*
    ** Headers of the page
@@ -49,6 +48,7 @@ const config: Configuration = {
     { src: '~/plugins/argon-kit.js', mode: 'client' },
     { src: '~/plugins/aos.js', mode: 'client' },
     /* '~/plugins/vue-lazysizes.client.js', */
+    '~/plugins/vee-validate',
     '~/plugins/click-outside.js'
   ],
 
@@ -124,10 +124,13 @@ const config: Configuration = {
    */
   axios: {},
 
+  buildModules: ['@nuxt/typescript-build'],
+
   /*
    ** Build configuration
    */
   build: {
+    transpile: ['vee-validate/dist/rules']
     /*
      ** You can extend webpack config here
      */
