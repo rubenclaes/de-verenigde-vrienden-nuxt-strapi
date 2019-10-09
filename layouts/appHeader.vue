@@ -100,8 +100,16 @@
       <div class="container">
         <div class="row row-grid align-items-center my-md">
           <div class="col-lg-6">
-            <h3 class="text-primary font-weight-light mb-2">Begint het al een beetje te kriebelen?</h3>
-            <h4 class="mb-0 font-weight-light">Volg ons ook op social media!</h4>
+            <h3
+              class="text-primary font-weight-light mb-2"
+              data-aos="fade-right"
+              data-aos-delay="150"
+            >Begint het al een beetje te kriebelen?</h3>
+            <h4
+              class="mb-0 font-weight-light"
+              data-aos="fade-right"
+              data-aos-delay="250"
+            >Volg ons ook op social media!</h4>
           </div>
           <div class="col-lg-6 text-lg-center btn-wrapper">
             <a
