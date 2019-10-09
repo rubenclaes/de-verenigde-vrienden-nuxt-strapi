@@ -49,44 +49,48 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-12">
-            <div class="row row-grid">
-              <div
+            <div class="card-deck">
+              <!-- start card -->
+              <card
                 v-for="(restaurant, index) in latestRestaurants"
                 :key="restaurant.id"
-                class="col-lg-4"
+                class="border-0"
+                hover
+                shadow
+                body-classes="py-5"
               >
-                <!-- start card -->
-                <card class="border-0" hover shadow body-classes="py-5">
-                  <icon :name="icon(restaurant.icon)" :type="colors[index]" rounded class="mb-4"></icon>
-                  <h6 v-bind:class="text[index]" class="text-uppercase">{{restaurant.name}}</h6>
-                  <p
-                    class="description mt-3"
-                  >{{restaurant.description.substring(0,100) || 'Geen omschrijving'}}...</p>
-                  <div>
-                    <badge
-                      v-if="restaurant.Categories[0].Tag1"
-                      :type="colors[index]"
-                      rounded
-                    >{{restaurant.Categories[0].Tag1}}</badge>
-                    <badge
-                      v-if="restaurant.Categories[0].Tag2"
-                      :type="colors[index]"
-                      rounded
-                    >{{restaurant.Categories[0].Tag2}}</badge>
-                    <badge
-                      v-if="restaurant.Categories[0].Tag3"
-                      :type="colors[index]"
-                      rounded
-                    >{{restaurant.Categories[0].Tag3}}</badge>
-                  </div>
-                  <router-link
-                    :to="{ name: 'restaurants-id', params: { id: restaurant.id }}"
-                    tag="a"
-                    class="btn mt-4"
-                    :class="buttons[index]"
-                  >Lees meer</router-link>
-                </card>
-              </div>
+                <template #image>
+                  <img :src="restaurant.image.url" class="card-img-top" alt="Niet gevonden" />
+                </template>
+                <icon :name="icon(restaurant.icon)" :type="colors[index]" rounded class="mb-4"></icon>
+                <h6 v-bind:class="text[index]" class="text-uppercase">{{restaurant.name}}</h6>
+                <p
+                  class="description mt-3"
+                >{{restaurant.description.substring(0,100) || 'Geen omschrijving'}}...</p>
+                <div>
+                  <badge
+                    v-if="restaurant.Categories[0].Tag1"
+                    :type="colors[index]"
+                    rounded
+                  >{{restaurant.Categories[0].Tag1}}</badge>
+                  <badge
+                    v-if="restaurant.Categories[0].Tag2"
+                    :type="colors[index]"
+                    rounded
+                  >{{restaurant.Categories[0].Tag2}}</badge>
+                  <badge
+                    v-if="restaurant.Categories[0].Tag3"
+                    :type="colors[index]"
+                    rounded
+                  >{{restaurant.Categories[0].Tag3}}</badge>
+                </div>
+                <router-link
+                  :to="{ name: 'restaurants-id', params: { id: restaurant.id }}"
+                  tag="a"
+                  class="btn mt-4"
+                  :class="buttons[index]"
+                >Lees meer</router-link>
+              </card>
             </div>
           </div>
         </div>

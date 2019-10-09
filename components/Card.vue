@@ -12,6 +12,11 @@
     <div class="card-header" :class="headerClasses" v-if="$slots.header">
       <slot name="header"></slot>
     </div>
+
+    <div class="card-img" v-if="$slots.image">
+      <slot name="image"></slot>
+    </div>
+
     <div class="card-body" :class="bodyClasses" v-if="!noBody">
       <slot></slot>
     </div>
@@ -60,6 +65,7 @@ export default {
       type: [String, Object, Array],
       description: 'Card header css classes'
     },
+
     footerClasses: {
       type: [String, Object, Array],
       description: 'Card footer css classes'
