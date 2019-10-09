@@ -23,7 +23,7 @@
       "@/pages/*": ["./pages/"],
       "@/store/*": ["./store/*"]
     },
-    "types": ["@types/jest", "@types/node", "@nuxt/types", "@nuxtjs/axios"]
+    "types": ["@types/jest", "@types/node", "@nuxt/types"]
   },
   "exclude": ["node_modules"]
 }
