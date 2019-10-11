@@ -1,14 +1,20 @@
-import { required, confirmed, length, email } from 'vee-validate/dist/rules';
+import {
+  required,
+  confirmed,
+  length,
+  email,
+  min
+} from 'vee-validate/dist/rules';
 import { extend } from 'vee-validate';
 
 extend('required', {
   ...required,
-  message: 'This field is required'
+  message: 'Dit veld is verplicht in te vullen'
 });
 
 extend('email', {
   ...email,
-  message: 'This field must be a valid email'
+  message: 'Dit veld bevat een onjuist email formaat'
 });
 
 extend('confirmed', {
@@ -19,4 +25,9 @@ extend('confirmed', {
 extend('length', {
   ...length,
   message: 'This field must have 2 options'
+});
+
+extend('min', {
+  ...min,
+  message: 'Dit veld moet minimum 3 karakters bevatten'
 });

@@ -24,6 +24,7 @@
         </slot>
       </span>
     </div>
+
     <slot v-bind="slotData">
       <input
         :name="name"
@@ -35,6 +36,7 @@
         aria-describedby="addon-right addon-left"
       />
     </slot>
+
     <div v-if="addonRightIcon || $slots.addonRight" class="input-group-append">
       <span class="input-group-text">
         <slot name="addonRight">
@@ -42,7 +44,9 @@
         </slot>
       </span>
     </div>
+
     <slot name="infoBlock"></slot>
+
     <slot name="helpBlock">
       <div
         class="text-danger invalid-feedback"

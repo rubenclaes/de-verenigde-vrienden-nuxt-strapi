@@ -201,6 +201,7 @@
       </div>
     </section>
     <!-- end Jeugdorkest -->
+
     <!-- Harmonie  -->
     <section class="section bg-secondary">
       <div class="container">
@@ -246,6 +247,7 @@
       </div>
     </section>
     <!-- end Harmonie -->
+
     <!-- Activiteiten -->
     <section class="section section-lg section-shaped overflow-hidden my-0">
       <div class="shape shape-style-1 bg-gradient-success shape-skew">
@@ -335,7 +337,6 @@
     <!-- end Dirigent -->
 
     <!-- Adres -->
-
     <section class="section section-shaped my-0 overflow-hidden">
       <div class="shape shape-style-1 bg-gradient-default shape-skew">
         <span></span>
@@ -347,7 +348,9 @@
       <div class="container pt-lg pb-300">
         <div class="row text-center justify-content-center">
           <div class="col-lg-10">
-            <icon name="ni ni-pin-3" class="mb-5 floating" size="lg" type="white" shadow rounded></icon>
+            <a href="https://goo.gl/maps/YgziKZGExWnQW9cd7">
+              <icon name="ni ni-pin-3" class="mb-5 floating" size="lg" type="white" shadow rounded></icon>
+            </a>
             <h1 class="text-white font-weight-light">Waar kan je ons vinden?</h1>
 
             <a href="https://goo.gl/maps/YgziKZGExWnQW9cd7" class="lead text-white" target="blank">
@@ -359,6 +362,9 @@
         </div>
       </div>
     </section>
+    <!-- end Adres -->
+
+    <!-- Contact -->
     <section class="section section-lg pt-lg-0 section-contact-us">
       <div class="container">
         <div class="row justify-content-center mt--300">
@@ -373,41 +379,57 @@
               <card gradient="secondary" shadow body-classes="p-lg-5">
                 <h4 class="mb-1">Wil je meer van ons weten?</h4>
                 <p class="mt-0">Een mailtje kan geen kwaad.</p>
+
                 <div v-show="false">
                   <input name="form-name" value="contact" />
                 </div>
 
-                <base-input
-                  name="name"
-                  class="mt-5"
-                  alternative
-                  placeholder="Naam"
-                  addon-left-icon="ni ni-circle-08"
-                ></base-input>
-                <base-input
-                  name="email"
-                  type="email"
-                  alternative
-                  placeholder="Email"
-                  addon-left-icon="ni ni-email-83"
-                ></base-input>
-                <base-input class="mb-4">
-                  <textarea
-                    name="message"
-                    class="form-control form-control-alternative"
-                    rows="4"
-                    cols="80"
-                    placeholder="Schrijf je bericht..."
-                  ></textarea>
-                </base-input>
-                <base-button
-                  type="default"
-                  nativeType="submit"
-                  round
-                  block
-                  size="lg"
-                  icon="ni ni-send"
-                >Verstuur</base-button>
+                <ValidationObserver v-slot="{ invalid }">
+                  <ValidationProvider name="model.name" rules="required|min:1">
+                    <div slot-scope="{ errors }">
+                      <base-input
+                        name="name"
+                        class="mt-5"
+                        alternative
+                        placeholder="Naam"
+                        type="text"
+                        addon-left-icon="ni ni-circle-08"
+                        v-model="model.name"
+                        :error="errors[0]"
+                      ></base-input>
+                    </div>
+                  </ValidationProvider>
+                  <ValidationProvider name="email" rules="required|min:3|email">
+                    <div slot-scope="{ errors }">
+                      <base-input
+                        name="email"
+                        type="email"
+                        alternative
+                        placeholder="Email"
+                        v-model="email"
+                        addon-left-icon="ni ni-email-83"
+                        :error="errors[0]"
+                      ></base-input>
+                    </div>
+                  </ValidationProvider>
+                  <ValidationProvider name="model.message" rules="required|min:1">
+                    <div slot-scope="{ errors }">
+                      <base-input class="mb-4" :error="errors[0]">
+                        <textarea
+                          name="message"
+                          class="form-control form-control-alternative"
+                          rows="4"
+                          cols="80"
+                          placeholder="Schrijf je bericht..."
+                          v-model="model.message"
+                        ></textarea>
+                      </base-input>
+                    </div>
+                  </ValidationProvider>
+                  <b-button block type="submit" variant="default" round :disabled="invalid">
+                    <icon name="ni ni-send" size="sm"></icon>&nbsp;Verstuur
+                  </b-button>
+                </ValidationObserver>
               </card>
             </form>
           </div>
@@ -469,7 +491,7 @@
       </div>-->
       <!-- End Sendgrid Signup Form -->
     </section>
-    <!-- end Adres -->
+    <!-- end Contact -->
   </div>
 </template>
 
@@ -482,6 +504,7 @@ import { restaurantVuexNamespace } from '~/store/restaurant/const';
 import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
 import isEmpty from 'lodash/isEmpty';
 import { switchCase } from '@babel/types';
+import { ValidationObserver, ValidationProvider } from 'vee-validate';
 
 @Component({
   layout: 'appHeader',
@@ -494,7 +517,9 @@ import { switchCase } from '@babel/types';
     Badge: () => import('@/components/Badge.vue'),
     Icon: () => import('@/components/Icon.vue'),
     BaseInput: () => import('@/components/BaseInput.vue'),
-    Modal: () => import('@/components/Modal.vue')
+    Modal: () => import('@/components/Modal.vue'),
+    ValidationObserver,
+    ValidationProvider
   }
 })
 export default class IndexPage extends Vue {
@@ -504,6 +529,11 @@ export default class IndexPage extends Vue {
 
   private modals = {
     modal3: false
+  };
+
+  private model = {
+    name: '',
+    message: ''
   };
 
   private email = '';
