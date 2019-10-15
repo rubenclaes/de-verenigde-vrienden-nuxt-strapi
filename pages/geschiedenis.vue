@@ -193,7 +193,7 @@
                 Het accent verschuift hoe langer hoe meer naar de zaalconcerten, terwijl straatoptredens aan belang moeten inboeten. Eind 2000 geeft Jos Simons tamelijk onverwacht zijn ontslag als dirigent.
                 Zijn opvolger Guido Dreessen leidt de fanfare tijdens het jubileumjaar 2002, als met een uitgebreide waaier aan concerten en andere activiteiten het 100-jarig bestaan van de muziekvereniging gevierd wordt.
                 Bij die gelegenheid wordt ook de benaming "fanfare" definitief opgegeven. Als Koninklijke Harmonie De Verenigde Vrienden beantwoordt de nieuwe naam beter aan de werkelijke samenstelling van het korps, waarin de houten blaasinstrumenten een steeds prominenter plaats zijn gaan innemen.
-                In 2004 wordt de muzikale leiding van de harmonie overgenomen door dirigent Jean-Paul Hermans. Gewijzigde bezigheden hopen hem midden 2006 deze functie op te geven. Op 31 juli 2006 treedt Johan Martens aan als nieuwe dirigent.
+                In 2004 wordt de muzikale leiding van de harmonie overgenomen door dirigent Jean-Paul Hermans. Gewijzigde bezigheden nopen hem midden 2006 deze functie op te geven. Op 31 juli 2006 treedt Johan Martens aan als nieuwe dirigent.
               </p>
             </div>
           </div>
