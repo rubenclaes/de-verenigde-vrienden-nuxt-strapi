@@ -58,6 +58,7 @@ const config: Configuration = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/onesignal',
     '@nuxtjs/pwa',
     '@nuxtjs/sentry',
     'bootstrap-vue/nuxt',
@@ -77,11 +78,13 @@ const config: Configuration = {
   env: {
     API_URL: 'https://strapi-de-verenigde-vrienden.herokuapp.com'
   },
+
   sitemap: {
     hostname: 'https://www.deverenigdevriendenheusden.be',
     gzip: true,
     exclude: ['/secret', '/admin/**'],
     routes: [
+      '/',
       '/nieuws',
       '/dirigent',
       '/geschiedenis'
@@ -116,6 +119,19 @@ const config: Configuration = {
     publishRelease: true,
     disabled: isDev,
     config: {} // Additional config
+  },
+
+  /*
+   ** oneSignal module configuration
+   */
+  oneSignal: {
+    init: {
+      appId: 'YOUR_APP_ID',
+      allowLocalhostAsSecureOrigin: true,
+      welcomeNotification: {
+        disable: true
+      }
+    }
   },
 
   /*
