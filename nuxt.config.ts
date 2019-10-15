@@ -126,7 +126,7 @@ const config: Configuration = {
    */
   oneSignal: {
     init: {
-      appId: 'YOUR_APP_ID',
+      appId: '6456f08e-6168-4a15-8caf-99f8600d6b97',
       allowLocalhostAsSecureOrigin: true,
       welcomeNotification: {
         disable: true
