@@ -42,18 +42,6 @@
               </div>
               <form role="form">
                 <h1>Please give us your payment details:</h1>
-                <card
-                  class="stripe-card"
-                  :class="{ complete }"
-                  stripe="pk_test_XXXXXXXXXXXXXXXXXXXXXXXX"
-                  :options="stripeOptions"
-                  @change="complete = $event.complete"
-                />
-                <button
-                  class="pay-with-stripe"
-                  @click="pay"
-                  :disabled="!complete"
-                >Pay with credit card</button>
 
                 <base-input
                   alternative
@@ -73,6 +61,15 @@
                 </div>
               </form>
             </template>
+
+            <card
+              class="stripe-card"
+              :class="{ complete }"
+              stripe="pk_test_XXXXXXXXXXXXXXXXXXXXXXXX"
+              :options="stripeOptions"
+              @change="complete = $event.complete"
+            />
+            <button class="pay-with-stripe" @click="pay" :disabled="!complete">Pay with credit card</button>
           </BCard>
           <div class="row mt-3">
             <div class="col-6">
@@ -112,14 +109,10 @@ import { Card, createToken } from 'vue-stripe-elements-plus';
   }
 })
 export default class Eetdag extends Vue {
-  data() {
-    return {
-      complete: false,
-      stripeOptions: {
-        // see https://stripe.com/docs/stripe.js#element-options for details
-      }
-    };
-  }
+  private complete: boolean = false;
+  private stripeOptions = {
+    // see https://stripe.com/docs/stripe.js#element-options for details
+  };
 
   pay() {
     // createToken returns a Promise which resolves in a result object with
