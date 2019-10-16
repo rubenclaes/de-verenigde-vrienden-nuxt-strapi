@@ -68,7 +68,7 @@ const config: Configuration = {
     [
       '@nuxtjs/google-analytics',
       {
-        id: 'UA-36999937-1'
+        id: process.env.GOOGLE_ANALYTICS
       }
     ],
     //Always at the end
