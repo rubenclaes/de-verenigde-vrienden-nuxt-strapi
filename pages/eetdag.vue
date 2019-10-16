@@ -94,7 +94,7 @@
 
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator';
-import { stripeKey, stripeOptions } from './stripeConfig.json';
+//import { stripeKey, stripeOptions } from './stripeConfig.json';
 import { Card, createToken } from 'vue-stripe-elements-plus';
 
 @Component({
