@@ -1,8 +1,8 @@
-const isDev = process.env.NODE_ENV !== 'production';
-
 import { Configuration } from '@nuxt/types';
 import axios from 'axios';
 import { Restaurant } from './store/type';
+
+import { APP_ID, IS_DEV } from './config';
 
 const config: Configuration = {
   mode: 'universal',
@@ -115,9 +115,9 @@ const config: Configuration = {
    ** sentry module configuration
    */
   sentry: {
-    dsn: 'https://fb2ee10337c04b69acc2256208c7ecd7@sentry.io/1508964', // Enter your project's DSN here
+    dsn: process.env.SENTRY_DSN, // Enter your project's DSN here
     publishRelease: true,
-    disabled: isDev,
+    disabled: IS_DEV,
     config: {} // Additional config
   },
 
@@ -126,7 +126,7 @@ const config: Configuration = {
    */
   oneSignal: {
     init: {
-      appId: '6456f08e-6168-4a15-8caf-99f8600d6b97',
+      appId: process.env.ONE_SIGNAL_ID,
       allowLocalhostAsSecureOrigin: true,
       welcomeNotification: {
         disable: true
