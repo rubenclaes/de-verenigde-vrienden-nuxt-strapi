@@ -99,6 +99,7 @@ import { Card, createToken } from 'vue-stripe-elements-plus';
 
 @Component({
   layout: 'appHeader',
+
   components: {
     Logo: () => import('@/components/Logo.vue'),
     BaseButton: () => import('@/components/BaseButton.vue'),
@@ -110,7 +111,7 @@ import { Card, createToken } from 'vue-stripe-elements-plus';
     Card
   }
 })
-export default class RestaurantView extends Vue {
+export default class Eetdag extends Vue {
   data() {
     return {
       complete: false,
