@@ -13,7 +13,7 @@
     <div class="container pt-lg-md">
       <div class="row justify-content-center">
         <div class="col-lg-5">
-          <card
+          <BCard
             type="secondary"
             shadow
             header-classes="bg-white pb-5"
@@ -26,12 +26,12 @@
               </div>
               <div class="btn-wrapper text-center">
                 <base-button type="neutral">
-                  <img slot="icon" src="img/icons/common/github.svg">
+                  <img slot="icon" src="img/icons/common/github.svg" />
                   Github
                 </base-button>
 
                 <base-button type="neutral">
-                  <img slot="icon" src="img/icons/common/google.svg">
+                  <img slot="icon" src="img/icons/common/google.svg" />
                   Google
                 </base-button>
               </div>
@@ -41,6 +41,20 @@
                 <small>Or sign in with credentials</small>
               </div>
               <form role="form">
+                <h1>Please give us your payment details:</h1>
+                <card
+                  class="stripe-card"
+                  :class="{ complete }"
+                  stripe="pk_test_XXXXXXXXXXXXXXXXXXXXXXXX"
+                  :options="stripeOptions"
+                  @change="complete = $event.complete"
+                />
+                <button
+                  class="pay-with-stripe"
+                  @click="pay"
+                  :disabled="!complete"
+                >Pay with credit card</button>
+
                 <base-input
                   alternative
                   class="mb-3"
@@ -59,7 +73,7 @@
                 </div>
               </form>
             </template>
-          </card>
+          </BCard>
           <div class="row mt-3">
             <div class="col-6">
               <a href="#" class="text-light">
@@ -80,18 +94,39 @@
 
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator';
+import { stripeKey, stripeOptions } from './stripeConfig.json';
+import { Card, createToken } from 'vue-stripe-elements-plus';
 
 @Component({
   layout: 'appHeader',
   components: {
     Logo: () => import('@/components/Logo.vue'),
     BaseButton: () => import('@/components/BaseButton.vue'),
-    Card: () => import('@/components/Card.vue'),
+    BCard: () => import('@/components/Card.vue'),
     Badge: () => import('@/components/Badge.vue'),
     Icon: () => import('@/components/Icon.vue'),
     BaseInput: () => import('@/components/BaseInput.vue'),
-    BaseCheckbox: () => import('@/components/BaseCheckbox.vue')
+    BaseCheckbox: () => import('@/components/BaseCheckbox.vue'),
+    Card
   }
 })
-export default class RestaurantView extends Vue {}
+export default class RestaurantView extends Vue {
+  data() {
+    return {
+      complete: false,
+      stripeOptions: {
+        // see https://stripe.com/docs/stripe.js#element-options for details
+      }
+    };
+  }
+
+  pay() {
+    // createToken returns a Promise which resolves in a result object with
+    // either a token or an error key.
+    // See https://stripe.com/docs/api#tokens for the token object.
+    // See https://stripe.com/docs/api#errors for the error object.
+    // More general https://stripe.com/docs/stripe.js#stripe-create-token.
+    createToken().then(data => console.log(data.token));
+  }
+}
 </script>
