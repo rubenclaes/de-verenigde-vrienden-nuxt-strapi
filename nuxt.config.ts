@@ -66,7 +66,12 @@ const config: Configuration = {
     'vue-scrollto/nuxt',
     '@nuxtjs/markdownit',
     '@bazzite/nuxt-optimized-images',
-    '@nuxtjs/google-analytics',
+    [
+      '@nuxtjs/google-analytics',
+      {
+        id: process.env.GOOGLE_ANALYTICS
+      }
+    ],
     //Always at the end
     '@nuxtjs/sitemap'
   ],
@@ -96,7 +101,7 @@ const config: Configuration = {
    ** googleAnalytics module configuration
    */
   googleAnalytics: {
-    id: process.env.GOOGLE_ANALYTICS
+    id: 'UA-36999937-1'
   },
 
   /*
@@ -119,7 +124,7 @@ const config: Configuration = {
   sentry: {
     dsn: process.env.SENTRY_DSN, // Enter your project's DSN here
     publishRelease: true,
-    disabled: true,
+    disabled: IS_DEV,
     config: {} // Additional config
   },
 
