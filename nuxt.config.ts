@@ -119,7 +119,7 @@ const config: Configuration = {
   sentry: {
     dsn: process.env.SENTRY_DSN, // Enter your project's DSN here
     publishRelease: true,
-    disabled: IS_DEV,
+    disabled: true,
     config: {} // Additional config
   },
 
