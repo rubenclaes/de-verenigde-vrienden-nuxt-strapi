@@ -13,7 +13,7 @@
     <div class="container pt-lg-md">
       <div class="row justify-content-center">
         <div class="col-lg-5">
-          <Card
+          <card
             type="secondary"
             shadow
             header-classes="bg-white pb-5"
@@ -69,8 +69,8 @@
               :options="stripeOptions"
               @change="complete = $event.complete"
             />-->
-            <button class="pay-with-stripe" @click="pay" :disabled="!complete">Pay with credit card</button>
-          </Card>
+            <!-- <button class="pay-with-stripe" @click="pay" :disabled="!complete">Pay with credit card</button> -->
+          </card>
           <div class="row mt-3">
             <div class="col-6">
               <a href="#" class="text-light">
