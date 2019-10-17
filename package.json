@@ -39,6 +39,7 @@
     "nuxt": "^2.10.1",
     "nuxt-property-decorator": "^2.4.0",
     "strapi-sdk-javascript": "^0.3.3",
+    "stripe": "^7.10.0",
     "ts-node": "^8.4.1",
     "uuid": "^3.3.3",
     "vee-validate": "^3.0.11",
