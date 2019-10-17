@@ -63,6 +63,7 @@ const config: Configuration = {
     '@nuxtjs/pwa',
     '@nuxtjs/sentry',
     'bootstrap-vue/nuxt',
+
     'vue-scrollto/nuxt',
     '@nuxtjs/markdownit',
     '@bazzite/nuxt-optimized-images',
@@ -75,6 +76,12 @@ const config: Configuration = {
     //Always at the end
     '@nuxtjs/sitemap'
   ],
+
+  bootstrapVue: {
+    components: ['BCarousel', 'BCarouselSlide', 'BBadge', 'BButton'],
+    bootstrapCSS: false, // Or `css: false`
+    bootstrapVueCSS: false // Or `bvCSS: false`
+  },
 
   env: {
     API_URL: 'https://strapi-de-verenigde-vrienden.herokuapp.com'
