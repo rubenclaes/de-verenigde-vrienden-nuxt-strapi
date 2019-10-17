@@ -11,7 +11,7 @@ const config: Configuration = {
    ** Headers of the page
    */
   head: {
-    title: '%s - ' + process.env.npm_package_name,
+    title: '%s - ' + APP_ID,
 
     meta: [
       { charset: 'utf-8' },
