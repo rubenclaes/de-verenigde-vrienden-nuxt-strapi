@@ -66,12 +66,7 @@ const config: Configuration = {
     'vue-scrollto/nuxt',
     '@nuxtjs/markdownit',
     '@bazzite/nuxt-optimized-images',
-    [
-      '@nuxtjs/google-analytics',
-      {
-        id: process.env.GOOGLE_ANALYTICS
-      }
-    ],
+    '@nuxtjs/google-analytics',
     //Always at the end
     '@nuxtjs/sitemap'
   ],
@@ -96,6 +91,12 @@ const config: Configuration = {
         lastmodISO: '2017-06-30T13:30:00.000Z'
       } */
     ]
+  },
+  /*
+   ** googleAnalytics module configuration
+   */
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS
   },
 
   /*

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div id="top"></div>
     <nuxt />
   </div>
 </template>

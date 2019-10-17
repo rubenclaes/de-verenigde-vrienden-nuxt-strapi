@@ -1,6 +1,8 @@
 <template>
   <div>
     <header class="header-global">
+      <div id="top"></div>
+
       <base-nav class="navbar-main" transparent type effect="light" expand>
         <router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
           <img src="~/assets/brand/logo_fulllogo_white.svg" alt="logo" />
@@ -94,10 +96,19 @@
         </ul>
       </base-nav>
     </header>
+
     <nuxt />
 
     <footer class="footer has-cards">
       <div class="container">
+        <back-to-top
+          v-scroll-to="'#top'"
+          icon="ni ni-bold-up"
+          tag="a"
+          textColor="secondary"
+          size="lg"
+          iconOnly
+        ></back-to-top>
         <div class="row row-grid align-items-center my-md">
           <div class="col-lg-6">
             <h3
@@ -157,26 +168,33 @@
   </div>
 </template>
 
-
-
 <script lang="ts">
 import BaseButton from '@/components/BaseButton.vue';
 import BaseNav from '@/components/BaseNav.vue';
 import BaseDropdown from '@/components/BaseDropdown.vue';
 import CloseButton from '@/components/CloseButton.vue';
+import BackToTop from '@/components/BackToTop.vue';
 
 import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component({
-  components: { BaseNav, CloseButton, BaseDropdown, BaseButton }
+  components: { BaseNav, CloseButton, BaseDropdown, BaseButton, BackToTop }
 })
 export default class extends Vue {
+  private windowHeight: number = 0;
   data() {
     return {
       year: new Date().getFullYear()
     };
   }
 
-  mounted() {}
+  /*   mounted() {
+    window.addEventListener('resize', this.getWindowHeight);
+    this.getWindowHeight();
+  }
+
+  getWindowHeight() {
+    this.windowHeight = document.documentElement.clientHeight;
+  } */
 }
 </script>
