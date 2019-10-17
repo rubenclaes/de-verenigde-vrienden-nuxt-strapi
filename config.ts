@@ -1,15 +1,10 @@
-import * as dotenv from 'dotenv';
+declare function require(moduleName: string): any;
 
-dotenv.config();
-let path;
-switch (process.env.NODE_ENV) {
-  case 'production':
-    path = `${__dirname}/../../.env.production`;
-    break;
-  default:
-    path = `${__dirname}/../../.env.development`;
+if (process.env.NODE_ENV !== 'production') {
+  const dotenv: any = require('dotenv');
+
+  dotenv.config();
 }
-dotenv.config({ path: path });
 
 export const APP_ID = process.env.APP_ID;
 export const LOG_LEVEL = process.env.LOG_LEVEL;

@@ -34,6 +34,7 @@
                     tag="a"
                     class="mb-3 mb-sm-0"
                     type="success"
+                    textColor="secondary"
                   >Lees verder</base-button>
                 </div>
               </div>
@@ -136,7 +137,7 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
             <div class="rounded shadow-lg overflow-hidden">
-              <b-carousel id="carousel1" controls indicators>
+              <b-carousel id="carousel1" :interval="4000" controls indicators>
                 <!-- Text slides with image -->
                 <b-carousel-slide img-src="/img/home/t/jeugdorkest.jpeg"></b-carousel-slide>
                 <b-carousel-slide img-src="/img/home/t/jeugdorkest2.png"></b-carousel-slide>

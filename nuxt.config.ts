@@ -11,7 +11,8 @@ const config: Configuration = {
    ** Headers of the page
    */
   head: {
-    title: '%s - ' + process.env.npm_package_name,
+    title: '%s - ' + APP_ID,
+
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -95,6 +96,12 @@ const config: Configuration = {
         lastmodISO: '2017-06-30T13:30:00.000Z'
       } */
     ]
+  },
+  /*
+   ** googleAnalytics module configuration
+   */
+  googleAnalytics: {
+    id: 'UA-36999937-1'
   },
 
   /*
