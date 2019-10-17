@@ -13,7 +13,7 @@
     <div class="container pt-lg-md">
       <div class="row justify-content-center">
         <div class="col-lg-5">
-          <BCard
+          <Card
             type="secondary"
             shadow
             header-classes="bg-white pb-5"
@@ -62,15 +62,15 @@
               </form>
             </template>
 
-            <card
+            <!--      <card
               class="stripe-card"
               :class="{ complete }"
               stripe="pk_test_XXXXXXXXXXXXXXXXXXXXXXXX"
               :options="stripeOptions"
               @change="complete = $event.complete"
-            />
+            />-->
             <button class="pay-with-stripe" @click="pay" :disabled="!complete">Pay with credit card</button>
-          </BCard>
+          </Card>
           <div class="row mt-3">
             <div class="col-6">
               <a href="#" class="text-light">
@@ -92,7 +92,7 @@
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator';
 //import { stripeKey, stripeOptions } from './stripeConfig.json';
-import { Card, createToken } from 'vue-stripe-elements-plus';
+//import { Card, createToken } from 'vue-stripe-elements-plus';
 
 @Component({
   layout: 'appHeader',
@@ -100,12 +100,12 @@ import { Card, createToken } from 'vue-stripe-elements-plus';
   components: {
     Logo: () => import('@/components/Logo.vue'),
     BaseButton: () => import('@/components/BaseButton.vue'),
-    BCard: () => import('@/components/Card.vue'),
+    Card: () => import('@/components/Card.vue'),
     Badge: () => import('@/components/Badge.vue'),
     Icon: () => import('@/components/Icon.vue'),
     BaseInput: () => import('@/components/BaseInput.vue'),
-    BaseCheckbox: () => import('@/components/BaseCheckbox.vue'),
-    Card
+    BaseCheckbox: () => import('@/components/BaseCheckbox.vue')
+    //Card
   }
 })
 export default class Eetdag extends Vue {
