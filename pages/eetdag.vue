@@ -120,7 +120,7 @@ export default class Eetdag extends Vue {
     // See https://stripe.com/docs/api#tokens for the token object.
     // See https://stripe.com/docs/api#errors for the error object.
     // More general https://stripe.com/docs/stripe.js#stripe-create-token.
-    createToken().then(data => console.log(data.token));
+    //createToken().then(data => console.log(data.token));
   }
 }
 </script>
