@@ -139,9 +139,12 @@ const config: Configuration = {
    ** oneSignal module configuration
    */
   oneSignal: {
+    // Use CDN
+    cdn: true,
     init: {
       appId: process.env.ONE_SIGNAL_ID,
       allowLocalhostAsSecureOrigin: true,
+      requiresUserPrivacyConsent: true,
       welcomeNotification: {
         disable: true
       }
