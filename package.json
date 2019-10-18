@@ -30,7 +30,6 @@
     "@types/dotenv": "^6.1.1",
     "aos": "^2.3.4",
     "bootstrap-vue": "^2.0.4",
-    "cloudinary-core": "^2.7.4",
     "dotenv": "^8.2.0",
     "imagemin-mozjpeg": "^8.0.0",
     "imagemin-pngquant": "^8.0.0",

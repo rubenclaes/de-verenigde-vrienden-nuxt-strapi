@@ -21,9 +21,9 @@
 
         <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
           <li class="nav-item">
-            <a class="nav-link" href="/">
+            <router-link to="/" class="nav-link">
               <span class="nav-link-inner--text">Home</span>
-            </a>
+            </router-link>
           </li>
           <base-dropdown class="nav-item" menu-classes="dropdown-menu-xl">
             <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
@@ -53,16 +53,16 @@
             </a>
           </li>-->
           <li class="nav-item">
-            <a class="nav-link" href="/drumband">
+            <router-link class="nav-link" to="/drumband">
               <span class="nav-link-inner--text">Drumband</span>
-            </a>
+            </router-link>
           </li>
         </ul>
         <ul class="navbar-nav align-items-lg-center ml-lg-auto">
           <li class="nav-item">
             <a
               class="nav-link nav-link-icon"
-              href="hhttps://www.facebook.com/koninklijkeharmoniedeverenigdevriendenheusden/"
+              href="https://www.facebook.com/koninklijkeharmoniedeverenigdevriendenheusden/"
               target="_blank"
               rel="noopener"
               data-toggle="tooltip"
@@ -86,12 +86,12 @@
             </a>
           </li>-->
           <li class="nav-item d-none d-lg-block ml-lg-4">
-            <router-link to="#contact" class="btn btn-neutral btn-icon">
+            <button @click="goTocontact()" class="btn btn-neutral btn-icon">
               <span class="btn-inner--icon">
                 <i class="fa fa-envelope mr-2"></i>
               </span>
               <span class="nav-link-inner--text">Contact</span>
-            </router-link>
+            </button>
           </li>
         </ul>
       </base-nav>
@@ -146,19 +146,19 @@
           <div class="col-md-6">
             <ul class="nav nav-footer justify-content-end">
               <li class="nav-item">
-                <a href="/" class="nav-link">Home</a>
+                <router-link to="/" class="nav-link">Home</router-link>
               </li>
               <li class="nav-item">
-                <a href="/geschiedenis" class="nav-link">Geschiedenis</a>
+                <router-link to="/geschiedenis" class="nav-link">Geschiedenis</router-link>
               </li>
               <li class="nav-item">
-                <a href="/dirigent" class="nav-link">Dirigent</a>
+                <router-link to="/dirigent" class="nav-link">Dirigent</router-link>
               </li>
               <li class="nav-item">
-                <a href="/drumband" class="nav-link">Drumband</a>
+                <router-link to="/drumband" class="nav-link">Drumband</router-link>
               </li>
-              <li class="nav-item">
-                <router-link to="#contact" class="nav-link">Contact</router-link>
+              <li class="nav-item" @click="goTocontact()">
+                <span class="nav-link" style="cursor:pointer">Contact</span>
               </li>
             </ul>
           </div>
@@ -186,6 +186,9 @@ export default class extends Vue {
     return {
       year: new Date().getFullYear()
     };
+  }
+  goTocontact() {
+    this.$router.push({ name: 'index', hash: '#contact' });
   }
 
   /*   mounted() {
