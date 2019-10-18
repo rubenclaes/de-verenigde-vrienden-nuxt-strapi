@@ -122,131 +122,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Getter } from 'nuxt-property-decorator';
-
-import { counterVuexNamespace } from '~/store/counter/const';
-import { restaurantVuexNamespace } from '~/store/restaurant/const';
+import { Component, Vue } from 'nuxt-property-decorator';
 
 import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
-import isEmpty from 'lodash/isEmpty';
-import { switchCase } from '@babel/types';
 
 @Component({
   layout: 'appHeader',
 
   components: {
-    Logo: () => import('@/components/Logo.vue'),
-    BaseButton: () => import('@/components/BaseButton.vue'),
-    BaseCheckbox: () => import('@/components/BaseCheckbox.vue'),
     Card: () => import('@/components/Card.vue'),
     Badge: () => import('@/components/Badge.vue'),
-    Icon: () => import('@/components/Icon.vue'),
-    BaseInput: () => import('@/components/BaseInput.vue'),
-    Modal: () => import('@/components/Modal.vue')
+    Icon: () => import('@/components/Icon.vue')
   }
 })
-export default class IndexPage extends Vue {
-  private colors = ['primary', 'success', 'warning'];
-  private buttons = ['btn-primary', 'btn-success', 'btn-warning'];
-  private text = ['text-primary', 'text-success', 'text-warning'];
-
-  private modals = {
-    modal3: false
-  };
-
-  private email = '';
-
-  // computed properties are defined as non-null variables
-  @counterVuexNamespace.State('count')
-  private count!: number;
-
-  @counterVuexNamespace.Getter('square')
-  private square!: number;
-
-  // methods should match expected signature
-  @counterVuexNamespace.Action('increment')
-  public increment!: () => void;
-
-  @restaurantVuexNamespace.Getter('list')
-  private restaurants!: [];
-
-  created() {}
-
-  checkForm(e) {
-    console.log(this.email);
-  }
-
-  onSubmit() {
-    console.log('jello');
-    let data = {
-      email_address: 'urist.mcvankab@freddiesjokes.com',
-      status: 'subscribed',
-      merge_fields: {
-        FNAME: 'Urist',
-        LNAME: 'McVankab'
-      }
-    };
-    return this.$store.dispatch('restaurant/create', data);
-  }
-
-  // Fetching data as soon as the component's been mounted
-  // Both are *only executed for pages (NOT components).
-  // Should be used for data intended for VueX store - it does not need to return anything and should instead commit to store any required data.
-  // It can use async/await.
-  // Warning: You don't have access of the component instance through this inside fetch because it is called before initiating the component.
-  async fetch({ store, params }) {
-    //TODO: if localstorages updated load new restaurants.
-    //if (typeof store.state.products.byId[params.id] === 'undefined') {
-    if (isEmpty(store.getters['restaurant/list'])) {
-      //console.log(this.restaurants);
-      console.log('dispatch data in state ');
-      return await store.dispatch('restaurant/fetchData');
-    } else {
-      console.log('Store not empty');
-    }
-    //}
-  }
-
-  icon(iconName) {
-    switch (iconName) {
-      case 'note': {
-        return 'ni ni-note-03';
-      }
-      case 'notification': {
-        //statements;
-        return 'ni ni-notification-70';
-      }
-      case 'satisfied': {
-        //statements;
-        return 'ni ni-satisfied';
-      }
-      case 'camera': {
-        //statements;
-        return 'ni ni-camera-compact';
-      }
-      case 'heart': {
-        //statements;
-        return 'ni ni-favourite-28';
-      }
-      case 'calendar': {
-        //statements;
-        return 'ni ni-calendar-grid-58';
-      }
-      default: {
-        //statements;
-        return 'ni ni-note-03';
-      }
-    }
-  }
-
-  // computed variable based on user's email
-  get latestRestaurants() {
-    //const user = this.profile && this.profile.user;
-    //return (user && user.email) || '';
-    const latestRestaurants = this.restaurants.slice(0, 3);
-    return latestRestaurants;
-  }
-}
+export default class DrumbandPage extends Vue {}
 </script>
 <style>
 </style>
