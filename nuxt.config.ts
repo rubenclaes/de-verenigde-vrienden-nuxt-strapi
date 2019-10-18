@@ -28,7 +28,7 @@ const config: Configuration = {
   /*
    ** Customize the progress-bar color
    */
-  //loading: { color: '#39b982' },
+  loading: { color: '#39b982' },
   manifest: {
     name: 'Harmonie De Verenigde Vrienden',
     short_name: 'KH DVV H-Z',
@@ -78,7 +78,13 @@ const config: Configuration = {
   ],
 
   bootstrapVue: {
-    components: ['BCarousel', 'BCarouselSlide', 'BBadge', 'BButton'],
+    components: [
+      'BCarousel',
+      'BCarouselSlide',
+      'BBadge',
+      'BButton',
+      'BImgLazy'
+    ],
     bootstrapCSS: false, // Or `css: false`
     bootstrapVueCSS: false // Or `bvCSS: false`
   },
@@ -144,7 +150,7 @@ const config: Configuration = {
     init: {
       appId: process.env.ONE_SIGNAL_ID,
       allowLocalhostAsSecureOrigin: true,
-      requiresUserPrivacyConsent: true,
+
       welcomeNotification: {
         disable: true
       }
