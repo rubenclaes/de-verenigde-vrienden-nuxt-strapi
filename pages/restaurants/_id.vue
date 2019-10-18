@@ -60,7 +60,7 @@
                     v-bind="mainProps"
                     :src="restaurant.image.url"
                     fluid-grow
-                    alt="Fluid-grow image"
+                    alt="nieuws img"
                     class="rounded shadow-lg"
                   ></b-img-lazy>
                 </div>
@@ -165,7 +165,7 @@ export default class RestaurantView extends Vue {
           hid: `og:url`,
           name: 'og:url',
           property: 'og:url',
-          content: `https://admiring-panini-652d81.netlify.com${this.$route.fullPath}`
+          content: `https://www.deverenigdevriendenheusden.be/${this.$route.fullPath}`
         },
         {
           hid: `og:type`,
