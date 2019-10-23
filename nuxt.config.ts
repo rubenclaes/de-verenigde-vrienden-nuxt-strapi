@@ -2,7 +2,7 @@ import { Configuration } from '@nuxt/types';
 import axios from 'axios';
 import { Restaurant } from './store/type';
 
-import { APP_ID, IS_DEV } from './config';
+import { IS_DEV } from './config';
 
 const config: Configuration = {
   mode: 'universal',
@@ -11,9 +11,9 @@ const config: Configuration = {
    ** Headers of the page
    */
   head: {
-    title: APP_ID,
+    title: process.env.APP_ID,
 
-    titleTemplate: '%s ← ' + APP_ID,
+    titleTemplate: '%s ← ' + process.env.APP_ID,
 
     meta: [
       { charset: 'utf-8' },
