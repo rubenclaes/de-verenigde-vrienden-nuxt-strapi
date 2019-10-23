@@ -15,13 +15,18 @@
       <div class="container">
         <card shadow class="card-profile mt--300" no-body>
           <div class="px-4">
+            <b-breadcrumb class="bg-transparent">
+              <b-breadcrumb-item text="blalb">Home</b-breadcrumb-item>
+              <b-breadcrumb-item text="blalb">Nieuws</b-breadcrumb-item>
+              <b-breadcrumb-item active="false">{{restaurant.name}}</b-breadcrumb-item>
+            </b-breadcrumb>
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2"></div>
               <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
                 <div class="card-profile-actions py-4 mt-lg-0">
                   <base-button
                     tag="a"
-                    href="#"
+                    @click="share()"
                     type="facebook"
                     icon="fa fa-facebook"
                     rounded
@@ -64,7 +69,7 @@
                     class="rounded shadow-lg"
                   ></b-img-lazy>
                 </div>
-                <div class="col-lg-10">
+                <div class="col-lg-11">
                   <template>
                     <div v-html="$md.render(restaurant.description)"></div>
                   </template>
@@ -105,6 +110,22 @@ export default class RestaurantView extends Vue {
   @restaurantVuexNamespace.Getter('formattedDate')
   private formattedDate!: Date;
 
+  private items = [
+    {
+      text: 'Home',
+      to: { name: 'index' }
+    },
+    {
+      text: 'Nieuws',
+      to: { name: 'nieuws' }
+    },
+    {
+      text: 'Another Story',
+      active: true
+    }
+  ];
+
+  private facebookSdkReady: boolean = false;
   private mainProps = {
     center: true,
     fluidGrow: true,
@@ -206,6 +227,24 @@ export default class RestaurantView extends Vue {
     }
     // }
   } */
+
+  /*  share() {
+    window.FB.ui(
+      {
+        method: 'share_open_graph',
+        action_type: 'og.likes',
+        action_properties: JSON.stringify({
+          object: 'https://developers.facebook.com/docs/javascript/examples'
+        })
+      },
+      function(response) {
+        // Debug response (optional)
+        console.log(response);
+      }
+    );
+  } */
+
+  mounted() {}
 
   created() {
     //this.restaurant(this.$route.params.id);

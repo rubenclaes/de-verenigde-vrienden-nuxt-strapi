@@ -324,6 +324,14 @@ export default class IndexPage extends Vue {
 
   private email = '';
 
+  private title = 'Geschiedenis';
+
+  head() {
+    return {
+      title: this.title
+    };
+  }
+
   created() {}
 
   checkForm(e) {

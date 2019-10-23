@@ -110,6 +110,14 @@ import { Component, Vue, namespace } from 'nuxt-property-decorator';
 })
 export default class Eetdag extends Vue {
   private complete: boolean = false;
+
+  private title = 'Eetdag';
+
+  head() {
+    return {
+      title: this.title
+    };
+  }
   private stripeOptions = {
     // see https://stripe.com/docs/stripe.js#element-options for details
   };

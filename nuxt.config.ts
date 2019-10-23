@@ -11,7 +11,9 @@ const config: Configuration = {
    ** Headers of the page
    */
   head: {
-    title: '%s - ' + APP_ID,
+    title: APP_ID,
+
+    titleTemplate: '%s ← ' + APP_ID,
 
     meta: [
       { charset: 'utf-8' },
@@ -22,6 +24,7 @@ const config: Configuration = {
         content: 'Koninklijke Harmonie de Verenige Vrienden Heusden-Zolder web'
       }
     ],
+
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
@@ -83,7 +86,9 @@ const config: Configuration = {
       'BCarouselSlide',
       'BBadge',
       'BButton',
-      'BImgLazy'
+      'BImgLazy',
+      'BBreadcrumb',
+      'BBreadcrumbItem'
     ],
     bootstrapCSS: false, // Or `css: false`
     bootstrapVueCSS: false // Or `bvCSS: false`
