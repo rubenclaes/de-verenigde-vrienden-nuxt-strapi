@@ -81,6 +81,14 @@ import { Component, Vue, namespace } from 'nuxt-property-decorator';
     BaseInput: () => import('@/components/BaseInput.vue')
   }
 })
-export default class RestaurantView extends Vue {}
+export default class RestaurantView extends Vue {
+  private title = 'Dirigent';
+
+  head() {
+    return {
+      title: this.title
+    };
+  }
+}
 </script>
 
