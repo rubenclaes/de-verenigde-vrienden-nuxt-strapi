@@ -538,6 +538,7 @@ export default class IndexPage extends Vue {
   };
 
   private email = '';
+  private title = 'Home';
 
   // computed properties are defined as non-null variables
   @counterVuexNamespace.State('count')
@@ -552,6 +553,12 @@ export default class IndexPage extends Vue {
 
   @restaurantVuexNamespace.Getter('list')
   private restaurants!: [];
+
+  head() {
+    return {
+      title: this.title
+    };
+  }
 
   created() {}
 

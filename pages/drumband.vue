@@ -135,7 +135,15 @@ import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
     Icon: () => import('@/components/Icon.vue')
   }
 })
-export default class DrumbandPage extends Vue {}
+export default class DrumbandPage extends Vue {
+  private title = 'Drumband';
+
+  head() {
+    return {
+      title: this.title
+    };
+  }
+}
 </script>
 <style>
 </style>

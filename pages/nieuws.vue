@@ -230,8 +230,7 @@ import {
 import { counterVuexNamespace } from '~/store/counter/const';
 import { restaurantVuexNamespace } from '~/store/restaurant/const';
 
-import { BCarousel, BCarouselSlide } from 'bootstrap-vue'
-
+import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
 
 const RestaurantAction = namespace('restaurant/');
 
@@ -276,6 +275,14 @@ export default class IndexPage extends Vue {
   };
 
   private email = '';
+
+  private title = 'Nieuws';
+
+  head() {
+    return {
+      title: this.title
+    };
+  }
 
   created() {}
 
