@@ -2,8 +2,6 @@ import { Configuration } from '@nuxt/types';
 import axios from 'axios';
 import { Restaurant } from './store/type';
 
-import { IS_DEV } from './config';
-
 const config: Configuration = {
   mode: 'universal',
 
@@ -142,7 +140,7 @@ const config: Configuration = {
   sentry: {
     dsn: process.env.SENTRY_DSN, // Enter your project's DSN here
     publishRelease: true,
-    disabled: IS_DEV,
+    disabled: process.env.IS_DEV,
     config: {} // Additional config
   },
 
