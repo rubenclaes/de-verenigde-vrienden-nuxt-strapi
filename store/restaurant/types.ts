@@ -1,3 +1,5 @@
+import { Status } from '../type';
+
 /**
  * Type definitions of the Restaurant state
  */
@@ -7,6 +9,7 @@ export interface RestaurantState {
   selected: number;
   restaurants: Restaurant[];
   currentRestaurant: Restaurant;
+  status: Status;
 }
 
 // Model

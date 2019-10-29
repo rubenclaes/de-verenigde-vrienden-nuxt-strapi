@@ -504,15 +504,12 @@ import { restaurantVuexNamespace } from '~/store/restaurant/const';
 
 import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
 
-import isEmpty from 'lodash/isEmpty';
-
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 
 @Component({
   layout: 'appHeader',
 
   components: {
-    Logo: () => import('@/components/Logo.vue'),
     BaseButton: () => import('@/components/BaseButton.vue'),
     BaseCheckbox: () => import('@/components/BaseCheckbox.vue'),
     Card: () => import('@/components/Card.vue'),
@@ -588,7 +585,7 @@ export default class IndexPage extends Vue {
   async fetch({ store, params }) {
     //TODO: if localstorages updated load new restaurants.
     //if (typeof store.state.products.byId[params.id] === 'undefined') {
-    if (isEmpty(store.getters['restaurant/list'])) {
+    if (store.getters['restaurant/list'].length === 0) {
       console.info('dispatch data in state ');
       return await store.dispatch('restaurant/fetchData');
     } else {

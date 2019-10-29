@@ -91,7 +91,9 @@
 
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator';
-import isEmpty from 'lodash/isEmpty';
+
+import { diningDayVuexNamespace } from '~/store/diningday/const';
+
 //import { stripeKey, stripeOptions } from './stripeConfig.json';
 //import { Card, createToken } from 'vue-stripe-elements-plus';
 
@@ -99,7 +101,6 @@ import isEmpty from 'lodash/isEmpty';
   layout: 'appHeader',
 
   components: {
-    Logo: () => import('@/components/Logo.vue'),
     BaseButton: () => import('@/components/BaseButton.vue'),
     Card: () => import('@/components/Card.vue'),
     Badge: () => import('@/components/Badge.vue'),
@@ -113,6 +114,9 @@ export default class Eetdag extends Vue {
   private complete: boolean = false;
 
   private title = 'Eetdag';
+
+  @diningDayVuexNamespace.Getter('list')
+  private diningDays!: [];
 
   head() {
     return {
@@ -130,7 +134,7 @@ export default class Eetdag extends Vue {
   // Warning: You don't have access of the component instance through this inside fetch because it is called before initiating the component.
   async fetch({ store, params }) {
     //if (typeof store.state.products.byId[params.id] === 'undefined') {
-    if (isEmpty(store.getters['diningday/list'])) {
+    if (store.getters['diningday/list'].length === 0) {
       return await store.dispatch('diningday/fetchData');
     } else {
       console.log('Store not empty --> fetching data from store');

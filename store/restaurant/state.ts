@@ -14,6 +14,11 @@ export const initState = (): RestaurantState => ({
     image: { url: '' },
     Categories: { Tag1: '', Tag2: '', Tag3: '' },
     created_at: new Date()
+  },
+  status: {
+    loading: false,
+    success: false,
+    error: false
   }
 });
 
