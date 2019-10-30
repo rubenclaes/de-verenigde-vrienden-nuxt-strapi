@@ -61,7 +61,7 @@
                 body-classes="py-5"
               >
                 <template #image>
-                  <img :src="restaurant.image.url" class="card-img-top" alt="Niet gevonden" />
+                  <img v-lazy="restaurant.image.url" class="card-img-top" alt="Niet gevonden" />
                 </template>
 
                 <icon :name="icon(restaurant.icon)" :type="colors[index]" rounded class="mb-4"></icon>
