@@ -63,6 +63,7 @@
                 <template #image>
                   <img :src="restaurant.image.url" class="card-img-top" alt="Niet gevonden" />
                 </template>
+
                 <icon :name="icon(restaurant.icon)" :type="colors[index]" rounded class="mb-4"></icon>
                 <h6 v-bind:class="text[index]" class="text-uppercase">{{restaurant.name}}</h6>
                 <p
@@ -139,11 +140,23 @@
             <div class="rounded shadow-lg overflow-hidden">
               <b-carousel id="carousel1" :interval="4000" controls indicators>
                 <!-- Text slides with image -->
-                <b-carousel-slide img-src="/img/home/t/jeugdorkest.jpeg"></b-carousel-slide>
-                <b-carousel-slide img-src="/img/home/t/jeugdorkest2.png"></b-carousel-slide>
-                <b-carousel-slide img-src="/img/home/t/jeugdorkest3.jpeg"></b-carousel-slide>
-                <b-carousel-slide img-src="/img/home/t/jeugdorkest4.jpeg"></b-carousel-slide>
-                <b-carousel-slide img-src="/img/home/t/jeugdorkest5.jpeg"></b-carousel-slide>
+                <b-carousel-slide img-src="/img/home/t/jeugdorkest-min.webp" img-alt="jeugdorkest1"></b-carousel-slide>
+                <b-carousel-slide
+                  img-src="/img/home/t/jeugdorkest2-min.webp"
+                  img-alt="jeugdorkest2"
+                ></b-carousel-slide>
+                <b-carousel-slide
+                  img-src="/img/home/t/jeugdorkest3-min.webp"
+                  img-alt="jeugdorkest3"
+                ></b-carousel-slide>
+                <b-carousel-slide
+                  img-src="/img/home/t/jeugdorkest4-min.webp"
+                  img-alt="jeugdorkest4"
+                ></b-carousel-slide>
+                <b-carousel-slide
+                  img-src="/img/home/t/jeugdorkest5-min.webp"
+                  img-alt="jeugdorkest5"
+                ></b-carousel-slide>
               </b-carousel>
             </div>
           </div>

@@ -1,7 +1,6 @@
 import { Configuration } from '@nuxt/types';
 import axios from 'axios';
 
-
 import { IS_DEV } from './config';
 
 const config: Configuration = {
@@ -174,6 +173,7 @@ const config: Configuration = {
    ** Build configuration
    */
   build: {
+    extractCSS: true,
     transpile: ['vee-validate/dist/rules']
     /*
      ** You can extend webpack config here
