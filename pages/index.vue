@@ -351,7 +351,20 @@
             <div class="rounded shadow-lg overflow-hidden transform-perspective-right">
               <b-carousel id="carousel1" controls indicators>
                 <!-- Text slides with image -->
-                <b-carousel-slide img-src="/img/home/jazz.JPG" img-alt="jazz"></b-carousel-slide>
+                <b-carousel-slide>
+                  <template v-slot:img>
+                    <picture>
+                      <source srcset="/img/home/t/jazz-min.webp" type="image/webp" />
+                      <img
+                        src="/img/home/t/jazz-min.JPG"
+                        alt="jazz"
+                        slot="img"
+                        class="d-block img-fluid w-100"
+                        height="480"
+                      />
+                    </picture>
+                  </template>
+                </b-carousel-slide>
               </b-carousel>
             </div>
           </div>
