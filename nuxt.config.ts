@@ -173,7 +173,6 @@ const config: Configuration = {
    ** Build configuration
    */
   build: {
-    extractCSS: true,
     transpile: ['vee-validate/dist/rules']
     /*
      ** You can extend webpack config here
