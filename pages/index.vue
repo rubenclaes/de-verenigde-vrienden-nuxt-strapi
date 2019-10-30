@@ -50,7 +50,8 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-12">
-            <div class="card-deck">
+            <!--  <div v-if="loading">loading</div> -->
+            <div v-if="!isLoading" class="card-deck">
               <!-- start card -->
               <card
                 v-for="(restaurant, index) in latestRestaurants"
@@ -94,6 +95,7 @@
                 >Lees meer</router-link>
               </card>
             </div>
+            <p v-else>Loading</p>
           </div>
         </div>
       </div>
@@ -577,7 +579,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'nuxt-property-decorator';
+import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator';
 
 import { counterVuexNamespace } from '~/store/counter/const';
 import { restaurantVuexNamespace } from '~/store/restaurant/const';
@@ -585,6 +587,7 @@ import { restaurantVuexNamespace } from '~/store/restaurant/const';
 import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
 
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
+import { Status } from '../store/type';
 
 @Component({
   layout: 'appHeader',
@@ -631,6 +634,21 @@ export default class IndexPage extends Vue {
 
   @restaurantVuexNamespace.Getter('list')
   private restaurants!: [];
+
+  @restaurantVuexNamespace.State('status')
+  private status!: Status;
+
+  /*   @restaurantVuexNamespace.Getter('loading')
+  private loading!: boolean; */
+
+  /*  @Watch('loading', { immediate: true, deep: true })
+  onStatusChanged(val: Boolean, oldVal: Boolean) {
+    console.log(oldVal + 'changed' + val);
+  } */
+
+  get isLoading() {
+    return this.status.loading;
+  }
 
   head() {
     return {
@@ -705,6 +723,16 @@ export default class IndexPage extends Vue {
       }
     }
   }
+
+  /*  // Computed property
+  get loading({ store }): boolean {
+    return store.getters['restaurant/loading'];
+  }
+
+  // Computed property
+  get success(): boolean {
+    return this.status.success;
+  } */
 
   // computed variable based on user's email
   get latestRestaurants() {

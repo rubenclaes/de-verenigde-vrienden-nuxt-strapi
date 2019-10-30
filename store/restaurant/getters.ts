@@ -30,6 +30,14 @@ export const getters: GetterTree<RestaurantState, RootState> = {
     return state.restaurants.length;
   },
 
+  loading(state): boolean {
+    return state.status.loading;
+  },
+
+  success(state) {
+    return state.status.success;
+  },
+
   formattedDate(state) {
     const options = {
       weekday: 'long',

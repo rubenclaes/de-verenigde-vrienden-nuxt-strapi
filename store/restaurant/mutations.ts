@@ -41,6 +41,22 @@ export const mutations: MutationTree<RestaurantState> = {
 
   setCurrentRestaurant(state, payload) {
     state.currentRestaurant = payload;
+  },
+
+  restaurantLoading(state) {
+    state.status.loading = true;
+    console.log(state.status.loading);
+  },
+
+  restaurantSuccess(state) {
+    state.status.success = true;
+    state.status.loading = false;
+    console.log(state.status.loading);
+  },
+
+  restaurantError(state) {
+    state.status.loading = false;
+    state.status.error = true;
   }
 
   /*  setRestaurant(
