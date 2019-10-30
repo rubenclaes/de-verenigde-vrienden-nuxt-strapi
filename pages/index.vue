@@ -140,23 +140,76 @@
             <div class="rounded shadow-lg overflow-hidden">
               <b-carousel id="carousel1" :interval="4000" controls indicators>
                 <!-- Text slides with image -->
-                <b-carousel-slide img-src="/img/home/t/jeugdorkest-min.webp" img-alt="jeugdorkest1"></b-carousel-slide>
-                <b-carousel-slide
-                  img-src="/img/home/t/jeugdorkest2-min.webp"
-                  img-alt="jeugdorkest2"
-                ></b-carousel-slide>
-                <b-carousel-slide
-                  img-src="/img/home/t/jeugdorkest3-min.webp"
-                  img-alt="jeugdorkest3"
-                ></b-carousel-slide>
-                <b-carousel-slide
-                  img-src="/img/home/t/jeugdorkest4-min.webp"
-                  img-alt="jeugdorkest4"
-                ></b-carousel-slide>
-                <b-carousel-slide
-                  img-src="/img/home/t/jeugdorkest5-min.webp"
-                  img-alt="jeugdorkest5"
-                ></b-carousel-slide>
+                <b-carousel-slide>
+                  <template v-slot:img>
+                    <picture>
+                      <source srcset="/img/home/t/jeugdorkest-min.webp" type="image/webp" />
+                      <img
+                        src="/img/home/t/jeugdorkest-min.jpeg"
+                        alt="jeugdorkest1"
+                        slot="img"
+                        class="d-block img-fluid w-100"
+                        height="480"
+                      />
+                    </picture>
+                  </template>
+                </b-carousel-slide>
+                <b-carousel-slide>
+                  <template v-slot:img>
+                    <picture>
+                      <source srcset="/img/home/t/jeugdorkest2-min.webp" type="image/webp" />
+                      <img
+                        src="/img/home/t/jeugdorkest2-min.png"
+                        alt="jeugdorkest2"
+                        slot="img"
+                        class="d-block img-fluid w-100"
+                        height="480"
+                      />
+                    </picture>
+                  </template>
+                </b-carousel-slide>
+                <b-carousel-slide>
+                  <template v-slot:img>
+                    <picture>
+                      <source srcset="/img/home/t/jeugdorkest3-min.webp" type="image/webp" />
+                      <img
+                        src="/img/home/t/jeugdorkest3-min.jpeg"
+                        alt="jeugdorkest3"
+                        slot="img"
+                        class="d-block img-fluid w-100"
+                        height="480"
+                      />
+                    </picture>
+                  </template>
+                </b-carousel-slide>
+                <b-carousel-slide>
+                  <template v-slot:img>
+                    <picture>
+                      <source srcset="/img/home/t/jeugdorkest4-min.webp" type="image/webp" />
+                      <img
+                        src="/img/home/t/jeugdorkest4-min.jpeg"
+                        alt="jeugorkest4"
+                        slot="img"
+                        class="d-block img-fluid w-100"
+                        height="480"
+                      />
+                    </picture>
+                  </template>
+                </b-carousel-slide>
+                <b-carousel-slide>
+                  <template v-slot:img>
+                    <picture>
+                      <source srcset="/img/home/t/jeugdorkest5-min.webp" type="image/webp" />
+                      <img
+                        src="/img/home/t/jeugdorkest5-min.jpeg"
+                        alt="jeugorkest5"
+                        slot="img"
+                        class="d-block img-fluid w-100"
+                        height="480"
+                      />
+                    </picture>
+                  </template>
+                </b-carousel-slide>
               </b-carousel>
             </div>
           </div>
