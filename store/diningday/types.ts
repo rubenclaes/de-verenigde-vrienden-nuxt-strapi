@@ -1,19 +1,16 @@
-import { Status } from '../type';
-
 /**
- * Type definitions of the Restaurant state
+ * Type definitions of the DiningDay state
  */
 
 // State
-export interface RestaurantState {
+export interface DiningDayState {
   selected: number;
-  restaurants: Restaurant[];
-  currentRestaurant: Restaurant;
-  status: Status;
+  diningDays: DiningDay[];
+  currentDiningDay: DiningDay;
 }
 
 // Model
-export interface Restaurant {
+export interface DiningDay {
   id: number;
   name: string;
   icon: string;

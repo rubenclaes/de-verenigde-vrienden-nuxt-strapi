@@ -1,6 +1,5 @@
 import { Configuration } from '@nuxt/types';
 import axios from 'axios';
-import { Restaurant } from './store/type';
 
 import { IS_DEV } from './config';
 

@@ -44,9 +44,10 @@ export const actions: ActionTree<RestaurantState, RootState> = {
       })
       .then(response => {
         commit('clear');
+        console.info('dispatching data in state');
 
         response.data.restaurants.forEach(restaurant => {
-          console.log(restaurant);
+          console.log(`Fetched from grapqhl:`, { restaurant });
           //restaurant.image.url = `${apiUrl}${restaurant.image.url}`;
           commit('add', {
             id: restaurant.id,
@@ -55,7 +56,7 @@ export const actions: ActionTree<RestaurantState, RootState> = {
         });
       })
       .catch(err => {
-        console.log('error', err);
+        console.error('error', err);
       });
 
     /* const response = strapi

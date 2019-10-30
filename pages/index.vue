@@ -61,8 +61,9 @@
                 body-classes="py-5"
               >
                 <template #image>
-                  <img :src="restaurant.image.url" class="card-img-top" alt="Niet gevonden" />
+                  <img v-lazy="restaurant.image.url" class="card-img-top" alt="Niet gevonden" />
                 </template>
+
                 <icon :name="icon(restaurant.icon)" :type="colors[index]" rounded class="mb-4"></icon>
                 <h6 v-bind:class="text[index]" class="text-uppercase">{{restaurant.name}}</h6>
                 <p
@@ -139,11 +140,76 @@
             <div class="rounded shadow-lg overflow-hidden">
               <b-carousel id="carousel1" :interval="4000" controls indicators>
                 <!-- Text slides with image -->
-                <b-carousel-slide img-src="/img/home/t/jeugdorkest.jpeg"></b-carousel-slide>
-                <b-carousel-slide img-src="/img/home/t/jeugdorkest2.png"></b-carousel-slide>
-                <b-carousel-slide img-src="/img/home/t/jeugdorkest3.jpeg"></b-carousel-slide>
-                <b-carousel-slide img-src="/img/home/t/jeugdorkest4.jpeg"></b-carousel-slide>
-                <b-carousel-slide img-src="/img/home/t/jeugdorkest5.jpeg"></b-carousel-slide>
+                <b-carousel-slide>
+                  <template v-slot:img>
+                    <picture>
+                      <source srcset="/img/home/t/jeugdorkest-min.webp" type="image/webp" />
+                      <img
+                        src="/img/home/t/jeugdorkest-min.jpeg"
+                        alt="jeugdorkest1"
+                        slot="img"
+                        class="d-block img-fluid w-100"
+                        height="480"
+                      />
+                    </picture>
+                  </template>
+                </b-carousel-slide>
+                <b-carousel-slide>
+                  <template v-slot:img>
+                    <picture>
+                      <source srcset="/img/home/t/jeugdorkest2-min.webp" type="image/webp" />
+                      <img
+                        src="/img/home/t/jeugdorkest2-min.png"
+                        alt="jeugdorkest2"
+                        slot="img"
+                        class="d-block img-fluid w-100"
+                        height="480"
+                      />
+                    </picture>
+                  </template>
+                </b-carousel-slide>
+                <b-carousel-slide>
+                  <template v-slot:img>
+                    <picture>
+                      <source srcset="/img/home/t/jeugdorkest3-min.webp" type="image/webp" />
+                      <img
+                        src="/img/home/t/jeugdorkest3-min.jpeg"
+                        alt="jeugdorkest3"
+                        slot="img"
+                        class="d-block img-fluid w-100"
+                        height="480"
+                      />
+                    </picture>
+                  </template>
+                </b-carousel-slide>
+                <b-carousel-slide>
+                  <template v-slot:img>
+                    <picture>
+                      <source srcset="/img/home/t/jeugdorkest4-min.webp" type="image/webp" />
+                      <img
+                        src="/img/home/t/jeugdorkest4-min.jpeg"
+                        alt="jeugorkest4"
+                        slot="img"
+                        class="d-block img-fluid w-100"
+                        height="480"
+                      />
+                    </picture>
+                  </template>
+                </b-carousel-slide>
+                <b-carousel-slide>
+                  <template v-slot:img>
+                    <picture>
+                      <source srcset="/img/home/t/jeugdorkest5-min.webp" type="image/webp" />
+                      <img
+                        src="/img/home/t/jeugdorkest5-min.jpeg"
+                        alt="jeugorkest5"
+                        slot="img"
+                        class="d-block img-fluid w-100"
+                        height="480"
+                      />
+                    </picture>
+                  </template>
+                </b-carousel-slide>
               </b-carousel>
             </div>
           </div>
@@ -209,7 +275,7 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <img v-lazy="'/img/home/close_up.JPG'" class="card-img-top" />
+              <img v-lazy="'/img/home/close_up.JPG'" class="card-img-top" alt="repetitie" />
               <blockquote class="card-blockquote">
                 <svg
                   preserveAspectRatio="none"
@@ -285,7 +351,20 @@
             <div class="rounded shadow-lg overflow-hidden transform-perspective-right">
               <b-carousel id="carousel1" controls indicators>
                 <!-- Text slides with image -->
-                <b-carousel-slide img-src="/img/home/jazz.JPG"></b-carousel-slide>
+                <b-carousel-slide>
+                  <template v-slot:img>
+                    <picture>
+                      <source srcset="/img/home/t/jazz-min.webp" type="image/webp" />
+                      <img
+                        src="/img/home/t/jazz-min.JPG"
+                        alt="jazz"
+                        slot="img"
+                        class="d-block img-fluid w-100"
+                        height="480"
+                      />
+                    </picture>
+                  </template>
+                </b-carousel-slide>
               </b-carousel>
             </div>
           </div>
@@ -313,6 +392,7 @@
                 v-lazy="'img/home/dirigent2.JPG'"
                 class="rounded img-center img-fluid shadow shadow-lg--hover"
                 style="width: 200px;"
+                alt="dirigent"
               />
               <div class="pt-4 text-center">
                 <h5 class="title">
@@ -503,15 +583,13 @@ import { counterVuexNamespace } from '~/store/counter/const';
 import { restaurantVuexNamespace } from '~/store/restaurant/const';
 
 import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
-import isEmpty from 'lodash/isEmpty';
-import { switchCase } from '@babel/types';
+
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 
 @Component({
   layout: 'appHeader',
 
   components: {
-    Logo: () => import('@/components/Logo.vue'),
     BaseButton: () => import('@/components/BaseButton.vue'),
     BaseCheckbox: () => import('@/components/BaseCheckbox.vue'),
     Card: () => import('@/components/Card.vue'),
@@ -587,11 +665,11 @@ export default class IndexPage extends Vue {
   async fetch({ store, params }) {
     //TODO: if localstorages updated load new restaurants.
     //if (typeof store.state.products.byId[params.id] === 'undefined') {
-    if (isEmpty(store.getters['restaurant/list'])) {
-      console.log('dispatch data in state ');
+    if (store.getters['restaurant/list'].length === 0) {
+      console.info('dispatch data in state ');
       return await store.dispatch('restaurant/fetchData');
     } else {
-      console.log('Store not empty');
+      console.info('Store not empty --> fetching from store');
     }
     //}
   }
