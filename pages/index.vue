@@ -222,7 +222,7 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <img v-lazy="'/img/home/close_up.JPG'" class="card-img-top" />
+              <img v-lazy="'/img/home/close_up.JPG'" class="card-img-top" alt="repetitie" />
               <blockquote class="card-blockquote">
                 <svg
                   preserveAspectRatio="none"
@@ -298,7 +298,7 @@
             <div class="rounded shadow-lg overflow-hidden transform-perspective-right">
               <b-carousel id="carousel1" controls indicators>
                 <!-- Text slides with image -->
-                <b-carousel-slide img-src="/img/home/jazz.JPG"></b-carousel-slide>
+                <b-carousel-slide img-src="/img/home/jazz.JPG" img-alt="jazz"></b-carousel-slide>
               </b-carousel>
             </div>
           </div>
@@ -326,6 +326,7 @@
                 v-lazy="'img/home/dirigent2.JPG'"
                 class="rounded img-center img-fluid shadow shadow-lg--hover"
                 style="width: 200px;"
+                alt="dirigent"
               />
               <div class="pt-4 text-center">
                 <h5 class="title">
