@@ -5,7 +5,7 @@ export interface RootState {
 
 // Model
 export interface Status {
-  loading: boolean;
-  success: boolean;
-  error: boolean;
+  loading: false;
+  success: false;
+  error: false;
 }
