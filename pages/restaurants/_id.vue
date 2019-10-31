@@ -215,18 +215,6 @@ export default class RestaurantView extends Vue {
       ]
     };
   }
-  /*  async fetch({ store, params, error, payload }) {
-    if (payload) {
-      console.log('we have a payload');
-      return { restaurant: payload.restaurant };
-    }
-    //if (typeof store.state.restaurants.id[params.id] === 'undefined') {
-    else {
-      console.log('Fetching restaurant');
-      return await store.dispatch('restaurant/fetchRestaurant', params.id);
-    }
-    // }
-  } */
 
   /*  share() {
     window.FB.ui(
@@ -245,6 +233,19 @@ export default class RestaurantView extends Vue {
   } */
 
   mounted() {}
+
+  /*  async fetch({ store, params, error, payload }) {
+    if (payload) {
+      console.log('we have a payload');
+      return { restaurant: payload.restaurant };
+    }
+    //if (typeof store.state.restaurants.id[params.id] === 'undefined') {
+    else {
+      console.log('Fetching restaurant');
+      return await store.dispatch('restaurant/fetchRestaurant', params.id);
+    }
+    // }
+  } */
 
   created() {
     //this.restaurant(this.$route.params.id);

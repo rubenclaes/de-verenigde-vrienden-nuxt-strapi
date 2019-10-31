@@ -45,54 +45,22 @@
       <!-- shape Hero -->
     </div>
 
-    <!-- start news -->
+    <!-- start News -->
     <section class="section section-lg pt-lg-0 mt--100">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-12">
             <div class="card-deck">
-              <!-- start card -->
-              <card
+              <!-- start NewsCards -->
+              <news-card
                 v-for="(restaurant, index) in latestRestaurants"
                 :key="restaurant.id"
-                class="border-0"
-                hover
-                shadow
-                body-classes="py-5"
-              >
-                <template #image>
-                  <img v-lazy="restaurant.image.url" class="card-img-top" alt="Niet gevonden" />
-                </template>
-
-                <icon :name="icon(restaurant.icon)" :type="colors[index]" rounded class="mb-4"></icon>
-                <h6 v-bind:class="text[index]" class="text-uppercase">{{restaurant.name}}</h6>
-                <p
-                  class="description mt-3"
-                >{{restaurant.description.substring(0,100) || 'Geen omschrijving'}}...</p>
-                <div>
-                  <badge
-                    v-if="restaurant.Categories[0].Tag1"
-                    :type="colors[index]"
-                    rounded
-                  >{{restaurant.Categories[0].Tag1}}</badge>
-                  <badge
-                    v-if="restaurant.Categories[0].Tag2"
-                    :type="colors[index]"
-                    rounded
-                  >{{restaurant.Categories[0].Tag2}}</badge>
-                  <badge
-                    v-if="restaurant.Categories[0].Tag3"
-                    :type="colors[index]"
-                    rounded
-                  >{{restaurant.Categories[0].Tag3}}</badge>
-                </div>
-                <router-link
-                  :to="{ name: 'restaurants-id', params: { id: restaurant.id }}"
-                  tag="a"
-                  class="btn mt-4"
-                  :class="buttons[index]"
-                >Lees meer</router-link>
-              </card>
+                :restaurant="restaurant"
+                :icon="icon(index)"
+                :type="colors[index]"
+                :buttonType="buttons[index]"
+                :textColor="text[index]"
+              ></news-card>
             </div>
           </div>
         </div>
@@ -597,6 +565,8 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate';
     Icon: () => import('@/components/Icon.vue'),
     BaseInput: () => import('@/components/BaseInput.vue'),
     Modal: () => import('@/components/Modal.vue'),
+
+    NewsCard: () => import('@/components/NewsCard.vue'),
     ValidationObserver,
     ValidationProvider
   }
@@ -638,8 +608,6 @@ export default class IndexPage extends Vue {
     };
   }
 
-  created() {}
-
   checkForm(e) {
     console.log(this.email);
   }
@@ -657,21 +625,21 @@ export default class IndexPage extends Vue {
     return this.$store.dispatch('restaurant/create', data);
   }
 
-  // Fetching data as soon as the component's been mounted
-  // Both are *only executed for pages (NOT components).
-  // Should be used for data intended for VueX store - it does not need to return anything and should instead commit to store any required data.
-  // It can use async/await.
-  // Warning: You don't have access of the component instance through this inside fetch because it is called before initiating the component.
+  /**
+   * Will be called after all middleware has run and validation has cleared, so by the time it runs we know for certain this page will render.
+   * This makes it ideal for fetching expensive data that is necessary for page render but that you wouldn't want to do speculatively.
+   * Fetching data as soon as the component's been mounted
+   * Both are *only executed for pages (NOT components).
+   * Should be used for data intended for VueX store - it does not need to return anything and should instead commit to store any required data.
+   * It can use async/await.
+   * Warning: You don't have access of the component instance through this inside fetch because it is called before initiating the component.
+   * */
   async fetch({ store, params }) {
-    //TODO: if localstorages updated load new restaurants.
-    //if (typeof store.state.products.byId[params.id] === 'undefined') {
     if (store.getters['restaurant/list'].length === 0) {
       console.info('dispatch data in state ');
       return await store.dispatch('restaurant/fetchData');
-    } else {
-      console.info('Store not empty --> fetching from store');
     }
-    //}
+    console.info('Store was not empty --> fetched data from store');
   }
 
   icon(iconName) {
