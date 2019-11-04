@@ -1,5 +1,6 @@
 import { MutationTree } from 'vuex';
 import { RestaurantState, Restaurant } from './types';
+import Vue from 'vue';
 
 /**
  * Restaurant mutations
@@ -41,6 +42,19 @@ export const mutations: MutationTree<RestaurantState> = {
 
   setCurrentRestaurant(state, payload) {
     state.currentRestaurant = payload;
+  },
+
+  setLoading(state, loading) {
+    //state.status.loading = !state.status.loading;
+    Vue.set(state.status, 'loading', loading);
+    console.log('loading--> ' + state.status.loading);
+  },
+
+  setSuccess(state, success) {
+    //state.status.loading = !state.status.loading;
+    Vue.set(state.status, 'success', success);
+    //state.status.success = success;
+    console.log('success-->' + state.status.success);
   }
 
   /*  setRestaurant(

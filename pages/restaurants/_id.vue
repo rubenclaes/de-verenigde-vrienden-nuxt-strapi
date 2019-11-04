@@ -211,6 +211,18 @@ export default class RestaurantView extends Vue {
           name: 'og:image',
           property: 'og:image',
           content: `${this.restaurant.image.url}`
+        },
+        {
+          hid: `og:site_name`,
+          name: 'og:site_name',
+          property: 'og:site_name',
+          content: `De Verengide Vrienden Heusden-Zolder`
+        },
+        {
+          hid: `og:locale`,
+          name: 'og:locale',
+          property: 'og:locale',
+          content: `nl_BE`
         }
       ]
     };

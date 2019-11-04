@@ -20,6 +20,7 @@ export const actions: ActionTree<RestaurantState, RootState> = {
    * Fetch restaurants data en put them in the state
    */
   async fetchData({ commit }: RestaurantActionContext) {
+    commit('setLoading', true);
     const response = await strapi
       .request('post', '/graphql', {
         data: {
@@ -54,6 +55,10 @@ export const actions: ActionTree<RestaurantState, RootState> = {
             ...restaurant
           });
         });
+      })
+      .finally(() => {
+        commit('setLoading', false);
+        commit('setSuccess', true);
       })
       .catch(err => {
         console.error('error', err);
@@ -92,6 +97,11 @@ export const actions: ActionTree<RestaurantState, RootState> = {
         }
       ); */
   },
+
+  loading({ commit }: RestaurantActionContext, loading) {
+    commit('setLoading', loading);
+  },
+
   /**
    * Fetching a Restaurant with ID and adding it to currentRestaurant state.
    */

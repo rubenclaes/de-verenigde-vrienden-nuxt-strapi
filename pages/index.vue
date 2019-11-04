@@ -52,15 +52,22 @@
           <div class="col-lg-12">
             <div class="card-deck">
               <!-- start NewsCards -->
-              <news-card
-                v-for="(restaurant, index) in latestRestaurants"
-                :key="restaurant.id"
-                :restaurant="restaurant"
-                :icon="icon(index)"
-                :type="colors[index]"
-                :buttonType="buttons[index]"
-                :textColor="text[index]"
-              ></news-card>
+              <template v-if="!loading">
+                <news-card
+                  v-for="(restaurant, index) in latestRestaurants"
+                  :key="restaurant.id"
+                  :restaurant="restaurant"
+                  :icon="icon(index)"
+                  :type="colors[index]"
+                  :buttonType="buttons[index]"
+                  :textColor="text[index]"
+                ></news-card>
+                <b-button block variant="default" round @click="test(true)">TEST</b-button>
+              </template>
+              <card v-else class="border-0" hover shadow body-classes="py-5">
+                <h6 class="text-primary text-uppercase">loading...</h6>
+                <b-button block variant="default" round @click="test(false)">TEST</b-button>
+              </card>
             </div>
           </div>
         </div>
@@ -595,6 +602,9 @@ export default class IndexPage extends Vue {
   @counterVuexNamespace.Getter('square')
   private square!: number;
 
+  @restaurantVuexNamespace.Getter('loading')
+  private loading!: boolean;
+
   // methods should match expected signature
   @counterVuexNamespace.Action('increment')
   public increment!: () => void;
@@ -610,6 +620,38 @@ export default class IndexPage extends Vue {
 
   checkForm(e) {
     console.log(this.email);
+  }
+
+  test(loading) {
+    //return console.log('ello');
+    this.$store.commit('restaurant/setLoading', loading);
+  }
+
+  created() {
+    this.$store.watch(
+      state => state.restaurant.status.loading,
+      () => {
+        console.log('created watch');
+        const loading = this.$store.state.restaurant.status.loading;
+        if (loading === false) {
+          //this.show = true;
+          //this.$store.commit('snackbar/setSnack', '');
+        }
+      }
+    );
+  }
+
+  mounted() {
+    /* setInterval(() => {
+      this.$store.state.restaurant.status.loading = !this.$store.state
+        .restaurant.status.loading;
+    }, 1000); */
+    this.$store.watch(
+      () => this.$store.state.restaurant.status.loading,
+      () => {
+        console.log('mounted watch ');
+      }
+    );
   }
 
   onSubmit() {
@@ -635,11 +677,13 @@ export default class IndexPage extends Vue {
    * Warning: You don't have access of the component instance through this inside fetch because it is called before initiating the component.
    * */
   async fetch({ store, params }) {
+    store.dispatch('restaurant/loading', true);
     if (store.getters['restaurant/list'].length === 0) {
       console.info('dispatch data in state ');
       return await store.dispatch('restaurant/fetchData');
     }
     console.info('Store was not empty --> fetched data from store');
+    store.commit('restaurant/setLoading', false);
   }
 
   icon(iconName) {

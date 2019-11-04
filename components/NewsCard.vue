@@ -2,7 +2,6 @@
 
 <template>
   <card class="border-0" hover shadow body-classes="py-5">
-    {{show}}
     <template #image>
       <img v-lazy="restaurant.image.url" class="card-img-top" alt="Niet gevonden" />
     </template>
@@ -39,8 +38,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import { Restaurant } from '../store/restaurant/types';
+import { restaurantVuexNamespace } from '../store/restaurant/const';
 
 @Component({
   components: {
@@ -67,22 +67,34 @@ export default class NewsCard extends Vue {
   @Prop({ type: String, required: true })
   textColor!: String;
 
-  private show: boolean = false;
-
+  /* @Watch('$store.state.restaurant.status.loading')
+  private watchSomething() {
+    console.log('wow');
+  } */
   /**
    * We use created here instead of mounted because it doesn’t need to be rerun if we leave this layout and come back to it.
    * */
-  created() {
+  /*   created() {
     this.$store.watch(
       state => state.restaurant.status.loading,
       () => {
+        console.log('created watch');
         const loading = this.$store.state.restaurant.status.loading;
-        if (loading !== false) {
+        if (loading === false) {
           this.show = true;
           //this.$store.commit('snackbar/setSnack', '');
         }
       }
     );
-  }
+  } */
+
+  /* mounted() {
+    this.$store.watch(
+      () => this.$store.state.restaurant.status.loading,
+      () => {
+        console.log('watched: ');
+      }
+    );
+  } */
 }
 </script>
