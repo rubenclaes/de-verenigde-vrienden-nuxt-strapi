@@ -154,11 +154,11 @@ export default class RestaurantView extends Vue {
   }
 
   /**
-   * asyncData o make sure it is always 100% up to date and so
+   * asyncData to make sure it is always 100% up to date and so
    * refetch it every time this page is viewed
    *
    */
-  async asyncData({ store, params, error, payload }) {
+  async fetch({ store, params, error, payload }) {
     console.log(payload);
     if (payload) {
       return { restaurant: payload };
