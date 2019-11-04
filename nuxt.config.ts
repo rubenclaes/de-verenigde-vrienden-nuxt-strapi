@@ -222,7 +222,7 @@ const config: Configuration = {
         'https://strapi-de-verenigde-vrienden.herokuapp.com/restaurants'
       );
 
-      return data.entries
+      return data.restaurants
         .map(restaurant => {
           return {
             route: `/restaurants/${restaurant.id}`,
