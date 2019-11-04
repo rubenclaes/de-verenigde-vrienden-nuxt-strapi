@@ -217,17 +217,17 @@ const config: Configuration = {
 
   generate: {
     fallback: true,
-    routes: async () => {
-      let { data } = await axios.get(
-        'https://strapi-de-verenigde-vrienden.herokuapp.com/restaurants'
-      );
 
-      return data.data
-        .map(restaurant => {
-          return {
-            route: `/restaurants/${restaurant.id}`,
-            payload: restaurant
-          };
+    routes: async function() {
+      return await axios
+        .get('https://strapi-de-verenigde-vrienden.herokuapp.com/restaurants')
+        .then(res => {
+          return res.data.map((restaurant: any) => {
+            return {
+              route: `/restaurants/${restaurant.id}`,
+              payload: restaurant
+            };
+          });
         })
         .catch(err => {
           console.log('error', err);
