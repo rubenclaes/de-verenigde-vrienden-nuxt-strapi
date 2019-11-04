@@ -156,9 +156,9 @@ export default class RestaurantView extends Vue {
   /**
    * asyncData to make sure it is always 100% up to date and so
    * refetch it every time this page is viewed
-   *
+   * Data fetched in a particular route is used only by a single component
    */
-  async fetch({ store, params, error, payload }) {
+  async asyncdata({ store, params, error, payload }) {
     console.log(payload);
     if (payload) {
       return { restaurant: payload };
