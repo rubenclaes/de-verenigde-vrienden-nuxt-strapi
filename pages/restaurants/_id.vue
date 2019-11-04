@@ -102,9 +102,13 @@ const RestaurantAction = namespace('restaurant/');
     Icon: () => import('@/components/Icon.vue'),
     BaseInput: () => import('@/components/BaseInput.vue')
   }
+
+  /* validate({ params: { restaurant } }) {
+    return validNews.includes(restaurant);
+  } */
 })
 export default class RestaurantView extends Vue {
-  @restaurantVuexNamespace.State('currentRestaurant')
+  @restaurantVuexNamespace.Getter('currentRestaurant')
   private restaurant!: Restaurant;
 
   @restaurantVuexNamespace.Getter('formattedDate')
@@ -126,6 +130,7 @@ export default class RestaurantView extends Vue {
   ];
 
   private facebookSdkReady: boolean = false;
+
   private mainProps = {
     center: true,
     fluidGrow: true,
@@ -136,22 +141,31 @@ export default class RestaurantView extends Vue {
     class: 'my-5'
   };
 
+  currentPost() {
+    return this.$store.state.post.currentPost;
+  }
+
+  isLoading() {
+    return this.$store.state.post.isLoading;
+  }
+
+  get restaurantImage() {
+    return this.restaurant.image.url;
+  }
+
   /**
    * asyncData o make sure it is always 100% up to date and so
    * refetch it every time this page is viewed
    *
    */
   async asyncData({ store, params, error, payload }) {
+    console.log(payload);
     if (payload) {
       return { restaurant: payload };
     } else {
       console.log('Fetching restaurant with ID');
       return await store.dispatch('restaurant/fetchRestaurant', params.id);
     }
-  }
-
-  get restaurantImage() {
-    return this.restaurant.image.url;
   }
 
   //get formattedDate() {
