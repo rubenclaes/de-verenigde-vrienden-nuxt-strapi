@@ -23,12 +23,11 @@ export const actions: ActionTree<RestaurantState, RootState> = {
    */
   async fetchData({ commit }: RestaurantActionContext) {
     commit('setLoading', true);
-
     await axios
       .get('https://strapi-de-verenigde-vrienden.herokuapp.com/restaurants')
       .then(response => {
         commit('clear');
-        console.info('dispatching data in state');
+        console.info('Dispatching data in state');
         response.data.map(restaurant => {
           restaurant.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${restaurant.image.public_id}${restaurant.image.ext}`;
           console.log(`Fetched from API:`, { restaurant });
@@ -45,39 +44,6 @@ export const actions: ActionTree<RestaurantState, RootState> = {
       .catch(err => {
         console.error('error', err);
       });
-
-    /* const response = strapi
-      .request('post', '/graphql', {
-        data: {
-          query: `query {
-            restaurants {
-              id
-              name
-              description
-              image {
-                url
-              }
-            }
-          }
-          `
-        }
-      })
-      .then(
-        response => {
-          const payLoad = response && response.data;
-          payLoad.restaurants.forEach(restaurant => {
-            restaurant.image.url = `${apiUrl}${restaurant.image.url}`;
-            commit('add', {
-              id: restaurant.id,
-              ...restaurant
-            });
-          });
-        },
-        error => {
-          console.log(error);
-          //commit('profileError');
-        }
-      ); */
   },
 
   loading({ commit }: RestaurantActionContext, loading) {
