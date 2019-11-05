@@ -18,7 +18,7 @@
             <b-breadcrumb class="bg-transparent">
               <b-breadcrumb-item text="blalb">Home</b-breadcrumb-item>
               <b-breadcrumb-item text="blalb">Nieuws</b-breadcrumb-item>
-              <b-breadcrumb-item active="false">{{restaurant.name}}</b-breadcrumb-item>
+              <b-breadcrumb-item active="active">{{restaurant.name}}</b-breadcrumb-item>
             </b-breadcrumb>
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2"></div>
@@ -63,7 +63,7 @@
                 <div class="col-md-6">
                   <b-img-lazy
                     v-bind="mainProps"
-                    :src="restaurant.image.url"
+                    :src="restaurantImage()"
                     fluid-grow
                     alt="nieuws img"
                     class="rounded shadow-lg"
@@ -114,6 +114,8 @@ export default class RestaurantView extends Vue {
   @restaurantVuexNamespace.Getter('formattedDate')
   private formattedDate!: Date;
 
+  private active = false;
+
   private items = [
     {
       text: 'Home',
@@ -149,22 +151,34 @@ export default class RestaurantView extends Vue {
     return this.$store.state.post.isLoading;
   }
 
-  get restaurantImage() {
+  restaurantImage() {
+    console.log(this.restaurant);
     return this.restaurant.image.url;
+  }
+
+  data() {
+    return {
+      id: this.$route.params.id
+      //restaurant: null
+    };
   }
 
   /**
    * asyncData to make sure it is always 100% up to date and so
    * refetch it every time this page is viewed
    * Data fetched in a particular route is used only by a single component
+   * The result from asyncData will be merged with data.
    */
   async fetch({ store, params, error, payload }) {
-    console.log(payload);
     if (payload) {
-      return { restaurant: payload };
+      console.log(payload);
+      return store.commit('restaurant/setCurrentRestaurant', payload);
+      //return { restaurant: context.payload };
     } else {
+      //if (store.getters['restaurant/currentRestaurant'].length === 0) {
       console.log('Fetching restaurant with ID');
       return await store.dispatch('restaurant/fetchRestaurant', params.id);
+      // }
     }
   }
 

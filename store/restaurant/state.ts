@@ -11,7 +11,21 @@ export const initState = (): RestaurantState => ({
     name: '',
     description: '',
     icon: '',
-    image: { url: '' },
+    image: {
+      id: 0,
+      name: '',
+      hash: '',
+      sha256: '',
+      ext: '',
+      mime: '',
+      size: '',
+      url: '',
+      provider: '',
+      public_id: '',
+      created_at: new Date(),
+      updated_at: new Date(),
+      provider_metadata: null
+    },
     Categories: { Tag1: '', Tag2: '', Tag3: '' },
     created_at: new Date()
   },

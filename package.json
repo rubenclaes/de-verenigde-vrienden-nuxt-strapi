@@ -9,7 +9,7 @@
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
     "analyze": "nuxt-ts build --analyze",
-    "generate": "nuxt-ts generate",
+    "generate": "nuxt-ts generate --devtools",
     "start": "nuxt-ts start",
     "tsc": "tsc --showConfig",
     "test:watch": "jest --watchAll",

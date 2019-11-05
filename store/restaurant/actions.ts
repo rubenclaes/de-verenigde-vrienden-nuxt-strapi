@@ -31,7 +31,8 @@ export const actions: ActionTree<RestaurantState, RootState> = {
               description
               icon
               image {
-                url
+                url,
+                id
               }
               Categories{
                 Tag1,
@@ -114,7 +115,8 @@ export const actions: ActionTree<RestaurantState, RootState> = {
               name
               description
               image {
-                url
+                url,
+                id
               }
               created_at
             }
