@@ -50,6 +50,7 @@ const config: Configuration = {
   plugins: [
     { src: '~/plugins/argon-kit.js', mode: 'client' },
     { src: '~/plugins/aos.js', mode: 'client' },
+    '~/plugins/filters',
     /* '~/plugins/vue-lazysizes.client.js', */
     '~/plugins/vee-validate',
     '~/plugins/click-outside.js'

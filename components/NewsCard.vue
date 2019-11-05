@@ -3,14 +3,14 @@
 <template>
   <card class="border-0" hover shadow body-classes="py-5">
     <template #image>
-      <img v-lazy="restaurant.image.url" class="card-img-top" alt="Niet gevonden" />
+      <img v-lazy="restaurant.image.url" class="card-img-top" alt="Nieuws afbeelding" />
     </template>
 
     <icon :name="icon" :type="type" rounded class="mb-4"></icon>
     <h6 v-bind:class="textColor" class="text-uppercase">{{restaurant.name}}</h6>
     <p
       class="description mt-3"
-    >{{restaurant.description.substring(0,100) || 'Geen omschrijving'}}...</p>
+    >{{ restaurant.description.substring(0,100) || 'Geen omschrijving'}}...</p>
     <div>
       <badge
         v-if="restaurant.Categories[0].Tag1"

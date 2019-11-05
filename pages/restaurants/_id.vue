@@ -178,7 +178,7 @@ export default class RestaurantView extends Vue {
       //if (store.getters['restaurant/currentRestaurant'].length === 0) {
       console.log('Fetching restaurant with ID');
       return await store.dispatch('restaurant/fetchRestaurant', params.id);
-      // }
+      //} else {
     }
   }
 
