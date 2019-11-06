@@ -13,6 +13,12 @@ export interface RestaurantState {
 }
 
 // Model
+/**
+ * A news item
+ *
+ * @export
+ * @interface Restaurant
+ */
 export interface Restaurant {
   id: number;
   name: string;

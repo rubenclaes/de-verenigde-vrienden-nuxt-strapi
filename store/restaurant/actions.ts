@@ -2,6 +2,8 @@ import { ActionContext, ActionTree } from 'vuex/types';
 import { RestaurantState } from './types';
 import { RootState } from '../type';
 
+import { loadNews } from '../../lib/news/api';
+
 import Strapi from 'strapi-sdk-javascript/build/main';
 
 import axios from 'axios';
@@ -19,31 +21,21 @@ interface RestaurantActionContext
  */
 export const actions: ActionTree<RestaurantState, RootState> = {
   /**
-   * Fetch restaurants data en put them in the state
+   * Fetch news data en put them in the state
    */
   async fetchData({ commit }: RestaurantActionContext) {
     commit('setLoading', true);
-    await axios
-      .get('https://strapi-de-verenigde-vrienden.herokuapp.com/restaurants')
-      .then(response => {
-        commit('clear');
-        console.info('Dispatching data in state');
-        response.data.map(restaurant => {
-          restaurant.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${restaurant.image.public_id}${restaurant.image.ext}`;
-          console.log(`Fetched from API:`, { restaurant });
-          commit('add', {
-            id: restaurant.id,
-            ...restaurant
-          });
-        });
-      })
-      .finally(() => {
-        commit('setLoading', false);
-        commit('setSuccess', true);
-      })
-      .catch(err => {
-        console.error('error', err);
-      });
+    commit('clear');
+
+    const news = await loadNews().catch(err => {
+      console.error('error', err);
+    });
+
+    console.log(news);
+
+    commit('set', news);
+    commit('setLoading', false);
+    commit('setSuccess', true);
   },
 
   loading({ commit }: RestaurantActionContext, loading) {

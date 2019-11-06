@@ -3,7 +3,7 @@
 <template>
   <card class="border-0" hover shadow body-classes="py-5">
     <template #image>
-      <img v-lazy="restaurant.image.url" class="card-img-top" alt="Nieuws afbeelding" />
+      <img v-lazy="restaurant.image.url" class="card-img-top cardThumbnail" alt="Nieuws afbeelding" />
     </template>
 
     <icon :name="icon" :type="type" rounded class="mb-4"></icon>
@@ -98,3 +98,13 @@ export default class NewsCard extends Vue {
   } */
 }
 </script>
+
+<style lang="scss">
+.cardThumbnail {
+  transition: all ease 0.75s;
+  opacity: 0.7;
+  &[lazy='loaded'] {
+    opacity: 1;
+  }
+}
+</style>

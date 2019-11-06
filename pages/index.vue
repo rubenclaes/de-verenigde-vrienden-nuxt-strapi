@@ -51,7 +51,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-12">
             <div class="card-deck">
-              <!-- start NewsCards -->
+              <!-- start NewsCards TODO: v-bind="restaurant" -->
               <template v-if="!loading">
                 <news-card
                   v-for="(restaurant, index) in latestRestaurants"
@@ -677,13 +677,11 @@ export default class IndexPage extends Vue {
    * Warning: You don't have access of the component instance through this inside fetch because it is called before initiating the component.
    * */
   async fetch({ store, params }) {
-    store.dispatch('restaurant/loading', true);
     if (store.getters['restaurant/list'].length === 0) {
-      console.info('dispatch data in state ');
+      console.info('Fetching data from API');
       return await store.dispatch('restaurant/fetchData');
     }
     console.info('Store was not empty --> fetched data from store');
-    store.commit('restaurant/setLoading', false);
   }
 
   icon(iconName) {

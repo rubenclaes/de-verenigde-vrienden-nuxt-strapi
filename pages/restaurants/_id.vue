@@ -86,7 +86,6 @@
 
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator';
-
 import { restaurantVuexNamespace } from '~/store/restaurant/const';
 import { Restaurant } from '~/store/restaurant/types';
 
@@ -170,7 +169,9 @@ export default class RestaurantView extends Vue {
    * The result from asyncData will be merged with data.
    */
   async fetch({ store, params, error, payload }) {
+    console.log('fetchfetch');
     if (payload) {
+      console.log('payload');
       console.log(payload);
       return store.commit('restaurant/setCurrentRestaurant', payload);
       //return { restaurant: context.payload };

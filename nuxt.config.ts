@@ -224,6 +224,7 @@ const config: Configuration = {
         .get('https://strapi-de-verenigde-vrienden.herokuapp.com/restaurants')
         .then(res => {
           return res.data.map((restaurant: any) => {
+            restaurant.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${restaurant.image.public_id}${restaurant.image.ext}`;
             return {
               route: `/restaurants/${restaurant.id}`,
               payload: restaurant

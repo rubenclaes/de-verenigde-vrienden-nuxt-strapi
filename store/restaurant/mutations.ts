@@ -10,12 +10,19 @@ export const mutations: MutationTree<RestaurantState> = {
     state.selected = id;
   },
 
+  /**
+   * Adding Restaurants to the Restaurant state
+   *
+   * @param {*} state
+   * @param {Restaurant[]} restaurants
+   */
   set(state, restaurants: Restaurant[]) {
+    console.log('set restaurant state');
     state.restaurants = restaurants;
   },
 
   /**
-   * Adding Restaurant models to the Resturant array in the state
+   * Adding Restaurant models to the Restaurant array in the state
    *
    * @param state
    * @param restaurant

@@ -18,7 +18,7 @@
     "paths": {
       "~/*": ["./*"],
       "@/*": ["./*"],
-      "@/lib/*": ["./lib"],
+      "@/lib/*": ["./lib/*"],
       "@/compontents/*": ["./components"],
       "@/pages/*": ["./pages/"],
       "@/store/*": ["./store/*"]
