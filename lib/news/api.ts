@@ -32,16 +32,8 @@ export async function loadArticle(id) {
   return await axios
     .get(`https://strapi-de-verenigde-vrienden.herokuapp.com/restaurants/${id}`)
     .then(res => {
-      res.data.map(article => {
-        article.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${article.image.public_id}${article.image.ext}`;
+      res.data.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${res.data.image.public_id}${res.data.image.ext}`;
 
-        /* console.log(`Fetched from API:`, { restaurant });
-          commit('add', {
-            id: restaurant.id,
-            ...restaurant
-          }); */
-        //});
-      });
       return res.data;
     });
 }
