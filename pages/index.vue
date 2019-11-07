@@ -62,6 +62,7 @@
                   :buttonType="buttons[index]"
                   :textColor="text[index]"
                 ></news-card>
+
                 <b-button block variant="default" round @click="test(true)">TEST</b-button>
               </template>
               <card v-else class="border-0" hover shadow body-classes="py-5">
@@ -560,6 +561,7 @@ import { restaurantVuexNamespace } from '~/store/restaurant/const';
 import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
 
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
+import LazyHydrate from 'vue-lazy-hydration';
 
 @Component({
   layout: 'appHeader',
@@ -574,6 +576,7 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate';
     Modal: () => import('@/components/Modal.vue'),
 
     NewsCard: () => import('@/components/NewsCard.vue'),
+    LazyHydrate,
     ValidationObserver,
     ValidationProvider
   }

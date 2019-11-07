@@ -2,11 +2,10 @@ import { ActionContext, ActionTree } from 'vuex/types';
 import { RestaurantState } from './types';
 import { RootState } from '../type';
 
-import { loadNews } from '../../lib/news/api';
+import { loadNews, loadArticle } from '../../lib/news/api';
 
 import Strapi from 'strapi-sdk-javascript/build/main';
 
-import axios from 'axios';
 const apiUrl = process.env.API_URL || 'http://localhost:1337';
 const strapi = new Strapi(apiUrl);
 
@@ -46,31 +45,19 @@ export const actions: ActionTree<RestaurantState, RootState> = {
    * Fetching a Restaurant with ID and adding it to currentRestaurant state.
    */
   async fetchRestaurant({ commit }: RestaurantActionContext, id) {
-    const response = await strapi.request('post', '/graphql', {
-      data: {
-        query: `query {
-          restaurant(id: "${id}") {
-              id
-              name
-              description
-              image {
-                url,
-                id
-              }
-              created_at
-            }
-          }
-          `
-      }
+    commit('setLoading', true);
+
+    const article = await loadArticle(id).catch(err => {
+      console.error('error', err);
     });
 
-    const restaurant = response.data.restaurant;
-    //restaurant.image.url = `${apiUrl}${restaurant.image.url}`;
-    console.log(restaurant);
+    console.log(article);
     commit('setCurrentRestaurant', {
-      id: restaurant.id,
-      ...restaurant
+      id: article.id,
+      ...article
     });
+    commit('setLoading', false);
+    commit('setSuccess', true);
   }
 };
 
