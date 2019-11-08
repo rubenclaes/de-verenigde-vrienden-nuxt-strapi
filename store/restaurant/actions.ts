@@ -4,11 +4,6 @@ import { RootState } from '../type';
 
 import { loadNews, loadArticle } from '../../lib/news/api';
 
-import Strapi from 'strapi-sdk-javascript/build/main';
-
-const apiUrl = process.env.API_URL || 'http://localhost:1337';
-const strapi = new Strapi(apiUrl);
-
 /**
  * Action context specific to Restaurants module
  */
@@ -30,7 +25,7 @@ export const actions: ActionTree<RestaurantState, RootState> = {
       console.error('error', err);
     });
 
-    console.log(news);
+    console.info(news);
 
     commit('set', news);
     commit('setLoading', false);
@@ -51,7 +46,7 @@ export const actions: ActionTree<RestaurantState, RootState> = {
       console.error('error', err);
     });
 
-    console.log(article);
+    console.info(article);
     commit('setCurrentRestaurant', {
       id: article.id,
       ...article

@@ -10,10 +10,67 @@ export const initState = (): DiningDayState => ({
     id: 0,
     name: '',
     description: '',
-    icon: '',
-    image: { url: '' },
-    Categories: { Tag1: '', Tag2: '', Tag3: '' },
-    created_at: new Date()
+    date: new Date(),
+    active: false,
+    image: {
+      id: 0,
+      name: '',
+      hash: '',
+      sha256: '',
+      ext: '',
+      mime: '',
+      size: '',
+      url: '',
+      provider: '',
+      public_id: '',
+      created_at: new Date(),
+      updated_at: new Date(),
+      provider_metadata: {
+        public_id: '',
+        resource_type: ''
+      }
+    },
+
+    created_at: new Date(),
+    updated_at: new Date(),
+    place: {
+      id: 0,
+      street: '',
+      number: 0,
+      bus: 'string',
+      town: 'string',
+      postal_code: 0
+    },
+    dishes: [
+      {
+        id: 0,
+        name: '',
+        description: '',
+        price: 0,
+        created_at: new Date(),
+        updated_at: new Date(),
+        activity: 0,
+        dining_day: 0,
+        image: {
+          id: 0,
+          name: '',
+          hash: '',
+          sha256: '',
+          ext: '',
+          mime: '',
+          size: '',
+          url: '',
+          provider: '',
+          public_id: '',
+          created_at: new Date(),
+          updated_at: new Date(),
+          provider_metadata: {
+            public_id: '',
+            resource_type: ''
+          }
+        }
+      }
+    ]
   }
 });
 

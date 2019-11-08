@@ -2,9 +2,7 @@ import { ActionContext, ActionTree } from 'vuex/types';
 import { DiningDayState } from './types';
 import { RootState } from '../type';
 
-import Strapi from 'strapi-sdk-javascript/build/main';
-const apiUrl = process.env.API_URL || 'http://localhost:1337';
-const strapi = new Strapi(apiUrl);
+import { loadDiningday, loadDiningdays } from '../../lib/diningdays/api';
 
 /**
  * Action context specific to DiningDays module
@@ -20,119 +18,27 @@ export const actions: ActionTree<DiningDayState, RootState> = {
    * Fetch DiningDays data en put them in the state
    */
   async fetchData({ commit }: DiningDayActionContext) {
-    const response = await strapi
-      .request('post', '/graphql', {
-        data: {
-          query: `query GetDiningDays {
-            diningdays( sort: "created_at:desc", where: {active: true}) {
-              id
-              name
-              active
-          
-              description
-              image {
-                url
-              }
-              place {
-                street
-                number
-                bus
-                town
-                postal_code
-                id
-              }
-              dishes {
-                name
-                description
-                image {
-                  url
-                }
-                price
-                id
-              }
-          
-              created_at
-            }
-          }
-          `
-        }
-      })
-      .then(response => {
-        commit('clear');
-        console.info('dispatching data in state');
-        response.data.diningdays.forEach(diningDay => {
-          console.log(`Fetched from graphql:`, { diningDay });
-          //DiningDay.image.url = `${apiUrl}${DiningDay.image.url}`;
-          commit('add', {
-            id: diningDay.id,
-            ...diningDay
-          });
-        });
-      })
-      .catch(err => {
-        console.error('error', err);
-      });
+    commit('clear');
 
-    /* const response = strapi
-      .request('post', '/graphql', {
-        data: {
-          query: `query {
-            DiningDays {
-              id
-              name
-              description
-              image {
-                url
-              }
-            }
-          }
-          `
-        }
-      })
-      .then(
-        response => {
-          const payLoad = response && response.data;
-          payLoad.DiningDays.forEach(DiningDay => {
-            DiningDay.image.url = `${apiUrl}${DiningDay.image.url}`;
-            commit('add', {
-              id: DiningDay.id,
-              ...DiningDay
-            });
-          });
-        },
-        error => {
-          console.log(error);
-          //commit('profileError');
-        }
-      ); */
+    const diningdays = await loadDiningdays().catch(err => {
+      console.error('error', err);
+    });
+    console.info(`Dining Days:`);
+    console.info(diningdays);
+    commit('set', diningdays);
   },
   /**
    * Fetching a DiningDay with ID and adding it to currentDiningDay state.
    */
   async fetchDiningDay({ commit }: DiningDayActionContext, id) {
-    const response = await strapi.request('post', '/graphql', {
-      data: {
-        query: `query {
-          DiningDay(id: "${id}") {
-              id
-              name
-              description
-              image {
-                url
-              }
-              created_at
-            }
-          }
-          `
-      }
+    const diningday = await loadDiningday(id).catch(err => {
+      console.error('error', err);
     });
 
-    const DiningDay = response.data.DiningDay;
-    //DiningDay.image.url = `${apiUrl}${DiningDay.image.url}`;
-    console.log(DiningDay);
+    console.info(diningday);
     commit('setCurrentDiningDay', {
-      id: DiningDay.id,
-      ...DiningDay
+      id: diningday.id,
+      ...diningday
     });
   }
 };

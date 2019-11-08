@@ -24,10 +24,14 @@ export const initState = (): RestaurantState => ({
       public_id: '',
       created_at: new Date(),
       updated_at: new Date(),
-      provider_metadata: null
+      provider_metadata: {
+        public_id: '',
+        resource_type: ''
+      }
     },
     Categories: { Tag1: '', Tag2: '', Tag3: '' },
-    created_at: new Date()
+    created_at: new Date(),
+    updated_at: new Date()
   },
   status: {
     loading: false,

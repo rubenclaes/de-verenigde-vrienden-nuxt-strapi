@@ -561,7 +561,6 @@ import { restaurantVuexNamespace } from '~/store/restaurant/const';
 import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
 
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
-import LazyHydrate from 'vue-lazy-hydration';
 
 @Component({
   layout: 'appHeader',
@@ -576,7 +575,7 @@ import LazyHydrate from 'vue-lazy-hydration';
     Modal: () => import('@/components/Modal.vue'),
 
     NewsCard: () => import('@/components/NewsCard.vue'),
-    LazyHydrate,
+
     ValidationObserver,
     ValidationProvider
   }

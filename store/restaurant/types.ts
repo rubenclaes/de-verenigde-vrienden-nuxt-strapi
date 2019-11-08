@@ -37,9 +37,10 @@ export interface Restaurant {
     public_id: string;
     created_at: Date;
     updated_at: Date;
-    provider_metadata: null;
+    provider_metadata: { public_id: string; resource_type: string };
   };
 
   Categories: { Tag1: string; Tag2: string; Tag3: string };
   created_at: Date;
+  updated_at: Date;
 }

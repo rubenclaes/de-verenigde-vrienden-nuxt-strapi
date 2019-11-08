@@ -21,10 +21,14 @@ export const DUMMY_RESTAURANTS: Restaurant[] = [
       public_id: 'yo4fp2xatsowgrttk95f',
       created_at: new Date('2019-10-04T16:29:34.526Z'),
       updated_at: new Date('2019-10-04T16:29:34.526Z'),
-      provider_metadata: null
+      provider_metadata: {
+        public_id: 'nie1zjp7k2vn2wwyex86',
+        resource_type: 'image'
+      }
     },
     Categories: { Tag1: 'jaarconcert', Tag2: 'vuur', Tag3: 'muziek' },
-    created_at: new Date('2019-10-04T16:29:32.958Z')
+    created_at: new Date('2019-10-04T16:29:32.958Z'),
+    updated_at: new Date('2019-09-27T11:17:25.432Z')
   },
   {
     id: 64,
@@ -46,10 +50,14 @@ export const DUMMY_RESTAURANTS: Restaurant[] = [
       public_id: 'rtgs8ds9zzbc9djnpksj',
       created_at: new Date('2019-10-05T12:04:32.802Z'),
       updated_at: new Date('2019-10-05T12:04:32.802Z'),
-      provider_metadata: null
+      provider_metadata: {
+        public_id: 'nie1zjp7k2vn2wwyex86',
+        resource_type: 'image'
+      }
     },
     Categories: { Tag1: 'Spaghetti', Tag2: 'Eetdag', Tag3: 'Harmonie' },
-    created_at: new Date('2019-09-27T11:17:25.432Z')
+    created_at: new Date('2019-09-27T11:17:25.432Z'),
+    updated_at: new Date('2019-09-27T11:17:25.432Z')
   }
 ];
 

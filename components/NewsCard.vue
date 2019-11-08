@@ -40,7 +40,6 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import { Restaurant } from '../store/restaurant/types';
-import { restaurantVuexNamespace } from '../store/restaurant/const';
 
 @Component({
   components: {
