@@ -34,7 +34,6 @@
     "imagemin-mozjpeg": "^8.0.0",
     "imagemin-pngquant": "^8.0.0",
     "imagemin-svgo": "^7.0.0",
-    "js-cookie": "^2.2.1",
     "nouislider": "^14.0.3",
     "nuxt": "^2.10.2",
     "nuxt-property-decorator": "^2.5.0",

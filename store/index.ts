@@ -34,3 +34,17 @@ import { mutations } from './mutations';
 import { ProfileState } from './types';
 import { RootState } from '../types';
  */
+
+/* import cookieparser from 'cookie-parser';
+
+export const actions = {
+  nuxtServerInit({ commit }, { req }) {
+    let cart = [];
+    if (req && req.headers && req.headers.cookie) {
+      const parsed = cookieparser.parse(req.headers.cookie);
+      cart = (parsed.cart && JSON.parse(parsed.cart)) || [];
+    }
+
+    commit('cart/add', cart);
+  }
+}; */
