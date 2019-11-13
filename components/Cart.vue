@@ -1,75 +1,24 @@
 <!-- components/DishPreview.vue -->
 
 <template>
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-2 text-center">
-      <img
-        class="img-responsive"
-        src="http://placehold.it/120x80"
-        alt="prewiew"
-        width="120"
-        height="80"
-      />
+  <div>
+    <div>
+      <h6 class="my-0">{{ dish.name }}</h6>
+      <small class="text-muted">{{ dish.description }}</small>
     </div>
-    <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
-      <h4 class="product-name">
-        <strong>{{ dish.name }}</strong>
-      </h4>
-      <h4>
-        <small>{{ dish.description }}</small>
-      </h4>
-    </div>
-    <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
-      <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
-        <h6>
-          <strong>
-            &euro; {{ dish.price }}
-            <span class="text-muted">x</span>
-          </strong>
-        </h6>
-      </div>
-      <div class="col-4 col-sm-4 col-md-4">
-        <div class="quantity">
-          <base-button
-            @click="quantity > 0 ? quantity-- : quantity = 0"
-            size="sm"
-            type="secondary"
-            icon="fa fa-minus"
-            rounded
-            icon-only
-          ></base-button>
 
-          <input
-            type="number"
-            step="1"
-            max="99"
-            min="1"
-            value="1"
-            title="Qty"
-            class="qty"
-            size="4"
-            v-model="quantity"
-          />
-          <base-button
-            @click="quantity++"
-            size="sm"
-            type="primary"
-            icon="fa fa-plus"
-            rounded
-            icon-only
-          ></base-button>
-        </div>
-      </div>
-      <div class="col-2 col-sm-2 col-md-2 text-right">
-        <base-button
-          @click="removeFromCart(dish)"
-          size="sm"
-          type="danger"
-          icon="fa fa-thrash"
-          outline
-        ></base-button>
-      </div>
-    </div>
+    <base-button
+      @click="quantity > 0 ? quantity-- : quantity = 0"
+      size="sm"
+      type="secondary"
+      icon="fa fa-minus"
+      rounded
+      icon-only
+    ></base-button>
+    {{quantity}}
+    <base-button @click="quantity++" size="sm" type="primary" icon="fa fa-plus" rounded icon-only></base-button>
+    <span class="text-muted">&euro; {{ dish.price }}</span>
+    <base-button @click="removeFromCart(dish)" size="sm" type="danger" icon="fa fa-trash" outline></base-button>
   </div>
 </template>
 
