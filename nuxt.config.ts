@@ -1,6 +1,6 @@
 import { Configuration } from '@nuxt/types';
-import axios from 'axios';
 
+import axios from 'axios';
 import { IS_DEV } from './config';
 
 const config: Configuration = {
@@ -60,7 +60,6 @@ const config: Configuration = {
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/onesignal',
     '@nuxtjs/pwa',

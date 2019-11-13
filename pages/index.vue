@@ -52,6 +52,7 @@
           <div class="col-lg-12">
             <div class="card-deck">
               <!-- start NewsCards TODO: v-bind="restaurant" -->
+
               <template v-if="!loading">
                 <news-card
                   v-for="(restaurant, index) in latestRestaurants"

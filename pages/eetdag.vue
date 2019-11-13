@@ -24,6 +24,10 @@
               textColor="text-primary"
             ></diningday-card>
 
+            <div class="text-center">
+              <router-link to="/checkout" tag="a" class="btn btn-primary my-4">Ik ga bestellen</router-link>
+            </div>
+
             <div class="row mt-3">
               <div class="col-6">
                 <a href="#" class="text-light">

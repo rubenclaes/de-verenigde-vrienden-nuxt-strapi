@@ -15,33 +15,14 @@
 
     <icon :name="icon" :type="type" rounded class="mb-4"></icon>
     <h6 v-bind:class="textColor" class="text-uppercase">{{diningday.name}}</h6>
-    <p
-      class="description mt-3"
-    >{{ diningday.description.substring(0,100) || 'Geen omschrijving'}}...</p>
+    <p class="description mt-3">{{ diningday.description || 'Geen omschrijving'}}</p>
 
     <template>
-      <base-button size="lg" type="primary">Primary</base-button>
-      <base-button size="lg" type="secondary">Secondary</base-button>
-      <base-button href="dirigent" type="primary" icon="fa fa-plus" rounded icon-only></base-button>
-      <base-button href="dirigent" type="secondary" icon="fa fa-minus" rounded icon-only></base-button>
       <div class="text-center text-muted mb-4">
         <small>Kies je gerecht:</small>
       </div>
 
       <dish-preview v-for="(dish) in diningday.dishes" :key="dish.id" :dish="dish"></dish-preview>
-      <form role="form">
-        <base-input alternative class="mb-3" placeholder="Email" addon-left-icon="ni ni-email-83"></base-input>
-        <base-input
-          alternative
-          type="password"
-          placeholder="Password"
-          addon-left-icon="ni ni-lock-circle-open"
-        ></base-input>
-        <base-checkbox>Remember me</base-checkbox>
-        <div class="text-center">
-          <base-button type="primary" class="my-4">Sign In</base-button>
-        </div>
-      </form>
     </template>
   </card>
 </template>

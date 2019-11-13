@@ -170,15 +170,20 @@ export default class RestaurantView extends Vue {
    */
   async fetch({ store, params, error, payload }) {
     console.log('fetchfetch');
+    // payload set during static generation
     if (payload) {
       console.log('payload');
       console.log(payload);
+      // setup the store as it would be in SPA mode
       return store.commit('restaurant/setCurrentRestaurant', payload);
       //return { restaurant: context.payload };
     } else {
       //if (store.getters['restaurant/currentRestaurant'].length === 0) {
       console.log('Fetching restaurant with ID');
-      return await store.dispatch('restaurant/fetchRestaurant', params.id);
+      return await store.dispatch(
+        'restaurant/fetchRestaurant',
+        parseInt(params.id || 1)
+      );
       //} else {
     }
   }

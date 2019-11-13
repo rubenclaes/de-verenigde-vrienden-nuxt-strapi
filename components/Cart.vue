@@ -22,16 +22,50 @@
     <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
       <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
         <h6>
-          <strong>&euro; {{ dish.price }}</strong>
+          <strong>
+            &euro; {{ dish.price }}
+            <span class="text-muted">x</span>
+          </strong>
         </h6>
       </div>
+      <div class="col-4 col-sm-4 col-md-4">
+        <div class="quantity">
+          <base-button
+            @click="quantity > 0 ? quantity-- : quantity = 0"
+            size="sm"
+            type="secondary"
+            icon="fa fa-minus"
+            rounded
+            icon-only
+          ></base-button>
 
+          <input
+            type="number"
+            step="1"
+            max="99"
+            min="1"
+            value="1"
+            title="Qty"
+            class="qty"
+            size="4"
+            v-model="quantity"
+          />
+          <base-button
+            @click="quantity++"
+            size="sm"
+            type="primary"
+            icon="fa fa-plus"
+            rounded
+            icon-only
+          ></base-button>
+        </div>
+      </div>
       <div class="col-2 col-sm-2 col-md-2 text-right">
         <base-button
-          @click="addToCart(dish)"
+          @click="removeFromCart(dish)"
           size="sm"
-          type="success"
-          icon="fa fa-shopping-cart"
+          type="danger"
+          icon="fa fa-thrash"
           outline
         ></base-button>
       </div>
@@ -46,20 +80,19 @@ import { Dish } from '../store/diningday/types';
 @Component({
   components: { BaseButton: () => import('@/components/BaseButton.vue') }
 })
-export default class DishPreview extends Vue {
+export default class Cart extends Vue {
   @Prop({ type: Object, required: true })
   dish!: Dish;
 
-  quantity = 1;
-
   data() {
     return {
+      quantity: 1,
       tempcart: [] // this object should be the same as the json store object, with an additional param, quantity
     };
   }
 
-  addToCart() {
-    this.$store.commit('cart/add', this.dish);
+  removeFromCart() {
+    this.$store.commit('cart/remove', this.dish);
   }
 }
 </script>
