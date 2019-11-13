@@ -164,6 +164,17 @@
           </div>
         </div>
       </div>
+
+      <client-only>
+        <offline-detection
+          onlineClass="notification notification-online"
+          offlineClass="notification notification-offline"
+        >
+          <div slot="offline">
+            <span>Offline</span>
+          </div>
+        </offline-detection>
+      </client-only>
     </footer>
   </div>
 </template>
@@ -174,11 +185,19 @@ import BaseNav from '@/components/BaseNav.vue';
 import BaseDropdown from '@/components/BaseDropdown.vue';
 import CloseButton from '@/components/CloseButton.vue';
 import BackToTop from '@/components/BackToTop.vue';
+import OfflineDetection from '@/components/OfflineDetection.vue';
 
 import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component({
-  components: { BaseNav, CloseButton, BaseDropdown, BaseButton, BackToTop }
+  components: {
+    BaseNav,
+    CloseButton,
+    BaseDropdown,
+    BaseButton,
+    BackToTop,
+    OfflineDetection
+  }
 })
 export default class extends Vue {
   private windowHeight: number = 0;
