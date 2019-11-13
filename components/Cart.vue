@@ -15,7 +15,7 @@
       rounded
       icon-only
     ></base-button>
-    {{quantity}}
+    {{dish.quantity}}
     <base-button @click="quantity++" size="sm" type="primary" icon="fa fa-plus" rounded icon-only></base-button>
     <span class="text-muted">&euro; {{ dish.price }}</span>
     <base-button @click="removeFromCart(dish)" size="sm" type="danger" icon="fa fa-trash" outline></base-button>
@@ -24,14 +24,14 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import { Dish } from '../store/diningday/types';
+import { Item } from '../store/cart/types';
 
 @Component({
   components: { BaseButton: () => import('@/components/BaseButton.vue') }
 })
 export default class Cart extends Vue {
   @Prop({ type: Object, required: true })
-  dish!: Dish;
+  dish!: Item;
 
   data() {
     return {
