@@ -2,9 +2,17 @@
   <div :class="wrapperClass()">
     <slot v-if="isOnline" name="online"></slot>
 
-    <base-alert v-else dismissible="dismissible" type="warning">
-      <strong>Warning!</strong>
-      <slot vname="offline" />
+    <base-alert v-else type="warning" dismissible>
+      <span class="alert-inner--icon">
+        <i class="ni ni-bell-55"></i>
+      </span>
+      <span class="alert-inner--text">
+        <strong>Opgelet!</strong>
+        <slot name="offline" />
+      </span>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </base-alert>
   </div>
 </template>
@@ -29,8 +37,7 @@ export default {
     }
   },
   data: () => ({
-    isOnline: navigator.onLine || false,
-    dismissible: true
+    isOnline: navigator.onLine || false
   }),
   mounted() {
     EVENTS.forEach(event =>
@@ -56,3 +63,10 @@ export default {
   }
 };
 </script>
+<style scoped>
+.notification.notification-offline {
+  position: fixed;
+  width: 100%;
+  z-index: 9999999;
+}
+</style>

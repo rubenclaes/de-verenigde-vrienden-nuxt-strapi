@@ -96,7 +96,16 @@
         </ul>
       </base-nav>
     </header>
-
+    <client-only>
+      <offline-detection
+        onlineClass="notification notification-online"
+        offlineClass="notification notification-offline"
+      >
+        <template v-slot:offline>
+          <span>Je hebt geen internetverbinding</span>
+        </template>
+      </offline-detection>
+    </client-only>
     <nuxt />
 
     <footer class="footer has-cards">
@@ -164,17 +173,6 @@
           </div>
         </div>
       </div>
-
-      <client-only>
-        <offline-detection
-          onlineClass="notification notification-online"
-          offlineClass="notification notification-offline"
-        >
-          <div slot="offline">
-            <span>Offline</span>
-          </div>
-        </offline-detection>
-      </client-only>
     </footer>
   </div>
 </template>
