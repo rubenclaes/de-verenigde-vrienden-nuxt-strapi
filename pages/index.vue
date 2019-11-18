@@ -630,6 +630,13 @@ export default class IndexPage extends Vue {
     this.$store.commit('restaurant/setLoading', loading);
   }
 
+  scrollToHash() {
+    var hash = this.$nuxt.$route.hash;
+    this.$nextTick(() => {
+      this.$scrollTo(hash, 0, { offset: -120 });
+    });
+  }
+
   created() {
     this.$store.watch(
       state => state.restaurant.status.loading,
@@ -645,6 +652,9 @@ export default class IndexPage extends Vue {
   }
 
   mounted() {
+    if (this.$nuxt.$route.hash) {
+      this.scrollToHash();
+    }
     /* setInterval(() => {
       this.$store.state.restaurant.status.loading = !this.$store.state
         .restaurant.status.loading;

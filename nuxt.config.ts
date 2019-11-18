@@ -42,14 +42,19 @@ const config: Configuration = {
   /*
    ** Global CSS
    */
-  css: ['@/assets/scss/argon.scss'],
+  css: [
+    '@/assets/vendor/nucleo/css/nucleo.css',
+    '@/assets/vendor/font-awesome/css/font-awesome.css',
+    '@/assets/scss/argon.scss'
+  ],
 
   /*
    ** Plugins to load before mounting the App
    */
   plugins: [
-    { src: '~/plugins/argon-kit.js', mode: 'client' },
+    { src: '~/plugins/argon-kit.js', mode: 'client' }, //VueLazyLoad
     { src: '~/plugins/aos.js', mode: 'client' },
+    '~plugins/vue-scrollto.js',
     '~/plugins/filters',
     /* '~/plugins/vue-lazysizes.client.js', */
     '~/plugins/vee-validate',
@@ -67,6 +72,7 @@ const config: Configuration = {
     'bootstrap-vue/nuxt',
 
     'vue-scrollto/nuxt',
+
     '@nuxtjs/markdownit',
     '@bazzite/nuxt-optimized-images',
     [

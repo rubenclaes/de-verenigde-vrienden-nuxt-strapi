@@ -261,12 +261,7 @@ import { diningDayVuexNamespace } from '~/store/diningday/const';
   }
 })
 export default class Eetdag extends Vue {
-  private complete: boolean = false;
-
-  private title = 'Eetdag';
-
-  @diningDayVuexNamespace.Getter('list')
-  private diningDays!: [];
+  private title = 'Checkout';
 
   head() {
     return {
@@ -276,21 +271,6 @@ export default class Eetdag extends Vue {
   private stripeOptions = {
     // see https://stripe.com/docs/stripe.js#element-options for details
   };
-
-  // Fetching data as soon as the component's been mounted
-  // Both are *only executed for pages (NOT components).
-  // Should be used for data intended for VueX store - it does not need to return anything and should instead commit to store any required data.
-  // It can use async/await.
-  // Warning: You don't have access of the component instance through this inside fetch because it is called before initiating the component.
-  async fetch({ store, params }) {
-    //if (typeof store.state.products.byId[params.id] === 'undefined') {
-    if (store.getters['diningday/list'].length === 0) {
-      return await store.dispatch('diningday/fetchData');
-    } else {
-      console.log('Store not empty --> fetching data from store');
-    }
-    //}
-  }
 
   pay() {
     // createToken returns a Promise which resolves in a result object with
@@ -311,14 +291,6 @@ export default class Eetdag extends Vue {
 
   numberOfItems() {
     return this.$store.getters['cart/numberOfItems'];
-  }
-
-  // computed variable based on user's email
-  latestDiningDay() {
-    //const user = this.profile && this.profile.user;
-    //return (user && user.email) || '';
-    const latestDiningDay = this.diningDays[this.diningDays.length - 1];
-    return latestDiningDay;
   }
 }
 </script>

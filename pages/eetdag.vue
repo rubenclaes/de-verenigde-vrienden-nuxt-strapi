@@ -70,8 +70,6 @@ import { diningDayVuexNamespace } from '~/store/diningday/const';
   }
 })
 export default class Eetdag extends Vue {
-  private complete: boolean = false;
-
   private title = 'Eetdag';
 
   @diningDayVuexNamespace.Getter('list')
@@ -82,9 +80,6 @@ export default class Eetdag extends Vue {
       title: this.title
     };
   }
-  private stripeOptions = {
-    // see https://stripe.com/docs/stripe.js#element-options for details
-  };
 
   // Fetching data as soon as the component's been mounted
   // Both are *only executed for pages (NOT components).
@@ -99,15 +94,6 @@ export default class Eetdag extends Vue {
       console.log('Store not empty --> fetching data from store');
     }
     //}
-  }
-
-  pay() {
-    // createToken returns a Promise which resolves in a result object with
-    // either a token or an error key.
-    // See https://stripe.com/docs/api#tokens for the token object.
-    // See https://stripe.com/docs/api#errors for the error object.
-    // More general https://stripe.com/docs/stripe.js#stripe-create-token.
-    //createToken().then(data => console.log(data.token));
   }
 
   // computed variable based on user's email

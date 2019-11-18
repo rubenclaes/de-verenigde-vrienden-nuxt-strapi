@@ -199,6 +199,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 })
 export default class extends Vue {
   private windowHeight: number = 0;
+
   data() {
     return {
       year: new Date().getFullYear()
