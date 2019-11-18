@@ -5,6 +5,7 @@
 // State
 export interface CartState {
   items: Item[];
+  checkoutStatus: String;
 }
 
 export interface Item {

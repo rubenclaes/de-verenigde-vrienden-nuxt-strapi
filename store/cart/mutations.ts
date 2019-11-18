@@ -5,29 +5,29 @@ import { CartState, Item } from './types';
  * Cart mutations
  */
 export const mutations: MutationTree<CartState> = {
-  set(state, items) {
+  /**
+   * Set Cart Items
+   *
+   * @param {*} state
+   * @param {*} { items }
+   */
+  set(state, { items }) {
     state.items = items;
   },
 
   /**
-   * Adding Item to the Items array in the state
+   * Set Checkout Status
    *
-   * @param state
-   * @param item
+   * @param {*} state
+   * @param {*} status
    */
-  add(state, item) {
-    const record = state.items.find(i => i.id === item.id);
+  setCheckoutStatus(state, status) {
+    state.checkoutStatus = status;
+  },
 
-    if (!record) {
-      console.log('add item to the store state');
-      state.items.push({
-        quantity: 1,
-        ...item
-      });
-    } else {
-      record.quantity++;
-    }
-    //state.diningDays.push(diningDay);
+  incrementItemQuantity(state, { id }) {
+    const cartItem = state.items.find(item => item.id === id);
+    if (cartItem) cartItem.quantity++;
   },
 
   /**

@@ -42,7 +42,7 @@ import { DiningDay } from '../store/diningday/types';
     DishPreview: () => import('@/components/DishPreview.vue')
   }
 })
-export default class DiningdayCard extends Vue {
+export default class DishList extends Vue {
   @Prop({ type: Object, required: true })
   diningday!: DiningDay;
 

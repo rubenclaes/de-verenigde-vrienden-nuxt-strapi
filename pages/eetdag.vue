@@ -16,13 +16,13 @@
       <div class="container pt-lg-md">
         <div class="row justify-content-center">
           <div class="col-lg-10">
-            <diningday-card
+            <dish-list
               :diningday="latestDiningDay()"
               icon="ni ni-calendar-grid-58"
               type="primary"
               buttonType="btn-primary"
               textColor="text-primary"
-            ></diningday-card>
+            ></dish-list>
 
             <div class="text-center">
               <router-link to="/checkout" tag="a" class="btn btn-primary my-4">Ik ga bestellen</router-link>
@@ -66,7 +66,7 @@ import { diningDayVuexNamespace } from '~/store/diningday/const';
     BaseInput: () => import('@/components/BaseInput.vue'),
     BaseCheckbox: () => import('@/components/BaseCheckbox.vue'),
     //Card
-    DiningdayCard: () => import('@/components/DiningdayCard.vue')
+    DishList: () => import('@/components/DishList.vue')
   }
 })
 export default class Eetdag extends Vue {

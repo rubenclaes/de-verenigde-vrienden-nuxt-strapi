@@ -13,7 +13,7 @@ export const getters: GetterTree<CartState, RootState> = {
 
   price: state => {
     return state.items.reduce(
-      (accumulator, item) => accumulator + item.price * item.quantity,
+      (total, item) => total + item.price * item.quantity,
       0
     );
   },
