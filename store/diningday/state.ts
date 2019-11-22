@@ -71,6 +71,11 @@ export const initState = (): DiningDayState => ({
         }
       }
     ]
+  },
+  status: {
+    loading: false,
+    success: false,
+    error: false
   }
 });
 

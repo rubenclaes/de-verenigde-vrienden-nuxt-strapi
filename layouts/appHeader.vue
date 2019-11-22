@@ -8,7 +8,7 @@
           <img src="~/assets/brand/logo_fulllogo_white.svg" alt="logo" />
         </router-link>
 
-        <div class="row" slot="content-header" slot-scope="{closeMenu}">
+        <div class="row" slot="content-header" slot-scope="{ closeMenu }">
           <div class="col-6 collapse-brand">
             <router-link to="/">
               <img src="~/assets/brand/logo_color3.svg" />
@@ -26,23 +26,37 @@
             </router-link>
           </li>
           <base-dropdown class="nav-item" menu-classes="dropdown-menu-xl">
-            <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
+            <a
+              slot="title"
+              href="#"
+              class="nav-link"
+              data-toggle="dropdown"
+              role="button"
+            >
               <i class="ni ni-bold-down d-lg-none"></i>
               <span class="nav-link-inner--text">Harmonie</span>
             </a>
             <div class="dropdown-menu-inner">
-              <router-link to="/dirigent" class="media d-flex align-items-center">
+              <router-link
+                to="/dirigent"
+                class="media d-flex align-items-center"
+              >
                 <div class="media-body ml-3">
                   <h6 class="heading text-success mb-md-1">Dirigent</h6>
-                  <p class="description d-none d-md-inline-block mb-0">Lees meer over onze dirigent.</p>
+                  <p class="description d-none d-md-inline-block mb-0">
+                    Lees meer over onze dirigent.
+                  </p>
                 </div>
               </router-link>
-              <router-link to="/geschiedenis" class="media d-flex align-items-center">
+              <router-link
+                to="/geschiedenis"
+                class="media d-flex align-items-center"
+              >
                 <div class="media-body ml-3">
                   <h5 class="heading text-success mb-md-1">Geschiedenis</h5>
-                  <p
-                    class="description d-none d-md-inline-block mb-0"
-                  >Lees hoe onze harmonie is ontstaan.</p>
+                  <p class="description d-none d-md-inline-block mb-0">
+                    Lees hoe onze harmonie is ontstaan.
+                  </p>
                 </div>
               </router-link>
             </div>
@@ -55,6 +69,11 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/drumband">
               <span class="nav-link-inner--text">Drumband</span>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/eetdag">
+              <span class="nav-link-inner--text">Eetdag</span>
             </router-link>
           </li>
         </ul>
@@ -106,6 +125,7 @@
         </template>
       </offline-detection>
     </client-only>
+
     <nuxt />
 
     <footer class="footer has-cards">
@@ -124,12 +144,16 @@
               class="text-primary font-weight-light mb-2"
               data-aos="fade-right"
               data-aos-delay="150"
-            >Begint het al een beetje te kriebelen?</h3>
+            >
+              Begint het al een beetje te kriebelen?
+            </h3>
             <h4
               class="mb-0 font-weight-light"
               data-aos="fade-right"
               data-aos-delay="250"
-            >Volg ons ook op social media!</h4>
+            >
+              Volg ons ook op social media!
+            </h4>
           </div>
           <div class="col-lg-6 text-lg-center btn-wrapper">
             <a
@@ -148,7 +172,7 @@
         <div class="row align-items-center justify-content-md-between">
           <div class="col-md-6">
             <div class="copyright">
-              &copy; {{year}}
+              &copy; {{ year }}
               <a href="#" target="_blank" rel="noopener">D'ARK</a>
             </div>
           </div>
@@ -158,13 +182,19 @@
                 <router-link to="/" class="nav-link">Home</router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/geschiedenis" class="nav-link">Geschiedenis</router-link>
+                <router-link to="/geschiedenis" class="nav-link"
+                  >Geschiedenis</router-link
+                >
               </li>
               <li class="nav-item">
-                <router-link to="/dirigent" class="nav-link">Dirigent</router-link>
+                <router-link to="/dirigent" class="nav-link"
+                  >Dirigent</router-link
+                >
               </li>
               <li class="nav-item">
-                <router-link to="/drumband" class="nav-link">Drumband</router-link>
+                <router-link to="/drumband" class="nav-link"
+                  >Drumband</router-link
+                >
               </li>
               <li class="nav-item" @click="goTocontact()">
                 <span class="nav-link" style="cursor:pointer">Contact</span>

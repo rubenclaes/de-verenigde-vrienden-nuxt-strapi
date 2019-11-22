@@ -54,6 +54,7 @@ const config: Configuration = {
   plugins: [
     { src: '~/plugins/argon-kit.js', mode: 'client' }, //VueLazyLoad
     { src: '~/plugins/aos.js', mode: 'client' },
+    { src: '~/plugins/vue-toasted.js', mode: 'client' },
     '~plugins/vue-scrollto.js',
     '~/plugins/filters',
     /* '~/plugins/vue-lazysizes.client.js', */
@@ -86,15 +87,15 @@ const config: Configuration = {
   ],
 
   bootstrapVue: {
-    components: [
-      'BCarousel',
-      'BCarouselSlide',
-      'BBadge',
-      'BButton',
-      'BImgLazy',
-      'BBreadcrumb',
-      'BBreadcrumbItem'
+    componentPlugins: [
+      'Badge',
+      'Button',
+      'BreadcrumbPlugin',
+      'CarouselPlugin',
+      'ImagePlugin',
+      'SpinnerPlugin'
     ],
+    directivePlugins: ['VBPopoverPlugin', 'VBTooltipPlugin'],
     bootstrapCSS: false, // Or `css: false`
     bootstrapVueCSS: false // Or `bvCSS: false`
   },

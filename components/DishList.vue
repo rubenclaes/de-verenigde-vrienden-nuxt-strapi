@@ -30,6 +30,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import { DiningDay } from '../store/diningday/types';
+import { diningDayVuexNamespace } from '~/store/diningday/const';
 
 @Component({
   components: {
@@ -43,50 +44,32 @@ import { DiningDay } from '../store/diningday/types';
   }
 })
 export default class DishList extends Vue {
-  @Prop({ type: Object, required: true })
-  diningday!: DiningDay;
+  // computed properties are defined as non-null variables
+  @diningDayVuexNamespace.Getter('latestDiningDay')
+  private diningday!: DiningDay[];
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, default: 'ni ni-calendar-grid-58' })
   icon!: String;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, default: 'primary' })
   type!: String;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, default: 'btn-primary' })
   buttonType!: String;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, default: 'text-primary' })
   textColor!: String;
 
-  /* @Watch('$store.state.diningday.status.loading')
-  private watchSomething() {
-    console.log('wow');
-  } */
   /**
    * We use created here instead of mounted because it doesn’t need to be rerun if we leave this layout and come back to it.
-   * */
-  /*   created() {
-    this.$store.watch(
-      state => state.diningday.status.loading,
-      () => {
-        console.log('created watch');
-        const loading = this.$store.state.diningday.status.loading;
-        if (loading === false) {
-          this.show = true;
-          //this.$store.commit('snackbar/setSnack', '');
-        }
-      }
-    );
-  } */
-
-  /* mounted() {
-    this.$store.watch(
-      () => this.$store.state.diningday.status.loading,
-      () => {
-        console.log('watched: ');
-      }
-    );
-  } */
+   */
+  async created() {
+    if (this.$store.getters['diningday/list'].length === 0) {
+      return await this.$store.dispatch('diningday/fetchData');
+    } else {
+      console.info('diningday Store not empty --> fetching data from store');
+    }
+  }
 }
 </script>
 

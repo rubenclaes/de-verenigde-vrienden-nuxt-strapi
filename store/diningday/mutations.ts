@@ -1,5 +1,6 @@
 import { MutationTree } from 'vuex';
 import { DiningDayState, DiningDay } from './types';
+import Vue from 'vue';
 
 /**
  * DiningDay mutations
@@ -10,6 +11,7 @@ export const mutations: MutationTree<DiningDayState> = {
   },
 
   set(state, diningDays: DiningDay[]) {
+    console.log(`setting diningdays ${diningDays}`);
     state.diningDays = diningDays;
   },
 
@@ -41,6 +43,19 @@ export const mutations: MutationTree<DiningDayState> = {
 
   setCurrentDiningDay(state, payload) {
     state.currentDiningDay = payload;
+  },
+
+  setLoading(state, loading) {
+    //state.status.loading = !state.status.loading;
+    Vue.set(state.status, 'loading', loading);
+    console.log('loading diningday --> ' + state.status.loading);
+  },
+
+  setSuccess(state, success) {
+    //state.status.loading = !state.status.loading;
+    Vue.set(state.status, 'success', success);
+    //state.status.success = success;
+    console.log('success diningday -->' + state.status.success);
   }
 
   /*  setDiningDay(

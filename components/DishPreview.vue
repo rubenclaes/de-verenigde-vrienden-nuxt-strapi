@@ -58,8 +58,12 @@ export default class DishPreview extends Vue {
     };
   }
 
-  addToCart() {
-    this.$store.commit('cart/add', this.dish);
+  addToCart(dish: Dish) {
+    this.$toasted.success(`${dish.name} toegevoegd in mandje.`, {
+      duration: 2000,
+      position: 'bottom-center'
+    });
+    //this.$store.dispatch('cart/addProductToCart', this.dish);
   }
 }
 </script>

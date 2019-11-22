@@ -3,6 +3,7 @@ import { DiningDayState } from './types';
 import { RootState } from '../type';
 
 import { loadDiningday, loadDiningdays } from '../../lib/diningdays/api';
+import { stringLiteral } from '@babel/types';
 
 /**
  * Action context specific to DiningDays module
@@ -19,14 +20,23 @@ export const actions: ActionTree<DiningDayState, RootState> = {
    */
   async fetchData({ commit }: DiningDayActionContext) {
     commit('clear');
+    commit('setLoading', true);
 
-    const diningdays = await loadDiningdays().catch(err => {
-      console.error('error', err);
-    });
-    console.info(`Dining Days:`);
-    console.info(diningdays);
-    commit('set', diningdays);
+    //await new Promise(resolve => setTimeout(resolve, 10000));
+
+    await loadDiningdays()
+      .then(diningdays => {
+        commit('setLoading', false);
+        commit('setSuccess', true);
+        commit('set', diningdays);
+        console.info(`Dining Days:`);
+        console.info(diningdays);
+      })
+      .catch(err => {
+        console.error('error', err);
+      });
   },
+
   /**
    * Fetching a DiningDay with ID and adding it to currentDiningDay state.
    */

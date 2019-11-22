@@ -20,13 +20,16 @@
                 <h1 class="display-3 text-white">
                   Koninklijke Harmonie
                   <span>De Verenigde Vrienden Heusden-Zolder</span>
-                  <span class="lead text-success font-weight-bold">Daar zit muziek in!</span>
+                  <span class="lead text-success font-weight-bold"
+                    >Daar zit muziek in!</span
+                  >
                 </h1>
 
                 <p></p>
                 <p class="lead text-white">
-                  Samen muziek maken met passie en oog voor kwaliteit, zowel op beginnersniveau als voor
-                  gevorderde muzikanten, is onze grootste uitdaging.
+                  Samen muziek maken met passie en oog voor kwaliteit, zowel op
+                  beginnersniveau als voor gevorderde muzikanten, is onze
+                  grootste uitdaging.
                 </p>
                 <div class="btn-wrapper">
                   <base-button
@@ -35,7 +38,8 @@
                     class="mb-3 mb-sm-0"
                     type="success"
                     textColor="secondary"
-                  >Lees verder</base-button>
+                    >Lees verder</base-button
+                  >
                 </div>
               </div>
             </div>
@@ -64,11 +68,15 @@
                   :textColor="text[index]"
                 ></news-card>
 
-                <b-button block variant="default" round @click="test(true)">TEST</b-button>
+                <b-button block variant="default" round @click="test(true)"
+                  >TEST</b-button
+                >
               </template>
               <card v-else class="border-0" hover shadow body-classes="py-5">
                 <h6 class="text-primary text-uppercase">loading...</h6>
-                <b-button block variant="default" round @click="test(false)">TEST</b-button>
+                <b-button block variant="default" round @click="test(false)"
+                  >TEST</b-button
+                >
               </card>
             </div>
           </div>
@@ -120,7 +128,10 @@
                 <b-carousel-slide>
                   <template v-slot:img>
                     <picture>
-                      <source srcset="/img/home/t/jeugdorkest-min.webp" type="image/webp" />
+                      <source
+                        srcset="/img/home/t/jeugdorkest-min.webp"
+                        type="image/webp"
+                      />
                       <img
                         src="/img/home/t/jeugdorkest-min.jpeg"
                         alt="jeugdorkest1"
@@ -134,7 +145,10 @@
                 <b-carousel-slide>
                   <template v-slot:img>
                     <picture>
-                      <source srcset="/img/home/t/jeugdorkest2-min.webp" type="image/webp" />
+                      <source
+                        srcset="/img/home/t/jeugdorkest2-min.webp"
+                        type="image/webp"
+                      />
                       <img
                         src="/img/home/t/jeugdorkest2-min.png"
                         alt="jeugdorkest2"
@@ -148,7 +162,10 @@
                 <b-carousel-slide>
                   <template v-slot:img>
                     <picture>
-                      <source srcset="/img/home/t/jeugdorkest3-min.webp" type="image/webp" />
+                      <source
+                        srcset="/img/home/t/jeugdorkest3-min.webp"
+                        type="image/webp"
+                      />
                       <img
                         src="/img/home/t/jeugdorkest3-min.jpeg"
                         alt="jeugdorkest3"
@@ -162,7 +179,10 @@
                 <b-carousel-slide>
                   <template v-slot:img>
                     <picture>
-                      <source srcset="/img/home/t/jeugdorkest4-min.webp" type="image/webp" />
+                      <source
+                        srcset="/img/home/t/jeugdorkest4-min.webp"
+                        type="image/webp"
+                      />
                       <img
                         src="/img/home/t/jeugdorkest4-min.jpeg"
                         alt="jeugorkest4"
@@ -176,7 +196,10 @@
                 <b-carousel-slide>
                   <template v-slot:img>
                     <picture>
-                      <source srcset="/img/home/t/jeugdorkest5-min.webp" type="image/webp" />
+                      <source
+                        srcset="/img/home/t/jeugdorkest5-min.webp"
+                        type="image/webp"
+                      />
                       <img
                         src="/img/home/t/jeugdorkest5-min.jpeg"
                         alt="jeugorkest5"
@@ -202,27 +225,42 @@
               ></icon>
               <h1 id="jeugdorkest">Jeugdorkest</h1>
               <p class="lead">
-                Heb je de muziekmicrobe te pakken? Wil je op een leuke en speelse manier samen muziek maken?
-                Dan moet je bij deze jeugdige muzikale bende zijn.
+                Heb je de muziekmicrobe te pakken? Wil je op een leuke en
+                speelse manier samen muziek maken? Dan moet je bij deze jeugdige
+                muzikale bende zijn.
               </p>
 
               <ul class="list-unstyled mt-5">
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge tag="b-badge" type="success" circle class="mr-3" icon="ni ni-check-bold"></badge>
+                    <badge
+                      tag="b-badge"
+                      type="success"
+                      circle
+                      class="mr-3"
+                      icon="ni ni-check-bold"
+                    ></badge>
                     <p>
-                      Speel je al een blaasinstrument (trompet, klarinet, hoorn, trombone,
-                      bariton, tuba, dwarsfluit, hobo, fagot, saxofoon) of doe je slagwerk, dan
-                      kan je bij ons aansluiten.
+                      Speel je al een blaasinstrument (trompet, klarinet, hoorn,
+                      trombone, bariton, tuba, dwarsfluit, hobo, fagot,
+                      saxofoon) of doe je slagwerk, dan kan je bij ons
+                      aansluiten.
                     </p>
                   </div>
                 </li>
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge tag="b-badge" type="success" circle class="mr-3" icon="ni ni-like-2"></badge>
+                    <badge
+                      tag="b-badge"
+                      type="success"
+                      circle
+                      class="mr-3"
+                      icon="ni ni-like-2"
+                    ></badge>
                     <p>
-                      Je kan meespelen na je 1ste jaar instrumentles.
-                      Kevin Absillis slaat er de maat. De harmonie stelt gratis een instrument ter beschikking.
+                      Je kan meespelen na je 1ste jaar instrumentles. Kevin
+                      Absillis slaat er de maat. De harmonie stelt gratis een
+                      instrument ter beschikking.
                     </p>
                   </div>
                 </li>
@@ -235,7 +273,10 @@
                       class="mr-3"
                       icon="ni ni-calendar-grid-58"
                     ></badge>
-                    <p>De jeugdharmonie repeteert elke maandagavond van 19u tot 19u45.</p>
+                    <p>
+                      De jeugdharmonie repeteert elke maandagavond van 19u tot
+                      19u45.
+                    </p>
                   </div>
                 </li>
               </ul>
@@ -252,7 +293,11 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <img v-lazy="'/img/home/close_up.JPG'" class="card-img-top" alt="repetitie" />
+              <img
+                v-lazy="'/img/home/close_up.JPG'"
+                class="card-img-top"
+                alt="repetitie"
+              />
               <blockquote class="card-blockquote">
                 <svg
                   preserveAspectRatio="none"
@@ -261,12 +306,17 @@
                   class="svg-bg"
                 >
                   <polygon points="0,52 583,95 0,95" class="fill-default" />
-                  <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default" />
+                  <polygon
+                    points="0,42 583,95 683,0 0,95"
+                    opacity=".2"
+                    class="fill-default"
+                  />
                 </svg>
                 <h4 class="display-3 font-weight-bold text-white">Repetitie</h4>
                 <p class="lead text-italic text-white">
-                  Maandagavond, van 20u tot 22u is het repetitie in onze muziekzaal (Kerkenblook) en dat is altijd een
-                  leuke tijd. Na de repetitie wordt er nog gezellig nagebabbeld.
+                  Maandagavond, van 20u tot 22u is het repetitie in onze
+                  muziekzaal (Kerkenblook) en dat is altijd een leuke tijd. Na
+                  de repetitie wordt er nog gezellig nagebabbeld.
                 </p>
               </blockquote>
             </div>
@@ -275,16 +325,20 @@
             <div data-aos="fade-in" data-aos-delay="150" class="pl-md-5">
               <h1>Harmonie</h1>
               <p class="lead">
-                De Koninklijke Harmonie De Verenigde Vrienden is een toffe groep muzikanten
-                van alle leeftijden die samen muzikaal plezier maken. Al wie graag muziek speelt is welkom om even
-                te komen kennismaken!
+                De Koninklijke Harmonie De Verenigde Vrienden is een toffe groep
+                muzikanten van alle leeftijden die samen muzikaal plezier maken.
+                Al wie graag muziek speelt is welkom om even te komen
+                kennismaken!
               </p>
 
               <p>
                 Je krijgt de kans om te groeien binnen onze harmonie, een ideale
                 begeleiding van jeugd naar de ‘grote Harmonie’.
               </p>
-              <p>Onze zorg gaat vooral uit naar de opleiding van de jeugd in samenwerking met de academie.</p>
+              <p>
+                Onze zorg gaat vooral uit naar de opleiding van de jeugd in
+                samenwerking met de academie.
+              </p>
             </div>
           </div>
         </div>
@@ -319,21 +373,26 @@
             ></icon>
             <h1 class="text-white font-weight-light">Activiteiten</h1>
             <p class="lead text-white mt-4">
-              Ieder jaar zijn er een aantal vaste
-              activiteiten: jaarconcert, kaas- en wijnconcert, opening Heusden kermis, muziekkamp,
+              Ieder jaar zijn er een aantal vaste activiteiten: jaarconcert,
+              kaas- en wijnconcert, opening Heusden kermis, muziekkamp,
               reuzenstoet, St. Cecilia,…
             </p>
           </div>
           <div class="col-lg-6 mb-lg-auto">
-            <div class="rounded shadow-lg overflow-hidden transform-perspective-right">
+            <div
+              class="rounded shadow-lg overflow-hidden transform-perspective-right"
+            >
               <b-carousel id="carousel1" controls indicators>
                 <!-- Text slides with image -->
                 <b-carousel-slide>
                   <template v-slot:img>
                     <picture>
-                      <source srcset="/img/home/t/jazz-min.webp" type="image/webp" />
+                      <source
+                        srcset="/img/home/t/jazz-min.webp"
+                        type="image/webp"
+                      />
                       <img
-                        src="/img/home/t/jazz-min.JPG"
+                        v-lazy="'/img/home/t/jazz-min.JPG'"
                         alt="jazz"
                         slot="img"
                         class="d-block img-fluid w-100"
@@ -358,7 +417,9 @@
             <h1>Dirigent</h1>
           </div>
           <blockquote class="blockquote text-center">
-            <p class="mb-0">Het belangrijkste in de muziek staat niet in de noten.</p>
+            <p class="mb-0">
+              Het belangrijkste in de muziek staat niet in de noten.
+            </p>
             <footer class="blockquote-footer">Kevin Absillis</footer>
           </blockquote>
         </div>
@@ -407,12 +468,26 @@
         <div class="row text-center justify-content-center">
           <div class="col-lg-10">
             <a href="https://goo.gl/maps/YgziKZGExWnQW9cd7">
-              <icon name="ni ni-pin-3" class="mb-5 floating" size="lg" type="white" shadow rounded></icon>
+              <icon
+                name="ni ni-pin-3"
+                class="mb-5 floating"
+                size="lg"
+                type="white"
+                shadow
+                rounded
+              ></icon>
             </a>
-            <h1 class="text-white font-weight-light">Waar kan je ons vinden?</h1>
+            <h1 class="text-white font-weight-light">
+              Waar kan je ons vinden?
+            </h1>
 
-            <a href="https://goo.gl/maps/YgziKZGExWnQW9cd7" class="lead text-white" target="blank">
-              <icon name="ni ni-map-big" size="sm" type="white"></icon>&nbsp;Kerkenblook z/n
+            <a
+              href="https://goo.gl/maps/YgziKZGExWnQW9cd7"
+              class="lead text-white"
+              target="blank"
+            >
+              <icon name="ni ni-map-big" size="sm" type="white"></icon
+              >&nbsp;Kerkenblook z/n
             </a>
 
             <p class="lead text-white">3550 Heusden-Zolder</p>
@@ -470,7 +545,10 @@
                       ></base-input>
                     </div>
                   </ValidationProvider>
-                  <ValidationProvider name="model.message" rules="required|min:1">
+                  <ValidationProvider
+                    name="model.message"
+                    rules="required|min:1"
+                  >
                     <div slot-scope="{ errors }">
                       <base-input class="mb-4" :error="errors[0]">
                         <textarea
@@ -484,7 +562,13 @@
                       </base-input>
                     </div>
                   </ValidationProvider>
-                  <b-button block type="submit" variant="default" round :disabled="invalid">
+                  <b-button
+                    block
+                    type="submit"
+                    variant="default"
+                    round
+                    :disabled="invalid"
+                  >
                     <icon name="ni ni-send" size="sm"></icon>&nbsp;Verstuur
                   </b-button>
                 </ValidationObserver>
@@ -652,6 +736,7 @@ export default class IndexPage extends Vue {
   }
 
   mounted() {
+
     if (this.$nuxt.$route.hash) {
       this.scrollToHash();
     }
@@ -738,7 +823,4 @@ export default class IndexPage extends Vue {
   }
 }
 </script>
-<style>
-</style>
-
-
+<style></style>

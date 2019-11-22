@@ -18,11 +18,15 @@
             <b-breadcrumb class="bg-transparent">
               <b-breadcrumb-item text="blalb">Home</b-breadcrumb-item>
               <b-breadcrumb-item text="blalb">Nieuws</b-breadcrumb-item>
-              <b-breadcrumb-item active="active">{{restaurant.name}}</b-breadcrumb-item>
+              <b-breadcrumb-item active="active">{{
+                restaurant.name
+              }}</b-breadcrumb-item>
             </b-breadcrumb>
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2"></div>
-              <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
+              <div
+                class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center"
+              >
                 <div class="card-profile-actions py-4 mt-lg-0">
                   <base-button
                     tag="a"
@@ -52,7 +56,7 @@
               </div>
             </div>
             <div class="text-center mt-5">
-              <h3>{{restaurant.name}}</h3>
+              <h3>{{ restaurant.name }}</h3>
               <div class="h6 font-weight-300">
                 <i class="ni location_pin mr-2"></i>
                 Gepost op {{ formattedDate }}
@@ -82,7 +86,6 @@
     </section>
   </div>
 </template>
-             
 
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator';
@@ -302,4 +305,3 @@ export default class RestaurantView extends Vue {
   } */
 }
 </script>
-

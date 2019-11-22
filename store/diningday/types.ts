@@ -1,3 +1,4 @@
+import { Status } from '../type';
 /**
  * Type definitions of the DiningDay state
  */
@@ -7,6 +8,7 @@ export interface DiningDayState {
   selected: number;
   diningDays: DiningDay[];
   currentDiningDay: DiningDay;
+  status: Status;
 }
 
 // Model

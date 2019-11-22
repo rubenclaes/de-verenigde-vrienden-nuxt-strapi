@@ -16,17 +16,20 @@
       <div class="container pt-lg-md">
         <div class="row justify-content-center">
           <div class="col-lg-10">
-            <dish-list
-              :diningday="latestDiningDay()"
-              icon="ni ni-calendar-grid-58"
-              type="primary"
-              buttonType="btn-primary"
-              textColor="text-primary"
-            ></dish-list>
-
-            <div class="text-center">
-              <router-link to="/checkout" tag="a" class="btn btn-primary my-4">Ik ga bestellen</router-link>
+            <div v-if="loading">
+              <div class="text-center">
+                <b-spinner style="width: 3rem; height: 3rem;" label="Large Spinner" type="grow"></b-spinner>
+              </div>
             </div>
+
+            <template v-else>
+              <client-only>
+                <dish-list></dish-list>
+                <div class="text-center">
+                  <router-link to="/checkout" tag="a" class="btn btn-primary my-4">Ik ga bestellen</router-link>
+                </div>
+              </client-only>
+            </template>
 
             <div class="row mt-3">
               <div class="col-6">
@@ -66,42 +69,22 @@ import { diningDayVuexNamespace } from '~/store/diningday/const';
     BaseInput: () => import('@/components/BaseInput.vue'),
     BaseCheckbox: () => import('@/components/BaseCheckbox.vue'),
     //Card
+
     DishList: () => import('@/components/DishList.vue')
   }
 })
 export default class Eetdag extends Vue {
   private title = 'Eetdag';
 
-  @diningDayVuexNamespace.Getter('list')
-  private diningDays!: [];
+  @diningDayVuexNamespace.Getter('loading')
+  private loading!: boolean;
+
+  count: number = 0;
 
   head() {
     return {
       title: this.title
     };
-  }
-
-  // Fetching data as soon as the component's been mounted
-  // Both are *only executed for pages (NOT components).
-  // Should be used for data intended for VueX store - it does not need to return anything and should instead commit to store any required data.
-  // It can use async/await.
-  // Warning: You don't have access of the component instance through this inside fetch because it is called before initiating the component.
-  async fetch({ store, params }) {
-    //if (typeof store.state.products.byId[params.id] === 'undefined') {
-    if (store.getters['diningday/list'].length === 0) {
-      return await store.dispatch('diningday/fetchData');
-    } else {
-      console.log('Store not empty --> fetching data from store');
-    }
-    //}
-  }
-
-  // computed variable based on user's email
-  latestDiningDay() {
-    //const user = this.profile && this.profile.user;
-    //return (user && user.email) || '';
-    const latestDiningDay = this.diningDays[this.diningDays.length - 1];
-    return latestDiningDay;
   }
 }
 </script>
