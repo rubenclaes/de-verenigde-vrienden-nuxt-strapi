@@ -11,5 +11,4 @@ export interface CartState {
 export interface Item {
   id: number;
   quantity: number;
-  price: number;
 }

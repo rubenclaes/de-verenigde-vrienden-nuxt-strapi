@@ -30,6 +30,13 @@ export const mutations: MutationTree<CartState> = {
     if (cartItem) cartItem.quantity++;
   },
 
+  pushProductToCart(state, { id }) {
+    state.items.push({
+      id,
+      quantity: 1
+    });
+  },
+
   /**
    *
    *

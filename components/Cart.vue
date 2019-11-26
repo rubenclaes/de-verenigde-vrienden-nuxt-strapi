@@ -2,23 +2,34 @@
 
 <template>
   <div>
-    <div>
-      <h6 class="my-0">{{ dish.name }}</h6>
-      <small class="text-muted">{{ dish.description }}</small>
-    </div>
+    <li
+      v-for="(product) in productsInCart()"
+      :key="product.id"
+      class="list-group-item d-flex justify-content-between lh-condensed"
+    >
+      <div>
+        <h6 class="my-0">{{ product.title }}</h6>
+      </div>
 
-    <base-button
-      @click="quantity > 0 ? quantity-- : quantity = 0"
-      size="sm"
-      type="secondary"
-      icon="fa fa-minus"
-      rounded
-      icon-only
-    ></base-button>
-    {{dish.quantity}}
-    <base-button @click="quantity++" size="sm" type="primary" icon="fa fa-plus" rounded icon-only></base-button>
-    <span class="text-muted">&euro; {{ dish.price }}</span>
-    <base-button @click="removeFromCart(dish)" size="sm" type="danger" icon="fa fa-trash" outline></base-button>
+      <base-button
+        @click="quantity > 0 ? quantity-- : quantity = 0"
+        size="sm"
+        type="secondary"
+        icon="fa fa-minus"
+        rounded
+        icon-only
+      ></base-button>
+      {{ product.quantity }}
+      <base-button @click="quantity++" size="sm" type="primary" icon="fa fa-plus" rounded icon-only></base-button>
+      <span class="text-muted">&euro; {{ product.price }}</span>
+      <base-button
+        @click="removeFromCart(product)"
+        size="sm"
+        type="danger"
+        icon="fa fa-trash"
+        outline
+      ></base-button>
+    </li>
   </div>
 </template>
 
@@ -30,9 +41,6 @@ import { Item } from '../store/cart/types';
   components: { BaseButton: () => import('@/components/BaseButton.vue') }
 })
 export default class Cart extends Vue {
-  @Prop({ type: Object, required: true })
-  dish!: Item;
-
   data() {
     return {
       quantity: 1,
@@ -40,8 +48,12 @@ export default class Cart extends Vue {
     };
   }
 
-  removeFromCart() {
-    this.$store.commit('cart/remove', this.dish);
+  removeFromCart(dish) {
+    this.$store.commit('cart/remove', dish);
+  }
+
+  productsInCart() {
+    return this.$store.getters['cart/cartProducts'];
   }
 }
 </script>

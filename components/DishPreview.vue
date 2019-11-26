@@ -59,11 +59,11 @@ export default class DishPreview extends Vue {
   }
 
   addToCart(dish: Dish) {
+    this.$store.dispatch('cart/addProductToCart', dish);
     this.$toasted.success(`${dish.name} toegevoegd in mandje.`, {
       duration: 2000,
       position: 'bottom-center'
     });
-    //this.$store.dispatch('cart/addProductToCart', this.dish);
   }
 }
 </script>

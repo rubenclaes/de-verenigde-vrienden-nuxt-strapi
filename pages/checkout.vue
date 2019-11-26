@@ -18,18 +18,12 @@
           <div class="col-md-4 order-md-2 mb-4">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
               <span class="text-muted">Uw winkelmandje</span>
-              <span class="badge badge-secondary badge-pill">{{numberOfItems()}}</span>
+              <badge pill type="primary" rounded>{{numberOfItems() }}</badge>
             </h4>
             <ul class="list-group mb-3">
-              <li
-                v-for="(dish ) in selectedDishes()"
-                :key="dish.id"
-                class="list-group-item d-flex justify-content-between lh-condensed"
-              >
-                <cart :dish="dish"></cart>
-              </li>
+              <cart></cart>
 
-              <li class="list-group-item d-flex justify-content-between bg-light">
+              <li v-if="false" class="list-group-item d-flex justify-content-between bg-light">
                 <div class="text-success">
                   <h6 class="my-0">Promo code</h6>
                   <small>EXAMPLECODE</small>
@@ -241,7 +235,8 @@
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator';
 
-import { diningDayVuexNamespace } from '~/store/diningday/const';
+import { cartVuexNamespace } from '~/store/cart/const';
+import { Item } from '../store/cart/types';
 
 //import { stripeKey, stripeOptions } from './stripeConfig.json';
 //import { Card, createToken } from 'vue-stripe-elements-plus';
@@ -279,10 +274,6 @@ export default class Eetdag extends Vue {
     // See https://stripe.com/docs/api#errors for the error object.
     // More general https://stripe.com/docs/stripe.js#stripe-create-token.
     //createToken().then(data => console.log(data.token));
-  }
-
-  selectedDishes() {
-    return this.$store.getters['cart/list'];
   }
 
   price() {

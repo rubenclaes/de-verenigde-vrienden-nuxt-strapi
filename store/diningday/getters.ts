@@ -18,9 +18,8 @@ export const getters: GetterTree<DiningDayState, RootState> = {
     return diningDay;
   },
 
-  byId(state, id) {
-    const diningDay = state.diningDays.find(diningDays => diningDays.id === id);
-    return diningDay;
+  dishesById: state => (id: number) => {
+    return state.diningDays[0].dishes.find(dishes => dishes.id === id);
   },
 
   loading(state) {

@@ -1,3 +1,5 @@
+import { RootState } from './type';
+
 //import { Store } from 'vuex';
 
 // More info about store: https://vuex.vuejs.org/en/core-concepts.html

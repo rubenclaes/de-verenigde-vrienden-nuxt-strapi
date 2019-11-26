@@ -1,6 +1,8 @@
+import { DiningDayState } from './diningday/types';
+
+// Store
 export interface RootState {
-  count: number;
-  selected: number;
+  diningday: DiningDayState;
 }
 
 // Model
