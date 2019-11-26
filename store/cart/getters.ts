@@ -27,9 +27,11 @@ export const getters: GetterTree<CartState, RootState> = {
     });
   },
 
-  price: state => {
+  cartTotalPrice: (state, getters, rootState, rootGetters) => {
     return state.items.reduce(
-      (total, item) => total + item.price * item.quantity,
+      (total, item) =>
+        total +
+        rootGetters['diningday/dishesById'](item.id).price * item.quantity,
       0
     );
   },

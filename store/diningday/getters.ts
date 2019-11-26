@@ -3,7 +3,7 @@ import { DiningDayState, DiningDay } from './types';
 import { RootState } from '../type';
 
 /**
- * DiningDay getters
+ * diningday getters
  */
 export const getters: GetterTree<DiningDayState, RootState> = {
   list: (state): DiningDay[] => {

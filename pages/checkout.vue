@@ -277,7 +277,7 @@ export default class Eetdag extends Vue {
   }
 
   price() {
-    return this.$store.getters['cart/price'];
+    return this.$store.getters['cart/cartTotalPrice'];
   }
 
   numberOfItems() {
