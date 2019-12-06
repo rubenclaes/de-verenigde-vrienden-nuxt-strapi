@@ -23,7 +23,14 @@
       "@/pages/*": ["./pages/"],
       "@/store/*": ["./store/*"]
     },
-    "types": ["@types/jest", "@types/node", "@nuxt/types", "@nuxtjs/axios"]
+    "types": [
+      "@nuxt/vue-app",
+      "@types/jest",
+      "@types/node",
+      "@nuxt/types",
+      "@nuxtjs/axios",
+      "@types/nuxtjs__auth"
+    ]
   },
   "exclude": ["node_modules"]
 }

@@ -1,6 +1,6 @@
 import { Configuration } from '@nuxt/types';
+import { $axios } from './utils/api';
 
-import axios from 'axios';
 import { IS_DEV } from './config';
 
 const config: Configuration = {
@@ -59,7 +59,8 @@ const config: Configuration = {
     '~/plugins/filters',
     /* '~/plugins/vue-lazysizes.client.js', */
     '~/plugins/vee-validate',
-    '~/plugins/click-outside.js'
+    '~/plugins/click-outside.js',
+    '~/plugins/axios-accessor.ts'
   ],
 
   /*
@@ -67,6 +68,7 @@ const config: Configuration = {
    */
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
     '@nuxtjs/onesignal',
     '@nuxtjs/pwa',
     '@nuxtjs/sentry',
@@ -167,12 +169,34 @@ const config: Configuration = {
       }
     }
   },
+  /*
+   ** Auth module configuration
+   ** See https://auth.nuxtjs.org/guide/setup.html
+   */
+  auth: {
+    // Options
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/auth/local',
+            method: 'post',
+            propertyName: 'jwt'
+          },
+          logout: { url: '/api/auth/logout', method: 'post' },
+          user: { url: '/users/me', method: 'get', propertyName: 'user' }
+        }
+      }
+    }
+  },
 
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: process.env.API_URL
+  },
 
   buildModules: ['@nuxt/typescript-build'],
 
@@ -226,7 +250,7 @@ const config: Configuration = {
     fallback: true,
 
     routes: async function() {
-      return await axios
+      return await $axios
         .get('https://strapi-de-verenigde-vrienden.herokuapp.com/restaurants')
         .then(res => {
           return res.data.map((restaurant: any) => {
