@@ -1,7 +1,7 @@
 import { Configuration } from '@nuxt/types';
-import { $axios } from './utils/api';
 
 import { IS_DEV } from './config';
+import axios from 'axios';
 
 const config: Configuration = {
   mode: 'universal',
@@ -227,8 +227,8 @@ const config: Configuration = {
     fallback: true,
 
     routes: async function() {
-      return await $axios
-        .get(`restaurants`)
+      return await axios
+        .get(`https://strapi-de-verenigde-vrienden.herokuapp.com/restaurants`)
         .then(res => {
           return res.data.map((restaurant: any) => {
             restaurant.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${restaurant.image.public_id}${restaurant.image.ext}`;
