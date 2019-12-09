@@ -103,7 +103,7 @@ const config: Configuration = {
   },
 
   sitemap: {
-    hostname: process.env.hostname,
+    hostname: process.env.HOSTNAME,
     gzip: true,
     exclude: ['/secret', '/admin/**'],
     defaults: {
