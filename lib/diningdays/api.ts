@@ -5,7 +5,7 @@ import { $axios } from '~/utils/api';
  *
  */
 export async function loadDiningdays() {
-  return await $axios.get('diningdays').then(res => {
+  return await $axios.get(`diningdays`).then(res => {
     res.data.map(diningday => {
       diningday.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${diningday.image.provider_metadata.public_id}${diningday.image.ext}`;
 
