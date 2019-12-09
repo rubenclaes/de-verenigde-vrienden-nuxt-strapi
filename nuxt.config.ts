@@ -3,6 +3,8 @@ import { Configuration } from '@nuxt/types';
 import { IS_DEV } from './config';
 import axios from 'axios';
 
+require('dotenv').config();
+
 const config: Configuration = {
   mode: 'universal',
 
@@ -228,7 +230,7 @@ const config: Configuration = {
 
     routes: async function() {
       return await axios
-        .get(`https://strapi-de-verenigde-vrienden.herokuapp.com/restaurants`)
+        .get(`${process.env.API_URL}/restaurants`)
         .then(res => {
           return res.data.map((restaurant: any) => {
             restaurant.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${restaurant.image.public_id}${restaurant.image.ext}`;
