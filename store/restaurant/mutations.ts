@@ -61,6 +61,12 @@ export const mutations: MutationTree<RestaurantState> = {
     state.currentRestaurant = payload;
   },
 
+  /**
+   * Set Loading
+   *
+   * @param {*} state
+   * @param {*} loading
+   */
   setLoading(state, loading) {
     Vue.set(state.status, 'loading', loading);
     console.info('loading--> ' + state.status.loading);
