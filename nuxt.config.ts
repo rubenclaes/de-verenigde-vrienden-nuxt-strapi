@@ -3,7 +3,7 @@ import { Configuration } from '@nuxt/types';
 import { IS_DEV } from './config';
 import axios from 'axios';
 
-require('dotenv').config();
+//require('dotenv').config();
 
 const config: Configuration = {
   mode: 'universal',
