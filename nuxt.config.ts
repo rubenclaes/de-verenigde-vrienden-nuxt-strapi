@@ -157,7 +157,7 @@ const config: Configuration = {
   sentry: {
     dsn: process.env.SENTRY_DSN,
     publishRelease: true,
-    disabled: IS_DEV,
+    disabled: true,
     config: {} // Additional config
   },
 
@@ -228,7 +228,7 @@ const config: Configuration = {
 
     routes: async function() {
       return await $axios
-        .get('https://strapi-de-verenigde-vrienden.herokuapp.com/restaurants')
+        .get(`restaurants`)
         .then(res => {
           return res.data.map((restaurant: any) => {
             restaurant.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${restaurant.image.public_id}${restaurant.image.ext}`;
