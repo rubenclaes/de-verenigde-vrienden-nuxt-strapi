@@ -16,9 +16,14 @@
       <div class="container pt-lg-md">
         <div class="row justify-content-center">
           <div class="col-lg-10">
+            <!-- start DishList -->
             <div v-if="loading">
               <div class="text-center">
-                <b-spinner style="width: 3rem; height: 3rem;" label="Large Spinner" type="grow"></b-spinner>
+                <b-spinner
+                  style="width: 3rem; height: 3rem;"
+                  label="Large Spinner"
+                  type="grow"
+                ></b-spinner>
               </div>
             </div>
 
@@ -26,7 +31,12 @@
               <client-only>
                 <dish-list></dish-list>
                 <div class="text-center">
-                  <router-link to="/checkout" tag="a" class="btn btn-primary my-4">Ik ga bestellen</router-link>
+                  <router-link
+                    to="/checkout"
+                    tag="a"
+                    class="btn btn-primary my-4"
+                    >Ik ga bestellen</router-link
+                  >
                 </div>
               </client-only>
             </template>
@@ -62,14 +72,7 @@ import { diningDayVuexNamespace } from '~/store/diningday/const';
   layout: 'appHeader',
 
   components: {
-    BaseButton: () => import('@/components/BaseButton.vue'),
-    Card: () => import('@/components/Card.vue'),
-    Badge: () => import('@/components/Badge.vue'),
-    Icon: () => import('@/components/Icon.vue'),
-    BaseInput: () => import('@/components/BaseInput.vue'),
-    BaseCheckbox: () => import('@/components/BaseCheckbox.vue'),
     //Card
-
     DishList: () => import('@/components/DishList.vue')
   }
 })

@@ -54,31 +54,23 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-12">
-            <div class="card-deck">
-              <!-- start NewsCards TODO: v-bind="restaurant" -->
+            <!-- start NewsList -->
 
-              <template v-if="!loading">
-                <news-card
-                  v-for="(restaurant, index) in latestRestaurants"
-                  :key="restaurant.id"
-                  :restaurant="restaurant"
-                  :icon="icon(index)"
-                  :type="colors[index]"
-                  :buttonType="buttons[index]"
-                  :textColor="text[index]"
-                ></news-card>
-
-                <b-button block variant="default" round @click="test(true)"
-                  >TEST</b-button
-                >
-              </template>
-              <card v-else class="border-0" hover shadow body-classes="py-5">
-                <h6 class="text-primary text-uppercase">loading...</h6>
-                <b-button block variant="default" round @click="test(false)"
-                  >TEST</b-button
-                >
-              </card>
+            <div v-if="loading">
+              <div class="text-center">
+                <b-spinner
+                  style="width: 3rem; height: 3rem;"
+                  label="Large Spinner"
+                  type="grow"
+                ></b-spinner>
+              </div>
             </div>
+
+            <template v-else>
+              <client-only>
+                <news-list></news-list>
+              </client-only>
+            </template>
           </div>
         </div>
       </div>
@@ -659,16 +651,14 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate';
     BaseInput: () => import('@/components/BaseInput.vue'),
     Modal: () => import('@/components/Modal.vue'),
 
-    NewsCard: () => import('@/components/NewsCard.vue'),
+    NewsList: () => import('@/components/NewsList.vue'),
 
     ValidationObserver,
     ValidationProvider
   }
 })
 export default class IndexPage extends Vue {
-  private colors = ['primary', 'success', 'warning'];
-  private buttons = ['btn-primary', 'btn-success', 'btn-warning'];
-  private text = ['text-primary', 'text-success', 'text-warning'];
+  private title = 'Home';
 
   private modals = {
     modal3: false
@@ -680,38 +670,14 @@ export default class IndexPage extends Vue {
   };
 
   private email = '';
-  private title = 'Home';
-
-  // computed properties are defined as non-null variables
-  @counterVuexNamespace.State('count')
-  private count!: number;
-
-  @counterVuexNamespace.Getter('square')
-  private square!: number;
 
   @restaurantVuexNamespace.Getter('loading')
   private loading!: boolean;
-
-  // methods should match expected signature
-  @counterVuexNamespace.Action('increment')
-  public increment!: () => void;
-
-  @restaurantVuexNamespace.Getter('list')
-  private restaurants!: [];
 
   head() {
     return {
       title: this.title
     };
-  }
-
-  checkForm(e) {
-    console.log(this.email);
-  }
-
-  test(loading) {
-    //return console.log('ello');
-    this.$store.commit('restaurant/setLoading', loading);
   }
 
   scrollToHash() {
@@ -721,7 +687,7 @@ export default class IndexPage extends Vue {
     });
   }
 
-  created() {
+  /*   created() {
     this.$store.watch(
       state => state.restaurant.status.loading,
       () => {
@@ -733,37 +699,23 @@ export default class IndexPage extends Vue {
         }
       }
     );
-  }
+  } */
 
-  mounted() {
-
+  /*   mounted() {
     if (this.$nuxt.$route.hash) {
       this.scrollToHash();
     }
-    /* setInterval(() => {
+    setInterval(() => {
       this.$store.state.restaurant.status.loading = !this.$store.state
         .restaurant.status.loading;
-    }, 1000); */
+    }, 1000);
     this.$store.watch(
       () => this.$store.state.restaurant.status.loading,
       () => {
         console.log('mounted watch ');
       }
     );
-  }
-
-  onSubmit() {
-    console.log('jello');
-    let data = {
-      email_address: 'urist.mcvankab@freddiesjokes.com',
-      status: 'subscribed',
-      merge_fields: {
-        FNAME: 'Urist',
-        LNAME: 'McVankab'
-      }
-    };
-    return this.$store.dispatch('restaurant/create', data);
-  }
+  } */
 
   /**
    * Will be called after all middleware has run and validation has cleared, so by the time it runs we know for certain this page will render.
@@ -775,51 +727,11 @@ export default class IndexPage extends Vue {
    * Warning: You don't have access of the component instance through this inside fetch because it is called before initiating the component.
    * */
   async fetch({ store, params }) {
-    if (store.getters['restaurant/list'].length === 0) {
+    /* if (store.getters['restaurant/list'].length === 0) {
       console.info('Fetching data from API');
       return await store.dispatch('restaurant/fetchData');
     }
-    console.info('Store was not empty --> fetched data from store');
-  }
-
-  icon(iconName) {
-    switch (iconName) {
-      case 'note': {
-        return 'ni ni-note-03';
-      }
-      case 'notification': {
-        //statements;
-        return 'ni ni-notification-70';
-      }
-      case 'satisfied': {
-        //statements;
-        return 'ni ni-satisfied';
-      }
-      case 'camera': {
-        //statements;
-        return 'ni ni-camera-compact';
-      }
-      case 'heart': {
-        //statements;
-        return 'ni ni-favourite-28';
-      }
-      case 'calendar': {
-        //statements;
-        return 'ni ni-calendar-grid-58';
-      }
-      default: {
-        //statements;
-        return 'ni ni-note-03';
-      }
-    }
-  }
-
-  // computed variable based on user's email
-  get latestRestaurants() {
-    //const user = this.profile && this.profile.user;
-    //return (user && user.email) || '';
-    const latestRestaurants = this.restaurants.slice(0, 3);
-    return latestRestaurants;
+    console.info('Store was not empty --> fetched data from store'); */
   }
 }
 </script>

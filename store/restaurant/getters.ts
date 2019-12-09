@@ -7,7 +7,7 @@ import { RootState } from '../type';
  */
 export const getters: GetterTree<RestaurantState, RootState> = {
   list: (state): Restaurant[] => {
-    console.log('list');
+    console.log('return list from store' + state.restaurants);
     return state.restaurants;
   },
 
@@ -47,6 +47,18 @@ export const getters: GetterTree<RestaurantState, RootState> = {
     };
     let time = new Date(state.currentRestaurant.created_at);
     return time.toLocaleDateString('nl-BE', options);
+  },
+
+  /**
+   * Get the latest 3 News Articles
+   *
+   * @returns
+   */
+  latestNews(state) {
+    //const user = this.profile && this.profile.user;
+    //return (user && user.email) || '';
+    const latestRestaurants = state.restaurants.slice(0, 3);
+    return latestRestaurants;
   }
 };
 

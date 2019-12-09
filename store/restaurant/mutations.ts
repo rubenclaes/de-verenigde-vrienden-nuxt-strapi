@@ -69,12 +69,12 @@ export const mutations: MutationTree<RestaurantState> = {
    */
   setLoading(state, loading) {
     Vue.set(state.status, 'loading', loading);
-    console.info('loading--> ' + state.status.loading);
+    console.info('loading News...--> ' + state.status.loading);
   },
 
   setSuccess(state, success) {
     Vue.set(state.status, 'success', success);
-    console.info('success-->' + state.status.success);
+    console.info('successfully fetched News -->' + state.status.success);
   }
 };
 

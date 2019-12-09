@@ -1,69 +1,69 @@
-<!-- components/NewsCard.vue -->
+<!-- components/NewsPreview.vue -->
 
 <template>
   <card class="border-0" hover shadow body-classes="py-5">
     <template #image>
-      <img v-lazy="restaurant.image.url" class="card-img-top cardThumbnail" alt="Nieuws afbeelding" />
+      <img
+        v-lazy="article.image.url"
+        class="card-img-top cardThumbnail"
+        alt="Nieuws afbeelding"
+      />
     </template>
 
     <icon :name="icon" :type="type" rounded class="mb-4"></icon>
-    <h6 v-bind:class="textColor" class="text-uppercase">{{restaurant.name}}</h6>
-    <p
-      class="description mt-3"
-    >{{ restaurant.description.substring(0,100) || 'Geen omschrijving'}}...</p>
+    <h6 v-bind:class="textColor" class="text-uppercase">
+      {{ article.name }}
+    </h6>
+    <p class="description mt-3">
+      {{ article.description.substring(0, 100) || 'Geen omschrijving' }}...
+    </p>
     <div>
-      <badge
-        v-if="restaurant.Categories[0].Tag1"
-        :type="type"
-        rounded
-      >{{restaurant.Categories[0].Tag1}}</badge>
-      <badge
-        v-if="restaurant.Categories[0].Tag2"
-        :type="type"
-        rounded
-      >{{restaurant.Categories[0].Tag2}}</badge>
-      <badge
-        v-if="restaurant.Categories[0].Tag3"
-        :type="type"
-        rounded
-      >{{restaurant.Categories[0].Tag3}}</badge>
+      <badge v-if="article.Categories[0].Tag1" :type="type" rounded>{{
+        article.Categories[0].Tag1
+      }}</badge>
+      <badge v-if="article.Categories[0].Tag2" :type="type" rounded>{{
+        article.Categories[0].Tag2
+      }}</badge>
+      <badge v-if="article.Categories[0].Tag3" :type="type" rounded>{{
+        article.Categories[0].Tag3
+      }}</badge>
     </div>
     <router-link
-      :to="{ name: 'restaurants-id', params: { id: restaurant.id }}"
+      :to="{ name: 'restaurants-id', params: { id: article.id } }"
       tag="a"
       class="btn mt-4"
       :class="buttonType"
-    >Lees meer</router-link>
+      >Lees meer</router-link
+    >
   </card>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import { Restaurant } from '../store/restaurant/types';
 
 @Component({
   components: {
     BaseButton: () => import('@/components/BaseButton.vue'),
-    BaseCheckbox: () => import('@/components/BaseCheckbox.vue'),
     Card: () => import('@/components/Card.vue'),
     Badge: () => import('@/components/Badge.vue'),
     Icon: () => import('@/components/Icon.vue')
   }
 })
-export default class NewsCard extends Vue {
+export default class NewsPreview extends Vue {
   @Prop({ type: Object, required: true })
-  restaurant!: Restaurant;
+  article!: Restaurant;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, default: 'ni ni-note-03' })
   icon!: String;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, default: 'primary' })
   type!: String;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, default: 'btn-primary' })
   buttonType!: String;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, default: 'text-primary' })
   textColor!: String;
 
   /* @Watch('$store.state.restaurant.status.loading')

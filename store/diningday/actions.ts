@@ -46,6 +46,7 @@ export const actions: ActionTree<DiningDayState, RootState> = {
     });
 
     console.info(diningday);
+
     commit('setCurrentDiningDay', {
       id: diningday.id,
       ...diningday
