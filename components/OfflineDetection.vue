@@ -10,7 +10,12 @@
         <strong>Opgelet!</strong>
         <slot name="offline" />
       </span>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
         <span aria-hidden="true">&times;</span>
       </button>
     </base-alert>

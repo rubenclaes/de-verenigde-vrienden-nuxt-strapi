@@ -1,0 +1,7 @@
+// overwrite variables
+$cookieconstent-padding: 1rem;
+$cookieconstent-space: 0.7rem;
+$cookieconstent-compliance-padding: 0.5rem 2rem;
+// find more variables in /src/scss/_cookie-consent-variables.scss
+
+@import './node_modules/vue-cookieconsent-component/src/scss/cookie-consent';

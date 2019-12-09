@@ -40,6 +40,8 @@
     "nuxt-property-decorator": "^2.5.0",
     "uuid": "^3.3.3",
     "vee-validate": "^3.0.11",
+    "vue-cookieconsent-component": "^1.2.0",
+    "vue-if-bot": "^1.2.0",
     "vue-lazy-hydration": "^1.0.0-beta.9",
     "vue-lazyload": "^1.3.3",
     "vue-scrollto": "^2.17.1",
