@@ -207,7 +207,7 @@ const config: Configuration = {
     baseURL: process.env.API_URL
   },
 
-  buildModules: ['@nuxt/typescript-build'],
+  buildModules: ['@nuxtjs/dotenv', '@nuxt/typescript-build'],
 
   /*
    ** Build configuration
