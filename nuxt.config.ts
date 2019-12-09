@@ -31,6 +31,7 @@ const config: Configuration = {
    ** Customize the progress-bar color
    */
   loading: { color: '#39b982' },
+
   manifest: {
     name: 'Harmonie De Verenigde Vrienden',
     short_name: 'KH DVV H-Z',
@@ -63,6 +64,10 @@ const config: Configuration = {
     '~/plugins/axios-accessor.ts'
   ],
 
+  env: {
+    API_URL: 'https://strapi-de-verenigde-vrienden.herokuapp.com'
+  },
+
   /*
    ** Nuxt.js modules
    */
@@ -78,12 +83,7 @@ const config: Configuration = {
 
     '@nuxtjs/markdownit',
     '@bazzite/nuxt-optimized-images',
-    [
-      '@nuxtjs/google-analytics',
-      {
-        id: process.env.GOOGLE_ANALYTICS
-      }
-    ],
+    '@nuxtjs/google-analytics',
     //Always at the end
     '@nuxtjs/sitemap'
   ],
@@ -102,14 +102,15 @@ const config: Configuration = {
     bootstrapVueCSS: false // Or `bvCSS: false`
   },
 
-  env: {
-    API_URL: 'https://strapi-de-verenigde-vrienden.herokuapp.com'
-  },
-
   sitemap: {
-    hostname: 'https://www.deverenigdevriendenheusden.be',
+    hostname: process.env.hostname,
     gzip: true,
     exclude: ['/secret', '/admin/**'],
+    defaults: {
+      changefreq: 'daily',
+      priority: 1,
+      lastmodrealtime: true
+    },
     routes: [
       '/',
       '/nieuws',
@@ -123,11 +124,17 @@ const config: Configuration = {
       } */
     ]
   },
+
   /*
    ** googleAnalytics module configuration
    */
   googleAnalytics: {
-    id: 'UA-36999937-1'
+    id: process.env.GOOGLE_ANALYTICS,
+    disabled: () => document.cookie.includes('ga_optout=true'),
+    debug: {
+      sendHitTask: !IS_DEV
+    },
+    set: [{ field: 'anonymizeIp', value: true }]
   },
 
   /*
@@ -148,7 +155,7 @@ const config: Configuration = {
    ** sentry module configuration
    */
   sentry: {
-    dsn: process.env.SENTRY_DSN, // Enter your project's DSN here
+    dsn: process.env.SENTRY_DSN,
     publishRelease: true,
     disabled: IS_DEV,
     config: {} // Additional config
@@ -158,7 +165,6 @@ const config: Configuration = {
    ** oneSignal module configuration
    */
   oneSignal: {
-    // Use CDN
     cdn: true,
     init: {
       appId: process.env.ONE_SIGNAL_ID,
@@ -169,6 +175,7 @@ const config: Configuration = {
       }
     }
   },
+
   /*
    ** Auth module configuration
    ** See https://auth.nuxtjs.org/guide/setup.html
@@ -215,36 +222,6 @@ const config: Configuration = {
     /*    } */
     // }
   },
-
-  /*
-   ** Generating dynamic routes
-   */
-  /*  generate: {
-    routes: ['/restaurants/1', '/restaurants/2', '/users/3']
-  } */
-  /*   generate: {
-    routes: async function() {
-      const response = await strapi.request('post', '/graphql', {
-        data: {
-          query: `query {
-              restaurants {
-                id
-                name
-                description
-                image {
-                  url
-                }
-              }
-            }
-            `
-        }
-      });
-
-      return response.data.restaurants.forEach(restaurant => {
-        let route = 'restaurants/' + restaurant.id;
-      });
-    }
-  } */
 
   generate: {
     fallback: true,

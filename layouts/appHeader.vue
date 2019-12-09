@@ -126,7 +126,7 @@
       <Consent>
         <template slot="message">
           Deze website gebruikt cookies voor gebruikersanalyses en verbeteringen
-          op de pagina's!
+          op de pagina's
           <a class="btn btn-link" href="#">Privacybeleid</a>
         </template>
         <template slot="button">
