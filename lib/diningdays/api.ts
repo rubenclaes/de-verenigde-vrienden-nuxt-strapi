@@ -1,7 +1,5 @@
 import { $axios } from '~/utils/api';
 
-//import { Restaurant } from 'types/';
-
 /**
  * Load Dining days.
  *
