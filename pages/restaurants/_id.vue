@@ -175,8 +175,8 @@ export default class RestaurantView extends Vue {
     console.log('fetchfetch');
     // payload set during static generation
     if (payload) {
-      console.log('payload');
-      console.log(payload);
+      console.info('payload');
+      //console.info(payload);
       // setup the store as it would be in SPA mode
       return store.commit('restaurant/setCurrentRestaurant', payload);
       //return { restaurant: context.payload };

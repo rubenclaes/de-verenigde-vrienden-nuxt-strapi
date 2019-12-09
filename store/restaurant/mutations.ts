@@ -41,12 +41,22 @@ export const mutations: MutationTree<RestaurantState> = {
     state.restaurants = [];
   },
 
+  /**
+   *  Sorting the Restaurant state
+   *
+   */
   sort: state => {
     state.restaurants.sort(function(a, b) {
       return a.id - b.id || a.name.localeCompare(b.name);
     });
   },
 
+  /**
+   * Set the current state
+   *
+   * @param {*} state
+   * @param {*} payload
+   */
   setCurrentRestaurant(state, payload) {
     state.currentRestaurant = payload;
   },
@@ -60,14 +70,6 @@ export const mutations: MutationTree<RestaurantState> = {
     Vue.set(state.status, 'success', success);
     console.info('success-->' + state.status.success);
   }
-
-  /*  setRestaurant(
-    state,
-    { id, restaurant }: { id: any; restaurant: Restaurant }
-  ) {
-    console.log(state.restaurants[id] + 'setting restaurant');
-    state.restaurants[id] = restaurant;
-  } */
 };
 
 export default mutations;
