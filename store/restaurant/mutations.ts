@@ -28,7 +28,7 @@ export const mutations: MutationTree<RestaurantState> = {
    * @param restaurant
    */
   add(state, restaurant: Restaurant) {
-    console.log('add restaurant to state');
+    console.info('add restaurant to state');
     state.restaurants.push(restaurant);
   },
 
@@ -37,7 +37,7 @@ export const mutations: MutationTree<RestaurantState> = {
    *
    */
   clear: state => {
-    console.log('clearing the state');
+    console.info('clearing the state');
     state.restaurants = [];
   },
 
@@ -52,16 +52,13 @@ export const mutations: MutationTree<RestaurantState> = {
   },
 
   setLoading(state, loading) {
-    //state.status.loading = !state.status.loading;
     Vue.set(state.status, 'loading', loading);
-    console.log('loading--> ' + state.status.loading);
+    console.info('loading--> ' + state.status.loading);
   },
 
   setSuccess(state, success) {
-    //state.status.loading = !state.status.loading;
     Vue.set(state.status, 'success', success);
-    //state.status.success = success;
-    console.log('success-->' + state.status.success);
+    console.info('success-->' + state.status.success);
   }
 
   /*  setRestaurant(

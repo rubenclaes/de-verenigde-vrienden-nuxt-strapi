@@ -25,7 +25,7 @@ export const actions: ActionTree<RestaurantState, RootState> = {
       console.error('error', err);
     });
 
-    console.info(news);
+    //console.info(news);
 
     commit('set', news);
     commit('setLoading', false);
@@ -46,7 +46,8 @@ export const actions: ActionTree<RestaurantState, RootState> = {
       console.error('error', err);
     });
 
-    console.info(article);
+    //console.info(article);
+
     commit('setCurrentRestaurant', {
       id: article.id,
       ...article
