@@ -632,11 +632,9 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator';
 
-import { counterVuexNamespace } from '~/store/counter/const';
 import { restaurantVuexNamespace } from '~/store/restaurant/const';
 
 import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
-
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 
 @Component({
@@ -644,7 +642,6 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate';
 
   components: {
     BaseButton: () => import('@/components/BaseButton.vue'),
-    BaseCheckbox: () => import('@/components/BaseCheckbox.vue'),
     Card: () => import('@/components/Card.vue'),
     Badge: () => import('@/components/Badge.vue'),
     Icon: () => import('@/components/Icon.vue'),

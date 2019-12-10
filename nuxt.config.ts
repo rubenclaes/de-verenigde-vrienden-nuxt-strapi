@@ -117,7 +117,8 @@ const config: Configuration = {
       '/',
       '/nieuws',
       '/dirigent',
-      '/geschiedenis'
+      '/geschiedenis',
+      '/drumband'
       /* {
         url: '/page/2',
         changefreq: 'daily',
@@ -159,7 +160,7 @@ const config: Configuration = {
   sentry: {
     dsn: process.env.SENTRY_DSN,
     publishRelease: true,
-    disabled: true,
+    disabled: IS_DEV,
     config: {} // Additional config
   },
 
