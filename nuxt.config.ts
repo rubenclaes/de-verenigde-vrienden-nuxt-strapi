@@ -11,7 +11,12 @@ const config: Configuration = {
   /*
    ** Headers of the page
    */
+
   head: {
+    htmlAttrs: {
+      lang: 'nl-BE'
+    },
+
     title: process.env.APP_ID,
 
     titleTemplate: '%s ← ' + process.env.APP_ID,
@@ -64,6 +69,7 @@ const config: Configuration = {
     '~/plugins/vee-validate',
     '~/plugins/click-outside.js',
     { src: '~/plugins/vuex-persist', ssr: false },
+    `~/plugins/currency-filter.js`,
     '~/plugins/axios-accessor.ts'
   ],
 

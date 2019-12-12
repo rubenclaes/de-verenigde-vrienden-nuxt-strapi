@@ -25,7 +25,7 @@
         style="padding-top: 5px"
       >
         <h6>
-          <strong>&euro; {{ dish.price }}</strong>
+          <strong>{{ dish.price | euro }}</strong>
         </h6>
       </div>
 
