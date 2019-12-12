@@ -9,17 +9,22 @@ import { CartState, Item } from './types';
 export const getters: GetterTree<CartState, RootState> = {
   //
   list: (state): Item[] => {
-    console.log('return list from store' + state.items);
+    console.info('return list from store' + state.items);
     return state.items;
   },
 
   cartProducts: (state, getters, rootState) => {
+    if (!state.items.length) return 0;
+
+    if (!rootState.diningday.diningDays.length) return 0;
+
     return state.items.map(({ id, quantity }) => {
       const product = rootState.diningday.diningDays[0].dishes.find(
         product => product.id === id
       );
       if (product)
         return {
+          id: product.id,
           title: product.name,
           price: product.price,
           quantity
@@ -28,6 +33,10 @@ export const getters: GetterTree<CartState, RootState> = {
   },
 
   cartTotalPrice: (state, getters, rootState, rootGetters) => {
+    if (!state.items.length) return 0;
+
+    if (!rootState.diningday.diningDays.length) return 0;
+
     return state.items.reduce(
       (total, item) =>
         total +

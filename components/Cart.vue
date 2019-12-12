@@ -1,9 +1,9 @@
 <!-- components/DishPreview.vue -->
 
 <template>
-  <div>
+  <div v-if="productsInCart() && productsInCart().length > 0">
     <li
-      v-for="(product) in productsInCart()"
+      v-for="product in productsInCart()"
       :key="product.id"
       class="list-group-item d-flex justify-content-between lh-condensed"
     >
@@ -12,7 +12,7 @@
       </div>
 
       <base-button
-        @click="quantity > 0 ? quantity-- : quantity = 0"
+        @click="quantity > 0 ? quantity-- : (quantity = 0)"
         size="sm"
         type="secondary"
         icon="fa fa-minus"
@@ -20,7 +20,14 @@
         icon-only
       ></base-button>
       {{ product.quantity }}
-      <base-button @click="quantity++" size="sm" type="primary" icon="fa fa-plus" rounded icon-only></base-button>
+      <base-button
+        @click="quantity++"
+        size="sm"
+        type="primary"
+        icon="fa fa-plus"
+        rounded
+        icon-only
+      ></base-button>
       <span class="text-muted">&euro; {{ product.price }}</span>
       <base-button
         @click="removeFromCart(product)"
@@ -31,6 +38,12 @@
       ></base-button>
     </li>
   </div>
+  <li
+    v-else
+    class="list-group-item d-flex justify-content-between lh-condensed"
+  >
+    Winkelmandje is leeg. 😔
+  </li>
 </template>
 
 <script lang="ts">
@@ -54,6 +67,17 @@ export default class Cart extends Vue {
 
   productsInCart() {
     return this.$store.getters['cart/cartProducts'];
+  }
+
+  /**
+   * We use created here instead of mounted because it doesn’t need to be rerun if we leave this layout and come back to it.
+   */
+  async created() {
+    if (this.$store.getters['diningday/list'].length === 0) {
+      return await this.$store.dispatch('diningday/fetchData');
+    } else {
+      console.info('diningday Store not empty --> fetching data from store');
+    }
   }
 }
 </script>

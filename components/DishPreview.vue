@@ -20,7 +20,10 @@
       </h4>
     </div>
     <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
-      <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
+      <div
+        class="col-3 col-sm-3 col-md-6 text-md-right"
+        style="padding-top: 5px"
+      >
         <h6>
           <strong>&euro; {{ dish.price }}</strong>
         </h6>

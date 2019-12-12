@@ -7,7 +7,7 @@ import { RootState } from '../type';
  */
 export const getters: GetterTree<DiningDayState, RootState> = {
   list: (state): DiningDay[] => {
-    console.log('return list from store' + state.diningDays);
+    console.info('return list from store' + state.diningDays);
     return state.diningDays;
   },
 
@@ -19,7 +19,8 @@ export const getters: GetterTree<DiningDayState, RootState> = {
   },
 
   dishesById: state => (id: number) => {
-    return state.diningDays[0].dishes.find(dishes => dishes.id === id);
+    if (state.diningDays[0])
+      return state.diningDays[0].dishes.find(dishes => dishes.id === id);
   },
 
   loading(state) {

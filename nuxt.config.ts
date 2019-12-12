@@ -55,7 +55,7 @@ const config: Configuration = {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    { src: '~/plugins/argon-kit.js', mode: 'client' }, //VueLazyLoad
+    { src: '~/plugins/argon-kit.js', mode: 'client' }, // VueLazyLoad inside
     { src: '~/plugins/aos.js', mode: 'client' },
     { src: '~/plugins/vue-toasted.js', mode: 'client' },
     '~plugins/vue-scrollto.js',
@@ -63,6 +63,7 @@ const config: Configuration = {
     /* '~/plugins/vue-lazysizes.client.js', */
     '~/plugins/vee-validate',
     '~/plugins/click-outside.js',
+    { src: '~/plugins/vuex-persist', ssr: false },
     '~/plugins/axios-accessor.ts'
   ],
 
@@ -82,7 +83,6 @@ const config: Configuration = {
     'bootstrap-vue/nuxt',
 
     'vue-scrollto/nuxt',
-
     '@nuxtjs/markdownit',
     '@bazzite/nuxt-optimized-images',
     '@nuxtjs/google-analytics',
@@ -90,6 +90,9 @@ const config: Configuration = {
     '@nuxtjs/sitemap'
   ],
 
+  /*
+   ** bootstrapVue module configuration
+   */
   bootstrapVue: {
     componentPlugins: [
       'Badge',
@@ -104,6 +107,9 @@ const config: Configuration = {
     bootstrapVueCSS: false // Or `bvCSS: false`
   },
 
+  /*
+   ** sitemap module configuration
+   */
   sitemap: {
     hostname: process.env.HOSTNAME,
     gzip: true,
@@ -138,6 +144,16 @@ const config: Configuration = {
       sendHitTask: !IS_DEV
     },
     set: [{ field: 'anonymizeIp', value: true }]
+  },
+
+  /*
+   ** @nuxtjs/pwa module configuration
+   */
+  pwa: {
+    workbox: {
+      /* workbox options */
+      offlineAnalytics: true
+    }
   },
 
   /*
