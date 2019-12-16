@@ -317,6 +317,14 @@
               >logout</base-button
             >
             <base-button
+              @click="auth0()"
+              size="sm"
+              type="danger"
+              icon="fa fa-trash"
+              outline
+              >auth0</base-button
+            >
+            <base-button
               @click="post()"
               size="sm"
               type="danger"
@@ -353,8 +361,6 @@ import { Component, Vue, namespace } from 'nuxt-property-decorator';
 
 import { cartVuexNamespace } from '~/store/cart/const';
 import { Item } from '../store/cart/types';
-
-import { Auth } from '@nuxtjs/auth';
 
 //import { stripeKey, stripeOptions } from './stripeConfig.json';
 //import { Card, createToken } from 'vue-stripe-elements-plus';
@@ -398,8 +404,46 @@ export default class Eetdag extends Vue {
     return this.$store.getters['cart/cartTotalPrice'];
   }
 
-  logout() {
-    this.$auth.logout();
+  logout() {}
+
+  auth0() {
+    var bodyFormData = new FormData();
+    bodyFormData.set('grant_type', 'client_credentials');
+    bodyFormData.set('client_id', 'mbtZb23JrNMR4jNFFIYkciWL3AtuEk3I');
+    bodyFormData.set(
+      'client_secret',
+      'OWCagftZ5H7BsflaJW3Or8VHHbFNlJq-dX9al6R1d8vwViMKH_R-M1aLzpRXgsRP'
+    );
+    bodyFormData.set(
+      'audience',
+      'https://strapi-de-verenigde-vrienden.herokuapp.com/orders'
+    );
+
+    const options = {
+      headers: { 'content-type': 'application/json' }
+    };
+
+    this.$axios
+      .post(
+        'https://dev-xx5zris5.auth0.com/oauth/token',
+        {
+          client_id: 'mbtZb23JrNMR4jNFFIYkciWL3AtuEk3I',
+          client_secret:
+            'OWCagftZ5H7BsflaJW3Or8VHHbFNlJq-dX9al6R1d8vwViMKH_R-M1aLzpRXgsRP',
+          audience: 'https://strapi-de-verenigde-vrienden.herokuapp.com/orders',
+          grant_type: 'client_credentials'
+        },
+
+        options
+      )
+      .then(function(response) {
+        //handle success
+        console.log(response);
+      })
+      .catch(function(response) {
+        //handle error
+        console.log(response);
+      });
   }
 
   post() {
@@ -408,36 +452,7 @@ export default class Eetdag extends Vue {
     });
   }
 
-  async checkout() {
-    try {
-      console.log('Logging in...');
-      if (this.$auth.loggedIn) {
-        console.log('Successfully Logged In');
-        this.$router.push('/');
-      }
-      await this.$auth
-        .loginWith('local', {
-          data: {
-            identifier: 'ClaesRuben',
-            password: `Nbaster12'`
-          }
-        })
-        .then(() => {
-          console.log('Successfully Logged In');
-          this.$axios
-            .get('https://strapi-de-verenigde-vrienden.herokuapp.com/orders')
-            .then(res => {
-              console.log(res.data);
-            });
-        })
-        .catch(e => {
-          console.log('Failed Logging In');
-        });
-    } catch (e) {
-      console.log('Username or Password wrong');
-      console.log('Error: ', e);
-    }
-  }
+  async checkout() {}
 
   numberOfItems() {
     return this.$store.getters['cart/numberOfItems'];

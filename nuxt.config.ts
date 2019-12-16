@@ -82,7 +82,6 @@ const config: Configuration = {
    */
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/auth',
     '@nuxtjs/onesignal',
     '@nuxtjs/pwa',
     '@nuxtjs/sentry',
@@ -197,27 +196,6 @@ const config: Configuration = {
 
       welcomeNotification: {
         disable: true
-      }
-    }
-  },
-
-  /*
-   ** Auth module configuration
-   ** See https://auth.nuxtjs.org/guide/setup.html
-   */
-  auth: {
-    // Options
-    strategies: {
-      local: {
-        endpoints: {
-          login: {
-            url: '/auth/local',
-            method: 'post',
-            propertyName: 'jwt'
-          },
-          logout: { url: '/api/auth/logout', method: 'post' },
-          user: { url: '/users/me', method: 'get', propertyName: 'user' }
-        }
       }
     }
   },

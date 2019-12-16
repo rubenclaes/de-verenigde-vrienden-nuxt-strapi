@@ -28,8 +28,7 @@
       "@types/jest",
       "@types/node",
       "@nuxt/types",
-      "@nuxtjs/axios",
-      "@types/nuxtjs__auth"
+      "@nuxtjs/axios"
     ]
   },
   "exclude": ["node_modules"]
