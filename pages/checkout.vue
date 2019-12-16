@@ -379,7 +379,7 @@ import { Item } from '../store/cart/types';
     Cart: () => import('@/components/Cart.vue')
   }
 })
-export default class Eetdag extends Vue {
+export default class CheckoutPage extends Vue {
   private title = 'Checkout';
 
   head() {

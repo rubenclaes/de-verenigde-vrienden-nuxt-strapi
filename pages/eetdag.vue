@@ -76,7 +76,7 @@ import { diningDayVuexNamespace } from '~/store/diningday/const';
     DishList: () => import('@/components/DishList.vue')
   }
 })
-export default class Eetdag extends Vue {
+export default class EetdagPage extends Vue {
   private title = 'Eetdag';
 
   @diningDayVuexNamespace.Getter('loading')

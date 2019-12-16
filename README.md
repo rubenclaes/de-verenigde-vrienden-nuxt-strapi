@@ -23,11 +23,4 @@ $ npm run generate
 
 ## Env file structure
 
-APP_ID=
-SENTRY_DSN=
-ONE_SIGNAL_ID=
-GOOGLE_ANALYTICS=
-STRIPE_SECRET_KEY=
-API_URL=
-API_PREFIX=/api
-HOSTNAME=
+see .sample.env file

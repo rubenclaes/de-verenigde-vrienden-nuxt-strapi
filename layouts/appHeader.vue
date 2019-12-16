@@ -127,7 +127,7 @@
         <template slot="message">
           Deze website gebruikt cookies voor gebruikersanalyses en verbeteringen
           op de pagina's
-          <a class="btn btn-link" href="#">Privacybeleid</a>
+          <a class="btn btn-link" href="privacy">Privacybeleid</a>
         </template>
         <template slot="button">
           <button class="btn btn-outline-default">Begrepen</button>

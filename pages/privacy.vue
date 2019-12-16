@@ -18,14 +18,7 @@
           <div class="px-4">
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2 mb-5">
-                <div class="card-profile-image">
-                  <a :href="'/img/home/dirigent3.JPG'">
-                    <img
-                      v-lazy="'/img/home/dirigent3.JPG'"
-                      class="rounded-circle"
-                    />
-                  </a>
-                </div>
+                <div class="card-profile-image"></div>
               </div>
               <div
                 class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center"
@@ -51,7 +44,7 @@
             </div>
 
             <div class="text-center mt-5">
-              <h3>KEVIN ABSILLIS</h3>
+              <h3>Privacy</h3>
               <div class="h6 font-weight-300"></div>
             </div>
 
@@ -112,8 +105,8 @@ import { Component, Vue, namespace } from 'nuxt-property-decorator';
     BaseInput: () => import('@/components/BaseInput.vue')
   }
 })
-export default class DirigentPage extends Vue {
-  private title = 'Dirigent';
+export default class PrivacyPage extends Vue {
+  private title = 'Privacy';
 
   head() {
     return {

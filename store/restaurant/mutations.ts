@@ -74,7 +74,7 @@ export const mutations: MutationTree<RestaurantState> = {
 
   setSuccess(state, success) {
     Vue.set(state.status, 'success', success);
-    console.info('successfully fetched News -->' + state.status.success);
+    console.info('successfully fetched News --> ' + state.status.success);
   }
 };
 
