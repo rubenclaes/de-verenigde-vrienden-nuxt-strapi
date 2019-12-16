@@ -2,7 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/90ab3ac0-3d06-4126-9576-7b9523099bfe/deploy-status)](https://app.netlify.com/sites/admiring-panini-652d81/deploys)
 
-> A Nuxt.js project with strapi
+> A Nuxt.js static site project with strapi backend (JAMSTACK)
 
 ## Build Setup
 
@@ -21,4 +21,13 @@ $ npm start
 $ npm run generate
 ```
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+## Env file structure
+
+APP_ID=
+SENTRY_DSN=
+ONE_SIGNAL_ID=
+GOOGLE_ANALYTICS=
+STRIPE_SECRET_KEY=
+API_URL=
+API_PREFIX=/api
+HOSTNAME=
