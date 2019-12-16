@@ -6,7 +6,7 @@ import { CounterState } from './types';
  */
 export const mutations: MutationTree<CounterState> = {
   increment: state => {
-    console.log('incrementing');
+    console.info('incrementing');
     state.count++;
   }
 };

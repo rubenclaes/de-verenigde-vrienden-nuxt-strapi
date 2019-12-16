@@ -28,8 +28,7 @@ export const actions: ActionTree<RestaurantState, RootState> = {
         commit('setLoading', false);
         commit('setSuccess', true);
         commit('set', news);
-        console.info(`News Articles:`);
-        console.info(news);
+        console.info(`News Articles: %o`, news);
       })
       .catch(err => {
         console.error('error', err);

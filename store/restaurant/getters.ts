@@ -7,7 +7,7 @@ import { RootState } from '../type';
  */
 export const getters: GetterTree<RestaurantState, RootState> = {
   list: (state): Restaurant[] => {
-    console.log('return list from store' + state.restaurants);
+    console.info('return list from store' + state.restaurants);
     return state.restaurants;
   },
 

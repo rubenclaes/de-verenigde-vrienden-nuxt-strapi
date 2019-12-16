@@ -11,7 +11,7 @@ export const mutations: MutationTree<DiningDayState> = {
   },
 
   set(state, diningDays: DiningDay[]) {
-    console.log(`setting diningdays ${diningDays}`);
+    console.info(`setting diningdays %o`, diningDays);
     state.diningDays = diningDays;
   },
 
@@ -22,7 +22,7 @@ export const mutations: MutationTree<DiningDayState> = {
    * @param diningDay
    */
   add(state, diningDay: DiningDay) {
-    console.log('add diningDay to the store state');
+    console.info('add diningDay to the store state');
     state.diningDays.push(diningDay);
   },
 
@@ -31,7 +31,7 @@ export const mutations: MutationTree<DiningDayState> = {
    *
    */
   clear: state => {
-    console.log('clearing store');
+    console.info('clearing store');
     state.diningDays = [];
   },
 
@@ -48,14 +48,14 @@ export const mutations: MutationTree<DiningDayState> = {
   setLoading(state, loading) {
     //state.status.loading = !state.status.loading;
     Vue.set(state.status, 'loading', loading);
-    console.log('loading diningdays...--> ' + state.status.loading);
+    console.info('loading diningdays...--> ' + state.status.loading);
   },
 
   setSuccess(state, success) {
     //state.status.loading = !state.status.loading;
     Vue.set(state.status, 'success', success);
     //state.status.success = success;
-    console.log('successfully fetched diningdays -->' + state.status.success);
+    console.info('successfully fetched diningdays -->' + state.status.success);
   }
 
   /*  setDiningDay(
