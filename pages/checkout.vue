@@ -1,17 +1,5 @@
 <template>
-  <div class="profile-page">
-    <section class="section section-shaped my-0">
-      <div class="shape shape-style-1 bg-gradient-default">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </section>
+  <div>
     <section class="section section-lg pt-lg-0">
       <div class="container pt-lg-md">
         <div class="row">
@@ -23,10 +11,7 @@
             <ul class="list-group mb-3">
               <cart></cart>
 
-              <li
-                v-if="false"
-                class="list-group-item d-flex justify-content-between bg-light"
-              >
+              <li v-if="false" class="list-group-item d-flex justify-content-between bg-light">
                 <div class="text-success">
                   <h6 class="my-0">Promo code</h6>
                   <small>EXAMPLECODE</small>
@@ -44,72 +29,30 @@
             <form class="needs-validation" novalidate>
               <div class="row">
                 <div class="col-md-6 mb-3">
-                  <label for="firstName">First name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="firstName"
-                    placeholder
-                    value
-                    required
-                  />
-                  <div class="invalid-feedback">
-                    Valid first name is required.
-                  </div>
+                  <label for="firstName">Voornaam</label>
+                  <input type="text" class="form-control" id="firstName" placeholder value required />
+                  <div class="invalid-feedback">Valid first name is required.</div>
                 </div>
                 <div class="col-md-6 mb-3">
-                  <label for="lastName">Last name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="lastName"
-                    placeholder
-                    value
-                    required
-                  />
-                  <div class="invalid-feedback">
-                    Valid last name is required.
-                  </div>
-                </div>
-              </div>
-
-              <div class="mb-3">
-                <label for="username">Username</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">@</span>
-                  </div>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="username"
-                    placeholder="Username"
-                    required
-                  />
-                  <div class="invalid-feedback" style="width: 100%;">
-                    Your username is required.
-                  </div>
+                  <label for="lastName">Achternaam</label>
+                  <input type="text" class="form-control" id="lastName" placeholder value required />
+                  <div class="invalid-feedback">Valid last name is required.</div>
                 </div>
               </div>
 
               <div class="mb-3">
                 <label for="email">
-                  Email
+                  E-mail
                   <span class="text-muted">(Optional)</span>
                 </label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  placeholder="you@example.com"
-                />
-                <div class="invalid-feedback">
-                  Please enter a valid email address for shipping updates.
-                </div>
+                <input type="email" class="form-control" id="email" placeholder="you@example.com" />
+                <div
+                  class="invalid-feedback"
+                >Please enter a valid email address for shipping updates.</div>
               </div>
 
               <div class="mb-3">
-                <label for="address">Address</label>
+                <label for="address">Adres</label>
                 <input
                   type="text"
                   class="form-control"
@@ -117,104 +60,30 @@
                   placeholder="1234 Main St"
                   required
                 />
-                <div class="invalid-feedback">
-                  Please enter your shipping address.
-                </div>
-              </div>
-
-              <div class="mb-3">
-                <label for="address2">
-                  Address 2
-                  <span class="text-muted">(Optional)</span>
-                </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="address2"
-                  placeholder="Apartment or suite"
-                />
+                <div class="invalid-feedback">Please enter your shipping address.</div>
               </div>
 
               <div class="row">
                 <div class="col-md-5 mb-3">
-                  <label for="country">Country</label>
-                  <select
-                    class="custom-select d-block w-100"
-                    id="country"
-                    required
-                  >
-                    <option value>Choose...</option>
-                    <option>United States</option>
+                  <label for="country">Land</label>
+                  <select class="custom-select d-block w-100" id="country" required>
+                    <option selected>België</option>
                   </select>
-                  <div class="invalid-feedback">
-                    Please select a valid country.
-                  </div>
+                  <div class="invalid-feedback">Please select a valid country.</div>
                 </div>
-                <div class="col-md-4 mb-3">
-                  <label for="state">State</label>
-                  <select
-                    class="custom-select d-block w-100"
-                    id="state"
-                    required
-                  >
-                    <option value>Choose...</option>
-                    <option>California</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    Please provide a valid state.
-                  </div>
-                </div>
+
                 <div class="col-md-3 mb-3">
-                  <label for="zip">Zip</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="zip"
-                    placeholder
-                    required
-                  />
+                  <label for="zip">Postcode</label>
+                  <input type="text" class="form-control" id="zip" placeholder required />
                   <div class="invalid-feedback">Zip code required.</div>
                 </div>
               </div>
-              <hr class="mb-4" />
-              <div class="custom-control custom-checkbox">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="same-address"
-                />
-                <label class="custom-control-label" for="same-address"
-                  >Shipping address is the same as my billing address</label
-                >
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="save-info"
-                />
-                <label class="custom-control-label" for="save-info"
-                  >Save this information for next time</label
-                >
-              </div>
+
               <hr class="mb-4" />
 
-              <h4 class="mb-3">Payment</h4>
+              <h4 class="mb-3">Betaling</h4>
 
               <div class="d-block my-3">
-                <div class="custom-control custom-radio">
-                  <input
-                    id="credit"
-                    name="paymentMethod"
-                    type="radio"
-                    class="custom-control-input"
-                    checked
-                    required
-                  />
-                  <label class="custom-control-label" for="credit"
-                    >Credit card</label
-                  >
-                </div>
                 <div class="custom-control custom-radio">
                   <input
                     id="debit"
@@ -223,115 +92,30 @@
                     class="custom-control-input"
                     required
                   />
-                  <label class="custom-control-label" for="debit"
-                    >Debit card</label
-                  >
-                </div>
-                <div class="custom-control custom-radio">
-                  <input
-                    id="paypal"
-                    name="paymentMethod"
-                    type="radio"
-                    class="custom-control-input"
-                    required
-                  />
-                  <label class="custom-control-label" for="paypal"
-                    >PayPal</label
-                  >
+                  <label class="custom-control-label" for="debit">Debit card</label>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="cc-name">Name on card</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="cc-name"
-                    placeholder
-                    required
-                  />
-                  <small class="text-muted"
-                    >Full name as displayed on card</small
-                  >
+                  <input type="text" class="form-control" id="cc-name" placeholder required />
+                  <small class="text-muted">Full name as displayed on card</small>
                   <div class="invalid-feedback">Name on card is required</div>
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="cc-number">Credit card number</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="cc-number"
-                    placeholder
-                    required
-                  />
-                  <div class="invalid-feedback">
-                    Credit card number is required
-                  </div>
+                  <input type="text" class="form-control" id="cc-number" placeholder required />
+                  <div class="invalid-feedback">Credit card number is required</div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-3 mb-3">
-                  <label for="cc-expiration">Expiration</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="cc-expiration"
-                    placeholder
-                    required
-                  />
-                  <div class="invalid-feedback">Expiration date required</div>
-                </div>
-                <div class="col-md-3 mb-3">
-                  <label for="cc-cvv">CVV</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="cc-cvv"
-                    placeholder
-                    required
-                  />
-                  <div class="invalid-feedback">Security code required</div>
-                </div>
-              </div>
+
               <hr class="mb-4" />
-              <button
-                class="btn btn-primary btn-lg btn-block"
-                @click="checkout()"
-              >
-                Continue to checkout
-              </button>
+              <button class="btn btn-primary btn-lg btn-block" @click="checkout()">Afrekenen</button>
             </form>
-            <base-button
-              @click="checkout()"
-              size="sm"
-              type="danger"
-              icon="fa fa-trash"
-              outline
-            ></base-button>
-            <base-button
-              @click="logout()"
-              size="sm"
-              type="danger"
-              icon="fa fa-trash"
-              outline
-              >logout</base-button
-            >
-            <base-button
-              @click="auth0()"
-              size="sm"
-              type="danger"
-              icon="fa fa-trash"
-              outline
-              >auth0</base-button
-            >
-            <base-button
-              @click="post()"
-              size="sm"
-              type="danger"
-              icon="fa fa-trash"
-              outline
-              >post</base-button
-            >
+            <base-button @click="checkout()" size="sm" type="danger" icon="fa fa-trash" outline></base-button>
+            <base-button @click="logout()" size="sm" type="danger" icon="fa fa-trash" outline>logout</base-button>
+            <base-button @click="auth0()" size="sm" type="danger" icon="fa fa-trash" outline>auth0</base-button>
+            <base-button @click="post()" size="sm" type="danger" icon="fa fa-trash" outline>post</base-button>
           </div>
         </div>
 
@@ -366,7 +150,7 @@ import { Item } from '../store/cart/types';
 //import { Card, createToken } from 'vue-stripe-elements-plus';
 
 @Component({
-  layout: 'appHeader',
+  layout: 'appColor',
 
   components: {
     BaseButton: () => import('@/components/BaseButton.vue'),

@@ -1,29 +1,13 @@
 <template>
   <div>
-    <section class="section section-shaped section-lg my-0">
-      <div class="shape shape-style-1 shape-skew bg-gradient-default">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </section>
-    <section class="section section-lg pt-lg-0 mt--100">
+    <section class="section section-lg pt-lg-0">
       <div class="container pt-lg-md">
         <div class="row justify-content-center">
           <div class="col-lg-10">
             <!-- start DishList -->
             <div v-if="loading">
               <div class="text-center">
-                <b-spinner
-                  style="width: 3rem; height: 3rem;"
-                  label="Large Spinner"
-                  type="grow"
-                ></b-spinner>
+                <b-spinner style="width: 3rem; height: 3rem;" label="Large Spinner" type="grow"></b-spinner>
               </div>
             </div>
 
@@ -31,12 +15,7 @@
               <client-only>
                 <dish-list></dish-list>
                 <div class="text-center">
-                  <router-link
-                    to="/checkout"
-                    tag="a"
-                    class="btn btn-primary my-4"
-                    >Ik ga bestellen</router-link
-                  >
+                  <router-link to="/checkout" tag="a" class="btn btn-primary my-4">Ik ga bestellen</router-link>
                 </div>
               </client-only>
             </template>
@@ -69,7 +48,7 @@ import { diningDayVuexNamespace } from '~/store/diningday/const';
 //import { Card, createToken } from 'vue-stripe-elements-plus';
 
 @Component({
-  layout: 'appHeader',
+  layout: 'appColor',
 
   components: {
     //Card
