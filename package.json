@@ -22,7 +22,7 @@
     "@nuxt/typescript-runtime": "^0.2.10",
     "@nuxt/vue-app": "^2.10.2",
     "@nuxtjs/axios": "^5.8.0",
-    "@nuxtjs/google-analytics": "^2.2.1",
+    "@nuxtjs/google-analytics": "^2.2.2",
     "@nuxtjs/markdownit": "^1.2.7",
     "@nuxtjs/onesignal": "^3.0.0-beta.16",
     "@nuxtjs/pwa": "^2.6.0",
