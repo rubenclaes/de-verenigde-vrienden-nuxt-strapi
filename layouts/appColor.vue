@@ -68,6 +68,9 @@
             <router-link class="nav-link nav-link-icon" to="/checkout">
               <i class="fa fa-shopping-cart"></i>
               <span class="nav-link-inner--text d-lg-none">Winkelmandje</span>
+              <client-only>
+                <badge type="white" rounded>{{numberOfItems()}}</badge>
+              </client-only>
             </router-link>
           </li>
           <li class="nav-item">
@@ -219,6 +222,8 @@ import IfBot from 'vue-if-bot/dist/vue-if-bot.es';
 
 import { Component, Vue, Prop } from 'vue-property-decorator';
 
+import { cartVuexNamespace } from '~/store/cart/const';
+
 @Component({
   components: {
     BaseNav,
@@ -228,6 +233,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
     BackToTop,
     OfflineDetection,
     IfBot,
+    Badge: () => import('@/components/Badge.vue'),
     Consent
   }
 })
@@ -241,6 +247,9 @@ export default class extends Vue {
   }
   goTocontact() {
     this.$router.push({ name: 'index', hash: '#contact' });
+  }
+  numberOfItems() {
+    return this.$store.getters['cart/numberOfItems'];
   }
 
   /*   mounted() {

@@ -26,37 +26,23 @@
             </router-link>
           </li>
           <base-dropdown class="nav-item" menu-classes="dropdown-menu-xl">
-            <a
-              slot="title"
-              href="#"
-              class="nav-link"
-              data-toggle="dropdown"
-              role="button"
-            >
+            <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
               <i class="ni ni-bold-down d-lg-none"></i>
               <span class="nav-link-inner--text">Harmonie</span>
             </a>
             <div class="dropdown-menu-inner">
-              <router-link
-                to="/dirigent"
-                class="media d-flex align-items-center"
-              >
+              <router-link to="/dirigent" class="media d-flex align-items-center">
                 <div class="media-body ml-3">
                   <h6 class="heading text-success mb-md-1">Dirigent</h6>
-                  <p class="description d-none d-md-inline-block mb-0">
-                    Lees meer over onze dirigent.
-                  </p>
+                  <p class="description d-none d-md-inline-block mb-0">Lees meer over onze dirigent.</p>
                 </div>
               </router-link>
-              <router-link
-                to="/geschiedenis"
-                class="media d-flex align-items-center"
-              >
+              <router-link to="/geschiedenis" class="media d-flex align-items-center">
                 <div class="media-body ml-3">
                   <h5 class="heading text-success mb-md-1">Geschiedenis</h5>
-                  <p class="description d-none d-md-inline-block mb-0">
-                    Lees hoe onze harmonie is ontstaan.
-                  </p>
+                  <p
+                    class="description d-none d-md-inline-block mb-0"
+                  >Lees hoe onze harmonie is ontstaan.</p>
                 </div>
               </router-link>
             </div>
@@ -82,6 +68,9 @@
             <router-link class="nav-link nav-link-icon" to="/checkout">
               <i class="fa fa-shopping-cart"></i>
               <span class="nav-link-inner--text d-lg-none">Winkelmandje</span>
+              <client-only>
+                <badge type="white" rounded>{{numberOfItems()}}</badge>
+              </client-only>
             </router-link>
           </li>
           <li class="nav-item">
@@ -127,7 +116,10 @@
         <template slot="message">
           Deze website gebruikt cookies voor gebruikersanalyses en verbeteringen
           op de pagina's
-          <a class="btn btn-link" href="privacy">Privacybeleid</a>
+          <a
+            class="btn btn-link"
+            href="privacy"
+          >Privacybeleid</a>
         </template>
         <template slot="button">
           <button class="btn btn-outline-default">Begrepen</button>
@@ -164,16 +156,12 @@
               class="text-primary font-weight-light mb-2"
               data-aos="fade-right"
               data-aos-delay="150"
-            >
-              Begint het al een beetje te kriebelen?
-            </h3>
+            >Begint het al een beetje te kriebelen?</h3>
             <h4
               class="mb-0 font-weight-light"
               data-aos="fade-right"
               data-aos-delay="250"
-            >
-              Volg ons ook op social media!
-            </h4>
+            >Volg ons ook op social media!</h4>
           </div>
           <div class="col-lg-6 text-lg-center btn-wrapper">
             <a
@@ -202,19 +190,13 @@
                 <router-link to="/" class="nav-link">Home</router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/geschiedenis" class="nav-link"
-                  >Geschiedenis</router-link
-                >
+                <router-link to="/geschiedenis" class="nav-link">Geschiedenis</router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/dirigent" class="nav-link"
-                  >Dirigent</router-link
-                >
+                <router-link to="/dirigent" class="nav-link">Dirigent</router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/drumband" class="nav-link"
-                  >Drumband</router-link
-                >
+                <router-link to="/drumband" class="nav-link">Drumband</router-link>
               </li>
               <li class="nav-item" @click="goTocontact()">
                 <span class="nav-link" style="cursor:pointer">Contact</span>
@@ -240,6 +222,8 @@ import IfBot from 'vue-if-bot/dist/vue-if-bot.es';
 
 import { Component, Vue, Prop } from 'vue-property-decorator';
 
+import { cartVuexNamespace } from '~/store/cart/const';
+
 @Component({
   components: {
     BaseNav,
@@ -249,6 +233,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
     BackToTop,
     OfflineDetection,
     IfBot,
+    Badge: () => import('@/components/Badge.vue'),
     Consent
   }
 })
@@ -262,6 +247,10 @@ export default class extends Vue {
   }
   goTocontact() {
     this.$router.push({ name: 'index', hash: '#contact' });
+  }
+
+  numberOfItems() {
+    return this.$store.getters['cart/numberOfItems'];
   }
 
   /*   mounted() {

@@ -105,7 +105,9 @@ const config: Configuration = {
       'BreadcrumbPlugin',
       'CarouselPlugin',
       'ImagePlugin',
-      'SpinnerPlugin'
+      'SpinnerPlugin',
+      'InputGroupPlugin',
+      'FormInputPlugin'
     ],
     directivePlugins: ['VBPopoverPlugin', 'VBTooltipPlugin'],
     bootstrapCSS: false, // Or `css: false`
