@@ -130,7 +130,7 @@
                       slot="img"
                       class="d-block img-fluid w-100"
                       height="480"
-                      data-srcset="/img/home/t/jeugdorkest2-min.jpeg"
+                      data-srcset="/img/home/t/jeugdorkest2-min.png"
                     />
                   </template>
                 </b-carousel-slide>
