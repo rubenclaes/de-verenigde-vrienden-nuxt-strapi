@@ -113,11 +113,12 @@
                 <b-carousel-slide>
                   <template v-slot:img>
                     <img
-                      v-lazy="'/img/home/t/jeugdorkest-min.jpeg'"
+                      v-lazy="'/img/home/t/jeugdorkest-min.webp'"
                       alt="jeugdorkest1"
                       slot="img"
                       class="d-block img-fluid w-100"
                       height="480"
+                      data-srcset="/img/home/t/jeugdorkest-min.jpeg"
                     />
                   </template>
                 </b-carousel-slide>
@@ -129,6 +130,7 @@
                       slot="img"
                       class="d-block img-fluid w-100"
                       height="480"
+                      data-srcset="/img/home/t/jeugdorkest2-min.jpeg"
                     />
                   </template>
                 </b-carousel-slide>
@@ -140,6 +142,7 @@
                       slot="img"
                       class="d-block img-fluid w-100"
                       height="480"
+                      data-srcset="/img/home/t/jeugdorkest3-min.jpeg"
                     />
                   </template>
                 </b-carousel-slide>
@@ -151,6 +154,7 @@
                       slot="img"
                       class="d-block img-fluid w-100"
                       height="480"
+                      data-srcset="/img/home/t/jeugdorkest4-min.jpeg"
                     />
                   </template>
                 </b-carousel-slide>
@@ -162,6 +166,7 @@
                       slot="img"
                       class="d-block img-fluid w-100"
                       height="480"
+                      data-srcset="/img/home/t/jeugdorkest5-min.jpeg"
                     />
                   </template>
                 </b-carousel-slide>
@@ -320,11 +325,12 @@
                 <b-carousel-slide>
                   <template v-slot:img>
                     <img
-                      v-lazy="'/img/home/t/jazz-min.JPG'"
+                      v-lazy="'/img/home/t/jazz-min.webp'"
                       alt="jazz"
                       slot="img"
                       class="d-block img-fluid w-100"
                       height="480"
+                      data-srcset="/img/home/t/jazz-min.JPG"
                     />
                   </template>
                 </b-carousel-slide>
