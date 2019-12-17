@@ -112,72 +112,57 @@
                 <!-- Text slides with image -->
                 <b-carousel-slide>
                   <template v-slot:img>
-                    <picture>
-                      <source srcset="/img/home/t/jeugdorkest-min.webp" type="image/webp" />
-                      <img
-                        src="/img/home/t/jeugdorkest-min.jpeg"
-                        alt="jeugdorkest1"
-                        slot="img"
-                        class="d-block img-fluid w-100"
-                        height="480"
-                      />
-                    </picture>
+                    <img
+                      v-lazy="'/img/home/t/jeugdorkest-min.jpeg'"
+                      alt="jeugdorkest1"
+                      slot="img"
+                      class="d-block img-fluid w-100"
+                      height="480"
+                    />
                   </template>
                 </b-carousel-slide>
                 <b-carousel-slide>
                   <template v-slot:img>
-                    <picture>
-                      <source srcset="/img/home/t/jeugdorkest2-min.webp" type="image/webp" />
-                      <img
-                        src="/img/home/t/jeugdorkest2-min.png"
-                        alt="jeugdorkest2"
-                        slot="img"
-                        class="d-block img-fluid w-100"
-                        height="480"
-                      />
-                    </picture>
+                    <img
+                      v-lazy="'/img/home/t/jeugdorkest2-min.webp'"
+                      alt="jeugdorkest2"
+                      slot="img"
+                      class="d-block img-fluid w-100"
+                      height="480"
+                    />
                   </template>
                 </b-carousel-slide>
                 <b-carousel-slide>
                   <template v-slot:img>
-                    <picture>
-                      <source srcset="/img/home/t/jeugdorkest3-min.webp" type="image/webp" />
-                      <img
-                        src="/img/home/t/jeugdorkest3-min.jpeg"
-                        alt="jeugdorkest3"
-                        slot="img"
-                        class="d-block img-fluid w-100"
-                        height="480"
-                      />
-                    </picture>
+                    <img
+                      v-lazy="'/img/home/t/jeugdorkest3-min.webp'"
+                      alt="jeugdorkest3"
+                      slot="img"
+                      class="d-block img-fluid w-100"
+                      height="480"
+                    />
                   </template>
                 </b-carousel-slide>
                 <b-carousel-slide>
                   <template v-slot:img>
-                    <picture>
-                      <source srcset="/img/home/t/jeugdorkest4-min.webp" type="image/webp" />
-                      <img
-                        src="/img/home/t/jeugdorkest4-min.jpeg"
-                        alt="jeugorkest4"
-                        slot="img"
-                        class="d-block img-fluid w-100"
-                        height="480"
-                      />
-                    </picture>
+                    <img
+                      v-lazy="'/img/home/t/jeugdorkest4-min.webp'"
+                      alt="jeugorkest4"
+                      slot="img"
+                      class="d-block img-fluid w-100"
+                      height="480"
+                    />
                   </template>
                 </b-carousel-slide>
                 <b-carousel-slide>
                   <template v-slot:img>
-                    <picture>
-                      <source srcset="/img/home/t/jeugdorkest5-min.webp" type="image/webp" />
-                      <img
-                        src="/img/home/t/jeugdorkest5-min.jpeg"
-                        alt="jeugorkest5"
-                        slot="img"
-                        class="d-block img-fluid w-100"
-                        height="480"
-                      />
-                    </picture>
+                    <img
+                      v-lazy="'/img/home/t/jeugdorkest5-min.webp'"
+                      alt="jeugorkest5"
+                      slot="img"
+                      class="d-block img-fluid w-100"
+                      height="480"
+                    />
                   </template>
                 </b-carousel-slide>
               </b-carousel>
@@ -334,16 +319,13 @@
                 <!-- Text slides with image -->
                 <b-carousel-slide>
                   <template v-slot:img>
-                    <picture>
-                      <source srcset="/img/home/t/jazz-min.webp" type="image/webp" />
-                      <img
-                        v-lazy="'/img/home/t/jazz-min.JPG'"
-                        alt="jazz"
-                        slot="img"
-                        class="d-block img-fluid w-100"
-                        height="480"
-                      />
-                    </picture>
+                    <img
+                      v-lazy="'/img/home/t/jazz-min.JPG'"
+                      alt="jazz"
+                      slot="img"
+                      class="d-block img-fluid w-100"
+                      height="480"
+                    />
                   </template>
                 </b-carousel-slide>
               </b-carousel>
