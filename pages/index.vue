@@ -53,10 +53,10 @@
           <div class="col-lg-12">
             <!-- start NewsList -->
 
-            <div v-if="loading">
-              <div class="text-center">
-                <b-spinner style="width: 3rem; height: 3rem;" label="Large Spinner" type="grow"></b-spinner>
-              </div>
+            <div v-if="loading" class="card-deck">
+              <skeleton-card />
+              <skeleton-card />
+              <skeleton-card />
             </div>
 
             <template v-else>
@@ -577,6 +577,7 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate';
     Modal: () => import('@/components/Modal.vue'),
 
     NewsList: () => import('@/components/NewsList.vue'),
+    SkeletonCard: () => import('@/components/SkeletonCard.vue'),
 
     ValidationObserver,
     ValidationProvider

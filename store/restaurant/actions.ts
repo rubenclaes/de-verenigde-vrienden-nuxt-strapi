@@ -21,7 +21,7 @@ export const actions: ActionTree<RestaurantState, RootState> = {
     commit('clear');
     commit('setLoading', true);
 
-    //await new Promise(resolve => setTimeout(resolve, 10000));
+    await new Promise(resolve => setTimeout(resolve, 10000));
 
     await loadNews()
       .then(news => {

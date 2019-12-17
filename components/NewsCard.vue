@@ -1,4 +1,4 @@
-<!-- components/NewsPreview.vue -->
+<!-- components/NewsCard.vue -->
 
 <template>
   <card class="border-0" hover shadow body-classes="py-5">
