@@ -89,7 +89,7 @@ const config: Configuration = {
 
     'vue-scrollto/nuxt',
     '@nuxtjs/markdownit',
-    '@bazzite/nuxt-optimized-images',
+
     '@nuxtjs/google-analytics',
     //Always at the end
     '@nuxtjs/sitemap'
@@ -161,13 +161,6 @@ const config: Configuration = {
       /* workbox options */
       offlineAnalytics: true
     }
-  },
-
-  /*
-   ** bazzite/nuxt-optimized-images module configuration
-   */
-  optimizedImages: {
-    optimizeImages: true
   },
 
   /*
