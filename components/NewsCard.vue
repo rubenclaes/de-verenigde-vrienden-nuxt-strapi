@@ -3,32 +3,29 @@
 <template>
   <card class="border-0" hover shadow body-classes="py-5">
     <template #image>
-      <img v-lazy="article.image.url" class="card-img-top cardThumbnail" alt="Nieuws afbeelding" />
+      <LazyImage
+        :data-src="article.image.url"
+        extraCss="card-img-top cardThumbnail"
+      />
     </template>
 
     <icon :name="icon" :type="type" rounded class="mb-4"></icon>
 
     <h6 v-bind:class="textColor" class="text-uppercase">{{ article.name }}</h6>
 
-    <p
-      class="description mt-3"
-    >{{ article.description.substring(0, 100) || 'Geen omschrijving' }}...</p>
+    <p class="description mt-3">
+      {{ article.description.substring(0, 100) || 'Geen omschrijving' }}...
+    </p>
 
     <div>
       <badge v-if="article.Categories[0].Tag1" :type="type" rounded>
-        {{
-        article.Categories[0].Tag1
-        }}
+        {{ article.Categories[0].Tag1 }}
       </badge>
       <badge v-if="article.Categories[0].Tag2" :type="type" rounded>
-        {{
-        article.Categories[0].Tag2
-        }}
+        {{ article.Categories[0].Tag2 }}
       </badge>
       <badge v-if="article.Categories[0].Tag3" :type="type" rounded>
-        {{
-        article.Categories[0].Tag3
-        }}
+        {{ article.Categories[0].Tag3 }}
       </badge>
     </div>
 
@@ -37,7 +34,8 @@
       tag="a"
       class="btn mt-4"
       :class="buttonType"
-    >Lees meer</router-link>
+      >Lees meer</router-link
+    >
   </card>
 </template>
 
@@ -50,7 +48,8 @@ import { Restaurant } from '../store/restaurant/types';
     BaseButton: () => import('@/components/BaseButton.vue'),
     Card: () => import('@/components/Card.vue'),
     Badge: () => import('@/components/Badge.vue'),
-    Icon: () => import('@/components/Icon.vue')
+    Icon: () => import('@/components/Icon.vue'),
+    LazyImage: () => import('@/components/LazyImage.vue')
   }
 })
 export default class NewsPreview extends Vue {

@@ -67,19 +67,19 @@ export default {
   computed: {
     image() {
       return {
-        original: `${this.dataSrc}?original`,
-        opt: `${this.dataSrc}`,
-        placeholder: `${this.dataSrc}?lqip`,
-        placeholderBlur: `${this.dataSrc}?lqip`,
-        colors: `${this.dataSrc}?lqip-colors`,
-        webp: `${this.dataSrc}?webp`
+        original: require(`../assets/img/${this.dataSrc}?original`),
+        opt: require(`../assets/img/${this.dataSrc}`),
+        placeholder: require(`../assets/img/${this.dataSrc}?lqip`),
+        placeholderBlur: require(`../assets/img/${this.dataSrc}?lqip`),
+        colors: require(`../assets/img/${this.dataSrc}?lqip-colors`),
+        webp: require(`../assets/img/${this.dataSrc}?webp`)
       };
     }
   },
   methods: {
     test() {
       try {
-        let x = require(`${this.dataSrc}?original`);
+        let x = `${this.dataSrc}?original`;
       } catch (e) {
         console.log('error');
       }

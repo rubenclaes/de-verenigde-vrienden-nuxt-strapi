@@ -31,7 +31,10 @@ const config: Configuration = {
       }
     ],
 
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'preconnect', href: 'https://res.cloudinary.com' }
+    ]
   },
 
   /*
@@ -66,7 +69,6 @@ const config: Configuration = {
     '~plugins/vue-scrollto.js',
     '~/plugins/filters',
     { src: '~/plugins/lazysizes.js', ssr: false },
-    /* '~/plugins/vue-lazysizes.client.js', */
     '~/plugins/vee-validate',
     '~/plugins/click-outside.js',
     { src: '~/plugins/vuex-persist', ssr: false },

@@ -105,12 +105,6 @@
     </section>-->
     <!-- end important message -->
 
-    <LazyImage
-      data-src="/img/home/t/jeugdorkest-min.jpeg"
-      aspect-ratio="16:9"
-      object-fit="cover"
-      fetchMode="srcset"
-    />
     <!-- Jeugdorkest -->
     <section class="section section-lg pt-0">
       <div class="container">
@@ -122,58 +116,50 @@
                 <b-carousel-slide>
                   <template v-slot:img>
                     <LazyImage
-                      data-src="/img/home/t/jeugdorkest-min.jpeg"
+                      dataSrc="home/jeugdorkest/jeugdorkest-min.jpeg"
                       fetchMode="srcset"
-                      extraCss="d-block img-fluid  w-100"
+                      extraCss="d-block img-fluid w-100"
                       height="480"
                     />
                   </template>
                 </b-carousel-slide>
                 <b-carousel-slide>
                   <template v-slot:img>
-                    <img
-                      v-lazy="'/img/home/t/jeugdorkest2-min.webp'"
-                      alt="jeugdorkest2"
-                      slot="img"
-                      class="d-block img-fluid w-100"
+                    <LazyImage
+                      dataSrc="home/jeugdorkest/jeugdorkest2-min.jpeg"
+                      fetchMode="srcset"
+                      extraCss="d-block img-fluid w-100"
                       height="480"
-                      data-srcset="/img/home/t/jeugdorkest2-min.png"
                     />
                   </template>
                 </b-carousel-slide>
                 <b-carousel-slide>
                   <template v-slot:img>
-                    <img
-                      v-lazy="'/img/home/t/jeugdorkest3-min.webp'"
-                      alt="jeugdorkest3"
-                      slot="img"
-                      class="d-block img-fluid w-100"
+                    <LazyImage
+                      dataSrc="home/jeugdorkest/jeugdorkest3-min.jpeg"
+                      fetchMode="srcset"
+                      extraCss="d-block img-fluid w-100"
                       height="480"
-                      data-srcset="/img/home/t/jeugdorkest3-min.jpeg"
                     />
                   </template>
                 </b-carousel-slide>
                 <b-carousel-slide>
                   <template v-slot:img>
-                    <img
-                      v-lazy="'/img/home/t/jeugdorkest4-min.webp'"
-                      alt="jeugorkest4"
-                      slot="img"
-                      class="d-block img-fluid w-100"
+                    <LazyImage
+                      dataSrc="home/jeugdorkest/jeugdorkest4-min.jpeg"
+                      fetchMode="srcset"
+                      extraCss="d-block img-fluid w-100"
                       height="480"
-                      data-srcset="/img/home/t/jeugdorkest4-min.jpeg"
                     />
                   </template>
                 </b-carousel-slide>
                 <b-carousel-slide>
                   <template v-slot:img>
-                    <img
-                      v-lazy="'/img/home/t/jeugdorkest5-min.webp'"
-                      alt="jeugorkest5"
-                      slot="img"
-                      class="d-block img-fluid w-100"
+                    <LazyImage
+                      dataSrc="home/jeugdorkest/jeugdorkest5-min.jpeg"
+                      fetchMode="srcset"
+                      extraCss="d-block img-fluid w-100"
                       height="480"
-                      data-srcset="/img/home/t/jeugdorkest5-min.jpeg"
                     />
                   </template>
                 </b-carousel-slide>
