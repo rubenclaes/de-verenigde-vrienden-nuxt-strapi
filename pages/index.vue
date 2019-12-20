@@ -20,7 +20,9 @@
                 <h1 class="display-3 text-white">
                   Koninklijke Harmonie
                   <span>De Verenigde Vrienden Heusden-Zolder</span>
-                  <span class="lead text-success font-weight-bold">Daar zit muziek in!</span>
+                  <span class="lead text-success font-weight-bold"
+                    >Daar zit muziek in!</span
+                  >
                 </h1>
 
                 <p></p>
@@ -36,7 +38,8 @@
                     class="mb-3 mb-sm-0"
                     type="success"
                     textColor="secondary"
-                  >Lees verder</base-button>
+                    >Lees verder</base-button
+                  >
                 </div>
               </div>
             </div>
@@ -102,6 +105,12 @@
     </section>-->
     <!-- end important message -->
 
+    <LazyImage
+      data-src="/img/home/t/jeugdorkest-min.jpeg"
+      aspect-ratio="16:9"
+      object-fit="cover"
+      fetchMode="srcset"
+    />
     <!-- Jeugdorkest -->
     <section class="section section-lg pt-0">
       <div class="container">
@@ -112,13 +121,11 @@
                 <!-- Text slides with image -->
                 <b-carousel-slide>
                   <template v-slot:img>
-                    <img
-                      v-lazy="'/img/home/t/jeugdorkest-min.webp'"
-                      alt="jeugdorkest1"
-                      slot="img"
-                      class="d-block img-fluid w-100"
+                    <LazyImage
+                      data-src="/img/home/t/jeugdorkest-min.jpeg"
+                      fetchMode="srcset"
+                      extraCss="d-block img-fluid  w-100"
                       height="480"
-                      data-srcset="/img/home/t/jeugdorkest-min.jpeg"
                     />
                   </template>
                 </b-carousel-slide>
@@ -193,7 +200,13 @@
               <ul class="list-unstyled mt-5">
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge tag="b-badge" type="success" circle class="mr-3" icon="ni ni-check-bold"></badge>
+                    <badge
+                      tag="b-badge"
+                      type="success"
+                      circle
+                      class="mr-3"
+                      icon="ni ni-check-bold"
+                    ></badge>
                     <p>
                       Speel je al een blaasinstrument (trompet, klarinet, hoorn,
                       trombone, bariton, tuba, dwarsfluit, hobo, fagot,
@@ -204,7 +217,13 @@
                 </li>
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge tag="b-badge" type="success" circle class="mr-3" icon="ni ni-like-2"></badge>
+                    <badge
+                      tag="b-badge"
+                      type="success"
+                      circle
+                      class="mr-3"
+                      icon="ni ni-like-2"
+                    ></badge>
                     <p>
                       Je kan meespelen na je 1ste jaar instrumentles. Kevin
                       Absillis slaat er de maat. De harmonie stelt gratis een
@@ -241,7 +260,11 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <img v-lazy="'/img/home/close_up.JPG'" class="card-img-top" alt="repetitie" />
+              <img
+                v-lazy="'/img/home/close_up.JPG'"
+                class="card-img-top"
+                alt="repetitie"
+              />
               <blockquote class="card-blockquote">
                 <svg
                   preserveAspectRatio="none"
@@ -250,7 +273,11 @@
                   class="svg-bg"
                 >
                   <polygon points="0,52 583,95 0,95" class="fill-default" />
-                  <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default" />
+                  <polygon
+                    points="0,42 583,95 683,0 0,95"
+                    opacity=".2"
+                    class="fill-default"
+                  />
                 </svg>
                 <h4 class="display-3 font-weight-bold text-white">Repetitie</h4>
                 <p class="lead text-italic text-white">
@@ -319,7 +346,9 @@
             </p>
           </div>
           <div class="col-lg-6 mb-lg-auto">
-            <div class="rounded shadow-lg overflow-hidden transform-perspective-right">
+            <div
+              class="rounded shadow-lg overflow-hidden transform-perspective-right"
+            >
               <b-carousel id="carousel1" controls indicators>
                 <!-- Text slides with image -->
                 <b-carousel-slide>
@@ -350,7 +379,9 @@
             <h1>Dirigent</h1>
           </div>
           <blockquote class="blockquote text-center">
-            <p class="mb-0">Het belangrijkste in de muziek staat niet in de noten.</p>
+            <p class="mb-0">
+              Het belangrijkste in de muziek staat niet in de noten.
+            </p>
             <footer class="blockquote-footer">Kevin Absillis</footer>
           </blockquote>
         </div>
@@ -399,12 +430,26 @@
         <div class="row text-center justify-content-center">
           <div class="col-lg-10">
             <a href="https://goo.gl/maps/YgziKZGExWnQW9cd7">
-              <icon name="ni ni-pin-3" class="mb-5 floating" size="lg" type="white" shadow rounded></icon>
+              <icon
+                name="ni ni-pin-3"
+                class="mb-5 floating"
+                size="lg"
+                type="white"
+                shadow
+                rounded
+              ></icon>
             </a>
-            <h1 class="text-white font-weight-light">Waar kan je ons vinden?</h1>
+            <h1 class="text-white font-weight-light">
+              Waar kan je ons vinden?
+            </h1>
 
-            <a href="https://goo.gl/maps/YgziKZGExWnQW9cd7" class="lead text-white" target="blank">
-              <icon name="ni ni-map-big" size="sm" type="white"></icon>&nbsp;Kerkenblook z/n
+            <a
+              href="https://goo.gl/maps/YgziKZGExWnQW9cd7"
+              class="lead text-white"
+              target="blank"
+            >
+              <icon name="ni ni-map-big" size="sm" type="white"></icon
+              >&nbsp;Kerkenblook z/n
             </a>
 
             <p class="lead text-white">3550 Heusden-Zolder</p>
@@ -462,7 +507,10 @@
                       ></base-input>
                     </div>
                   </ValidationProvider>
-                  <ValidationProvider name="model.message" rules="required|min:1">
+                  <ValidationProvider
+                    name="model.message"
+                    rules="required|min:1"
+                  >
                     <div slot-scope="{ errors }">
                       <base-input class="mb-4" :error="errors[0]">
                         <textarea
@@ -476,7 +524,13 @@
                       </base-input>
                     </div>
                   </ValidationProvider>
-                  <b-button block type="submit" variant="default" round :disabled="invalid">
+                  <b-button
+                    block
+                    type="submit"
+                    variant="default"
+                    round
+                    :disabled="invalid"
+                  >
                     <icon name="ni ni-send" size="sm"></icon>&nbsp;Verstuur
                   </b-button>
                 </ValidationObserver>
@@ -563,6 +617,8 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate';
     Icon: () => import('@/components/Icon.vue'),
     BaseInput: () => import('@/components/BaseInput.vue'),
     Modal: () => import('@/components/Modal.vue'),
+
+    LazyImage: () => import('@/components/LazyImage.vue'),
 
     NewsList: () => import('@/components/NewsList.vue'),
     SkeletonCard: () => import('@/components/SkeletonCard.vue'),

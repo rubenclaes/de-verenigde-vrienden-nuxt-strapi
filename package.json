@@ -29,6 +29,8 @@
     "aos": "^2.3.4",
     "bootstrap-vue": "^2.1.0",
     "dotenv": "^8.2.0",
+    "lazysizes": "^5.2.0",
+    "lqip-loader": "^2.2.0",
     "nouislider": "^14.0.3",
     "nuxt": "^2.10.2",
     "nuxt-property-decorator": "^2.5.0",
@@ -44,6 +46,7 @@
     "vuex-persist": "^2.2.0"
   },
   "devDependencies": {
+    "@bazzite/nuxt-optimized-images": "^0.3.0",
     "@nuxt/typescript-build": "^0.5.2",
     "@nuxtjs/dotenv": "^1.4.1",
     "@types/dotenv": "^6.1.1",
@@ -51,6 +54,8 @@
     "@vue/test-utils": "^1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^24.9.0",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-pngquant": "^8.0.0",
     "jest": "^24.9.0",
     "jest-serializer-vue": "^2.0.2",
     "node-sass": "^4.13.0",
@@ -60,7 +65,8 @@
     "ts-jest": "^24.1.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
-    "vue-jest": "^3.0.5"
+    "vue-jest": "^3.0.5",
+    "webp-loader": "^0.6.0"
   },
   "jest": {
     "moduleFileExtensions": [

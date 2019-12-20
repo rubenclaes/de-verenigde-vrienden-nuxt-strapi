@@ -65,6 +65,7 @@ const config: Configuration = {
     { src: '~/plugins/vue-toasted.js', mode: 'client' },
     '~plugins/vue-scrollto.js',
     '~/plugins/filters',
+    { src: '~/plugins/lazysizes.js', ssr: false },
     /* '~/plugins/vue-lazysizes.client.js', */
     '~/plugins/vee-validate',
     '~/plugins/click-outside.js',
@@ -86,7 +87,7 @@ const config: Configuration = {
     '@nuxtjs/pwa',
     '@nuxtjs/sentry',
     'bootstrap-vue/nuxt',
-
+    '@bazzite/nuxt-optimized-images',
     'vue-scrollto/nuxt',
     '@nuxtjs/markdownit',
 
@@ -94,6 +95,25 @@ const config: Configuration = {
     //Always at the end
     '@nuxtjs/sitemap'
   ],
+
+  optimizedImages: {
+    inlineImageLimit: -1,
+    handleImages: ['jpeg', 'png', 'svg', 'webp', 'gif'],
+    optimizeImages: true,
+    optimizeImagesInDev: true,
+    defaultImageLoader: 'img-loader',
+    mozjpeg: {
+      quality: 85
+    },
+    optipng: false,
+    pngquant: {
+      speed: 7,
+      quality: [0.65, 0.8]
+    },
+    webp: {
+      quality: 85
+    }
+  },
 
   /*
    ** bootstrapVue module configuration
@@ -209,16 +229,17 @@ const config: Configuration = {
    ** Build configuration
    */
   build: {
-    transpile: ['vee-validate/dist/rules']
+    transpile: ['vee-validate/dist/rules'],
+
     /*
      ** You can extend webpack config here
      */
-    /* extend(config, { isDev, isClient, loaders: { vue } }) {
-      if (isClient) { */
-    /* vue.transformAssetUrls.img = ['data-src', 'src'];
-        vue.transformAssetUrls.source = ['data-srcset', 'srcset']; */
-    /*    } */
-    // }
+    extend(config, { isDev, isClient, loaders: { vue } }) {
+      if (isDev && isClient && vue != undefined && vue.transformAssetUrls) {
+        vue.transformAssetUrls.img = ['data-src', 'src'];
+        vue.transformAssetUrls.source = ['data-srcset', 'srcset'];
+      }
+    }
   },
 
   generate: {
