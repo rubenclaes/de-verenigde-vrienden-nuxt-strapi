@@ -19,12 +19,11 @@
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2 mb-5">
                 <div class="card-profile-image">
-                  <a :href="'/img/home/dirigent3.JPG'">
-                    <img
-                      v-lazy="'/img/home/dirigent3.JPG'"
-                      class="rounded-circle"
-                    />
-                  </a>
+                  <LazyImage
+                    dataSrc="/home/dirigent/dirigent3.jpeg"
+                    fetchMode="srcset"
+                    extraCss="rounded-circle"
+                  />
                 </div>
               </div>
               <div

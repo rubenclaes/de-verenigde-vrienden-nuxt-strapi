@@ -30,15 +30,22 @@
             <div data-aos="fade-in" data-aos-delay="150" class="pl-md-5">
               <h1>Drumband</h1>
               <p class="lead">
-                De drumband Just For Fun o.l.v. Domien Poelmans begeleidt de harmonie bij korte straatparades.
-                En samen met de oud-drummers van ’De Bergengalm’ uit Hechtel lukt het hen toch om af en toe nog eens een concertje te geven.
+                De drumband Just For Fun o.l.v. Domien Poelmans begeleidt de
+                harmonie bij korte straatparades. En samen met de oud-drummers
+                van ’De Bergengalm’ uit Hechtel lukt het hen toch om af en toe
+                nog eens een concertje te geven.
               </p>
             </div>
           </div>
 
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <img v-lazy="'/img/drumband/drumband3.jpg'" class="card-img-top" />
+              <LazyImage
+                dataSrc="drumband/drumband3.jpg"
+                fetchMode="srcset"
+                extraCss="card-img-top"
+              />
+
               <blockquote class="card-blockquote">
                 <svg
                   preserveAspectRatio="none"
@@ -47,12 +54,17 @@
                   class="svg-bg"
                 >
                   <polygon points="0,52 583,95 0,95" class="fill-default" />
-                  <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default" />
+                  <polygon
+                    points="0,42 583,95 683,0 0,95"
+                    opacity=".2"
+                    class="fill-default"
+                  />
                 </svg>
                 <h4 class="display-3 font-weight-bold text-white">Repetitie</h4>
-                <p
-                  class="lead text-italic text-white"
-                >Deze ritmebende oefent één maal per maand in Heusden en één maal per maand in Hechtel</p>
+                <p class="lead text-italic text-white">
+                  Deze ritmebende oefent één maal per maand in Heusden en één
+                  maal per maand in Hechtel
+                </p>
               </blockquote>
             </div>
           </div>
@@ -69,7 +81,15 @@
             <div class="rounded shadow-lg overflow-hidden">
               <b-carousel id="carousel1" controls indicators>
                 <!-- Text slides with image -->
-                <b-carousel-slide img-src="/img/drumband/drumband1.png"></b-carousel-slide>
+
+                <b-carousel-slide>
+                  <template v-slot:img>
+                    <LazyImage
+                      dataSrc="drumband/drumband1.jpg"
+                      fetchMode="srcset"
+                    />
+                  </template>
+                </b-carousel-slide>
               </b-carousel>
             </div>
           </div>
@@ -89,25 +109,49 @@
               <ul class="list-unstyled mt-5">
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge type="success" circle class="mr-3" icon="ni ni-like-2"></badge>
-                    <p>Drumband De Toekomst was in de jaren ’90 een stille dood gestorven, maar in 2002 is er een nieuwe start gemaakt onder de naam “Just for Fun”.</p>
-                  </div>
-                </li>
-                <li class="py-2">
-                  <div class="d-flex align-items-center">
-                    <badge type="success" circle class="mr-3" icon="ni ni-calendar-grid-58"></badge>
+                    <badge
+                      type="success"
+                      circle
+                      class="mr-3"
+                      icon="ni ni-like-2"
+                    ></badge>
                     <p>
-                      Het 100-jarig bestaan van de harmonie is aanleiding om de vroegere leden, intussen allemaal volwassen mannen en vrouwen geworden,
-                      nog eens samen te brengen en de trommelstokken opnieuw ter hand te nemen.
+                      Drumband De Toekomst was in de jaren ’90 een stille dood
+                      gestorven, maar in 2002 is er een nieuwe start gemaakt
+                      onder de naam “Just for Fun”.
                     </p>
                   </div>
                 </li>
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge type="success" circle class="mr-3" icon="ni ni-check-bold"></badge>
+                    <badge
+                      type="success"
+                      circle
+                      class="mr-3"
+                      icon="ni ni-calendar-grid-58"
+                    ></badge>
                     <p>
-                      Sindsdien repeteert de drumband regelmatig en neemt het deel aan de activiteiten van de harmonie, zoals het jaarconcert en de opening van de kermis in juni.
-                      Het is niet meer competitiegericht zoals in de vroegere jaren, maar “puur voor de lol”, zoals de naam het zegt.
+                      Het 100-jarig bestaan van de harmonie is aanleiding om de
+                      vroegere leden, intussen allemaal volwassen mannen en
+                      vrouwen geworden, nog eens samen te brengen en de
+                      trommelstokken opnieuw ter hand te nemen.
+                    </p>
+                  </div>
+                </li>
+                <li class="py-2">
+                  <div class="d-flex align-items-center">
+                    <badge
+                      type="success"
+                      circle
+                      class="mr-3"
+                      icon="ni ni-check-bold"
+                    ></badge>
+                    <p>
+                      Sindsdien repeteert de drumband regelmatig en neemt het
+                      deel aan de activiteiten van de harmonie, zoals het
+                      jaarconcert en de opening van de kermis in juni. Het is
+                      niet meer competitiegericht zoals in de vroegere jaren,
+                      maar “puur voor de lol”, zoals de naam het zegt.
                     </p>
                   </div>
                 </li>
@@ -132,7 +176,9 @@ import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
   components: {
     Card: () => import('@/components/Card.vue'),
     Badge: () => import('@/components/Badge.vue'),
-    Icon: () => import('@/components/Icon.vue')
+    Icon: () => import('@/components/Icon.vue'),
+
+    LazyImage: () => import('@/components/LazyImage.vue')
   }
 })
 export default class DrumbandPage extends Vue {
@@ -145,7 +191,4 @@ export default class DrumbandPage extends Vue {
   }
 }
 </script>
-<style>
-</style>
-
-
+<style></style>

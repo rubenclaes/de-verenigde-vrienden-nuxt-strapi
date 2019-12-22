@@ -26,10 +26,10 @@
       <div class="container">
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
-            <img
-              v-lazy="'/img/geschiedenis/1.jpg'"
-              class="img-fluid floating"
-              alt="Geschiedenis in 1902"
+            <LazyImage
+              dataSrc="geschiedenis/1.jpg"
+              fetchMode="srcset"
+              extraCss="img-fluid floating"
             />
           </div>
           <div
@@ -72,7 +72,11 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <img v-lazy="'/img/geschiedenis/2.jpg'" class="card-img" />
+              <LazyImage
+                dataSrc="geschiedenis/2.jpg"
+                fetchMode="srcset"
+                extraCss="card-img"
+              />
             </div>
           </div>
           <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
@@ -110,9 +114,10 @@
       <div class="container">
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
-            <img
-              v-lazy="'/img/geschiedenis/3.jpg'"
-              class="img-fluid floating"
+            <LazyImage
+              dataSrc="geschiedenis/3.jpg"
+              fetchMode="srcset"
+              extraCss="img-fluid floating"
             />
           </div>
           <div
@@ -154,7 +159,11 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <img v-lazy="'/img/geschiedenis/4.jpg'" class="card-img" />
+              <LazyImage
+                dataSrc="geschiedenis/4.jpg"
+                fetchMode="srcset"
+                extraCss="card-img"
+              />
             </div>
           </div>
           <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
@@ -184,9 +193,10 @@
       <div class="container">
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
-            <img
-              v-lazy="'/img/geschiedenis/5.jpg'"
-              class="img-fluid floating"
+            <LazyImage
+              dataSrc="geschiedenis/5.jpg"
+              fetchMode="srcset"
+              extraCss="img-fluid floating"
             />
           </div>
           <div
@@ -225,7 +235,11 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <img v-lazy="'/img/geschiedenis/1.jpg'" class="card-img" />
+              <LazyImage
+                dataSrc="geschiedenis/1.jpg"
+                fetchMode="srcset"
+                extraCss="card-img"
+              />
             </div>
           </div>
           <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
@@ -261,9 +275,10 @@
       <div class="container">
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
-            <img
-              v-lazy="'/img/geschiedenis/7.jpg'"
-              class="img-fluid floating"
+            <LazyImage
+              dataSrc="geschiedenis/7.jpg"
+              fetchMode="srcset"
+              extraCss="img-fluid floating"
             />
           </div>
           <div
@@ -313,7 +328,11 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <img v-lazy="'/img/geschiedenis/10.png'" class="card-img" />
+              <LazyImage
+                dataSrc="geschiedenis/10.jpg"
+                fetchMode="srcset"
+                extraCss="card-img"
+              />
             </div>
           </div>
           <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
@@ -349,9 +368,10 @@
       <div class="container">
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
-            <img
-              v-lazy="'/img/geschiedenis/9.jpg'"
-              class="img-fluid floating"
+            <LazyImage
+              dataSrc="geschiedenis/9.jpg"
+              fetchMode="srcset"
+              extraCss="img-fluid floating"
             />
           </div>
           <div
@@ -389,11 +409,10 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <img
-                v-lazy="
-                  '/img/home/buitengebeuren-mijn-kracht-lijdt-onder-het-weer.jpg'
-                "
-                class="card-img"
+              <LazyImage
+                dataSrc="geschiedenis/buitengebeuren-mijn-kracht-lijdt-onder-het-weer.jpg"
+                fetchMode="srcset"
+                extraCss="card-img"
               />
             </div>
           </div>
@@ -446,7 +465,8 @@ const RestaurantAction = namespace('restaurant/');
     BaseInput: () => import('@/components/BaseInput.vue'),
     Modal: () => import('@/components/Modal.vue'),
     Tabs: () => import('@/components/Tabs/Tabs.vue'),
-    TabPane: () => import('@/components/Tabs/TabPane.vue')
+    TabPane: () => import('@/components/Tabs/TabPane.vue'),
+    LazyImage: () => import('@/components/LazyImage.vue')
   }
 })
 export default class GeschiedenisPage extends Vue {

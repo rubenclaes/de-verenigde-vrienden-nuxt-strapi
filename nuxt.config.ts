@@ -63,7 +63,6 @@ const config: Configuration = {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    { src: '~/plugins/argon-kit.js', mode: 'client' }, // VueLazyLoad inside
     { src: '~/plugins/aos.js', mode: 'client' },
     { src: '~/plugins/vue-toasted.js', mode: 'client' },
     '~plugins/vue-scrollto.js',

@@ -246,11 +246,12 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <img
-                v-lazy="'/img/home/close_up.JPG'"
-                class="card-img-top"
-                alt="repetitie"
+              <LazyImage
+                dataSrc="home/harmonie/close_up.jpeg"
+                fetchMode="srcset"
+                extraCss="card-img-top"
               />
+
               <blockquote class="card-blockquote">
                 <svg
                   preserveAspectRatio="none"
@@ -339,13 +340,11 @@
                 <!-- Text slides with image -->
                 <b-carousel-slide>
                   <template v-slot:img>
-                    <img
-                      v-lazy="'/img/home/t/jazz-min.webp'"
-                      alt="jazz"
-                      slot="img"
-                      class="d-block img-fluid w-100"
+                    <LazyImage
+                      dataSrc="home/activiteiten/jazz-min.jpeg"
+                      fetchMode="srcset"
+                      extraCss="d-block img-fluid w-100"
                       height="480"
-                      data-srcset="/img/home/t/jazz-min.JPG"
                     />
                   </template>
                 </b-carousel-slide>
@@ -374,12 +373,13 @@
         <div class="row justify-content-center">
           <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
             <div class="px-4">
-              <img
-                v-lazy="'img/home/dirigent2.JPG'"
-                class="rounded img-center img-fluid shadow shadow-lg--hover"
-                style="width: 200px;"
-                alt="dirigent"
+              <LazyImage
+                dataSrc="home/dirigent/dirigent2.jpeg"
+                fetchMode="srcset"
+                extraCss="rounded img-center img-fluid shadow shadow-lg--hover"
+                height="width: 200px;"
               />
+
               <div class="pt-4 text-center">
                 <h5 class="title">
                   <span class="d-block mb-1">Kevin Absillis</span>
