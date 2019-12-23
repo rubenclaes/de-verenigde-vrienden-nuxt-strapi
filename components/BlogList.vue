@@ -1,32 +1,49 @@
-<!-- components/NewsCard.vue -->
+<!-- components/BlogList -->
 
 <template>
-  <card class="border-0" hover shadow body-classes="py-5">
-    <template #image>
-      <LazyImage :srcData="article.image.url" extraCss="card-img-top cardThumbnail" />
-    </template>
+  <div>
+    <div class="row" v-for="article in articles" v-bind:key="article.id">
+      <slot name="article" v-bind:article="article">
+        <!-- Fallback content -->
+        <template #image>
+          <LazyImage :srcData="article.image.url" extraCss="card-img-top cardThumbnail" />
+        </template>
 
-    <icon :name="icon" :type="type" rounded class="mb-4"></icon>
+        <icon :name="icon" :type="type" rounded class="mb-4"></icon>
 
-    <h6 v-bind:class="textColor" class="text-uppercase">{{ article.name }}</h6>
+        <h6 v-bind:class="textColor" class="text-uppercase">{{ article.name }}</h6>
 
-    <p
-      class="description mt-3"
-    >{{ article.description.substring(0, 100) || 'Geen omschrijving' }}...</p>
+        <p
+          class="description mt-3"
+        >{{ article.description.substring(0, 100) || 'Geen omschrijving' }}...</p>
 
-    <div>
-      <badge v-if="article.Categories[0].Tag1" :type="type" rounded>{{ article.Categories[0].Tag1 }}</badge>
-      <badge v-if="article.Categories[0].Tag2" :type="type" rounded>{{ article.Categories[0].Tag2 }}</badge>
-      <badge v-if="article.Categories[0].Tag3" :type="type" rounded>{{ article.Categories[0].Tag3 }}</badge>
+        <div>
+          <badge
+            v-if="article.Categories[0].Tag1"
+            :type="type"
+            rounded
+          >{{ article.Categories[0].Tag1 }}</badge>
+          <badge
+            v-if="article.Categories[0].Tag2"
+            :type="type"
+            rounded
+          >{{ article.Categories[0].Tag2 }}</badge>
+          <badge
+            v-if="article.Categories[0].Tag3"
+            :type="type"
+            rounded
+          >{{ article.Categories[0].Tag3 }}</badge>
+        </div>
+
+        <router-link
+          :to="{ name: 'articles-id', params: { id: article.slug } }"
+          tag="a"
+          class="btn mt-4"
+          :class="buttonType"
+        >Lees meer</router-link>
+      </slot>
     </div>
-
-    <router-link
-      :to="{ name: 'articles-id', params: { id: article.slug } }"
-      tag="a"
-      class="btn mt-4"
-      :class="buttonType"
-    >Lees meer</router-link>
-  </card>
+  </div>
 </template>
 
 <script lang="ts">
@@ -41,8 +58,10 @@ import { Article } from '../store/article/types';
     LazyImage: () => import('@/components/LazyImage.vue')
   }
 })
-export default class NewsCard extends Vue {
-  @Prop({ type: Object, required: true })
+export default class BlogList extends Vue {
+  private articles!: Article[];
+
+  @Prop({ type: Object })
   article!: Article;
 
   @Prop({ type: String, default: 'ni ni-note-03' })

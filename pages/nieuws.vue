@@ -12,16 +12,13 @@
             <b-button variant="outline-success">Zoek</b-button>
           </b-input-group-append>
         </b-input-group>
-        <div class="row">
-          <news-card
-            :key="article.id"
-            :article="article"
-            :icon="icon(index)"
-            :type="colors[index]"
-            :buttonType="buttons[index]"
-            :textColor="text[index]"
-          ></news-card>
-        </div>
+
+        <blog-list v-bind:articles="articles">
+          <template v-slot:article="{ article }">
+            <span v-if="true">✓</span>
+            {{ article.name }}
+          </template>
+        </blog-list>
       </div>
     </section>
   </div>
@@ -42,7 +39,7 @@ import { articleVuexNamespace } from '../store/article/const';
     Badge: () => import('@/components/Badge.vue'),
     Icon: () => import('@/components/Icon.vue'),
     BaseInput: () => import('@/components/BaseInput.vue'),
-    NewsList: () => import('@/components/NewsList.vue')
+    BlogList: () => import('@/components/BlogList.vue')
   }
 })
 export default class NieuwsPage extends Vue {
