@@ -50,7 +50,7 @@ export const getters: GetterTree<RestaurantState, RootState> = {
   },
 
   /**
-   * Get the latest 3 News Articles
+   * Get the latest X articles
    *
    * @returns
    */

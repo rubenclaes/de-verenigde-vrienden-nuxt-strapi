@@ -23,7 +23,10 @@ import { restaurantVuexNamespace } from '../store/restaurant/const';
     NewsCard: () => import('@/components/NewsCard.vue')
   }
 })
-export default class DishList extends Vue {
+export default class NewsList extends Vue {
+  @Prop({ type: String })
+  max!: number;
+
   @restaurantVuexNamespace.Getter('latestNews')
   private news!: Restaurant[];
 
