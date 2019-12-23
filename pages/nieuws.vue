@@ -30,8 +30,8 @@
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator';
 
-import { Restaurant } from '../store/restaurant/types';
-import { restaurantVuexNamespace } from '../store/restaurant/const';
+import { Article } from '../store/article/types';
+import { articleVuexNamespace } from '../store/article/const';
 
 @Component({
   layout: 'appColor',
@@ -46,8 +46,8 @@ import { restaurantVuexNamespace } from '../store/restaurant/const';
   }
 })
 export default class NieuwsPage extends Vue {
-  @restaurantVuexNamespace.Getter('list')
-  private news!: Restaurant[];
+  @articleVuexNamespace.Getter('list')
+  private articles!: Article[];
 
   private title = 'Nieuws';
 

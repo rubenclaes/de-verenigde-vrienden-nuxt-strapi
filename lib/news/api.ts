@@ -4,7 +4,7 @@ import { $axios } from '~/utils/api';
  * Load news.
  *
  */
-export async function loadNews() {
+export async function loadArticles() {
   return await $axios.get(`restaurants`).then(res => {
     res.data.map(article => {
       article.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${article.image.public_id}${article.image.ext}`;

@@ -27,16 +27,12 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
             <LazyImage
-              dataSrc="geschiedenis/1.jpg"
+              data-src="geschiedenis/1.jpg"
               fetchMode="srcset"
               extraCss="img-fluid floating"
             />
           </div>
-          <div
-            data-aos="fade-in"
-            data-aos-delay="150"
-            class="col-md-6 order-md-1"
-          >
+          <div data-aos="fade-in" data-aos-delay="150" class="col-md-6 order-md-1">
             <div class="pr-md-5">
               <h3>1902</h3>
               <p>
@@ -72,11 +68,7 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <LazyImage
-                dataSrc="geschiedenis/2.jpg"
-                fetchMode="srcset"
-                extraCss="card-img"
-              />
+              <LazyImage data-src="geschiedenis/2.jpg" fetchMode="srcset" extraCss="card-img" />
             </div>
           </div>
           <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
@@ -115,16 +107,12 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
             <LazyImage
-              dataSrc="geschiedenis/3.jpg"
+              data-src="geschiedenis/3.jpg"
               fetchMode="srcset"
               extraCss="img-fluid floating"
             />
           </div>
-          <div
-            data-aos="fade-in"
-            data-aos-delay="150"
-            class="col-md-6 order-md-1"
-          >
+          <div data-aos="fade-in" data-aos-delay="150" class="col-md-6 order-md-1">
             <div class="pr-md-5">
               <h3>1944</h3>
               <p>
@@ -159,11 +147,7 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <LazyImage
-                dataSrc="geschiedenis/4.jpg"
-                fetchMode="srcset"
-                extraCss="card-img"
-              />
+              <LazyImage data-src="geschiedenis/4.jpg" fetchMode="srcset" extraCss="card-img" />
             </div>
           </div>
           <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
@@ -194,16 +178,12 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
             <LazyImage
-              dataSrc="geschiedenis/5.jpg"
+              data-src="geschiedenis/5.jpg"
               fetchMode="srcset"
               extraCss="img-fluid floating"
             />
           </div>
-          <div
-            data-aos="fade-in"
-            data-aos-delay="150"
-            class="col-md-6 order-md-1"
-          >
+          <div data-aos="fade-in" data-aos-delay="150" class="col-md-6 order-md-1">
             <div class="pr-md-5">
               <h3>Jaren 70</h3>
               <p>
@@ -235,11 +215,7 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <LazyImage
-                dataSrc="geschiedenis/1.jpg"
-                fetchMode="srcset"
-                extraCss="card-img"
-              />
+              <LazyImage data-src="geschiedenis/1.jpg" fetchMode="srcset" extraCss="card-img" />
             </div>
           </div>
           <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
@@ -276,16 +252,12 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
             <LazyImage
-              dataSrc="geschiedenis/7.jpg"
+              data-src="geschiedenis/7.jpg"
               fetchMode="srcset"
               extraCss="img-fluid floating"
             />
           </div>
-          <div
-            data-aos="fade-in"
-            data-aos-delay="150"
-            class="col-md-6 order-md-1"
-          >
+          <div data-aos="fade-in" data-aos-delay="150" class="col-md-6 order-md-1">
             <div class="pr-md-5">
               <h3>1995</h3>
               <p>
@@ -328,11 +300,7 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <LazyImage
-                dataSrc="geschiedenis/10.jpg"
-                fetchMode="srcset"
-                extraCss="card-img"
-              />
+              <LazyImage data-src="geschiedenis/10.jpg" fetchMode="srcset" extraCss="card-img" />
             </div>
           </div>
           <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
@@ -369,16 +337,12 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
             <LazyImage
-              dataSrc="geschiedenis/9.jpg"
+              data-src="geschiedenis/9.jpg"
               fetchMode="srcset"
               extraCss="img-fluid floating"
             />
           </div>
-          <div
-            data-aos="fade-in"
-            data-aos-delay="150"
-            class="col-md-6 order-md-1"
-          >
+          <div data-aos="fade-in" data-aos-delay="150" class="col-md-6 order-md-1">
             <div class="pl-md-5">
               <h3>2007</h3>
               <p>
@@ -410,7 +374,7 @@
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
               <LazyImage
-                dataSrc="geschiedenis/buitengebeuren-mijn-kracht-lijdt-onder-het-weer.jpg"
+                data-src="geschiedenis/buitengebeuren-mijn-kracht-lijdt-onder-het-weer.jpg"
                 fetchMode="srcset"
                 extraCss="card-img"
               />
@@ -445,64 +409,22 @@ import {
   Getter
 } from 'nuxt-property-decorator';
 
-import { counterVuexNamespace } from '~/store/counter/const';
-import { restaurantVuexNamespace } from '~/store/restaurant/const';
-
 import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
-
-const RestaurantAction = namespace('restaurant/');
 
 @Component({
   layout: 'appHeader',
 
   components: {
-    Logo: () => import('@/components/Logo.vue'),
-    BaseButton: () => import('@/components/BaseButton.vue'),
-    BaseCheckbox: () => import('@/components/BaseCheckbox.vue'),
-    Card: () => import('@/components/Card.vue'),
-    Badge: () => import('@/components/Badge.vue'),
-    Icon: () => import('@/components/Icon.vue'),
-    BaseInput: () => import('@/components/BaseInput.vue'),
-    Modal: () => import('@/components/Modal.vue'),
-    Tabs: () => import('@/components/Tabs/Tabs.vue'),
-    TabPane: () => import('@/components/Tabs/TabPane.vue'),
     LazyImage: () => import('@/components/LazyImage.vue')
   }
 })
 export default class GeschiedenisPage extends Vue {
-  // computed properties are defined as non-null variables
-  @counterVuexNamespace.State('count')
-  private count!: number;
-
-  @counterVuexNamespace.Getter('square')
-  private square!: number;
-
-  // methods should match expected signature
-  @counterVuexNamespace.Action('increment')
-  public increment!: () => void;
-
-  private colors = ['primary', 'success', 'warning'];
-  private buttons = ['btn-primary', 'btn-success', 'btn-warning'];
-  private text = ['text-primary', 'text-success', 'text-warning'];
-
-  private modals = {
-    modal3: false
-  };
-
-  private email = '';
-
   private title = 'Geschiedenis';
 
   head() {
     return {
       title: this.title
     };
-  }
-
-  created() {}
-
-  checkForm(e) {
-    console.log(this.email);
   }
 }
 </script>

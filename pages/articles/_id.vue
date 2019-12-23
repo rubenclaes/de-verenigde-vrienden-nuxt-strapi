@@ -20,7 +20,7 @@
               <b-breadcrumb-item to="/nieuws">Nieuws</b-breadcrumb-item>
               <b-breadcrumb-item active="active">
                 {{
-                restaurant.name
+                article.name
                 }}
               </b-breadcrumb-item>
             </b-breadcrumb>
@@ -58,7 +58,7 @@
               </div>
             </div>
             <div class="text-center mt-5">
-              <h3>{{ restaurant.name }}</h3>
+              <h3>{{ article.name }}</h3>
               <div class="h6 font-weight-300">
                 <i class="ni location_pin mr-2"></i>
                 Gepost op {{ formattedDate }}
@@ -69,7 +69,7 @@
                 <div class="col-md-6">
                   <b-img-lazy
                     v-bind="mainProps"
-                    :src="restaurantImage()"
+                    :src="articleImage()"
                     fluid-grow
                     alt="nieuws img"
                     class="rounded shadow-lg"
@@ -77,7 +77,7 @@
                 </div>
                 <div class="col-lg-11">
                   <template>
-                    <div v-html="$md.render(restaurant.description)"></div>
+                    <div v-html="$md.render(article.description)"></div>
                   </template>
                 </div>
               </div>
@@ -91,10 +91,8 @@
 
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator';
-import { restaurantVuexNamespace } from '~/store/restaurant/const';
-import { Restaurant } from '~/store/restaurant/types';
-
-const RestaurantAction = namespace('restaurant/');
+import { articleVuexNamespace } from '~/store/article/const';
+import { Article } from '~/store/article/types';
 
 @Component({
   layout: 'appHeader',
@@ -107,15 +105,15 @@ const RestaurantAction = namespace('restaurant/');
     BaseInput: () => import('@/components/BaseInput.vue')
   }
 
-  /* validate({ params: { restaurant } }) {
-    return validNews.includes(restaurant);
+  /* validate({ params: { article } }) {
+    return validNews.includes(article);
   } */
 })
-export default class RestaurantView extends Vue {
-  @restaurantVuexNamespace.Getter('currentRestaurant')
-  private restaurant!: Restaurant;
+export default class ArticleView extends Vue {
+  @articleVuexNamespace.Getter('currentArticle')
+  private article!: Article;
 
-  @restaurantVuexNamespace.Getter('formattedDate')
+  @articleVuexNamespace.Getter('formattedDate')
   private formattedDate!: Date;
 
   private active = false;
@@ -135,18 +133,6 @@ export default class RestaurantView extends Vue {
     }
   ];
 
-  private facebookSdkReady: boolean = false;
-
-  private mainProps = {
-    center: true,
-    fluidGrow: true,
-    blank: true,
-    blankColor: '#bbb',
-    width: 600,
-    height: 400,
-    class: 'my-5'
-  };
-
   currentPost() {
     return this.$store.state.post.currentPost;
   }
@@ -155,15 +141,15 @@ export default class RestaurantView extends Vue {
     return this.$store.state.post.isLoading;
   }
 
-  restaurantImage() {
-    console.log(this.restaurant);
-    return this.restaurant.image.url;
+  articleImage() {
+    console.log(this.article);
+    return this.article.image.url;
   }
 
   data() {
     return {
       id: this.$route.params.id
-      //restaurant: null
+      //article: null
     };
   }
 
@@ -180,13 +166,13 @@ export default class RestaurantView extends Vue {
       console.info('payload');
       //console.info(payload);
       // setup the store as it would be in SPA mode
-      return store.commit('restaurant/setCurrentRestaurant', payload);
-      //return { restaurant: context.payload };
+      return store.commit('article/setCurrentArticle', payload);
+      //return { article: context.payload };
     } else {
-      //if (store.getters['restaurant/currentRestaurant'].length === 0) {
-      console.log('Fetching restaurant with ID');
+      //if (store.getters['article/currentArticle'].length === 0) {
+      console.log('Fetching article with ID');
       return await store.dispatch(
-        'restaurant/fetchRestaurant',
+        'article/fetchArticle',
         parseInt(params.id || 1)
       );
       //} else {
@@ -194,12 +180,12 @@ export default class RestaurantView extends Vue {
   }
 
   //get formattedDate() {
-  /* let day = this.restaurant.createdAt.getDate();
-    let monthIndex = this.restaurant.createdAt.getMonth();
-    var year = this.restaurant.createdAt.getFullYear();
-    var minutes = this.restaurant.createdAt.getMinutes();
-    var hours = this.restaurant.createdAt.getHours();
-    let seconds = this.restaurant.createdAt.getSeconds();
+  /* let day = this.article.createdAt.getDate();
+    let monthIndex = this.article.createdAt.getMonth();
+    var year = this.article.createdAt.getFullYear();
+    var minutes = this.article.createdAt.getMinutes();
+    var hours = this.article.createdAt.getHours();
+    let seconds = this.article.createdAt.getSeconds();
     let myFormattedDate =
       day +
       '-' +
@@ -212,13 +198,13 @@ export default class RestaurantView extends Vue {
       minutes +
       ':' +
       seconds; */
-  // console.log(this.restaurant.createdAt);
-  // return this.restaurant.createdAt;
+  // console.log(this.article.createdAt);
+  // return this.article.createdAt;
   //}
 
   head() {
     return {
-      title: this.restaurant.name,
+      title: this.article.name,
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {
@@ -237,19 +223,19 @@ export default class RestaurantView extends Vue {
           hid: `og:title`,
           name: 'og:title',
           property: 'og:title',
-          content: `${this.restaurant.name}`
+          content: `${this.article.name}`
         },
         {
           hid: `og:description`,
           name: 'og:description',
           property: 'og:description',
-          content: `${this.restaurant.description}`
+          content: `${this.article.description}`
         },
         {
           hid: `og:image`,
           name: 'og:image',
           property: 'og:image',
-          content: `${this.restaurant.image.url}`
+          content: `${this.article.image.url}`
         },
         {
           hid: `og:site_name`,
@@ -288,22 +274,22 @@ export default class RestaurantView extends Vue {
   /*  async fetch({ store, params, error, payload }) {
     if (payload) {
       console.log('we have a payload');
-      return { restaurant: payload.restaurant };
+      return { article: payload.article };
     }
-    //if (typeof store.state.restaurants.id[params.id] === 'undefined') {
+    //if (typeof store.state.articles.id[params.id] === 'undefined') {
     else {
-      console.log('Fetching restaurant');
-      return await store.dispatch('restaurant/fetchRestaurant', params.id);
+      console.log('Fetching article');
+      return await store.dispatch('article/fetchArticle', params.id);
     }
     // }
   } */
 
   created() {
-    //this.restaurant(this.$route.params.id);
+    //this.article(this.$route.params.id);
   }
 
-  /*  get restaurant() {
-    return this.restaurants[this.$route.params.id];
+  /*  get article() {
+    return this.articles[this.$route.params.id];
   } */
 }
 </script>

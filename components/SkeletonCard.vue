@@ -24,7 +24,6 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import { Restaurant } from '../store/restaurant/types';
 
 @Component({
   components: {

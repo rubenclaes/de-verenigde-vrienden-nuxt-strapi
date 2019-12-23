@@ -1,6 +1,6 @@
-import { Restaurant } from 'store/restaurant/types';
+import { Article, ArticleState } from '~/store/article/types';
 
-export const DUMMY_RESTAURANTS: Restaurant[] = [
+export const DUMMY_RESTAURANTS: Article[] = [
   {
     id: 68,
     name: 'Jaarconcert IN VUUR EN VLAM',
@@ -62,7 +62,7 @@ export const DUMMY_RESTAURANTS: Restaurant[] = [
 ];
 
 export const initState = jest.fn().mockImplementation(
-  (): Promise<Restaurant[]> => {
-    return new Promise<Restaurant[]>(resolve => resolve(DUMMY_RESTAURANTS));
+  (): Promise<Article[]> => {
+    return new Promise<Article[]>(resolve => resolve(DUMMY_RESTAURANTS));
   }
 );

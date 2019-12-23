@@ -1,25 +1,25 @@
 import { Status } from '../type';
 
 /**
- * Type definitions of the Restaurant state
+ * Type definitions of the Article state
  */
 
 // State
-export interface RestaurantState {
+export interface ArticleState {
   selected: number;
-  restaurants: Restaurant[];
-  currentRestaurant: Restaurant;
+  articles: Article[];
+  currentArticle: Article;
   status: Status;
 }
 
 // Model
 /**
- * A news item
+ * An article item
  *
  * @export
- * @interface Restaurant
+ * @interface Article
  */
-export interface Restaurant {
+export interface Article {
   id: number;
   name: string;
   icon: string;

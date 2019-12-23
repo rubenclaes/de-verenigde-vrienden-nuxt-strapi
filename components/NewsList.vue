@@ -1,7 +1,7 @@
 <template>
   <div class="card-deck">
     <news-card
-      v-for="(article, index) in news"
+      v-for="(article, index) in articles"
       :key="article.id"
       :article="article"
       :icon="icon(index)"
@@ -15,8 +15,8 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 
-import { Restaurant } from '../store/restaurant/types';
-import { restaurantVuexNamespace } from '../store/restaurant/const';
+import { Article } from '../store/article/types';
+import { articleVuexNamespace } from '../store/article/const';
 
 @Component({
   components: {
@@ -27,8 +27,8 @@ export default class NewsList extends Vue {
   @Prop({ type: String })
   max!: number;
 
-  @restaurantVuexNamespace.Getter('latestNews')
-  private news!: Restaurant[];
+  @articleVuexNamespace.Getter('latestArticles')
+  private articles!: Article[];
 
   private colors = ['primary', 'success', 'warning'];
   private buttons = ['btn-primary', 'btn-success', 'btn-warning'];
@@ -38,10 +38,10 @@ export default class NewsList extends Vue {
    * We use created here instead of mounted because it doesn’t need to be rerun if we leave this layout and come back to it.
    */
   async created() {
-    if (this.$store.getters['restaurant/list'].length === 0) {
-      return await this.$store.dispatch('restaurant/fetchData');
+    if (this.$store.getters['article/list'].length === 0) {
+      return await this.$store.dispatch('article/fetchData');
     } else {
-      console.info('News Store not empty --> fetching data from store');
+      console.info('Article store not empty --> fetching data from store');
     }
   }
 
@@ -80,11 +80,4 @@ export default class NewsList extends Vue {
 </script>
 
 <style lang="scss">
-.cardThumbnail {
-  transition: all ease 0.75s;
-  opacity: 0.7;
-  &[lazy='loaded'] {
-    opacity: 1;
-  }
-}
 </style>

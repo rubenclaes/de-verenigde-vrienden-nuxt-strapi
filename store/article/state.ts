@@ -1,12 +1,13 @@
-import { RestaurantState } from './types';
+import { ArticleState } from './types';
 
 /**
- * Restaurant state initializer
+ * Article state initializer
+ *
  */
-export const initState = (): RestaurantState => ({
+export const initState = (): ArticleState => ({
   selected: 1,
-  restaurants: [],
-  currentRestaurant: {
+  articles: [],
+  currentArticle: {
     id: 0,
     name: '',
     description: '',

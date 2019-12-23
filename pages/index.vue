@@ -20,9 +20,7 @@
                 <h1 class="display-3 text-white">
                   Koninklijke Harmonie
                   <span>De Verenigde Vrienden Heusden-Zolder</span>
-                  <span class="lead text-success font-weight-bold"
-                    >Daar zit muziek in!</span
-                  >
+                  <span class="lead text-success font-weight-bold">Daar zit muziek in!</span>
                 </h1>
 
                 <p></p>
@@ -38,8 +36,7 @@
                     class="mb-3 mb-sm-0"
                     type="success"
                     textColor="secondary"
-                    >Lees verder</base-button
-                  >
+                  >Lees verder</base-button>
                 </div>
               </div>
             </div>
@@ -111,12 +108,17 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
             <div class="rounded shadow-lg overflow-hidden">
-              <b-carousel id="carousel1" :interval="4000" controls indicators>
+              <b-carousel
+                id="carousel1"
+                :interval="4000"
+                controls
+                indicators
+              >
                 <!-- Text slides with image -->
                 <b-carousel-slide>
                   <template v-slot:img>
                     <LazyImage
-                      dataSrc="home/jeugdorkest/jeugdorkest-min.jpeg"
+                      data-src="home/jeugdorkest/jeugdorkest-min.jpeg"
                       fetchMode="srcset"
                       extraCss="d-block img-fluid w-100"
                       height="480"
@@ -126,7 +128,7 @@
                 <b-carousel-slide>
                   <template v-slot:img>
                     <LazyImage
-                      dataSrc="home/jeugdorkest/jeugdorkest2-min.jpeg"
+                      data-src="home/jeugdorkest/jeugdorkest2-min.jpeg"
                       fetchMode="srcset"
                       extraCss="d-block img-fluid w-100"
                       height="480"
@@ -136,7 +138,7 @@
                 <b-carousel-slide>
                   <template v-slot:img>
                     <LazyImage
-                      dataSrc="home/jeugdorkest/jeugdorkest3-min.jpeg"
+                      data-src="home/jeugdorkest/jeugdorkest3-min.jpeg"
                       fetchMode="srcset"
                       extraCss="d-block img-fluid w-100"
                       height="480"
@@ -146,7 +148,7 @@
                 <b-carousel-slide>
                   <template v-slot:img>
                     <LazyImage
-                      dataSrc="home/jeugdorkest/jeugdorkest4-min.jpeg"
+                      data-src="home/jeugdorkest/jeugdorkest4-min.jpeg"
                       fetchMode="srcset"
                       extraCss="d-block img-fluid w-100"
                       height="480"
@@ -156,7 +158,7 @@
                 <b-carousel-slide>
                   <template v-slot:img>
                     <LazyImage
-                      dataSrc="home/jeugdorkest/jeugdorkest5-min.jpeg"
+                      data-src="home/jeugdorkest/jeugdorkest5-min.jpeg"
                       fetchMode="srcset"
                       extraCss="d-block img-fluid w-100"
                       height="480"
@@ -186,13 +188,7 @@
               <ul class="list-unstyled mt-5">
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge
-                      tag="b-badge"
-                      type="success"
-                      circle
-                      class="mr-3"
-                      icon="ni ni-check-bold"
-                    ></badge>
+                    <badge tag="b-badge" type="success" circle class="mr-3" icon="ni ni-check-bold"></badge>
                     <p>
                       Speel je al een blaasinstrument (trompet, klarinet, hoorn,
                       trombone, bariton, tuba, dwarsfluit, hobo, fagot,
@@ -203,13 +199,7 @@
                 </li>
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge
-                      tag="b-badge"
-                      type="success"
-                      circle
-                      class="mr-3"
-                      icon="ni ni-like-2"
-                    ></badge>
+                    <badge tag="b-badge" type="success" circle class="mr-3" icon="ni ni-like-2"></badge>
                     <p>
                       Je kan meespelen na je 1ste jaar instrumentles. Kevin
                       Absillis slaat er de maat. De harmonie stelt gratis een
@@ -247,7 +237,7 @@
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
               <LazyImage
-                dataSrc="home/harmonie/close_up.jpeg"
+                data-src="home/harmonie/close_up.jpeg"
                 fetchMode="srcset"
                 extraCss="card-img-top"
               />
@@ -260,11 +250,7 @@
                   class="svg-bg"
                 >
                   <polygon points="0,52 583,95 0,95" class="fill-default" />
-                  <polygon
-                    points="0,42 583,95 683,0 0,95"
-                    opacity=".2"
-                    class="fill-default"
-                  />
+                  <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default" />
                 </svg>
                 <h4 class="display-3 font-weight-bold text-white">Repetitie</h4>
                 <p class="lead text-italic text-white">
@@ -333,15 +319,13 @@
             </p>
           </div>
           <div class="col-lg-6 mb-lg-auto">
-            <div
-              class="rounded shadow-lg overflow-hidden transform-perspective-right"
-            >
-              <b-carousel id="carousel1" controls indicators>
+            <div class="rounded shadow-lg overflow-hidden transform-perspective-right">
+              <b-carousel id="carousel3" controls indicators>
                 <!-- Text slides with image -->
                 <b-carousel-slide>
                   <template v-slot:img>
                     <LazyImage
-                      dataSrc="home/activiteiten/jazz-min.jpeg"
+                      data-src="home/activiteiten/jazz-min.jpeg"
                       fetchMode="srcset"
                       extraCss="d-block img-fluid w-100"
                       height="480"
@@ -364,9 +348,7 @@
             <h1>Dirigent</h1>
           </div>
           <blockquote class="blockquote text-center">
-            <p class="mb-0">
-              Het belangrijkste in de muziek staat niet in de noten.
-            </p>
+            <p class="mb-0">Het belangrijkste in de muziek staat niet in de noten.</p>
             <footer class="blockquote-footer">Kevin Absillis</footer>
           </blockquote>
         </div>
@@ -374,7 +356,7 @@
           <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
             <div class="px-4">
               <LazyImage
-                dataSrc="home/dirigent/dirigent2.jpeg"
+                data-src="home/dirigent/dirigent2.jpeg"
                 fetchMode="srcset"
                 extraCss="rounded img-center img-fluid shadow shadow-lg--hover"
                 height="width: 200px;"
@@ -416,26 +398,12 @@
         <div class="row text-center justify-content-center">
           <div class="col-lg-10">
             <a href="https://goo.gl/maps/YgziKZGExWnQW9cd7">
-              <icon
-                name="ni ni-pin-3"
-                class="mb-5 floating"
-                size="lg"
-                type="white"
-                shadow
-                rounded
-              ></icon>
+              <icon name="ni ni-pin-3" class="mb-5 floating" size="lg" type="white" shadow rounded></icon>
             </a>
-            <h1 class="text-white font-weight-light">
-              Waar kan je ons vinden?
-            </h1>
+            <h1 class="text-white font-weight-light">Waar kan je ons vinden?</h1>
 
-            <a
-              href="https://goo.gl/maps/YgziKZGExWnQW9cd7"
-              class="lead text-white"
-              target="blank"
-            >
-              <icon name="ni ni-map-big" size="sm" type="white"></icon
-              >&nbsp;Kerkenblook z/n
+            <a href="https://goo.gl/maps/YgziKZGExWnQW9cd7" class="lead text-white" target="blank">
+              <icon name="ni ni-map-big" size="sm" type="white"></icon>&nbsp;Kerkenblook z/n
             </a>
 
             <p class="lead text-white">3550 Heusden-Zolder</p>
@@ -493,10 +461,7 @@
                       ></base-input>
                     </div>
                   </ValidationProvider>
-                  <ValidationProvider
-                    name="model.message"
-                    rules="required|min:1"
-                  >
+                  <ValidationProvider name="model.message" rules="required|min:1">
                     <div slot-scope="{ errors }">
                       <base-input class="mb-4" :error="errors[0]">
                         <textarea
@@ -510,13 +475,7 @@
                       </base-input>
                     </div>
                   </ValidationProvider>
-                  <b-button
-                    block
-                    type="submit"
-                    variant="default"
-                    round
-                    :disabled="invalid"
-                  >
+                  <b-button block type="submit" variant="default" round :disabled="invalid">
                     <icon name="ni ni-send" size="sm"></icon>&nbsp;Verstuur
                   </b-button>
                 </ValidationObserver>
@@ -588,7 +547,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator';
 
-import { restaurantVuexNamespace } from '~/store/restaurant/const';
+import { articleVuexNamespace } from '~/store/article/const';
 
 import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
@@ -627,7 +586,7 @@ export default class IndexPage extends Vue {
 
   private email = '';
 
-  @restaurantVuexNamespace.Getter('loading')
+  @articleVuexNamespace.Getter('loading')
   private loading!: boolean;
 
   head() {
@@ -645,10 +604,10 @@ export default class IndexPage extends Vue {
 
   /*   created() {
     this.$store.watch(
-      state => state.restaurant.status.loading,
+      state => state.article.status.loading,
       () => {
         console.log('created watch');
-        const loading = this.$store.state.restaurant.status.loading;
+        const loading = this.$store.state.article.status.loading;
         if (loading === false) {
           //this.show = true;
           //this.$store.commit('snackbar/setSnack', '');
@@ -662,11 +621,11 @@ export default class IndexPage extends Vue {
       this.scrollToHash();
     }
     setInterval(() => {
-      this.$store.state.restaurant.status.loading = !this.$store.state
-        .restaurant.status.loading;
+      this.$store.state.article.status.loading = !this.$store.state
+        .article.status.loading;
     }, 1000);
     this.$store.watch(
-      () => this.$store.state.restaurant.status.loading,
+      () => this.$store.state.article.status.loading,
       () => {
         console.log('mounted watch ');
       }
@@ -683,9 +642,9 @@ export default class IndexPage extends Vue {
    * Warning: You don't have access of the component instance through this inside fetch because it is called before initiating the component.
    * */
   async fetch({ store, params }) {
-    /* if (store.getters['restaurant/list'].length === 0) {
+    /* if (store.getters['article/list'].length === 0) {
       console.info('Fetching data from API');
-      return await store.dispatch('restaurant/fetchData');
+      return await store.dispatch('article/fetchData');
     }
     console.info('Store was not empty --> fetched data from store'); */
   }

@@ -8,31 +8,19 @@
     v-if="diningday"
   >
     <template #image>
-      <img
-        v-lazy="diningday.image.url"
-        class="card-img-top cardThumbnail"
-        alt="Eetdag afbeelding"
-      />
+      <img v-lazy="diningday.image.url" class="card-img-top cardThumbnail" alt="Eetdag afbeelding" />
     </template>
 
     <icon :name="icon" :type="type" rounded class="mb-4"></icon>
-    <h6 v-bind:class="textColor" class="text-uppercase">
-      {{ diningday.name }}
-    </h6>
-    <p class="description mt-3">
-      {{ diningday.description || 'Geen omschrijving' }}
-    </p>
+    <h6 v-bind:class="textColor" class="text-uppercase">{{ diningday.name }}</h6>
+    <p class="description mt-3">{{ diningday.description || 'Geen omschrijving' }}</p>
 
     <template>
       <div class="text-center text-muted mb-4">
         <small>Kies je gerecht:</small>
       </div>
 
-      <dish-preview
-        v-for="dish in diningday.dishes"
-        :key="dish.id"
-        :dish="dish"
-      ></dish-preview>
+      <dish-preview v-for="dish in diningday.dishes" :key="dish.id" :dish="dish"></dish-preview>
     </template>
   </card>
 </template>
@@ -84,11 +72,4 @@ export default class DishList extends Vue {
 </script>
 
 <style lang="scss">
-.cardThumbnail {
-  transition: all ease 0.75s;
-  opacity: 0.7;
-  &[lazy='loaded'] {
-    opacity: 1;
-  }
-}
 </style>

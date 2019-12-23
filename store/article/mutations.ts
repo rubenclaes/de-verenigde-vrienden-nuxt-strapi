@@ -1,52 +1,52 @@
 import { MutationTree } from 'vuex';
-import { RestaurantState, Restaurant } from './types';
+import { ArticleState, Article } from './types';
 import Vue from 'vue';
 
 /**
- * Restaurant mutations
+ * Article mutations
  */
-export const mutations: MutationTree<RestaurantState> = {
+export const mutations: MutationTree<ArticleState> = {
   select(state, id: number) {
     state.selected = id;
   },
 
   /**
-   * Adding Restaurants to the Restaurant state
+   * Adding articles to the Article state
    *
    * @param {*} state
-   * @param {Restaurant[]} restaurants
+   * @param {Article[]} articles
    */
-  set(state, restaurants: Restaurant[]) {
+  set(state, articles: Article[]) {
     console.info('set restaurant state');
-    state.restaurants = restaurants;
+    state.articles = articles;
   },
 
   /**
-   * Adding Restaurant models to the Restaurant array in the state
+   * Adding Article models to the articles array in the Article state
    *
    * @param state
    * @param restaurant
    */
-  add(state, restaurant: Restaurant) {
+  add(state, article: Article) {
     console.info('add restaurant to state');
-    state.restaurants.push(restaurant);
+    state.articles.push(article);
   },
 
   /**
-   *  Clearing the Restaurant state
+   *  Clearing the Article state
    *
    */
   clear: state => {
     console.info('clearing the state');
-    state.restaurants = [];
+    state.articles = [];
   },
 
   /**
-   *  Sorting the Restaurant state
+   *  Sorting the Artilce state
    *
    */
   sort: state => {
-    state.restaurants.sort(function(a, b) {
+    state.articles.sort(function(a, b) {
       return a.id - b.id || a.name.localeCompare(b.name);
     });
   },
@@ -57,8 +57,8 @@ export const mutations: MutationTree<RestaurantState> = {
    * @param {*} state
    * @param {*} payload
    */
-  setCurrentRestaurant(state, payload) {
-    state.currentRestaurant = payload;
+  setCurrentArticle(state, payload) {
+    state.currentArticle = payload;
   },
 
   /**
@@ -69,12 +69,12 @@ export const mutations: MutationTree<RestaurantState> = {
    */
   setLoading(state, loading) {
     Vue.set(state.status, 'loading', loading);
-    console.info('loading News...--> ' + state.status.loading);
+    console.info('loading Articles...--> ' + state.status.loading);
   },
 
   setSuccess(state, success) {
     Vue.set(state.status, 'success', success);
-    console.info('successfully fetched News --> ' + state.status.success);
+    console.info('successfully fetched Articles --> ' + state.status.success);
   }
 };
 
