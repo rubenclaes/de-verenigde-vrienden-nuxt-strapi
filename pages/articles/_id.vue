@@ -28,8 +28,13 @@
               <div class="col-lg-3 order-lg-2"></div>
               <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
                 <div class="card-profile-actions py-4 mt-lg-0">
-                  <base-button type="danger" icon="ni ni-pdf" rounded icon-only></base-button>
-                  <base-button @click="share()" type="danger" icon="fa fa-file-pdf" rounded>pdf</base-button>
+                  <a
+                    :href="`https://www.facebook.com/sharer/sharer.php?u=https://www.deverenigdevriendenheusden.be${this.$route.fullPath}`"
+                    target="_blank"
+                    class="btn rounded-circle btn-icon-only btn-icon btn-twitter"
+                  >
+                    <i class="fa fa-twitter"></i>
+                  </a>
                   <a
                     :href="`https://www.facebook.com/sharer/sharer.php?u=https://www.deverenigdevriendenheusden.be${this.$route.fullPath}`"
                     target="_blank"
@@ -37,14 +42,6 @@
                   >
                     <i class="fa fa-facebook"></i>
                   </a>
-                  <base-button
-                    tag="a"
-                    @click="share()"
-                    type="facebook"
-                    icon="fa fa-facebook"
-                    rounded
-                    icon-only
-                  ></base-button>
                 </div>
               </div>
               <div class="col-lg-4 order-lg-1">
@@ -199,7 +196,7 @@ export default class ArticleView extends Vue {
           hid: `og:url`,
           name: 'og:url',
           property: 'og:url',
-          content: `https://develop.deverenigdevriendenheusden.be${this.$route.fullPath}`
+          content: `https://www.deverenigdevriendenheusden.be${this.$route.fullPath}`
         },
         {
           hid: `og:type`,
@@ -229,13 +226,37 @@ export default class ArticleView extends Vue {
           hid: `og:site_name`,
           name: 'og:site_name',
           property: 'og:site_name',
-          content: `De Verengide Vrienden Heusden-Zolder`
+          content: `Koninklijke Harmonie De Verenigde Vrienden Heusden-Zolder`
         },
         {
           hid: `og:locale`,
           name: 'og:locale',
           property: 'og:locale',
           content: `nl_BE`
+        },
+        {
+          hid: `twitter:card`,
+          name: 'twitter:card',
+          property: 'twitter:card',
+          content: `summary_large_image`
+        },
+        {
+          hid: `twitter:title`,
+          name: 'twitter:title',
+          property: 'twitter:title',
+          content: `${this.article.name}`
+        },
+        {
+          hid: `twitter:description`,
+          name: 'twitter:description',
+          property: 'twitter:description',
+          content: `${this.article.description.substring(50, 150)}`
+        },
+        {
+          hid: `twitter:image`,
+          name: 'twitter:imgae',
+          property: 'twitter:image',
+          content: `${this.article.image.url}`
         }
       ]
     };
