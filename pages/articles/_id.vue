@@ -199,7 +199,7 @@ export default class ArticleView extends Vue {
           hid: `og:url`,
           name: 'og:url',
           property: 'og:url',
-          content: `https://www.deverenigdevriendenheusden.be${this.$route.fullPath}`
+          content: `https://develop.deverenigdevriendenheusden.be${this.$route.fullPath}`
         },
         {
           hid: `og:type`,
