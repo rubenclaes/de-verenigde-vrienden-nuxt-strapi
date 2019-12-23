@@ -18,7 +18,7 @@
     "lintfix": "tslint --fix --project ."
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "^0.3.3",
+    "@nuxt/typescript-runtime": "^0.3.4",
     "@nuxtjs/axios": "^5.9.0",
     "@nuxtjs/google-analytics": "^2.2.2",
     "@nuxtjs/markdownit": "^1.2.7",
@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@bazzite/nuxt-optimized-images": "^0.3.0",
-    "@nuxt/typescript-build": "^0.5.2",
+    "@nuxt/typescript-build": "^0.5.3",
     "@nuxtjs/dotenv": "^1.4.1",
     "@types/dotenv": "^6.1.1",
     "@types/jest": "^24.0.19",
