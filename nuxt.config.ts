@@ -112,7 +112,7 @@ const config: Configuration = {
       quality: [0.65, 0.8]
     },
     webp: {
-      quality: 85
+      quality: 80
     }
   },
 
@@ -253,7 +253,7 @@ const config: Configuration = {
           return res.data.map((article: any) => {
             article.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${article.image.public_id}${article.image.ext}`;
             return {
-              route: `/articles/${article.id}`,
+              route: `/articles/${article.slug}`,
               payload: article
             };
           });

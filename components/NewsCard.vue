@@ -21,7 +21,7 @@
     </div>
 
     <router-link
-      :to="{ name: 'articles-id', params: { id: article.id } }"
+      :to="{ name: 'articles-id', params: { id: article.slug } }"
       tag="a"
       class="btn mt-4"
       :class="buttonType"

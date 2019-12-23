@@ -26,6 +26,7 @@ export const DUMMY_RESTAURANTS: Article[] = [
         resource_type: 'image'
       }
     },
+    slug: 'een-mooie-titel',
     Categories: { Tag1: 'jaarconcert', Tag2: 'vuur', Tag3: 'muziek' },
     created_at: new Date('2019-10-04T16:29:32.958Z'),
     updated_at: new Date('2019-09-27T11:17:25.432Z')
@@ -55,6 +56,7 @@ export const DUMMY_RESTAURANTS: Article[] = [
         resource_type: 'image'
       }
     },
+    slug: 'een-mooie-titel',
     Categories: { Tag1: 'Spaghetti', Tag2: 'Eetdag', Tag3: 'Harmonie' },
     created_at: new Date('2019-09-27T11:17:25.432Z'),
     updated_at: new Date('2019-09-27T11:17:25.432Z')

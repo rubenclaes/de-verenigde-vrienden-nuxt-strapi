@@ -39,6 +39,7 @@ export interface Article {
     updated_at: Date;
     provider_metadata: { public_id: string; resource_type: string };
   };
+  slug: string;
 
   Categories: { Tag1: string; Tag2: string; Tag3: string };
   created_at: Date;

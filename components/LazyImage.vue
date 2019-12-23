@@ -48,7 +48,6 @@ export default {
       required: false,
       type: String
     },
-
     objectFit: {
       default: 'cover',
       required: false,

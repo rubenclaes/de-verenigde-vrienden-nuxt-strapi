@@ -8,7 +8,7 @@
     v-if="diningday"
   >
     <template #image>
-      <img v-lazy="diningday.image.url" class="card-img-top cardThumbnail" alt="Eetdag afbeelding" />
+      <LazyImage :srcData="diningday.image.url" extraCss="card-img-top cardThumbnail" />
     </template>
 
     <icon :name="icon" :type="type" rounded class="mb-4"></icon>
@@ -32,13 +32,12 @@ import { diningDayVuexNamespace } from '~/store/diningday/const';
 
 @Component({
   components: {
-    BaseButton: () => import('@/components/BaseButton.vue'),
-    BaseCheckbox: () => import('@/components/BaseCheckbox.vue'),
     Card: () => import('@/components/Card.vue'),
-    Badge: () => import('@/components/Badge.vue'),
+
     Icon: () => import('@/components/Icon.vue'),
-    BaseInput: () => import('@/components/BaseInput.vue'),
-    DishPreview: () => import('@/components/DishPreview.vue')
+
+    DishPreview: () => import('@/components/DishPreview.vue'),
+    LazyImage: () => import('@/components/LazyImage.vue')
   }
 })
 export default class DishList extends Vue {
@@ -51,9 +50,6 @@ export default class DishList extends Vue {
 
   @Prop({ type: String, default: 'primary' })
   type!: String;
-
-  @Prop({ type: String, default: 'btn-primary' })
-  buttonType!: String;
 
   @Prop({ type: String, default: 'text-primary' })
   textColor!: String;

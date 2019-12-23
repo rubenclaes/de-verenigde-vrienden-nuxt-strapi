@@ -30,6 +30,13 @@
                 <div class="card-profile-actions py-4 mt-lg-0">
                   <base-button type="danger" icon="ni ni-pdf" rounded icon-only></base-button>
                   <base-button @click="share()" type="danger" icon="fa fa-file-pdf" rounded>pdf</base-button>
+                  <a
+                    :href="`https://www.facebook.com/sharer/sharer.php?u=https://www.deverenigdevriendenheusden.be${this.$route.fullPath}`"
+                    target="_blank"
+                    class="btn rounded-circle btn-icon-only btn-icon btn-facebook"
+                  >
+                    <i class="fa fa-facebook"></i>
+                  </a>
                   <base-button
                     tag="a"
                     @click="share()"
@@ -67,13 +74,7 @@
             <div class="py-5 border-top">
               <div class="row justify-content-center">
                 <div class="col-md-6">
-                  <b-img-lazy
-                    v-bind="mainProps"
-                    :src="articleImage()"
-                    fluid-grow
-                    alt="nieuws img"
-                    class="rounded shadow-lg"
-                  ></b-img-lazy>
+                  <LazyImage :srcData="article.image.url" extraCss="rounded shadow-lg" />
                 </div>
                 <div class="col-lg-11">
                   <template>
@@ -102,7 +103,9 @@ import { Article } from '~/store/article/types';
     Card: () => import('@/components/Card.vue'),
     Badge: () => import('@/components/Badge.vue'),
     Icon: () => import('@/components/Icon.vue'),
-    BaseInput: () => import('@/components/BaseInput.vue')
+    BaseInput: () => import('@/components/BaseInput.vue'),
+
+    LazyImage: () => import('@/components/LazyImage.vue')
   }
 
   /* validate({ params: { article } }) {
@@ -116,34 +119,12 @@ export default class ArticleView extends Vue {
   @articleVuexNamespace.Getter('formattedDate')
   private formattedDate!: Date;
 
-  private active = false;
-
-  private items = [
-    {
-      text: 'Home',
-      to: { name: 'index' }
-    },
-    {
-      text: 'Nieuws',
-      to: { name: 'nieuws' }
-    },
-    {
-      text: 'Another Story',
-      active: true
-    }
-  ];
-
   currentPost() {
     return this.$store.state.post.currentPost;
   }
 
   isLoading() {
     return this.$store.state.post.isLoading;
-  }
-
-  articleImage() {
-    console.log(this.article);
-    return this.article.image.url;
   }
 
   data() {
@@ -164,16 +145,17 @@ export default class ArticleView extends Vue {
     // payload set during static generation
     if (payload) {
       console.info('payload');
-      //console.info(payload);
+
       // setup the store as it would be in SPA mode
       return store.commit('article/setCurrentArticle', payload);
       //return { article: context.payload };
     } else {
       //if (store.getters['article/currentArticle'].length === 0) {
-      console.log('Fetching article with ID');
+      console.info('Fetching article with Slug ' + params.id);
       return await store.dispatch(
-        'article/fetchArticle',
-        parseInt(params.id || 1)
+        'article/fetchArticleBySlug',
+        //parseInt(params.id || 1)
+        params.id
       );
       //} else {
     }
@@ -208,10 +190,16 @@ export default class ArticleView extends Vue {
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {
+          hid: `keywords`,
+          name: 'keywords',
+          property: 'keywords',
+          content: `${this.article.Categories[0].Tag1}, ${this.article.Categories[0].Tag2}, ${this.article.Categories[0].Tag3}`
+        },
+        {
           hid: `og:url`,
           name: 'og:url',
           property: 'og:url',
-          content: `https://www.deverenigdevriendenheusden.be/${this.$route.fullPath}`
+          content: `https://www.deverenigdevriendenheusden.be${this.$route.fullPath}`
         },
         {
           hid: `og:type`,
@@ -229,7 +217,7 @@ export default class ArticleView extends Vue {
           hid: `og:description`,
           name: 'og:description',
           property: 'og:description',
-          content: `${this.article.description}`
+          content: `${this.article.description.substring(50, 150)}`
         },
         {
           hid: `og:image`,

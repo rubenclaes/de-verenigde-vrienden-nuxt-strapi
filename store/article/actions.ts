@@ -2,7 +2,11 @@ import { ActionContext, ActionTree } from 'vuex/types';
 import { ArticleState } from './types';
 import { RootState } from '../type';
 
-import { loadArticles, loadArticle } from '../../lib/news/api';
+import {
+  loadArticles,
+  loadArticle,
+  loadArticleBySlug
+} from '../../lib/news/api';
 
 /**
  * Action context specific to Article module
@@ -48,6 +52,20 @@ export const actions: ActionTree<ArticleState, RootState> = {
     commit('setCurrentArticle', {
       id: article.id,
       ...article
+    });
+  },
+
+  /**
+   * Fetching an Article with Slug and adding it to currentArticle state.
+   */
+  async fetchArticleBySlug({ commit }: ArticleActionContext, slug) {
+    const article = await loadArticleBySlug(slug).catch(err => {
+      console.error('error', err);
+    });
+
+    commit('setCurrentArticle', {
+      id: article[0].id,
+      ...article[0]
     });
   }
 };

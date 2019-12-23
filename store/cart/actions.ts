@@ -12,10 +12,16 @@ interface CartActionContext extends ActionContext<CartState, RootState> {}
  */
 export const actions: ActionTree<CartState, RootState> = {
   checkout({ commit, state }, products) {
+    // save the items currently in the cart
     const savedCartItems = [...state.items];
     commit('setCheckoutStatus', null);
-    // empty cart
+
+    // clear the cart
     commit('setCartItems', { items: [] });
+    // send out checkout request, and optimistically
+    commit('setCheckoutStatus', 'request');
+    // the shop API accepts a success callback and a failure callback
+
     /*  shop.buyProducts(
       products,
       () => commit('setCheckoutStatus', 'successful'),

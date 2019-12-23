@@ -30,6 +30,7 @@ export const initState = (): ArticleState => ({
         resource_type: ''
       }
     },
+    slug: '',
     Categories: { Tag1: '', Tag2: '', Tag3: '' },
     created_at: new Date(),
     updated_at: new Date()

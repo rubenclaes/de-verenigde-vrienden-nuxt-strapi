@@ -1,7 +1,7 @@
 import { CartState } from './types';
 
 /**
- * DiningDay state initializer
+ * Cart state initializer
  */
 export const initState = (): CartState => ({
   items: [],

@@ -14,12 +14,23 @@ export async function loadArticles() {
 }
 
 /**
- * Load an article.
+ * Load an article with id.
  *
  */
-export async function loadArticle(id) {
+export async function loadArticle(id: number) {
   return await $axios.get(`restaurants/${id}`).then(res => {
     res.data.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${res.data.image.public_id}${res.data.image.ext}`;
+    return res.data;
+  });
+}
+
+/**
+ * Load an article with Slug
+ *
+ */
+export async function loadArticleBySlug(slug: string) {
+  return await $axios.get(`restaurants?slug=${slug}`).then(res => {
+    res.data[0].image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${res.data[0].image.public_id}${res.data[0].image.ext}`;
     return res.data;
   });
 }

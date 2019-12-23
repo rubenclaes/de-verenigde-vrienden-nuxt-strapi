@@ -26,11 +26,6 @@
                   <small>Problemen?</small>
                 </a>
               </div>
-              <div class="col-6 text-right">
-                <a href="#" class="text-light">
-                  <small>Create new account</small>
-                </a>
-              </div>
             </div>
           </div>
         </div>
@@ -60,8 +55,6 @@ export default class EetdagPage extends Vue {
 
   @diningDayVuexNamespace.Getter('loading')
   private loading!: boolean;
-
-  count: number = 0;
 
   head() {
     return {
