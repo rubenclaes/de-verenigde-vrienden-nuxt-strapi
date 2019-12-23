@@ -20,15 +20,13 @@
               <div class="col-lg-3 order-lg-2 mb-5">
                 <div class="card-profile-image">
                   <LazyImage
-                    dataSrc="/home/dirigent/dirigent3.jpeg"
+                    data-source="/home/dirigent/dirigent3.jpeg"
                     fetchMode="srcset"
                     extraCss="rounded-circle"
                   />
                 </div>
               </div>
-              <div
-                class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center"
-              >
+              <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
                 <div class="card-profile-actions py-4 mt-lg-0"></div>
               </div>
               <div class="col-lg-4 order-lg-1">

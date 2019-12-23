@@ -21,7 +21,7 @@
       class="lazyload blur"
       :data-src="image.opt"
     />
-    <img v-else v-bind:class="extraCss" class="lazyload" :data-src="dataSrc" />
+    <img v-else v-bind:class="extraCss" class="lazyload" :data-src="srcData" />
   </figure>
 </template>
 
@@ -43,11 +43,12 @@ export default {
       required: false,
       type: String
     },
-    dataSrc: {
+    srcData: {
       default: 'cat2.jpg',
       required: false,
       type: String
     },
+
     objectFit: {
       default: 'cover',
       required: false,
@@ -67,19 +68,19 @@ export default {
   computed: {
     image() {
       return {
-        original: require(`../assets/img/${this.dataSrc}?original`),
-        opt: require(`../assets/img/${this.dataSrc}`),
-        placeholder: require(`../assets/img/${this.dataSrc}?lqip`),
-        placeholderBlur: require(`../assets/img/${this.dataSrc}?lqip`),
-        colors: require(`../assets/img/${this.dataSrc}?lqip-colors`),
-        webp: require(`../assets/img/${this.dataSrc}?webp`)
+        original: require(`../assets/img/${this.srcData}?original`),
+        opt: require(`../assets/img/${this.srcData}`),
+        placeholder: require(`../assets/img/${this.srcData}?lqip`),
+        placeholderBlur: require(`../assets/img/${this.srcData}?lqip`),
+        colors: require(`../assets/img/${this.srcData}?lqip-colors`),
+        webp: require(`../assets/img/${this.srcData}?webp`)
       };
     }
   },
   methods: {
     test() {
       try {
-        let x = `${this.dataSrc}?original`;
+        let x = `${this.srcData}?original`;
       } catch (e) {
         console.log('error');
       }

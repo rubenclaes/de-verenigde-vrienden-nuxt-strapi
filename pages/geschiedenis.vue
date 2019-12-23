@@ -27,7 +27,7 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
             <LazyImage
-              data-src="geschiedenis/1.jpg"
+              srcData="geschiedenis/1.jpg"
               fetchMode="srcset"
               extraCss="img-fluid floating"
             />
@@ -68,7 +68,7 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <LazyImage data-src="geschiedenis/2.jpg" fetchMode="srcset" extraCss="card-img" />
+              <LazyImage srcData="geschiedenis/2.jpg" fetchMode="srcset" extraCss="card-img" />
             </div>
           </div>
           <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
@@ -107,7 +107,7 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
             <LazyImage
-              data-src="geschiedenis/3.jpg"
+              srcData="geschiedenis/3.jpg"
               fetchMode="srcset"
               extraCss="img-fluid floating"
             />
@@ -147,7 +147,7 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <LazyImage data-src="geschiedenis/4.jpg" fetchMode="srcset" extraCss="card-img" />
+              <LazyImage srcData="geschiedenis/4.jpg" fetchMode="srcset" extraCss="card-img" />
             </div>
           </div>
           <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
@@ -178,7 +178,7 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
             <LazyImage
-              data-src="geschiedenis/5.jpg"
+              srcData="geschiedenis/5.jpg"
               fetchMode="srcset"
               extraCss="img-fluid floating"
             />
@@ -215,7 +215,7 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <LazyImage data-src="geschiedenis/1.jpg" fetchMode="srcset" extraCss="card-img" />
+              <LazyImage srcData="geschiedenis/1.jpg" fetchMode="srcset" extraCss="card-img" />
             </div>
           </div>
           <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
@@ -252,7 +252,7 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
             <LazyImage
-              data-src="geschiedenis/7.jpg"
+              srcData="geschiedenis/7.jpg"
               fetchMode="srcset"
               extraCss="img-fluid floating"
             />
@@ -300,7 +300,7 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <LazyImage data-src="geschiedenis/10.jpg" fetchMode="srcset" extraCss="card-img" />
+              <LazyImage srcData="geschiedenis/10.jpg" fetchMode="srcset" extraCss="card-img" />
             </div>
           </div>
           <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
@@ -337,7 +337,7 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
             <LazyImage
-              data-src="geschiedenis/9.jpg"
+              srcData="geschiedenis/9.jpg"
               fetchMode="srcset"
               extraCss="img-fluid floating"
             />
@@ -374,7 +374,7 @@
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
               <LazyImage
-                data-src="geschiedenis/buitengebeuren-mijn-kracht-lijdt-onder-het-weer.jpg"
+                srcData="geschiedenis/buitengebeuren-mijn-kracht-lijdt-onder-het-weer.jpg"
                 fetchMode="srcset"
                 extraCss="card-img"
               />

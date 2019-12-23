@@ -3,7 +3,7 @@
 <template>
   <card class="border-0" hover shadow body-classes="py-5">
     <template #image>
-      <LazyImage :data-src="article.image.url" extraCss="card-img-top cardThumbnail" />
+      <LazyImage :srcData="article.image.url" extraCss="card-img-top cardThumbnail" />
     </template>
 
     <icon :name="icon" :type="type" rounded class="mb-4"></icon>

@@ -108,64 +108,62 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
             <div class="rounded shadow-lg overflow-hidden">
-              <b-carousel
-                id="carousel1"
-                :interval="4000"
-                controls
-                indicators
-              >
-                <!-- Text slides with image -->
-                <b-carousel-slide>
-                  <template v-slot:img>
-                    <LazyImage
-                      data-src="home/jeugdorkest/jeugdorkest-min.jpeg"
-                      fetchMode="srcset"
-                      extraCss="d-block img-fluid w-100"
-                      height="480"
-                    />
-                  </template>
-                </b-carousel-slide>
-                <b-carousel-slide>
-                  <template v-slot:img>
-                    <LazyImage
-                      data-src="home/jeugdorkest/jeugdorkest2-min.jpeg"
-                      fetchMode="srcset"
-                      extraCss="d-block img-fluid w-100"
-                      height="480"
-                    />
-                  </template>
-                </b-carousel-slide>
-                <b-carousel-slide>
-                  <template v-slot:img>
-                    <LazyImage
-                      data-src="home/jeugdorkest/jeugdorkest3-min.jpeg"
-                      fetchMode="srcset"
-                      extraCss="d-block img-fluid w-100"
-                      height="480"
-                    />
-                  </template>
-                </b-carousel-slide>
-                <b-carousel-slide>
-                  <template v-slot:img>
-                    <LazyImage
-                      data-src="home/jeugdorkest/jeugdorkest4-min.jpeg"
-                      fetchMode="srcset"
-                      extraCss="d-block img-fluid w-100"
-                      height="480"
-                    />
-                  </template>
-                </b-carousel-slide>
-                <b-carousel-slide>
-                  <template v-slot:img>
-                    <LazyImage
-                      data-src="home/jeugdorkest/jeugdorkest5-min.jpeg"
-                      fetchMode="srcset"
-                      extraCss="d-block img-fluid w-100"
-                      height="480"
-                    />
-                  </template>
-                </b-carousel-slide>
-              </b-carousel>
+              <client-only>
+                <b-carousel id="carousel1" :interval="4000" controls indicators>
+                  <!-- Slides with img slot -->
+                  <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
+                  <b-carousel-slide>
+                    <template v-slot:img>
+                      <LazyImage
+                        srcData="home/jeugdorkest/jeugdorkest-min.jpeg"
+                        fetchMode="srcset"
+                        extraCss="d-block img-fluid w-100"
+                        height="480"
+                      />
+                    </template>
+                  </b-carousel-slide>
+                  <b-carousel-slide>
+                    <template v-slot:img>
+                      <LazyImage
+                        srcData="home/jeugdorkest/jeugdorkest2-min.jpeg"
+                        fetchMode="srcset"
+                        extraCss="d-block img-fluid w-100"
+                        height="480"
+                      />
+                    </template>
+                  </b-carousel-slide>
+                  <b-carousel-slide>
+                    <template v-slot:img>
+                      <LazyImage
+                        srcData="home/jeugdorkest/jeugdorkest3-min.jpeg"
+                        fetchMode="srcset"
+                        extraCss="d-block img-fluid w-100"
+                        height="480"
+                      />
+                    </template>
+                  </b-carousel-slide>
+                  <b-carousel-slide>
+                    <template v-slot:img>
+                      <LazyImage
+                        srcData="home/jeugdorkest/jeugdorkest4-min.jpeg"
+                        fetchMode="srcset"
+                        extraCss="d-block img-fluid w-100"
+                        height="480"
+                      />
+                    </template>
+                  </b-carousel-slide>
+                  <b-carousel-slide>
+                    <template v-slot:img>
+                      <LazyImage
+                        srcData="home/jeugdorkest/jeugdorkest5-min.jpeg"
+                        fetchMode="srcset"
+                        extraCss="d-block img-fluid w-100"
+                        height="480"
+                      />
+                    </template>
+                  </b-carousel-slide>
+                </b-carousel>
+              </client-only>
             </div>
           </div>
           <div class="col-md-6 order-md-1">
@@ -237,7 +235,7 @@
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
               <LazyImage
-                data-src="home/harmonie/close_up.jpeg"
+                srcData="home/harmonie/close_up.jpeg"
                 fetchMode="srcset"
                 extraCss="card-img-top"
               />
@@ -320,19 +318,21 @@
           </div>
           <div class="col-lg-6 mb-lg-auto">
             <div class="rounded shadow-lg overflow-hidden transform-perspective-right">
-              <b-carousel id="carousel3" controls indicators>
-                <!-- Text slides with image -->
-                <b-carousel-slide>
-                  <template v-slot:img>
-                    <LazyImage
-                      data-src="home/activiteiten/jazz-min.jpeg"
-                      fetchMode="srcset"
-                      extraCss="d-block img-fluid w-100"
-                      height="480"
-                    />
-                  </template>
-                </b-carousel-slide>
-              </b-carousel>
+              <client-only>
+                <b-carousel id="carousel3" controls indicators>
+                  <!-- Text slides with image -->
+                  <b-carousel-slide>
+                    <template v-slot:img>
+                      <LazyImage
+                        srcData="home/activiteiten/jazz-min.jpeg"
+                        fetchMode="srcset"
+                        extraCss="d-block img-fluid w-100"
+                        height="480"
+                      />
+                    </template>
+                  </b-carousel-slide>
+                </b-carousel>
+              </client-only>
             </div>
           </div>
         </div>
@@ -356,7 +356,7 @@
           <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
             <div class="px-4">
               <LazyImage
-                data-src="home/dirigent/dirigent2.jpeg"
+                srcData="home/dirigent/dirigent2.jpeg"
                 fetchMode="srcset"
                 extraCss="rounded img-center img-fluid shadow shadow-lg--hover"
                 height="width: 200px;"
