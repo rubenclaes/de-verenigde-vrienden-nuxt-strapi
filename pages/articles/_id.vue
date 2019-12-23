@@ -29,7 +29,7 @@
               <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
                 <div class="card-profile-actions py-4 mt-lg-0">
                   <a
-                    :href="`https://www.facebook.com/sharer/sharer.php?u=https://www.deverenigdevriendenheusden.be${this.$route.fullPath}`"
+                    :href="`https://twitter.com/intent/tweet?text=${this.article.title}?&url=https://www.deverenigdevriendenheusden.be${this.$route.fullPath}`"
                     target="_blank"
                     class="btn rounded-circle btn-icon-only btn-icon btn-twitter"
                   >
