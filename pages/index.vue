@@ -2,7 +2,14 @@
   <div>
     <div class="position-relative">
       <section class="section-shaped my-0">
-        <div class="shape shape-style-1 shape-background">
+        <div
+          class="shape"
+          :style="{
+            backgroundImage: `url('${require(`../assets/img/home/header/music-chart.jpg`)}')`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover'
+          }"
+        >
           <span></span>
           <span></span>
           <span></span>
@@ -20,7 +27,12 @@
                 <h1 class="display-3 text-white">
                   Koninklijke Harmonie
                   <span>De Verenigde Vrienden Heusden-Zolder</span>
-                  <span class="lead text-success font-weight-bold">Daar zit muziek in!</span>
+                  <span
+                    class="lead text-primary font-weight-bold"
+                    data-aos="zoom-in-up"
+                    data-aos-delay="150"
+                    >Daar zit muziek in!</span
+                  >
                 </h1>
 
                 <p></p>
@@ -31,12 +43,14 @@
                 </p>
                 <div class="btn-wrapper">
                   <base-button
-                    v-scroll-to="'#jeugdorkest'"
+                    v-scroll-to="'#contact'"
                     tag="a"
                     class="mb-3 mb-sm-0"
-                    type="success"
-                    textColor="secondary"
-                  >Lees verder</base-button>
+                    type="white"
+                    textColor="white"
+                    outline
+                    >Ik word lid</base-button
+                  >
                 </div>
               </div>
             </div>
@@ -172,7 +186,7 @@
                 name="ni ni-satisfied"
                 class="mb-5 floating"
                 size="lg"
-                type="success"
+                type="primary"
                 shadow
                 rounded
               ></icon>
@@ -186,7 +200,13 @@
               <ul class="list-unstyled mt-5">
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge tag="b-badge" type="success" circle class="mr-3" icon="ni ni-check-bold"></badge>
+                    <badge
+                      tag="b-badge"
+                      type="primary"
+                      circle
+                      class="mr-3"
+                      icon="ni ni-check-bold"
+                    ></badge>
                     <p>
                       Speel je al een blaasinstrument (trompet, klarinet, hoorn,
                       trombone, bariton, tuba, dwarsfluit, hobo, fagot,
@@ -197,7 +217,13 @@
                 </li>
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge tag="b-badge" type="success" circle class="mr-3" icon="ni ni-like-2"></badge>
+                    <badge
+                      tag="b-badge"
+                      type="primary"
+                      circle
+                      class="mr-3"
+                      icon="ni ni-like-2"
+                    ></badge>
                     <p>
                       Je kan meespelen na je 1ste jaar instrumentles. Kevin
                       Absillis slaat er de maat. De harmonie stelt gratis een
@@ -209,7 +235,7 @@
                   <div class="d-flex align-items-center">
                     <badge
                       tag="b-badge"
-                      type="success"
+                      type="primary"
                       circle
                       class="mr-3"
                       icon="ni ni-calendar-grid-58"
@@ -248,7 +274,11 @@
                   class="svg-bg"
                 >
                   <polygon points="0,52 583,95 0,95" class="fill-default" />
-                  <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default" />
+                  <polygon
+                    points="0,42 583,95 683,0 0,95"
+                    opacity=".2"
+                    class="fill-default"
+                  />
                 </svg>
                 <h4 class="display-3 font-weight-bold text-white">Repetitie</h4>
                 <p class="lead text-italic text-white">
@@ -286,7 +316,14 @@
 
     <!-- Activiteiten -->
     <section class="section section-lg section-shaped overflow-hidden my-0">
-      <div class="shape shape-style-1 bg-gradient-success shape-skew">
+      <div
+        class="shape shape-skew"
+        :style="{
+          backgroundImage: `url('${require(`../assets/img/home/header/saxophone.jpg`)}')`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover'
+        }"
+      >
         <span></span>
         <span></span>
         <span></span>
@@ -317,7 +354,9 @@
             </p>
           </div>
           <div class="col-lg-6 mb-lg-auto">
-            <div class="rounded shadow-lg overflow-hidden transform-perspective-right">
+            <div
+              class="rounded shadow-lg overflow-hidden transform-perspective-right"
+            >
               <client-only>
                 <b-carousel id="carousel3" controls indicators>
                   <!-- Text slides with image -->
@@ -348,7 +387,9 @@
             <h1>Dirigent</h1>
           </div>
           <blockquote class="blockquote text-center">
-            <p class="mb-0">Het belangrijkste in de muziek staat niet in de noten.</p>
+            <p class="mb-0">
+              Het belangrijkste in de muziek staat niet in de noten.
+            </p>
             <footer class="blockquote-footer">Kevin Absillis</footer>
           </blockquote>
         </div>
@@ -398,15 +439,28 @@
         <div class="row text-center justify-content-center">
           <div class="col-lg-10">
             <a href="https://goo.gl/maps/YgziKZGExWnQW9cd7">
-              <icon name="ni ni-pin-3" class="mb-5 floating" size="lg" type="white" shadow rounded></icon>
+              <icon
+                name="ni ni-pin-3"
+                class="mb-5 floating"
+                size="lg"
+                type="white"
+                shadow
+                rounded
+              ></icon>
             </a>
-            <h1 class="text-white font-weight-light">Waar kan je ons vinden?</h1>
+            <h1 class="text-white font-weight-light">
+              Hoe kan je ons bereiken?
+            </h1>
 
-            <a href="https://goo.gl/maps/YgziKZGExWnQW9cd7" class="lead text-white" target="blank">
-              <icon name="ni ni-map-big" size="sm" type="white"></icon>&nbsp;Kerkenblook z/n
+            <a
+              href="https://goo.gl/maps/YgziKZGExWnQW9cd7"
+              class="lead text-white"
+              target="blank"
+            >
+              <icon name="ni ni-map-big" size="sm" type="white"></icon
+              >&nbsp;Kerkenblook z/n
+              <p class="lead text-white">3550 Heusden-Zolder</p>
             </a>
-
-            <p class="lead text-white">3550 Heusden-Zolder</p>
           </div>
         </div>
       </div>
@@ -461,7 +515,10 @@
                       ></base-input>
                     </div>
                   </ValidationProvider>
-                  <ValidationProvider name="model.message" rules="required|min:1">
+                  <ValidationProvider
+                    name="model.message"
+                    rules="required|min:1"
+                  >
                     <div slot-scope="{ errors }">
                       <base-input class="mb-4" :error="errors[0]">
                         <textarea
@@ -475,7 +532,13 @@
                       </base-input>
                     </div>
                   </ValidationProvider>
-                  <b-button block type="submit" variant="default" round :disabled="invalid">
+                  <b-button
+                    block
+                    type="submit"
+                    variant="default"
+                    round
+                    :disabled="invalid"
+                  >
                     <icon name="ni ni-send" size="sm"></icon>&nbsp;Verstuur
                   </b-button>
                 </ValidationObserver>

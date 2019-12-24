@@ -5,6 +5,8 @@ import axios from 'axios';
 
 //require('dotenv').config();
 
+const nodeExternals = require('webpack-node-externals');
+
 const config: Configuration = {
   mode: 'universal',
 
@@ -235,7 +237,7 @@ const config: Configuration = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, { isDev, isClient, loaders: { vue } }) {
+    extend(config, { isDev, isClient, isServer, loaders: { vue } }) {
       if (isDev && isClient && vue != undefined && vue.transformAssetUrls) {
         vue.transformAssetUrls.img = ['data-src', 'src'];
         vue.transformAssetUrls.source = ['data-srcset', 'srcset'];
