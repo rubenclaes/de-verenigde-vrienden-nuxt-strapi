@@ -2,14 +2,7 @@
   <div>
     <div class="position-relative">
       <section class="section-shaped my-0">
-        <div
-          class="shape"
-          :style="{
-            backgroundImage: `url('${require(`../assets/img/home/header/music-chart.jpg`)}')`,
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover'
-          }"
-        >
+        <div class="shape">
           <span></span>
           <span></span>
           <span></span>
@@ -19,6 +12,12 @@
           <span></span>
           <span></span>
           <span></span>
+          <LazyImage
+            srcData="home/header/music-chart.jpg"
+            fetchMode="srcset"
+            extraCss="shape"
+            :style="{ objectFit: `cover` }"
+          />
         </div>
         <div class="container shape-container d-flex">
           <div class="col px-0">
@@ -64,7 +63,7 @@
     <section class="section section-lg pt-lg-0 mt--100">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-lg-12">
+          <div class="col-lg-12" data-aos="fade-up" data-aos-delay="150">
             <!-- start NewsList -->
 
             <div v-if="loading" class="card-deck">
@@ -123,7 +122,14 @@
           <div class="col-md-6 order-md-2">
             <div class="rounded shadow-lg overflow-hidden">
               <client-only>
-                <b-carousel id="carousel1" :interval="4000" controls indicators>
+                <b-carousel
+                  id="carousel1"
+                  :interval="4000"
+                  data-aos="fade-up"
+                  data-aos-delay="150"
+                  controls
+                  indicators
+                >
                   <!-- Slides with img slot -->
                   <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
                   <b-carousel-slide>
@@ -259,7 +265,11 @@
       <div class="container">
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
-            <div class="card bg-default shadow border-0">
+            <div
+              class="card bg-default shadow border-0"
+              data-aos="fade-up"
+              data-aos-delay="150"
+            >
               <LazyImage
                 srcData="home/harmonie/close_up.jpeg"
                 fetchMode="srcset"
@@ -316,20 +326,22 @@
 
     <!-- Activiteiten -->
     <section class="section section-lg section-shaped overflow-hidden my-0">
-      <div
-        class="shape shape-skew"
-        :style="{
-          backgroundImage: `url('${require(`../assets/img/home/header/saxophone.jpg`)}')`,
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover'
-        }"
-      >
+      <div class="shape shape-skew">
         <span></span>
         <span></span>
         <span></span>
         <span></span>
         <span></span>
         <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <LazyImage
+          srcData="home/header/saxophone.jpg"
+          fetchMode="srcset"
+          extraCss="shape"
+          :style="{ objectFit: `cover` }"
+        />
       </div>
       <div class="container py-0 pb-lg">
         <div
@@ -428,11 +440,17 @@
 
     <!-- Adres -->
     <section class="section section-shaped my-0 overflow-hidden">
-      <div class="shape shape-style-1 bg-gradient-default shape-skew">
+      <div class="shape shape-skew">
         <span></span>
         <span></span>
         <span></span>
         <span></span>
+        <LazyImage
+          srcData="home/header/trumpet2.jpg"
+          fetchMode="srcset"
+          extraCss="shape"
+          :style="{ objectFit: `cover` }"
+        />
       </div>
 
       <div class="container pt-lg pb-300">
@@ -479,7 +497,13 @@
               data-netlify="true"
               netlify-honeypot="bot-field"
             >
-              <card gradient="secondary" shadow body-classes="p-lg-5">
+              <card
+                gradient="secondary"
+                shadow
+                body-classes="p-lg-5"
+                data-aos="fade-up"
+                data-aos-delay="450"
+              >
                 <h4 class="mb-1">Wil je meer van ons weten?</h4>
                 <p class="mt-0">Een mailtje kan geen kwaad.</p>
 
