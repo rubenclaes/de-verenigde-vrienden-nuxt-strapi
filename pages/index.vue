@@ -64,8 +64,6 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-12" data-aos="fade-up" data-aos-delay="150">
-            <!-- start NewsList -->
-
             <div v-if="loading" class="card-deck">
               <skeleton-card />
               <skeleton-card />
@@ -73,6 +71,7 @@
             </div>
 
             <template v-else>
+              <!-- start NewsList -->
               <client-only>
                 <news-list></news-list>
               </client-only>

@@ -1,7 +1,7 @@
 <template>
   <div class="profile-page">
     <section class="section-profile-cover section-shaped my-0">
-      <div class="shape shape-style-1 shape-primary shape-skew alpha-4">
+      <div class="shape">
         <span></span>
         <span></span>
         <span></span>
@@ -9,6 +9,12 @@
         <span></span>
         <span></span>
         <span></span>
+        <LazyImage
+          srcData="femme/tree.jpg"
+          fetchMode="srcset"
+          extraCss="shape"
+          :style="{ objectFit: `cover` }"
+        />
       </div>
     </section>
 
@@ -20,15 +26,13 @@
               <div class="col-lg-3 order-lg-2 mb-5">
                 <div class="card-profile-image">
                   <LazyImage
-                    srcData="/dirigent/dirigent3.jpeg"
+                    srcData="femme/femme.jpeg"
                     fetchMode="srcset"
                     extraCss="rounded-circle"
                   />
                 </div>
               </div>
-              <div
-                class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center"
-              >
+              <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
                 <div class="card-profile-actions py-4 mt-lg-0"></div>
               </div>
               <div class="col-lg-4 order-lg-1">
@@ -50,7 +54,7 @@
             </div>
 
             <div class="text-center mt-5">
-              <h3>KEVIN ABSILLIS</h3>
+              <h3></h3>
               <div class="h6 font-weight-300"></div>
             </div>
 
@@ -58,34 +62,8 @@
               <div class="row justify-content-center">
                 <div class="col-lg-9">
                   <p>
-                    Onze harmonie wordt thans geleid door Kevin Absillis. Kevin
-                    zette op 7-jarige leeftijd zijn eerste stappen in de muziek
-                    bij Brassband Sint-Cecilia in Leest. Toen hij 17 jaar was,
-                    besloot hij van zijn hobby zijn beroep te maken. Hij begon
-                    studies tenortrombone aan het Lemmensinstituut te Leuven,
-                    maar ruilde er al vlug zijn instrument in voor een
-                    bastrombone. In 2009 rondde hij zijn studie af als Master in
-                    de muziek, optie bastrombone.
-                  </p>
-                  <p>
-                    Hoewel hij nog jong is, kan Kevin al een indrukwekkend
-                    palmares voorleggen. Zo speelde hij mee in verschillende
-                    vooraanstaande orkesten en ensembles, waaronder het Brussels
-                    Philharmonic Orchestra, het Golden Symphonic Orchestra, het
-                    orkest van de Vlaamse Opera, het Limburgs Symfonie Orkest,
-                    het Kamerorkest van Vlaanderen, het ensemble Il Novecento,
-                    het Orkest van de Koninklijke Muntschouwberg, het Nationaal
-                    Orkest van België, de Philharmonie van Luik en het
-                    kamerorkest Continuo uit Rotterdam.
-                  </p>
-
-                  <p>
-                    Kevin is bijzonder bekommerd om de opleiding van jonge
-                    muzikanten, die de toekomst van onze harmonie moeten
-                    waarborgen. Al onmiddellijk na zijn aantreden als dirigent,
-                    begin 2017, ging hij met veel enthousiasme een aantal
-                    jongeren begeleiden bij hun eerste stapjes in de
-                    blaasmuziek.
+                    <br />
+                    <fill-in-the-blanks :sentence="sentence"></fill-in-the-blanks>
                   </p>
                 </div>
               </div>
@@ -98,22 +76,26 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, namespace } from 'nuxt-property-decorator';
+import { Component, Vue } from 'nuxt-property-decorator';
 
 @Component({
-  layout: 'appHeader',
+  layout: 'appFemme',
+
   components: {
-    Logo: () => import('@/components/Logo.vue'),
     BaseButton: () => import('@/components/BaseButton.vue'),
     Card: () => import('@/components/Card.vue'),
     Badge: () => import('@/components/Badge.vue'),
     Icon: () => import('@/components/Icon.vue'),
     BaseInput: () => import('@/components/BaseInput.vue'),
-    LazyImage: () => import('@/components/LazyImage.vue')
+
+    LazyImage: () => import('@/components/LazyImage.vue'),
+    FillInTheBlanks: () => import('@/components/FillInTheBlanks.vue')
   }
 })
-export default class DirigentPage extends Vue {
-  private title = 'Dirigent';
+export default class FemmePage extends Vue {
+  private title = 'Femme';
+
+  private sentence = 'This is a [test] sentence for [demonstration] purposes';
 
   head() {
     return {

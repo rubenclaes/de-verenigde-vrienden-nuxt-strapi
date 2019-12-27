@@ -64,10 +64,9 @@
                     persoonsgegevens die wij verwerken: - IP-adres -
                     Locatiegegevens - Internetbrowser en apparaat type
                   </p>
-                    <p>Bijzondere en/of gevoelige persoonsgegevens die wij
-                    verwerken
-                    
-                    Onze website en/of dienst heeft niet de intentie
+                  <p>
+                    Bijzondere en/of gevoelige persoonsgegevens die wij
+                    verwerken Onze website en/of dienst heeft niet de intentie
                     gegevens te verzamelen over websitebezoekers die jonger zijn
                     dan 16 jaar. Tenzij ze toestemming hebben van ouders of
                     voogd. We kunnen echter niet controleren of een bezoeker
@@ -79,12 +78,11 @@
                     verzameld over een minderjarige, neem dan contact met ons op
                     via rubes.claes@gmail.com, dan verwijderen wij deze
                     informatie.
-                    </p>
+                  </p>
 
-                    <p>Met welk doel en op basis van welke grondslag
-                    wij persoonsgegevens verwerken 
-                    
-                    D&#39;ark verwerkt uw
+                  <p>
+                    Met welk doel en op basis van welke grondslag wij
+                    persoonsgegevens verwerken D&#39;ark verwerkt uw
                     persoonsgegevens voor de volgende doelen: - D&#39;ark
                     analyseert uw gedrag op de website om daarmee de website te
                     verbeteren en het aanbod van producten en diensten af te
@@ -163,24 +161,21 @@
                     beveiligd zijn of er zijn aanwijzingen van misbruik, neem
                     dan contact op met onze klantenservice of via
                     rubes.claes@gmail.com.
-                    </p>
-                     
-                
-                  <p>
-                    D&#39;ark heeft de volgende
-                    maatregelen genomen om uw persoonsgegevens te beveiligen:
-                    
-                    - TLS (voorheen SSL) Wij versturen uw gegevens via een
-                    beveiligde internetverbinding. Dit kunt u zien aan de
-                    adresbalk 'https' en het hangslotje in de adresbalk. -DNSSEC
-                    is een extra beveiliging (aanvullend op DNS) voor het
-                    omzetten van een domeinnaam (#company_website) naar het
-                    hieraan gekoppelde IP-adres (servernaam); het wordt voorzien
-                    van een digitale handtekening. U kunt die handtekening
-                    automatisch laten controleren. Op die manier voorkomen wij
-                    dat u omgeleid wordt naar een vals IP-adres.
                   </p>
 
+                  <p>
+                    D&#39;ark heeft de volgende maatregelen genomen om uw
+                    persoonsgegevens te beveiligen: - TLS (voorheen SSL) Wij
+                    versturen uw gegevens via een beveiligde internetverbinding.
+                    Dit kunt u zien aan de adresbalk 'https' en het hangslotje
+                    in de adresbalk. -DNSSEC is een extra beveiliging
+                    (aanvullend op DNS) voor het omzetten van een domeinnaam
+                    (#company_website) naar het hieraan gekoppelde IP-adres
+                    (servernaam); het wordt voorzien van een digitale
+                    handtekening. U kunt die handtekening automatisch laten
+                    controleren. Op die manier voorkomen wij dat u omgeleid
+                    wordt naar een vals IP-adres.
+                  </p>
                 </div>
               </div>
             </div>
@@ -192,12 +187,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, namespace } from 'nuxt-property-decorator';
+import { Component, Vue } from 'nuxt-property-decorator';
 
 @Component({
   layout: 'appHeader',
   components: {
-    Logo: () => import('@/components/Logo.vue'),
     BaseButton: () => import('@/components/BaseButton.vue'),
     Card: () => import('@/components/Card.vue'),
     Badge: () => import('@/components/Badge.vue'),
