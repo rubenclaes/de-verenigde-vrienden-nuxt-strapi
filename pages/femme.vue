@@ -61,10 +61,7 @@
             <div class="mt-5 py-5 border-top">
               <div class="row justify-content-center">
                 <div class="col-lg-9">
-                  <p>
-                    <br />
-                    <fill-in-the-blanks :sentence="sentence"></fill-in-the-blanks>
-                  </p>
+                  <fill-in-the-blanks></fill-in-the-blanks>
                 </div>
               </div>
             </div>
@@ -94,8 +91,6 @@ import { Component, Vue } from 'nuxt-property-decorator';
 })
 export default class FemmePage extends Vue {
   private title = 'Femme';
-
-  private sentence = 'This is a [test] sentence for [demonstration] purposes';
 
   head() {
     return {

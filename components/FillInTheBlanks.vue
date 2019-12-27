@@ -1,96 +1,97 @@
 <template>
   <div>
-    <span v-for="(part, index) in sentenceParts" :key="index">
-      <input
-        v-if="part.input"
-        v-model="part.guess"
-        :aria-colindex="index"
-        :class="{ correct: partIsCorrect(part) }"
-      />
-      <span v-else>{{ part.text }}</span>
-    </span>
-    <p v-if="allCorrect">
-      Goed gedaan!
-      <LazyImage
-        srcData="femme/ruben.jpeg"
-        fetchMode="srcset"
-        extraCss="shape"
-        :style="{ objectFit: `cover` }"
-      />
-    </p>
+    <client-only>
+      <base-button @click="start()" size="lg" type="warning" icon="fa fa-play">Play</base-button>
+      <div v-if="play">
+        <span v-for="(part, index) in sentenceParts" :key="index">
+          <input
+            v-if="part.input"
+            v-model="part.guess"
+            :aria-colindex="index"
+            :class="{ correct: partIsCorrect(part) }"
+          />
+          <span v-else>{{ part.text }}</span>
+        </span>
+
+        <p v-if="allCorrect()">
+          Goed gedaan!
+          <LazyImage
+            srcData="femme/ruben.jpeg"
+            fetchMode="srcset"
+            extraCss="shape"
+            :style="{ objectFit: `cover` }"
+          />
+        </p>
+      </div>
+    </client-only>
   </div>
 </template>
 
-<script>
-import LazyImage from './LazyImage';
+<script lang="ts">
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 
-export default {
-  name: 'FillInTheBlanks',
-
+@Component({
   components: {
-    LazyImage
-  },
+    LazyImage: () => import('@/components/LazyImage.vue'),
+    BaseButton: () => import('@/components/BaseButton.vue')
+  }
+})
+export default class FillInTheBlanks extends Vue {
+  name: String = 'FillInTheBlanks';
 
-  props: { sentence: { type: String, default: 'buton' } },
+  sentenceParts: any[] = [];
 
-  data() {
-    return {
-      sentenceParts: []
-    };
-  },
+  play: boolean = false;
 
-  computed: {
-    allCorrect() {
-      if (this.sentenceParts.every(this.partIsCorrect)) {
-        this.$confetti.start();
-        return true;
-      }
-    }
-  },
+  @Prop({
+    type: String,
+    default:
+      'This is a [test] sentence for [demonstration] [demonstration] purposes'
+  })
+  sentence!: String;
 
-  mounted() {
+  @Watch('sentence', { immediate: true })
+  reset() {
+    const re = /(\[[^\]]*\])/;
+
+    // The filter removes empty strings
+    const parts = this.sentence.split(re).filter(text => text);
+
+    this.sentenceParts = parts.map(segment => {
+      const isInput = re.test(segment);
+
+      return {
+        guess: '',
+        input: isInput,
+        text: isInput ? segment.slice(1, -1) : segment
+      };
+    });
+  }
+
+  allCorrect() {
+    console.log(this.sentenceParts.every(this.partIsCorrect));
+    return this.sentenceParts.every(this.partIsCorrect);
+  }
+
+  start() {
     this.playSound(
       'https://www.bensound.com/bensound-music/bensound-christmasjoy.mp3'
     );
-  },
 
-  methods: {
-    partIsCorrect(part) {
-      return !part.input || part.text === part.guess;
-    },
+    this.play = true;
+  }
 
-    reset() {
-      const re = /(\[[^\]]*\])/;
+  partIsCorrect(part) {
+    return !part.input || part.text === part.guess;
+  }
 
-      // The filter removes empty strings
-      const parts = this.sentence.split(re).filter(text => text);
-
-      this.sentenceParts = parts.map(segment => {
-        const isInput = re.test(segment);
-
-        return {
-          guess: '',
-          input: isInput,
-          text: isInput ? segment.slice(1, -1) : segment
-        };
-      });
-    },
-
-    playSound(sound) {
-      if (sound) {
-        var audio = new Audio(sound);
-        audio.play();
-      }
-    }
-  },
-
-  watch: {
-    sentence: {
-      immediate: true,
-      handler: 'reset'
+  playSound(sound) {
+    if (sound) {
+      var audio = new Audio(sound);
+      audio.play();
     }
   }
-};
+}
 </script>
 
 <style>
