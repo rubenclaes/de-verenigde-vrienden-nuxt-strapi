@@ -1,7 +1,9 @@
 <template>
   <div>
     <client-only>
-      <base-button @click="start()" size="lg" type="warning" icon="fa fa-play">Play</base-button>
+      <base-button @click="start()" size="lg" type="warning" icon="fa fa-play"
+        >Play</base-button
+      >
       <div v-if="play">
         <span v-for="(part, index) in sentenceParts" :key="index">
           <input
@@ -21,6 +23,7 @@
             extraCss="shape"
             :style="{ objectFit: `cover` }"
           />
+          <confetti></confetti>
         </p>
       </div>
     </client-only>
@@ -29,17 +32,23 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import VueConfetti from 'vue-confetti';
+
+import Confetti from './Confetti.vue';
 
 @Component({
   components: {
     LazyImage: () => import('@/components/LazyImage.vue'),
-    BaseButton: () => import('@/components/BaseButton.vue')
+    BaseButton: () => import('@/components/BaseButton.vue'),
+    Confetti
   }
 })
 export default class FillInTheBlanks extends Vue {
   name: String = 'FillInTheBlanks';
 
   sentenceParts: any[] = [];
+
+  confetti;
 
   play: boolean = false;
 
@@ -69,8 +78,9 @@ export default class FillInTheBlanks extends Vue {
   }
 
   allCorrect() {
-    console.log(this.sentenceParts.every(this.partIsCorrect));
-    return this.sentenceParts.every(this.partIsCorrect);
+    if (this.sentenceParts.every(this.partIsCorrect)) {
+      return true;
+    }
   }
 
   start() {
@@ -80,6 +90,8 @@ export default class FillInTheBlanks extends Vue {
 
     this.play = true;
   }
+
+  mounted() {}
 
   partIsCorrect(part) {
     return !part.input || part.text === part.guess;
