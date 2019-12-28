@@ -54,8 +54,25 @@ export default class FillInTheBlanks extends Vue {
 
   @Prop({
     type: String,
-    default:
-      'This is a [test] sentence for [demonstration] [demonstration] purposes'
+    default: `Dag Femme, hierbij 2 [cadeau's] 🎁! 
+      We kennen elkaar nu toch al enige [tijd], maar toch blijft een uniek cadeau zoeken voor jou geen simpele taak. 
+
+      Femme, ik ben niet zo goed in een rijmpje verzinnen, maar laten we er toch aan [beginnen].
+      
+      Dansen, animeren, lesgeven en beleid vormen kan ze als geen ander,
+       nochtans is ze geen [nederlander] 🇳🇱 
+      
+      1 tip het is niets eetbaar en zeker ook niets [drinkbaar] 🥤.
+    
+
+      Dus hopelijk stelt dit cadeau je niet teleur, en kan je het gebruiken in jouw [interieur] !
+      
+
+       Prettige feestdagen, succes met je thesis en goei examens, 
+
+       Groetjes
+
+       [Ruben] 🤖`
   })
   sentence!: String;
 
