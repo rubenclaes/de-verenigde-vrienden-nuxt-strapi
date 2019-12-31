@@ -68,6 +68,7 @@ const config: Configuration = {
     { src: '~/plugins/aos.js', mode: 'client' },
     { src: '~/plugins/vue-toasted.js', mode: 'client' },
     { src: '~/plugins/vue-confetti.js', mode: 'client' },
+    '~/plugins/composition-api',
     '~plugins/vue-scrollto.js',
     '~/plugins/filters',
     { src: '~/plugins/lazysizes.js', ssr: false },

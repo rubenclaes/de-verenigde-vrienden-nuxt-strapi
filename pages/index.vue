@@ -448,7 +448,7 @@
           srcData="home/header/trumpet2.jpg"
           fetchMode="srcset"
           extraCss="shape"
-          :style="{ objectFit: `cover` }"
+          
         />
       </div>
 

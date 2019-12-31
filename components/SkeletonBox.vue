@@ -3,7 +3,9 @@
 </template>
 
 <script>
-export default {
+import { createComponent, computed, ref } from '@vue/composition-api';
+
+export default createComponent({
   name: 'SkeletonBox',
   props: {
     maxWidth: {
@@ -28,20 +30,29 @@ export default {
       type: String
     }
   },
-  computed: {
-    computedWidth() {
-      // Either use the given fixed width or
-      // a random width between the given min
-      // and max values.
-      return (
-        this.width ||
-        `${Math.floor(
-          Math.random() * (this.maxWidth - this.minWidth) + this.minWidth
-        )}%`
-      );
-    }
+
+  setup(props) {
+    //state
+    //const maxWidth = ref(props.maxWidth);
+    //const minWidth = ref(props.minWidth);
+    //const width = ref(props.width);
+
+    // Computed Properties
+    const computedWidth = computed(
+      () =>
+        `${props.width ||
+          Math.random() * (props.maxWidth - props.minWidth) + props.minWidth}`
+    );
+
+    return {
+      // return properties
+      // changes is a ref, can be returned as such
+
+      // return computed properties
+      computedWidth
+    };
   }
-};
+});
 </script>
 
 <style lang="scss">
