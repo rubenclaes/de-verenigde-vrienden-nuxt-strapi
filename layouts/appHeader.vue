@@ -11,7 +11,7 @@
         <div class="row" slot="content-header" slot-scope="{ closeMenu }">
           <div class="col-6 collapse-brand">
             <router-link to="/">
-              <img src="~/assets/brand/logo_color3.svg" />
+              <img src="~/assets/brand/logo_color3.svg" alt="logo" />
             </router-link>
           </div>
           <div class="col-6 collapse-close">
@@ -100,21 +100,9 @@
               <span class="nav-link-inner--text d-lg-none">Facebook</span>
             </a>
           </li>
-          <!--        <li class="nav-item">
-            <a
-              class="nav-link nav-link-icon"
-              href="https://www.instagram.com/creativetimofficial"
-              target="_blank"
-              rel="noopener"
-              data-toggle="tooltip"
-              title="Follow us on Instagram"
-            >
-              <i class="fa fa-instagram"></i>
-              <span class="nav-link-inner--text d-lg-none">Instagram</span>
-            </a>
-          </li>-->
-          <li class="nav-item d-none d-lg-block ml-lg-4">
-            <button @click="goTocontact()" class="btn btn-neutral btn-icon">
+
+          <li class="nav-item ml-lg-4">
+            <button @click="goTocontact()" class="btn btn-blue btn-icon">
               <span class="btn-inner--icon">
                 <i class="fa fa-envelope mr-2"></i>
               </span>

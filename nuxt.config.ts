@@ -121,6 +121,7 @@ const config: Configuration = {
   },
 
   /*
+  name: 'images/[name]-[width].[ext]', // use [name] to keep the original filename
    ** bootstrapVue module configuration
    */
   bootstrapVue: {

@@ -1,55 +1,41 @@
 <template>
   <div>
     <div class="position-relative">
-      <section class="section-shaped my-0">
-        <div class="shape">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <LazyImage
-            srcData="home/header/music-chart.jpg"
+      <section class="section-shaped image-box my-0">
+        <div class="shape overflow-hidden">
+          <LazyPicture
+            srcData="home/header/music/music-chart.jpg"
             fetchMode="srcset"
-            extraCss="shape"
-            :style="{ objectFit: `cover` }"
+            extraCss=""
           />
         </div>
         <div class="container shape-container d-flex">
-          <div class="col px-0">
+          <div class="col px-0 pt-5">
             <div class="row">
               <div class="col-lg-7">
                 <h1 class="display-3 text-white">
                   Koninklijke Harmonie
                   <span>De Verenigde Vrienden Heusden-Zolder</span>
-                  <span
-                    class="lead text-primary font-weight-bold"
-                    data-aos="zoom-in-up"
-                    data-aos-delay="150"
+                  <span class="lead text-wbite font-weight-bold"
                     >Daar zit muziek in!</span
                   >
                 </h1>
 
                 <p></p>
-                <p class="lead text-white">
+                <p
+                  class="lead text-white d-none d-md-block d-lg-block d-xl-block"
+                >
                   Samen muziek maken met passie en oog voor kwaliteit, zowel op
                   beginnersniveau als voor gevorderde muzikanten, is onze
                   grootste uitdaging.
                 </p>
                 <div class="btn-wrapper">
-                  <base-button
+                  <button
                     v-scroll-to="'#contact'"
-                    tag="a"
-                    class="mb-3 mb-sm-0"
-                    type="white"
-                    textColor="white"
-                    outline
-                    >Ik word lid</base-button
+                    class="btn btn-neutral btn-icon"
                   >
+                    <span class="nav-link-inner--text">Ik word lid</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -58,29 +44,6 @@
       </section>
       <!-- shape Hero -->
     </div>
-
-    <!-- start News -->
-    <section class="section section-lg pt-lg-0 mt--100">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-12" data-aos="fade-up" data-aos-delay="150">
-            <div v-if="loading" class="card-deck">
-              <skeleton-card />
-              <skeleton-card />
-              <skeleton-card />
-            </div>
-
-            <template v-else>
-              <!-- start NewsList -->
-              <client-only>
-                <news-list></news-list>
-              </client-only>
-            </template>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- end news -->
 
     <!-- start important message -->
     <!--     <section class="section section-lg pt-0">
@@ -114,8 +77,73 @@
     </section>-->
     <!-- end important message -->
 
+    <!-- Harmonie  -->
+    <section class="section bg-secondary">
+      <div class="container">
+        <div class="row row-grid align-items-center">
+          <div class="col-md-6">
+            <div
+              class="card bg-default shadow border-0"
+              data-aos="fade-up"
+              data-aos-delay="150"
+            >
+              <LazyImage
+                srcData="home/harmonie/close_up.jpeg"
+                fetchMode="srcset"
+                extraCss="card-img-top"
+              />
+
+              <blockquote class="card-blockquote">
+                <svg
+                  preserveAspectRatio="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 583 95"
+                  class="svg-bg"
+                >
+                  <polygon points="0,52 583,95 0,95" class="fill-default" />
+                  <polygon
+                    points="0,42 583,95 683,0 0,95"
+                    opacity=".2"
+                    class="fill-default"
+                  />
+                </svg>
+                <h4 class="display-3 font-weight-bold text-white">Repetitie</h4>
+                <p class="lead text-italic text-white">
+                  Maandagavond, van 20u tot 22u is het repetitie in onze
+                  muziekzaal (Kerkenblook) en dat is altijd een leuke tijd. Na
+                  de repetitie wordt er nog gezellig nagebabbeld.
+                </p>
+              </blockquote>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div data-aos="fade-in" data-aos-delay="150" class="pl-md-5">
+              <h1>Harmonie</h1>
+
+              <p class="lead">
+                We zijn toffe groep muzikanten van alle leeftijden die samen
+                muzikaal plezier maken. Al wie graag muziek speelt is welkom om
+                even te komen kennismaken!
+              </p>
+
+              <p class="lead">
+                Je krijgt de kans om te groeien binnen onze harmonie, een ideale
+                begeleiding van jeugd naar de ‘grote Harmonie’.
+              </p>
+
+              <p class="lead">
+                Onze zorg gaat vooral uit naar de opleiding van de jeugd in
+                samenwerking met de academie.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end Harmonie -->
+
     <!-- Jeugdorkest -->
-    <section class="section section-lg pt-0">
+    <section class="section section-lg">
       <div class="container">
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
@@ -191,7 +219,7 @@
                 name="ni ni-satisfied"
                 class="mb-5 floating"
                 size="lg"
-                type="primary"
+                type="blue"
                 shadow
                 rounded
               ></icon>
@@ -206,25 +234,23 @@
                 <li class="py-2">
                   <div class="d-flex align-items-center">
                     <badge
-                      tag="b-badge"
-                      type="primary"
+                      type="blue"
                       circle
                       class="mr-3"
                       icon="ni ni-check-bold"
                     ></badge>
                     <p>
-                      Speel je al een blaasinstrument (trompet, klarinet, hoorn,
+                      Speel je een blaasinstrument (trompet, klarinet, hoorn,
                       trombone, bariton, tuba, dwarsfluit, hobo, fagot,
                       saxofoon) of doe je slagwerk, dan kan je bij ons
-                      aansluiten.
+                      aansluiten!
                     </p>
                   </div>
                 </li>
                 <li class="py-2">
                   <div class="d-flex align-items-center">
                     <badge
-                      tag="b-badge"
-                      type="primary"
+                      type="blue"
                       circle
                       class="mr-3"
                       icon="ni ni-like-2"
@@ -239,8 +265,7 @@
                 <li class="py-2">
                   <div class="d-flex align-items-center">
                     <badge
-                      tag="b-badge"
-                      type="primary"
+                      type="blue"
                       circle
                       class="mr-3"
                       icon="ni ni-calendar-grid-58"
@@ -259,70 +284,6 @@
     </section>
     <!-- end Jeugdorkest -->
 
-    <!-- Harmonie  -->
-    <section class="section bg-secondary">
-      <div class="container">
-        <div class="row row-grid align-items-center">
-          <div class="col-md-6">
-            <div
-              class="card bg-default shadow border-0"
-              data-aos="fade-up"
-              data-aos-delay="150"
-            >
-              <LazyImage
-                srcData="home/harmonie/close_up.jpeg"
-                fetchMode="srcset"
-                extraCss="card-img-top"
-              />
-
-              <blockquote class="card-blockquote">
-                <svg
-                  preserveAspectRatio="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 583 95"
-                  class="svg-bg"
-                >
-                  <polygon points="0,52 583,95 0,95" class="fill-default" />
-                  <polygon
-                    points="0,42 583,95 683,0 0,95"
-                    opacity=".2"
-                    class="fill-default"
-                  />
-                </svg>
-                <h4 class="display-3 font-weight-bold text-white">Repetitie</h4>
-                <p class="lead text-italic text-white">
-                  Maandagavond, van 20u tot 22u is het repetitie in onze
-                  muziekzaal (Kerkenblook) en dat is altijd een leuke tijd. Na
-                  de repetitie wordt er nog gezellig nagebabbeld.
-                </p>
-              </blockquote>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div data-aos="fade-in" data-aos-delay="150" class="pl-md-5">
-              <h1>Harmonie</h1>
-              <p class="lead">
-                De Koninklijke Harmonie De Verenigde Vrienden is een toffe groep
-                muzikanten van alle leeftijden die samen muzikaal plezier maken.
-                Al wie graag muziek speelt is welkom om even te komen
-                kennismaken!
-              </p>
-
-              <p>
-                Je krijgt de kans om te groeien binnen onze harmonie, een ideale
-                begeleiding van jeugd naar de ‘grote Harmonie’.
-              </p>
-              <p>
-                Onze zorg gaat vooral uit naar de opleiding van de jeugd in
-                samenwerking met de academie.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- end Harmonie -->
-
     <!-- Activiteiten -->
     <section class="section section-lg section-shaped overflow-hidden my-0">
       <div class="shape shape-skew">
@@ -338,8 +299,7 @@
         <LazyImage
           srcData="home/header/saxophone.jpg"
           fetchMode="srcset"
-          extraCss="shape"
-          :style="{ objectFit: `cover` }"
+          extraCss="img-fluid"
         />
       </div>
       <div class="container py-0 pb-lg">
@@ -353,7 +313,7 @@
               name="ni ni-calendar-grid-58"
               class="mb-5 floating"
               size="lg"
-              type="white"
+              type="primary"
               shadow
               rounded
             ></icon>
@@ -447,8 +407,7 @@
         <LazyImage
           srcData="home/header/trumpet2.jpg"
           fetchMode="srcset"
-          extraCss="shape"
-          
+          extraCss="img-fluid w-100"
         />
       </div>
 
@@ -627,6 +586,29 @@
       <!-- End Sendgrid Signup Form -->
     </section>
     <!-- end Contact -->
+
+    <!-- start News -->
+    <section class="section section-lg pt-lg-0 mt--100">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-12" data-aos="fade-up" data-aos-delay="150">
+            <div v-if="loading" class="card-deck">
+              <skeleton-card />
+              <skeleton-card />
+              <skeleton-card />
+            </div>
+
+            <template v-else>
+              <!-- start NewsList -->
+              <client-only>
+                <news-list></news-list>
+              </client-only>
+            </template>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end news -->
   </div>
 </template>
 
@@ -650,6 +632,7 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate';
     Modal: () => import('@/components/Modal.vue'),
 
     LazyImage: () => import('@/components/LazyImage.vue'),
+    LazyPicture: () => import('@/components/LazyPicture.vue'),
 
     NewsList: () => import('@/components/NewsList.vue'),
     SkeletonCard: () => import('@/components/SkeletonCard.vue'),

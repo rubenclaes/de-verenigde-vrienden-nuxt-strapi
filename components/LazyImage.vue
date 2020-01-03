@@ -5,6 +5,21 @@
     :height="height"
   >
     <picture v-if="fetchMode === 'srcset'">
+      <!--  <source media="(max-width: 576px)" srcset="images/header-576.png" />
+      <source media="(max-width: 922px)" srcset="images/header-922.png" />
+      <source media="(min-width: 923px)" srcset="images/header-2560.png" />
+      <img src="images/header-2560.png" />
+      -->
+
+      <!--    <source
+        type="image/webp"
+        srcset="
+          images/worlds-300.webp  300w,
+          images/worlds-600.webp  600w,
+          images/worlds-800.webp  800w,
+          images/worlds.webp     1000w
+        "
+      />-->
       <source :data-srcset="image.webp" type="image/webp" />
       <source :data-srcset="image.opt" type="image/jpg" />
       <img
@@ -12,6 +27,7 @@
         v-bind:class="extraCss"
         class="lazyload blur"
         :data-src="image.opt"
+        alt="responsive"
       />
     </picture>
     <img
