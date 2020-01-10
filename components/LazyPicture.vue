@@ -6,103 +6,90 @@
   >
     <picture v-if="fetchMode === 'srcset'">
       <source
-        sizes="100vw"
         media="(max-width: 576px)"
         :data-srcset="
           require(`../assets/img/home/header/music/music-chart_576w.jpg?webp`)
         "
+        sizes="100vw"
         type="image/webp"
       />
-
       <source
-        sizes="100vw"
         media="(max-width: 992px)"
-        :data-srcset="
+        :srcset="
           require(`../assets/img/home/header/music/music-chart_671w.jpg?webp`)
         "
+        sizes="100vw"
         type="image/webp"
       />
       <source
-        sizes="100vw"
         media="(max-width: 1200px)"
-        :data-srcset="
+        :srcset="
           require(`../assets/img/home/header/music/music-chart_1200.jpg?webp`)
         "
+        sizes="100vw"
         type="image/webp"
       />
       <source
-        sizes="100vw"
         media="(max-width: 2560px)"
-        :data-srcset="
+        :srcset="
           require(`../assets/img/home/header/music/music-chart_2560.jpg?webp`)
         "
+        sizes="100vw"
         type="image/jpg"
       />
       <source
-        sizes="100vw"
         media="(min-width: 2561px)"
-        :data-srcset="
+        :srcset="
           require(`../assets/img/home/header/music/music-chart.jpg?webp`)
         "
+        sizes="100vw"
         type="image/jpg"
       />
 
       <source
-        data-sizes="100vw"
         media="(max-width: 576px)"
         :data-srcset="
           require(`../assets/img/home/header/music/music-chart_576w.jpg`)
         "
-        type="image/jpg"
       />
       <source
-        sizes="100vw"
         media="(max-width: 768px)"
         :data-srcset="
-          require(`../assets/img/home/header/music/music-chart_671w.jpg`)
+          `${require(`../assets/img/home/header/music/music-chart_671w.jpg`)}`
         "
-        type="image/jpg"
       />
       <source
-        sizes="100vw"
         media="(max-width: 992px)"
         :data-srcset="
           require(`../assets/img/home/header/music/music-chart_671w.jpg`)
         "
-        type="image/jpg"
       />
       <source
-        sizes="100vw"
         media="(max-width: 1200px)"
         :data-srcset="
           require(`../assets/img/home/header/music/music-chart_1200.jpg`)
         "
-        type="image/jpg"
       />
       <source
-        sizes="100vw"
         media="(max-width: 2560px)"
         :data-srcset="
           require(`../assets/img/home/header/music/music-chart_2560.jpg`)
         "
-        type="image/jpg"
       />
       <source
-        sizes="100vw"
         media="(min-width: 2561px)"
         :data-srcset="
           require(`../assets/img/home/header/music/music-chart.jpg`)
         "
-        type="image/jpg"
       />
 
       <img
-        :src="image.placeholder"
-        v-bind:class="extraCss"
         class="lazyload blur"
+        v-bind:class="extraCss"
+        :src="image.placeholder"
         :data-src="image.opt"
-        alt="image with artdirection"
         title="image with artdirection"
+        alt="image with artdirection"
       />
     </picture>
     <img
@@ -161,7 +148,6 @@ export default {
         original: require(`../assets/img/${this.srcData}?original`),
         opt: require(`../assets/img/${this.srcData}`),
         placeholder: require(`../assets/img/${this.srcData}?lqip`),
-        placeholderBlur: require(`../assets/img/${this.srcData}?lqip`),
         colors: require(`../assets/img/${this.srcData}?lqip-colors`),
         webp: require(`../assets/img/${this.srcData}?webp`)
       };

@@ -3,6 +3,7 @@
     <div class="position-relative">
       <section class="section-shaped image-box my-0">
         <div class="shape overflow-hidden">
+         
           <LazyPicture
             srcData="home/header/music/music-chart.jpg"
             fetchMode="srcset"
@@ -84,7 +85,7 @@
           <div class="col-md-6">
             <div
               class="card bg-default shadow border-0"
-              data-aos="fade-up"
+              data-aos="fade-in"
               data-aos-delay="150"
             >
               <LazyImage
@@ -152,7 +153,7 @@
                 <b-carousel
                   id="carousel1"
                   :interval="4000"
-                  data-aos="fade-up"
+                  data-aos="fade-in"
                   data-aos-delay="150"
                   controls
                   indicators
