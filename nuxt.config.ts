@@ -3,10 +3,6 @@ import { Configuration } from '@nuxt/types';
 import { IS_DEV } from './config';
 import axios from 'axios';
 
-//require('dotenv').config();
-
-const nodeExternals = require('webpack-node-externals');
-
 const config: Configuration = {
   mode: 'universal',
 
@@ -57,7 +53,7 @@ const config: Configuration = {
    */
   css: [
     '@/assets/vendor/nucleo/css/nucleo.css',
-    '@/assets/vendor/font-awesome/css/font-awesome.css',
+    '@fortawesome/fontawesome-svg-core/styles.css',
     '@/assets/scss/argon.scss'
   ],
 
@@ -68,8 +64,10 @@ const config: Configuration = {
     { src: '~/plugins/aos.js', mode: 'client' },
     { src: '~/plugins/vue-toasted.js', mode: 'client' },
     { src: '~/plugins/vue-confetti.js', mode: 'client' },
+    '~/plugins/fontawesome.js',
     '~/plugins/composition-api',
     '~plugins/vue-scrollto.js',
+
     '~/plugins/filters',
     { src: '~/plugins/lazysizes.js', ssr: false },
     '~/plugins/vee-validate',
@@ -88,7 +86,6 @@ const config: Configuration = {
    */
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/onesignal',
     '@nuxtjs/pwa',
     '@nuxtjs/sentry',
     'bootstrap-vue/nuxt',
@@ -97,6 +94,7 @@ const config: Configuration = {
     '@nuxtjs/markdownit',
 
     '@nuxtjs/google-analytics',
+
     //Always at the end
     '@nuxtjs/sitemap'
   ],
@@ -204,21 +202,6 @@ const config: Configuration = {
     publishRelease: true,
     disabled: IS_DEV,
     config: {} // Additional config
-  },
-
-  /*
-   ** oneSignal module configuration
-   */
-  oneSignal: {
-    cdn: true,
-    init: {
-      appId: process.env.ONE_SIGNAL_ID,
-      allowLocalhostAsSecureOrigin: true,
-
-      welcomeNotification: {
-        disable: true
-      }
-    }
   },
 
   /*

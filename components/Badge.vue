@@ -3,11 +3,11 @@
     :is="tag"
     class="badge"
     :href="link"
-    :class="
-               [`badge-${type}`,
-                rounded ? `badge-pill` : '',
-                circle && 'badge-circle'
-               ]"
+    :class="[
+      `badge-${type}`,
+      rounded ? `badge-pill` : '',
+      circle && 'badge-circle'
+    ]"
   >
     <slot>
       <i v-if="icon" :class="icon"></i>
@@ -51,5 +51,4 @@ export default {
   }
 };
 </script>
-<style>
-</style>
+<style></style>

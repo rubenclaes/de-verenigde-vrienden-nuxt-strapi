@@ -3,11 +3,19 @@
     <section class="section section-lg pt-lg-0">
       <div class="container pt-lg-md">
         <div class="col-md-6">
-          <base-input alternative placeholder="Zoek" addon-right-icon="ni ni-zoom-split-in"></base-input>
+          <base-input
+            alternative
+            placeholder="Zoek"
+            addon-right-icon="ni ni-zoom-split-in"
+          ></base-input>
         </div>
         <!-- Using components -->
         <b-input-group size="lg" class="mt-3">
-          <b-form-input v-model="value" type="text" debounce="500"></b-form-input>
+          <b-form-input
+            v-model="value"
+            type="text"
+            debounce="500"
+          ></b-form-input>
           <b-input-group-append>
             <b-button variant="outline-success">Zoek</b-button>
           </b-input-group-append>
@@ -19,6 +27,29 @@
             {{ article.name }}
           </template>
         </blog-list>
+
+        <!-- start News -->
+        <section class="section section-lg pt-lg-0 mt--100">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-12" data-aos="fade-up" data-aos-delay="150">
+                <div v-if="loading" class="card-deck">
+                  <skeleton-card />
+                  <skeleton-card />
+                  <skeleton-card />
+                </div>
+
+                <template v-else>
+                  <!-- start NewsList -->
+                  <client-only>
+                    <news-list></news-list>
+                  </client-only>
+                </template>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- end news -->
       </div>
     </section>
   </div>
@@ -39,7 +70,13 @@ import { articleVuexNamespace } from '../store/article/const';
     Badge: () => import('@/components/Badge.vue'),
     Icon: () => import('@/components/Icon.vue'),
     BaseInput: () => import('@/components/BaseInput.vue'),
-    BlogList: () => import('@/components/BlogList.vue')
+    BlogList: () => import('@/components/BlogList.vue'),
+     NewsList: () =>
+      import(/* webpackChunkName: 'news-list' */ '@/components/NewsList.vue'),
+    SkeletonCard: () =>
+      import(
+        /* webpackChunkName: 'skeleton-card' */ '@/components/SkeletonCard.vue'
+      ),
   }
 })
 export default class NieuwsPage extends Vue {

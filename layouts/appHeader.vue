@@ -72,6 +72,11 @@
             </router-link>
           </li>
           <li class="nav-item">
+            <router-link class="nav-link" to="/nieuws">
+              <span class="nav-link-inner--text">Nieuws</span>
+            </router-link>
+          </li>
+          <li class="nav-item">
             <router-link class="nav-link" to="/eetdag">
               <span class="nav-link-inner--text">Eetdag</span>
             </router-link>
@@ -116,8 +121,8 @@
     <IfBot>
       <Consent>
         <template slot="message">
-          Deze website gebruikt cookies voor gebruikersanalyses en verbeteringen
-          op de pagina's
+          Deze website gebruikt cookies 🍪 voor gebruikersanalyses en
+          verbeteringen op de pagina's
           <a class="btn btn-link" href="privacy">Privacybeleid</a>
         </template>
         <template slot="button">
@@ -247,8 +252,6 @@ import { cartVuexNamespace } from '~/store/cart/const';
   }
 })
 export default class extends Vue {
-  private windowHeight: number = 0;
-
   data() {
     return {
       year: new Date().getFullYear()
@@ -261,14 +264,5 @@ export default class extends Vue {
   numberOfItems() {
     return this.$store.getters['cart/numberOfItems'];
   }
-
-  /*   mounted() {
-    window.addEventListener('resize', this.getWindowHeight);
-    this.getWindowHeight();
-  }
-
-  getWindowHeight() {
-    this.windowHeight = document.documentElement.clientHeight;
-  } */
 }
 </script>

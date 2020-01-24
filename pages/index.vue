@@ -1,50 +1,38 @@
 <template>
   <div>
-    <div class="position-relative">
-      <section class="section-shaped image-box my-0">
-        <div class="shape overflow-hidden">
-         
-          <LazyPicture
-            srcData="home/header/music/music-chart.jpg"
-            fetchMode="srcset"
-            extraCss=""
-          />
-        </div>
-        <div class="container shape-container d-flex">
-          <div class="col px-0 pt-5">
-            <div class="row">
-              <div class="col-lg-7">
-                <h1 class="display-3 text-white">
-                  Koninklijke Harmonie
-                  <span>De Verenigde Vrienden Heusden-Zolder</span>
-                  <span class="lead text-wbite font-weight-bold"
-                    >Daar zit muziek in!</span
-                  >
-                </h1>
+    <!-- Full Page Image Header with Vertically Centered Content -->
+    <header
+      class="masthead lazyload image-box demo"
+      id="section10"
+      :data-bg="
+        `${require('../assets/img/home/header/music/music-chart_2560.jpg')}`
+      "
+    >
+      <div class="container h-100">
+        <div class="row h-100 align-items-center">
+          <div class="col-12 text-center">
+            <h1 class="display-3 text-white">
+              Koninklijke Harmonie
+              <span>De Verenigde Vrienden Heusden-Zolder</span>
+              <p class="lead font-weight-bold">Daar zit muziek in!</p>
+            </h1>
 
-                <p></p>
-                <p
-                  class="lead text-white d-none d-md-block d-lg-block d-xl-block"
-                >
-                  Samen muziek maken met passie en oog voor kwaliteit, zowel op
-                  beginnersniveau als voor gevorderde muzikanten, is onze
-                  grootste uitdaging.
-                </p>
-                <div class="btn-wrapper">
-                  <button
-                    v-scroll-to="'#contact'"
-                    class="btn btn-neutral btn-icon"
-                  >
-                    <span class="nav-link-inner--text">Ik word lid</span>
-                  </button>
-                </div>
-              </div>
+            <p class="lead text-white d-none d-md-block d-lg-block d-xl-block">
+              Samen muziek maken met passie en oog voor kwaliteit, zowel op
+              beginnersniveau als voor gevorderde muzikanten, is onze grootste
+              uitdaging.
+            </p>
+            <div class="btn-wrapper">
+              <button v-scroll-to="'#contact'" class="btn btn-lg btn-primary-3">
+                <span class="nav-link-inner--text">Ik word lid</span>
+              </button>
             </div>
           </div>
         </div>
-      </section>
-      <!-- shape Hero -->
-    </div>
+      </div>
+      <a href="#thanks"><span></span></a>
+    </header>
+
 
     <!-- start important message -->
     <!--     <section class="section section-lg pt-0">
@@ -108,6 +96,7 @@
                     class="fill-default"
                   />
                 </svg>
+
                 <h4 class="display-3 font-weight-bold text-white">Repetitie</h4>
                 <p class="lead text-italic text-white">
                   Maandagavond, van 20u tot 22u is het repetitie in onze
@@ -120,6 +109,64 @@
           <div class="col-md-6">
             <div data-aos="fade-in" data-aos-delay="150" class="pl-md-5">
               <h1>Harmonie</h1>
+              <client-only>
+                <span class="c-lerp-block_title" data-scroll>
+                  <span
+                    data-scroll
+                    data-scroll-delay="2.13"
+                    data-scroll-speed="6"
+                    >B</span
+                  >
+                  <span
+                    data-scroll
+                    data-scroll-delay="0.12"
+                    data-scroll-speed="6"
+                    >y</span
+                  >
+                  <span
+                    data-scroll
+                    data-scroll-delay="0.11"
+                    data-scroll-speed="6"
+                  >
+                  </span>
+                  <span
+                    data-scroll
+                    data-scroll-delay="0.1"
+                    data-scroll-speed="6"
+                    >L</span
+                  >
+                  <span
+                    data-scroll
+                    data-scroll-delay="0.09"
+                    data-scroll-speed="6"
+                    >e</span
+                  >
+                  <span
+                    data-scroll
+                    data-scroll-delay="0.08"
+                    data-scroll-speed="6"
+                    >t</span
+                  >
+                  <span
+                    data-scroll
+                    data-scroll-delay="0.07"
+                    data-scroll-speed="6"
+                    >t</span
+                  >
+                  <span
+                    data-scroll
+                    data-scroll-delay="0.06"
+                    data-scroll-speed="6"
+                    >e</span
+                  >
+                  <span
+                    data-scroll
+                    data-scroll-delay="0.05"
+                    data-scroll-speed="6"
+                    >r</span
+                  >
+                </span>
+              </client-only>
 
               <p class="lead">
                 We zijn toffe groep muzikanten van alle leeftijden die samen
@@ -217,7 +264,7 @@
           <div class="col-md-6 order-md-1">
             <div class="pr-md-5" data-aos="fade-in" data-aos-delay="150">
               <icon
-                name="ni ni-satisfied"
+                name="smile-beam"
                 class="mb-5 floating"
                 size="lg"
                 type="blue"
@@ -286,23 +333,13 @@
     <!-- end Jeugdorkest -->
 
     <!-- Activiteiten -->
-    <section class="section section-lg section-shaped overflow-hidden my-0">
-      <div class="shape shape-skew">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <LazyImage
-          srcData="home/header/saxophone.jpg"
-          fetchMode="srcset"
-          extraCss="img-fluid"
-        />
-      </div>
+    <section
+      class="masthead lazyload image-box demo"
+      id="section10"
+      :data-bg="
+        `${require('../assets/img/home/header/music/music-chart_2560.jpg')}`
+      "
+    >
       <div class="container py-0 pb-lg">
         <div
           data-aos="fade"
@@ -530,86 +567,8 @@
           </div>
         </div>
       </div>
-
-      <!-- Begin Sendgrid Signup Form -->
-      <!--       <div class="row">
-        <div class="col-md-4">
-          <base-button @click="modals.modal3 = true" outline type="default">Form</base-button>
-
-          <modal
-            :show.sync="modals.modal3"
-            body-classes="p-0"
-            modal-classes="modal-dialog-centered modal-md"
-          >
-            <h6 slot="header" class="modal-title" id="modal-title-default">Nieuwsbrief!</h6>
-            <card
-              type="secondary"
-              shadow
-              header-classes="bg-white pb-5"
-              body-classes="px-lg-5 py-lg-5"
-              class="border-0"
-            >
-              <template>
-                <div class="text-muted text-center mb-3">
-                  <small>Abonneer op onze Nieuwsbrief</small>
-                </div>
-                <div class="btn-wrapper text-center">
-                  <base-button type="neutral">
-                    <img
-                      slot="icon"
-                      src="https://demos.creative-tim.com/argon-design-system/assets/img/icons/common/github.svg"
-                    />
-                    Facebook
-                  </base-button>
-
-                  <base-button type="neutral">
-                    <img
-                      slot="icon"
-                      src="https://demos.creative-tim.com/argon-design-system/assets/img/icons/common/google.svg"
-                    />
-                    Google
-                  </base-button>
-                </div>
-              </template>
-              <template>
-                <div class="text-center text-muted mb-4">
-                  <small>Of gebruik je emailadres</small>
-                </div>
-
-                <iframe
-                  src="https://cdn.forms-content.sg-form.com/f4e4ff54-b20d-11e9-81e9-d6e32a6de3fe"
-                />
-              </template>
-            </card>
-          </modal>
-        </div>
-      </div>-->
-      <!-- End Sendgrid Signup Form -->
     </section>
     <!-- end Contact -->
-
-    <!-- start News -->
-    <section class="section section-lg pt-lg-0 mt--100">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-12" data-aos="fade-up" data-aos-delay="150">
-            <div v-if="loading" class="card-deck">
-              <skeleton-card />
-              <skeleton-card />
-              <skeleton-card />
-            </div>
-
-            <template v-else>
-              <!-- start NewsList -->
-              <client-only>
-                <news-list></news-list>
-              </client-only>
-            </template>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- end news -->
   </div>
 </template>
 
@@ -625,19 +584,23 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate';
   layout: 'appHeader',
 
   components: {
-    BaseButton: () => import('@/components/BaseButton.vue'),
-    Card: () => import('@/components/Card.vue'),
-    Badge: () => import('@/components/Badge.vue'),
-    Icon: () => import('@/components/Icon.vue'),
-    BaseInput: () => import('@/components/BaseInput.vue'),
-    Modal: () => import('@/components/Modal.vue'),
+    BaseButton: () =>
+      import(
+        /* webpackChunkName: 'base-button' */ '@/components/BaseButton.vue'
+      ),
+    Card: () => import(/* webpackChunkName: 'card' */ '@/components/Card.vue'),
+    Badge: () =>
+      import(/* webpackChunkName: 'badge' */ '@/components/Badge.vue'),
+    Icon: () => import(/* webpackChunkName: 'icon' */ '@/components/Icon.vue'),
+    BaseInput: () =>
+      import(/* webpackChunkName: 'base-input' */ '@/components/BaseInput.vue'),
 
-    LazyImage: () => import('@/components/LazyImage.vue'),
-    LazyPicture: () => import('@/components/LazyPicture.vue'),
-
-    NewsList: () => import('@/components/NewsList.vue'),
-    SkeletonCard: () => import('@/components/SkeletonCard.vue'),
-
+    LazyImage: () =>
+      import(/* webpackChunkName: 'lazy-image' */ '@/components/LazyImage.vue'),
+    LazyPicture: () =>
+      import(
+        /* webpackChunkName: 'lazy-picture' */ '@/components/LazyPicture.vue'
+      ),
     ValidationObserver,
     ValidationProvider
   }
@@ -720,4 +683,142 @@ export default class IndexPage extends Vue {
   }
 }
 </script>
-<style></style>
+<style scoped lang="scss">
+.masthead {
+  height: 100vh;
+  min-height: 500px;
+  background-image: url(../assets/img/home/header/music/music-chart.jpg?lqip);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+header.blur {
+  filter: blur(25px);
+}
+header.lazyloaded {
+  opacity: 0;
+  animation-name: fadein;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-direction: normal;
+  animation-timing-function: ease-out;
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  &.blur {
+    filter: blur(0);
+  }
+}
+
+#thanks {
+  background-color: #fff;
+}
+#thanks::after {
+  content: none;
+}
+#thanks div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.demo a {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  z-index: 2;
+  display: inline-block;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  color: #fff;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+.demo a:hover {
+  opacity: 0.5;
+}
+
+#section10 a {
+  padding-top: 60px;
+}
+#section10 a span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 30px;
+  height: 50px;
+  margin-left: -15px;
+  border: 2px solid #e9ecef;
+  border-radius: 50px;
+  box-sizing: border-box;
+}
+#section10 a span::before {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  content: '';
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  background-color: #e9ecef;
+  border-radius: 100%;
+  -webkit-animation: sdb10 2s infinite;
+  animation: sdb10 2s infinite;
+  box-sizing: border-box;
+}
+@-webkit-keyframes sdb10 {
+  0% {
+    -webkit-transform: translate(0, 0);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    -webkit-transform: translate(0, 20px);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes sdb10 {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    transform: translate(0, 20px);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.c-lerp-block_title {
+  display: inline-block;
+  vertical-align: middle;
+  span {
+    display: inline-block;
+    min-width: 0.3em;
+  }
+}
+
+
+</style>

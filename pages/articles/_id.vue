@@ -19,28 +19,36 @@
               <b-breadcrumb-item to="/">Home</b-breadcrumb-item>
               <b-breadcrumb-item to="/nieuws">Nieuws</b-breadcrumb-item>
               <b-breadcrumb-item active="active">
-                {{
-                article.name
-                }}
+                {{ article.name }}
               </b-breadcrumb-item>
             </b-breadcrumb>
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2"></div>
-              <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
+              <div
+                class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center"
+              >
                 <div class="card-profile-actions py-4 mt-lg-0">
                   <a
-                    :href="`https://twitter.com/intent/tweet?text=${this.article.name}?&url=https://www.deverenigdevriendenheusden.be${this.$route.fullPath}`"
+                    :href="
+                      `https://twitter.com/intent/tweet?text=${this.article.name}?&url=https://www.deverenigdevriendenheusden.be${this.$route.fullPath}`
+                    "
                     target="_blank"
                     class="btn rounded-circle btn-icon-only btn-icon btn-twitter"
                   >
-                    <i class="fa fa-twitter"></i>
+                    <font-awesome-icon
+                      :icon="{ prefix: 'fab', iconName: 'twitter' }"
+                    />
                   </a>
                   <a
-                    :href="`https://www.facebook.com/sharer/sharer.php?u=https://www.deverenigdevriendenheusden.be${this.$route.fullPath}`"
+                    :href="
+                      `https://www.facebook.com/sharer/sharer.php?u=https://www.deverenigdevriendenheusden.be${this.$route.fullPath}`
+                    "
                     target="_blank"
                     class="btn rounded-circle btn-icon-only btn-icon btn-facebook"
                   >
-                    <i class="fa fa-facebook"></i>
+                    <font-awesome-icon
+                      :icon="{ prefix: 'fab', iconName: 'facebook-f' }"
+                    />
                   </a>
                 </div>
               </div>
@@ -71,7 +79,10 @@
             <div class="py-5 border-top">
               <div class="row justify-content-center">
                 <div class="col-md-6">
-                  <LazyImage :srcData="article.image.url" extraCss="rounded shadow-lg" />
+                  <LazyImage
+                    :srcData="article.image.url"
+                    extraCss="rounded shadow-lg"
+                  />
                 </div>
                 <div class="col-lg-11">
                   <template>
