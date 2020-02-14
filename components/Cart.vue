@@ -1,4 +1,4 @@
-<!-- components/DishPreview.vue -->
+<!-- components/Cart.vue -->
 
 <template>
   <div v-if="productsInCart() && productsInCart().length > 0">
@@ -19,7 +19,9 @@
         rounded
         icon-only
       ></base-button>
+
       {{ product.quantity }}
+
       <base-button
         @click="quantity++"
         size="sm"
@@ -28,7 +30,9 @@
         rounded
         icon-only
       ></base-button>
+
       <span class="text-muted">&euro; {{ product.price }}</span>
+
       <base-button
         @click="removeFromCart(product)"
         size="sm"

@@ -12,7 +12,8 @@ export interface ArticleState {
   status: Status;
 }
 
-// Model
+// Models
+
 /**
  * An article item
  *
