@@ -109,14 +109,7 @@
               </p>
             </div>
           </div>
-          <div
-            class="col-md-6"
-            data-aos="fade-left"
-            data-aos-delay="250"
-            data-aos-once="true"
-            data-aos-duration="1200"
-            data-aos-easing="ease-in-out-back"
-          >
+          <div class="col-md-6">
             <div class="card bg-default shadow border-0">
               <LazyImage
                 srcData="home/harmonie/close_up.jpeg"

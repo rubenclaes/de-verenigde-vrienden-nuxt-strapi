@@ -1,11 +1,17 @@
 <template>
   <div>
     <client-only>
-      <vue-headroom @not-top="onNotTop()">
+      <vue-headroom @pin="onPin()" @top="onTop()" :upTolerance="upTolerance">
         <header class="header-global">
           <div id="top"></div>
 
-          <base-nav class="navbar-main" transparent type effect="light" expand>
+          <base-nav
+            class="navbar-main"
+            :transparent="!isPinned && isTop"
+            :effect="isPinned ? 'dark' : 'light'"
+            type
+            expand
+          >
             <router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
               <img src="~/assets/brand/logo_fulllogo_white.svg" alt="logo" />
             </router-link>
@@ -250,13 +256,13 @@ import { Component, Vue } from 'vue-property-decorator';
     Icon: () => import(/* webpackChunkName: 'icon' */ '@/components/Icon.vue')
   }
 })
-export default class extends Vue {
-  data() {
-    return {
-      downTolerance: 200,
-      year: new Date().getFullYear()
-    };
-  }
+export default class appHeader extends Vue {
+  isPinned: boolean = false;
+  isTop: boolean = false;
+  downTolerance: number = 0;
+  upTolerance: number = 0;
+  year = new Date().getFullYear();
+
   goTocontact() {
     this.$router.push({ name: 'index', hash: '#contact' });
   }
@@ -268,6 +274,17 @@ export default class extends Vue {
   onNotTop() {
     this.$emit('not-top', { time: Date.now() });
     console.log('hello');
+  }
+
+  onPin() {
+    console.log('pinned');
+    this.isPinned = true;
+  }
+
+  onTop() {
+    console.log('pinned');
+    this.isTop = true;
+    this.isPinned = false;
   }
 }
 </script>
