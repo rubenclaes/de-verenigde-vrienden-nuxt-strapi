@@ -2,17 +2,20 @@
   <nav
     class="navbar"
     :class="[
-            {'navbar-expand-lg': expand},
-            {[`navbar-${effect}`]: effect},
-            {'navbar-transparent': transparent},
-            {[`bg-${type}`]: type},
-            {'rounded': round}
-         ]"
+      { 'navbar-expand-lg': expand },
+      { [`navbar-${effect}`]: effect },
+      { 'navbar-transparent': transparent },
+      { [`bg-${type}`]: type },
+      { rounded: round },
+      { 'fixed-top': fixedTop }
+    ]"
   >
     <div class="container">
       <slot name="container-pre"></slot>
       <slot name="brand">
-        <a class="navbar-brand" href="#" @click.prevent="onTitleClick">{{title}}</a>
+        <a class="navbar-brand" href="#" @click.prevent="onTitleClick">{{
+          title
+        }}</a>
       </slot>
       <navbar-toggle-button
         :toggled="toggled"
@@ -24,7 +27,7 @@
 
       <div
         class="collapse navbar-collapse"
-        :class="{show: toggled}"
+        :class="{ show: toggled }"
         :id="contentId"
         v-click-outside="closeMenu"
       >
@@ -78,6 +81,11 @@ export default {
       default: false,
       description: 'Whether navbar is transparent'
     },
+    fixedTop: {
+      type: Boolean,
+      default: false,
+      description: 'Whether navbar is fixed to top'
+    },
     expand: {
       type: Boolean,
       default: false,
@@ -86,18 +94,20 @@ export default {
   },
   data() {
     return {
-      toggled: false
+      toggled: false,
+      lastScrollPosition: 0
     };
   },
+
   methods: {
     onTitleClick(evt) {
       this.$emit('title-click', evt);
     },
+
     closeMenu() {
       this.toggled = false;
     }
   }
 };
 </script>
-<style>
-</style>
+<style></style>

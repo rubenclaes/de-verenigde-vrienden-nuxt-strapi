@@ -21,7 +21,8 @@
       "@/lib/*": ["./lib/*"],
       "@/compontents/*": ["./components"],
       "@/pages/*": ["./pages/"],
-      "@/store/*": ["./store/*"]
+      "@/store/*": ["./store/*"],
+      "@/mixins/*": ["./mixins/*"]
     },
     "types": [
       "@nuxt/vue-app",

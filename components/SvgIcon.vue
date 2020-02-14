@@ -1,23 +1,18 @@
+<!-- components/SvgIcon.vue -->
+
 <template>
-  <div>
-    <slot>
-      <div
-        class="icon icon-shape"
-        :class="[
-          size && `icon-${size}`,
-          type && `icon-shape-${type}`,
-          gradient && `bg-gradient-${gradient}`,
-          shadow && 'shadow',
-          rounded && 'rounded-circle',
-          color && `text-${color}`
-        ]"
-      >
-        <slot>
-          <i :class="name"></i>
-        </slot>
-      </div>
-    </slot>
-  </div>
+  <div
+    class="inline-block"
+    :class="[
+      size && `icon-${size}`,
+      type && `icon-shape-${type}`,
+      gradient && `bg-gradient-${gradient}`,
+      shadow && 'shadow',
+      rounded && 'rounded-circle',
+      color && `text-${color}`
+    ]"
+    v-html="require('~/assets/svg/calendar-grid-58.svg?include')"
+  ></div>
 </template>
 <script>
 export default {
@@ -63,6 +58,21 @@ export default {
       default: false,
       description: 'Whether icon is rounded'
     }
+  },
+  mounted() {
+    this.$el.firstChild.classList.add(this.$style.svg);
+    this.$el.outerHTML = this.$el.innerHTML;
   }
 };
 </script>
+
+<style module>
+.svg {
+  fill: green;
+  height: 1em;
+
+  margin-top: -4px;
+  vertical-align: middle;
+  width: 1em;
+}
+</style>

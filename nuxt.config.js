@@ -1,9 +1,7 @@
-import { Configuration } from '@nuxt/types';
-
 import { IS_DEV } from './config';
 import axios from 'axios';
 
-const config: Configuration = {
+const config = {
   mode: 'universal',
 
   /*
@@ -52,9 +50,10 @@ const config: Configuration = {
    ** Global CSS
    */
   css: [
+    '@/assets/vendor/font-awesome/css/font-awesome.css',
     '@/assets/vendor/nucleo/css/nucleo.css',
-    '@fortawesome/fontawesome-svg-core/styles.css',
-    '@/assets/scss/argon.scss'
+    '@/assets/scss/argon.scss',
+    'aos/dist/aos.css'
   ],
 
   /*
@@ -62,17 +61,17 @@ const config: Configuration = {
    */
   plugins: [
     { src: '~/plugins/aos.js', mode: 'client' },
+    { src: '~/plugins/lazysizes.js', mode: 'client' },
+    { src: '~/plugins/vuex-persist', mode: 'client' },
     { src: '~/plugins/vue-toasted.js', mode: 'client' },
     { src: '~/plugins/vue-confetti.js', mode: 'client' },
-    '~/plugins/fontawesome.js',
+    { src: '~/plugins/vue-parallax.js', mode: 'client' },
+    '~/plugins/vue-headroom.client.js',
     '~/plugins/composition-api',
     '~plugins/vue-scrollto.js',
-
     '~/plugins/filters',
-    { src: '~/plugins/lazysizes.js', ssr: false },
     '~/plugins/vee-validate',
     '~/plugins/click-outside.js',
-    { src: '~/plugins/vuex-persist', ssr: false },
     `~/plugins/currency-filter.js`,
     '~/plugins/axios-accessor.ts'
   ],
@@ -92,12 +91,94 @@ const config: Configuration = {
     '@bazzite/nuxt-optimized-images',
     'vue-scrollto/nuxt',
     '@nuxtjs/markdownit',
-
-    '@nuxtjs/google-analytics',
+    [
+      'nuxt-cookie-control',
+      {
+        barPosition: 'bottom-right',
+        blockIframe: true,
+        colors: {
+          barTextColor: '#fff',
+          barBackground: '#12957b',
+          barButtonColor: '#fff',
+          barButtonBackground: '#206569',
+          barButtonHoverColor: '#fff',
+          barButtonHoverBackground: '#2e495e',
+          modalButtonBackground: '#206569',
+          modalButtonHoverColor: '#fff',
+          controlButtonBackground: '#12957b',
+          controlButtonHoverBackground: '#2e495e',
+          controlButtonIconHoverColor: '#fff',
+          controlButtonIconColor: '#fff',
+          modalButtonHoverBackground: '#2e495e',
+          checkboxActiveBackground: '#2e495e',
+          checkboxInactiveBackground: '#ede1e1',
+          checkboxActiveCircleBackground: '#00c58e',
+          checkboxInactiveCircleBackground: '#f44336',
+          checkboxDisabledBackground: '#ddd',
+          checkboxDisabledCircleBackground: '#fff'
+        }
+      }
+    ],
+    [
+      'nuxt-gmaps',
+      {
+        key: process.env.GOOGLE_MAPS
+      }
+    ],
 
     //Always at the end
     '@nuxtjs/sitemap'
   ],
+
+  cookies: {
+    necessary: [
+      {
+        name: 'Strikt noodzakelijke Cookies ',
+
+        description:
+          'Zijn nodig om de website goed te laten functioneren en worden automatisch ingeschakeld als u de site bezoekt',
+        cookies: ['cookie_control_consent', 'cookie_control_enabled_cookies']
+      }
+    ],
+    optional: [
+      {
+        name: 'Google Analytics',
+
+        description:
+          'Google Analytics is een webanalysedienst van Google die websiteverkeer volgt en rapporteert.',
+
+        src: 'https://www.googletagmanager.com/gtag/js?id=GTM-TW8TSMW',
+        async: true,
+        cookies: ['_ga', '_gat_gtag_GTM-TW8TSMW', '_gid'],
+        accepted: () => {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            window.dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'GTM-TW8TSMW');
+        }
+      }
+    ],
+
+    //default texts
+    text: {
+      barTitle: 'Cookies',
+      barDescription:
+        'We gebruiken onze eigen cookies en cookies van derden, zodat we u deze website kunnen laten zien en beter kunnen begrijpen hoe u deze gebruikt, met het oog op het verbeteren van de diensten die we aanbieden. Als u doorgaat met browsen, zijn wij van mening dat u de cookies hebt geaccepteerd.',
+      acceptAll: 'Accepteer alles',
+      declineAll: 'Verwijder alles',
+      manageCookies: 'Beheer cookies',
+      unsaved: 'U hebt niet-opgeslagen instellingen',
+      close: 'Sluit',
+      save: 'Opslaan',
+      necessary: 'Noodzakelijke cookies',
+      optional: 'Optionele cookies',
+      functional: 'Functionele cookies',
+      blockedIframe: 'Schakel functionele cookies in om dit te zien',
+      here: 'hier'
+    }
+  },
 
   optimizedImages: {
     inlineImageLimit: -1,
@@ -166,18 +247,6 @@ const config: Configuration = {
   },
 
   /*
-   ** googleAnalytics module configuration
-   */
-  googleAnalytics: {
-    id: process.env.GOOGLE_ANALYTICS,
-    disabled: () => document.cookie.includes('ga_optout=true'),
-    debug: {
-      sendHitTask: !IS_DEV
-    },
-    set: [{ field: 'anonymizeIp', value: true }]
-  },
-
-  /*
    ** @nuxtjs/pwa module configuration
    */
   pwa: {
@@ -238,7 +307,7 @@ const config: Configuration = {
       return await axios
         .get(`${process.env.API_URL}/restaurants`)
         .then(res => {
-          return res.data.map((article: any) => {
+          return res.data.map(article => {
             article.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${article.image.public_id}${article.image.ext}`;
             return {
               route: `/articles/${article.slug}`,

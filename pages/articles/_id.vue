@@ -35,9 +35,7 @@
                     target="_blank"
                     class="btn rounded-circle btn-icon-only btn-icon btn-twitter"
                   >
-                    <font-awesome-icon
-                      :icon="{ prefix: 'fab', iconName: 'twitter' }"
-                    />
+                    <i class="fa fa-twitter"></i>
                   </a>
                   <a
                     :href="
@@ -46,9 +44,7 @@
                     target="_blank"
                     class="btn rounded-circle btn-icon-only btn-icon btn-facebook"
                   >
-                    <font-awesome-icon
-                      :icon="{ prefix: 'fab', iconName: 'facebook-f' }"
-                    />
+                    <i class="fa fa-facebook"></i>
                   </a>
                 </div>
               </div>

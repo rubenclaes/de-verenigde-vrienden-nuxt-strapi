@@ -9,19 +9,6 @@
       </base-nav>
     </header>
 
-    <IfBot>
-      <Consent>
-        <template slot="message">
-          Deze website gebruikt cookies voor gebruikersanalyses en verbeteringen
-          op de pagina's
-          <a class="btn btn-link" href="privacy">Privacybeleid</a>
-        </template>
-        <template slot="button">
-          <button class="btn btn-outline-default">Begrepen</button>
-        </template>
-      </Consent>
-    </IfBot>
-
     <client-only>
       <offline-detection
         onlineClass="notification notification-online"
@@ -47,7 +34,6 @@ import CloseButton from '@/components/CloseButton.vue';
 import BackToTop from '@/components/BackToTop.vue';
 import OfflineDetection from '@/components/OfflineDetection.vue';
 
-import Consent from 'vue-cookieconsent-component/src/components/CookieConsent.vue';
 import IfBot from 'vue-if-bot/dist/vue-if-bot.es';
 
 import { Component, Vue, Prop } from 'vue-property-decorator';
@@ -63,8 +49,7 @@ import { cartVuexNamespace } from '~/store/cart/const';
     BackToTop,
     OfflineDetection,
     IfBot,
-    Badge: () => import('@/components/Badge.vue'),
-    Consent
+    Badge: () => import('@/components/Badge.vue')
   }
 })
 export default class extends Vue {

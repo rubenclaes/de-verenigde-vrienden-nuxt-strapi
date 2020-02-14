@@ -28,11 +28,11 @@ export default class NewsList extends Vue {
   max!: number;
 
   @articleVuexNamespace.Getter('latestArticles')
-  private articles!: Article[];
+  articles!: Article[];
 
-  private colors = ['default', 'primary', 'blue'];
-  private buttons = ['btn-default', 'btn-primary', 'btn-blue'];
-  private text = ['text-default', 'text-primary', 'text-blue'];
+  colors = ['default', 'primary', 'blue'];
+  buttons = ['btn-default', 'btn-primary', 'btn-blue'];
+  text = ['text-default', 'text-primary', 'text-blue'];
 
   /**
    * We use created here instead of mounted because it doesn’t need to be rerun if we leave this layout and come back to it.

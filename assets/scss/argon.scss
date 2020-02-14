@@ -93,7 +93,6 @@
 @import 'custom/progress.scss';
 @import 'custom/section.scss';
 @import 'custom/type.scss';
-@import 'custom/cookie-consent';
 
 // Vendor
 
@@ -152,7 +151,7 @@
 
 .image-box {
   /* Here's the trick */
-  box-shadow: inset 0 0 0 100vw rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 0 100vw rgba(0, 0, 0, 0.3);
 
   /* Basic background styles */
   background: var(--image-url) center center no-repeat;
@@ -164,7 +163,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.image-box:hover {
-  box-shadow: inset 0 0 0 100vw rgba(0, 0, 0, 0.2);
 }

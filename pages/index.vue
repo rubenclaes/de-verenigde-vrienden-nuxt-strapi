@@ -1,81 +1,123 @@
 <template>
   <div>
     <!-- Full Page Image Header with Vertically Centered Content -->
+
     <header
-      class="masthead lazyload image-box demo"
+      class="wrapper blur lazyload image-box demo parallax"
       id="section10"
       :data-bg="
-        `${require('../assets/img/home/header/music/music-chart_2560.jpg')}`
+        `${require('../assets/img/home/header/music/music-chart_1600w.jpg')}`
       "
     >
-      <div class="container h-100">
-        <div class="row h-100 align-items-center">
-          <div class="col-12 text-center">
-            <h1 class="display-3 text-white">
-              Koninklijke Harmonie
-              <span>De Verenigde Vrienden Heusden-Zolder</span>
-              <p class="lead font-weight-bold">Daar zit muziek in!</p>
-            </h1>
-
-            <p class="lead text-white d-none d-md-block d-lg-block d-xl-block">
-              Samen muziek maken met passie en oog voor kwaliteit, zowel op
-              beginnersniveau als voor gevorderde muzikanten, is onze grootste
-              uitdaging.
-            </p>
-            <div class="btn-wrapper">
-              <button v-scroll-to="'#contact'" class="btn btn-lg btn-primary-3">
-                <span class="nav-link-inner--text">Ik word lid</span>
-              </button>
+      <div class="container d-flex">
+        <div class="col px-0">
+          <div class="row">
+            <div v-parallax="0.3" class="col-lg-7">
+              <h1 class="display-3 text-white">
+                Koninklijke Harmonie
+                <span>De Verenigde Vrienden Heusden-Zolder</span>
+                <span class="lead text-success font-weight-bold"
+                  >Daar zit muziek in!</span
+                >
+              </h1>
+              <p></p>
+              <p
+                class="lead text-white d-none d-md-block d-lg-block d-xl-block"
+              >
+                Samen muziek maken met passie en oog voor kwaliteit, zowel op
+                beginnersniveau als voor gevorderde muzikanten, is onze grootste
+                uitdaging.
+              </p>
+              <div class="btn-wrapper">
+                <button
+                  v-scroll-to="'#contact'"
+                  class="btn btn btn-secondary btn-lg"
+                >
+                  <span class="nav-link-inner--text">Ik word lid</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <a href="#thanks"><span></span></a>
-    </header>
 
+      <a v-scroll-to="'#harmonie'">
+        <span></span>
+      </a>
+    </header>
 
     <!-- start important message -->
     <!--     <section class="section section-lg pt-0">
-      <div class="container">
-        <card gradient="warning" no-body shadow-size="lg" class="border-0">
-          <div class="p-5">
-            <div class="row align-items-center">
-              <div class="col-lg-8">
-                <h3 class="text-white">Muziekkamp HEMELTJE - HEL</h3>
-                <p class="lead text-white mt-3">
-                  Samen muziek maken, samen actief zijn,... je beleeft het allemaal in dit muziekkamp.
-                  Info en inschrijven voor 10 juni bij
-                  <a
-                    href="mailto:lieselotte_kleykens@hotmail.com?SUBJECT=Muziekkamp"
-                  >lieselotte_kleykens@hotmail.com</a>
-                </p>
-              </div>
-              <div class="col-lg-3 ml-lg-auto">
-                <base-button
-                  tag="a"
-                  href="https://www.creative-tim.com/product/vue-argon-design-system"
-                  type="white"
-                  block
-                  size="lg"
-                >Lees Meer</base-button>
+        <div class="container">
+          <card gradient="warning" no-body shadow-size="lg" class="border-0">
+            <div class="p-5">
+              <div class="row align-items-center">
+                <div class="col-lg-8">
+                  <h3 class="text-white">Muziekkamp HEMELTJE - HEL</h3>
+                  <p class="lead text-white mt-3">
+                    Samen muziek maken, samen actief zijn,... je beleeft het allemaal in dit muziekkamp.
+                    Info en inschrijven voor 10 juni bij
+                    <a
+                      href="mailto:lieselotte_kleykens@hotmail.com?SUBJECT=Muziekkamp"
+                    >lieselotte_kleykens@hotmail.com</a>
+                  </p>
+                </div>
+                <div class="col-lg-3 ml-lg-auto">
+                  <base-button
+                    tag="a"
+                    href="https://www.creative-tim.com/product/vue-argon-design-system"
+                    type="white"
+                    block
+                    size="lg"
+                  >Lees Meer</base-button>
+                </div>
               </div>
             </div>
-          </div>
-        </card>
-      </div>
+          </card>
+        </div>
     </section>-->
     <!-- end important message -->
 
     <!-- Harmonie  -->
-    <section class="section bg-secondary">
+    <section id="harmonie" class="section section-lg">
       <div class="container">
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div
-              class="card bg-default shadow border-0"
               data-aos="fade-in"
               data-aos-delay="150"
+              class="pl-md-5"
+              data-aos-once="true"
+              data-aos-duration="1200"
             >
+              <h1>Harmonie</h1>
+
+              <p class="lead">
+                We zijn toffe groep muzikanten van alle leeftijden die samen
+                muzikaal plezier maken. Al wie graag muziek speelt is welkom om
+                even te komen kennismaken!
+              </p>
+
+              <p class="lead">
+                Je krijgt de kans om te groeien binnen onze harmonie, een ideale
+                begeleiding van jeugd naar de ‘grote Harmonie’.
+              </p>
+
+              <p class="lead">
+                Onze zorg gaat vooral uit naar de opleiding van de jeugd in
+                samenwerking met de academie.
+              </p>
+            </div>
+          </div>
+          <div
+            class="col-md-6"
+            data-aos="fade-left"
+            data-aos-delay="250"
+            data-aos-once="true"
+            data-aos-duration="1200"
+            data-aos-easing="ease-in-out-back"
+          >
+            <div class="card bg-default shadow border-0">
               <LazyImage
                 srcData="home/harmonie/close_up.jpeg"
                 fetchMode="srcset"
@@ -106,105 +148,19 @@
               </blockquote>
             </div>
           </div>
-          <div class="col-md-6">
-            <div data-aos="fade-in" data-aos-delay="150" class="pl-md-5">
-              <h1>Harmonie</h1>
-              <client-only>
-                <span class="c-lerp-block_title" data-scroll>
-                  <span
-                    data-scroll
-                    data-scroll-delay="2.13"
-                    data-scroll-speed="6"
-                    >B</span
-                  >
-                  <span
-                    data-scroll
-                    data-scroll-delay="0.12"
-                    data-scroll-speed="6"
-                    >y</span
-                  >
-                  <span
-                    data-scroll
-                    data-scroll-delay="0.11"
-                    data-scroll-speed="6"
-                  >
-                  </span>
-                  <span
-                    data-scroll
-                    data-scroll-delay="0.1"
-                    data-scroll-speed="6"
-                    >L</span
-                  >
-                  <span
-                    data-scroll
-                    data-scroll-delay="0.09"
-                    data-scroll-speed="6"
-                    >e</span
-                  >
-                  <span
-                    data-scroll
-                    data-scroll-delay="0.08"
-                    data-scroll-speed="6"
-                    >t</span
-                  >
-                  <span
-                    data-scroll
-                    data-scroll-delay="0.07"
-                    data-scroll-speed="6"
-                    >t</span
-                  >
-                  <span
-                    data-scroll
-                    data-scroll-delay="0.06"
-                    data-scroll-speed="6"
-                    >e</span
-                  >
-                  <span
-                    data-scroll
-                    data-scroll-delay="0.05"
-                    data-scroll-speed="6"
-                    >r</span
-                  >
-                </span>
-              </client-only>
-
-              <p class="lead">
-                We zijn toffe groep muzikanten van alle leeftijden die samen
-                muzikaal plezier maken. Al wie graag muziek speelt is welkom om
-                even te komen kennismaken!
-              </p>
-
-              <p class="lead">
-                Je krijgt de kans om te groeien binnen onze harmonie, een ideale
-                begeleiding van jeugd naar de ‘grote Harmonie’.
-              </p>
-
-              <p class="lead">
-                Onze zorg gaat vooral uit naar de opleiding van de jeugd in
-                samenwerking met de academie.
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </section>
     <!-- end Harmonie -->
 
     <!-- Jeugdorkest -->
-    <section class="section section-lg">
+    <section class="section bg-secondary section-lg">
       <div class="container">
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-md-2">
             <div class="rounded shadow-lg overflow-hidden">
               <client-only>
-                <b-carousel
-                  id="carousel1"
-                  :interval="4000"
-                  data-aos="fade-in"
-                  data-aos-delay="150"
-                  controls
-                  indicators
-                >
+                <b-carousel id="carousel1" :interval="4000" controls indicators>
                   <!-- Slides with img slot -->
                   <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
                   <b-carousel-slide>
@@ -267,7 +223,8 @@
                 name="smile-beam"
                 class="mb-5 floating"
                 size="lg"
-                type="blue"
+                color="primary"
+                type="primary"
                 shadow
                 rounded
               ></icon>
@@ -334,18 +291,14 @@
 
     <!-- Activiteiten -->
     <section
-      class="masthead lazyload image-box demo"
+      class="section section-lg"
       id="section10"
       :data-bg="
-        `${require('../assets/img/home/header/music/music-chart_2560.jpg')}`
+        `${require('../assets/img/home/header/trumpet-tamborine-and-flute-instruments.jpg')}`
       "
     >
       <div class="container py-0 pb-lg">
-        <div
-          data-aos="fade"
-          data-aos-delay="150"
-          class="row justify-content-between align-items-center"
-        >
+        <div class="row justify-content-between align-items-center">
           <div class="col-lg-5 mb-5 mb-lg-0">
             <icon
               name="ni ni-calendar-grid-58"
@@ -355,6 +308,7 @@
               shadow
               rounded
             ></icon>
+
             <h1 class="text-white font-weight-light">Activiteiten</h1>
             <p class="lead text-white mt-4">
               Ieder jaar zijn er een aantal vaste activiteiten: jaarconcert,
@@ -395,7 +349,20 @@
           <div class="col-lg-8">
             <h1>Dirigent</h1>
           </div>
+
           <blockquote class="blockquote text-center">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 14.1818L4.57143 0H9.52381L5.71429 13.2893H9.52381V24H0V14.1818ZM14.4762 14.1818L19.0476 0H24L20.1905 13.2893H24V24H14.4762V14.1818Z"
+                fill="#88DD9B"
+              />
+            </svg>
             <p class="mb-0">
               Het belangrijkste in de muziek staat niet in de noten.
             </p>
@@ -437,16 +404,43 @@
 
     <!-- Adres -->
     <section class="section section-shaped my-0 overflow-hidden">
-      <div class="shape shape-skew">
+      <div class="shape">
         <span></span>
         <span></span>
         <span></span>
         <span></span>
-        <LazyImage
-          srcData="home/header/trumpet2.jpg"
-          fetchMode="srcset"
-          extraCss="img-fluid w-100"
-        />
+        <GMap
+          ref="gMap"
+          :cluster="{ options: { styles: clusterStyle } }"
+          :center="{ lat: locations[0].lat, lng: locations[0].lng }"
+          :options="{
+            fullscreenControl: false,
+            streetViewControl: false,
+            mapTypeControl: false,
+            zoomControl: true,
+            gestureHandling: 'cooperative',
+            styles: mapStyle
+          }"
+          :zoom="6"
+        >
+          <GMapMarker
+            v-for="location in locations"
+            :key="location.id"
+            :position="{ lat: location.lat, lng: location.lng }"
+            :options="{
+              icon:
+                location === currentLocation ? pins.selected : pins.notSelected
+            }"
+            @click="currentLocation = location"
+          >
+            <GMapInfoWindow>
+              <b>{{ location.name }}</b>
+              <br />
+              <br />
+              <code> Lat: {{ location.lat }}, Lng: {{ location.lng }} </code>
+            </GMapInfoWindow>
+          </GMapMarker>
+        </GMap>
       </div>
 
       <div class="container pt-lg pb-300">
@@ -473,6 +467,7 @@
             >
               <icon name="ni ni-map-big" size="sm" type="white"></icon
               >&nbsp;Kerkenblook z/n
+
               <p class="lead text-white">3550 Heusden-Zolder</p>
             </a>
           </div>
@@ -481,10 +476,12 @@
     </section>
     <!-- end Adres -->
 
+    <news-list></news-list>
+
     <!-- Contact -->
     <section class="section section-lg pt-lg-0 section-contact-us">
       <div class="container">
-        <div class="row justify-content-center mt--300">
+        <div class="row justify-content-center mt--200">
           <div class="col-lg-8">
             <form
               name="contact"
@@ -573,12 +570,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'nuxt-property-decorator';
-
-import { articleVuexNamespace } from '~/store/article/const';
+import { Component, Vue } from 'nuxt-property-decorator';
 
 import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
+
+import { articleVuexNamespace } from '@/store/article/const';
 
 @Component({
   layout: 'appHeader',
@@ -592,6 +589,7 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate';
     Badge: () =>
       import(/* webpackChunkName: 'badge' */ '@/components/Badge.vue'),
     Icon: () => import(/* webpackChunkName: 'icon' */ '@/components/Icon.vue'),
+
     BaseInput: () =>
       import(/* webpackChunkName: 'base-input' */ '@/components/BaseInput.vue'),
 
@@ -601,6 +599,8 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate';
       import(
         /* webpackChunkName: 'lazy-picture' */ '@/components/LazyPicture.vue'
       ),
+    NewsList: () =>
+      import(/* webpackChunkName: 'news-list' */ '@/components/NewsList.vue'),
     ValidationObserver,
     ValidationProvider
   }
@@ -622,6 +622,174 @@ export default class IndexPage extends Vue {
   @articleVuexNamespace.Getter('loading')
   private loading!: boolean;
 
+  data() {
+    return {
+      currentLocation: {},
+      locationsVisibleOnMap: '',
+      locations: [
+        {
+          lat: 45.81444,
+          lng: 15.97798,
+          name: 'Zagreb'
+        },
+        {
+          lat: 46.056946,
+          lng: 14.505751,
+          name: 'Ljubljana'
+        }
+      ],
+      pins: {
+        selected:
+          'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHUSURBVHgB5VU7SwNBEJ7LmZBgMC+UdKKx0MZCG2srwcbCB2glpFDQ3to/IegvSAIWPrBJIySlipUKKqYLaHJ3iWIelzu/DTk8j71H7MQPltmZnflmZ3b3juivQ3BzCIfDI4FAYBvTRV3XR7tBglCCOIP9oFwuv/46QSwWWwfZIaaDNi7vGOlqtZqhfhPE4/EViAy5V6ljE8uVSuXYc4JkMjncarUeMR0ib5Db7fZEvV6vWBd8PG+Q73LIFYyj3lAsa1G/37/D4+JWgPbcQkybd9jpdGYVRXlmSiQSSYmieMWmhgMuwI0kSTPkpQJgzKJnDfJuKYryBJH7sVNBSPGI7BKoFl3n+GguMY4JHiz6GtoybiisRczmEtPFAM+Ifl6i5DmTKYqeX+Nssj19lUz9N2J4XNxDTiQSkwi4oz6ADU3hLdxb7dwW9RyL5B0FHrltAgZUsEce4eRrmwB3ugCRJ3fk4VvsOwEDHtcWxKeDy4emaWmHdRKdFpvNphQKhdhFmOet42D3sftTJw7X/wHgw/U8h1ywkJ/gYJeI/wi/g8kdmqqqG5Alk62Er+emG7nXBFSr1aroNSNknwOVzZnNS6xIHtFoNF6CweAbpheyLOfo3+ALfrSuzJ1F8EsAAAAASUVORK5CYII=',
+        notSelected:
+          'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABHElEQVR42uVVyw4BMRQdC98lsbPwG5YSH+BzWFtLZilh0oQgFh6J54IwBmGYtrfaBREdcTvDhpM0adrec3rb+7Csn8fRdrLg7VzBubhDzmHrudRuZ2KRs/miLd6AThfNaOTTGRFIsMm8bkSuXBeGoLVaGi0g39wLI4GTf1EjdE/+E1pAAGgEAenkb/tBo1vQFUDgBbSbny6al77uSQwB/6wJSNHoAo8xj30iaYMW4Lv9wfSTpc0eH6atXtE4TKWNUS4AY2hyddY4k/lwVEZncm9QilQuBGPwnp1B5GIXGi3P0eU0c7EqKrje5hU5d7fr2P2AEJIESkNqB1XJkvhI0/GrTuqZX619tLMF/VHlfnk5/0r7ZMvVWA3rr3AF6LIMZ7PmSlUAAAAASUVORK5CYII='
+      },
+      clusterStyle: [
+        {
+          url:
+            'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m1.png',
+          width: 56,
+          height: 56,
+          textColor: '#fff'
+        }
+      ],
+      mapStyle: [
+        {
+          featureType: 'all',
+          elementType: 'labels.text.fill',
+          stylers: [
+            {
+              color: '#ffffff'
+            }
+          ]
+        },
+        {
+          featureType: 'all',
+          elementType: 'labels.text.stroke',
+          stylers: [
+            {
+              visibility: 'on'
+            },
+            {
+              color: '#3e606f'
+            },
+            {
+              weight: 2
+            },
+            {
+              gamma: 0.84
+            }
+          ]
+        },
+        {
+          featureType: 'all',
+          elementType: 'labels.icon',
+          stylers: [
+            {
+              visibility: 'off'
+            }
+          ]
+        },
+        {
+          featureType: 'administrative',
+          elementType: 'geometry',
+          stylers: [
+            {
+              weight: 0.6
+            },
+            {
+              color: '#313536'
+            }
+          ]
+        },
+        {
+          featureType: 'landscape',
+          elementType: 'geometry',
+          stylers: [
+            {
+              color: '#44a688'
+            }
+          ]
+        },
+        {
+          featureType: 'poi',
+          elementType: 'geometry',
+          stylers: [
+            {
+              color: '#13876c'
+            }
+          ]
+        },
+        {
+          featureType: 'poi.attraction',
+          elementType: 'geometry.stroke',
+          stylers: [
+            {
+              color: '#f5e4e4'
+            },
+            {
+              visibility: 'off'
+            }
+          ]
+        },
+        {
+          featureType: 'poi.attraction',
+          elementType: 'labels',
+          stylers: [
+            {
+              visibility: 'on'
+            },
+            {
+              lightness: '14'
+            }
+          ]
+        },
+        {
+          featureType: 'poi.park',
+          elementType: 'geometry',
+          stylers: [
+            {
+              color: '#13876c'
+            },
+            {
+              visibility: 'simplified'
+            }
+          ]
+        },
+        {
+          featureType: 'road',
+          elementType: 'geometry',
+          stylers: [
+            {
+              color: '#067372'
+            },
+            {
+              lightness: '-20'
+            }
+          ]
+        },
+        {
+          featureType: 'transit',
+          elementType: 'geometry',
+          stylers: [
+            {
+              color: '#357374'
+            }
+          ]
+        },
+        {
+          featureType: 'water',
+          elementType: 'geometry',
+          stylers: [
+            {
+              color: '#004757'
+            }
+          ]
+        }
+      ]
+    };
+  }
+
   head() {
     return {
       title: this.title
@@ -630,40 +798,11 @@ export default class IndexPage extends Vue {
 
   scrollToHash() {
     var hash = this.$nuxt.$route.hash;
+
     this.$nextTick(() => {
       this.$scrollTo(hash, 0, { offset: -120 });
     });
   }
-
-  /*   created() {
-    this.$store.watch(
-      state => state.article.status.loading,
-      () => {
-        console.log('created watch');
-        const loading = this.$store.state.article.status.loading;
-        if (loading === false) {
-          //this.show = true;
-          //this.$store.commit('snackbar/setSnack', '');
-        }
-      }
-    );
-  } */
-
-  /*   mounted() {
-    if (this.$nuxt.$route.hash) {
-      this.scrollToHash();
-    }
-    setInterval(() => {
-      this.$store.state.article.status.loading = !this.$store.state
-        .article.status.loading;
-    }, 1000);
-    this.$store.watch(
-      () => this.$store.state.article.status.loading,
-      () => {
-        console.log('mounted watch ');
-      }
-    );
-  } */
 
   /**
    * Will be called after all middleware has run and validation has cleared, so by the time it runs we know for certain this page will render.
@@ -684,8 +823,16 @@ export default class IndexPage extends Vue {
 }
 </script>
 <style scoped lang="scss">
-.masthead {
+.wrapper {
+  /* The height needs to be set to a fixed value for the effect to work.
+   * 100vh is the full height of the viewport. */
   height: 100vh;
+  /* The scaling of the images would add a horizontal scrollbar, so disable x overflow. */
+  overflow-x: hidden;
+  /* Enable scrolling on the page. */
+  overflow-y: auto;
+  /* Set the perspective to 2px. This is essentailly the simulated distance from the viewport to transformed objects.*/
+  perspective: 2px;
   min-height: 500px;
   background-image: url(../assets/img/home/header/music/music-chart.jpg?lqip);
   background-size: cover;
@@ -693,10 +840,11 @@ export default class IndexPage extends Vue {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-header.blur {
+
+.wrapper.blur {
   filter: blur(25px);
 }
-header.lazyloaded {
+.wrapper.lazyloaded {
   opacity: 0;
   animation-name: fadein;
   animation-duration: 0.5s;
@@ -749,7 +897,6 @@ header.lazyloaded {
 .demo a:hover {
   opacity: 0.5;
 }
-
 #section10 a {
   padding-top: 60px;
 }
@@ -810,15 +957,4 @@ header.lazyloaded {
     opacity: 0;
   }
 }
-
-.c-lerp-block_title {
-  display: inline-block;
-  vertical-align: middle;
-  span {
-    display: inline-block;
-    min-width: 0.3em;
-  }
-}
-
-
 </style>

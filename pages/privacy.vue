@@ -176,6 +176,50 @@
                     controleren. Op die manier voorkomen wij dat u omgeleid
                     wordt naar een vals IP-adres.
                   </p>
+
+                  <!-- DIT GEBRUIKEN IN COOKIEPOLICY https://www.velsen.nl/cookieverklaring -->
+                  <p>
+                    Cookies die bij uw bezoek aan onze website geplaatst
+                    (kunnen) worden Bij uw bezoek aan onze website kunnen de
+                    volgende cookies op uw pc, tablet of mobiele telefoon worden
+                    opgeslagen: Strikt noodzakelijke cookies zijn nodig om de
+                    website goed te laten functioneren en worden automatisch
+                    ingeschakeld als u de site bezoekt. Voor deze cookies hoeft
+                    u geen toestemming te geven. De cookies worden bijvoorbeeld
+                    gebruikt om uw taalvoorkeur te onthouden of om te onthouden
+                    of u een enquête al heeft ingevuld. Deze cookies worden ook
+                    gebruikt om vast te leggen en/of te onthouden dat een ander
+                    soort cookie wel of niet mag worden geplaatst. De
+                    ‘levensduur’ van deze cookies zijn eenmalig: wanneer u uw
+                    computer of internetsessie afsluit, dan zullen deze cookies
+                    verwijderd worden. Standaard cookies: Wij gebruiken deze
+                    cookies om gegevens over het gebruik van de website te
+                    verzamelen. De gemeente gebruikt deze informatie om de
+                    website beter af te stemmen op de behoeften van de
+                    bezoekers. Hiervoor gebruiken we Google (Analytics).
+                    Gemeente Velsen kan niet zien wie (welke pc) haar website
+                    bezoekt. Google kan dit als aanbieder van de dienst wel.
+                    Hiervoor kan Gemeente Velsen geen verantwoording dragen.
+                    Deze cookies blijven langere tijd bewaard en registreren
+                    voor ons: Hoe u op onze site terechtkomt; Hoe lang u op deze
+                    site blijft; Hoe vaak u onze site bezoekt; Welke route u er
+                    aflegt; Welke browser u gebruikt; Waar u vandaan komt.
+                    Externe cookies: Deze cookies worden geplaatst om de
+                    toepassing van websites van derden mogelijk te maken. Zoals
+                    YouTube en Google Maps. Over deze cookies heeft Gemeente
+                    Velsen geen controle. YouTube gebruikt cookies om gegevens
+                    te verzamelen. Een cookie bevat informatie over de computer
+                    waarmee een video bekeken wordt, of over de gebruiker die
+                    deze bekijkt. YouTube gebruikt de verzamelde gegevens onder
+                    meer om ervoor te zorgen dat videostatistieken kloppen,
+                    fraude wordt voorkomen en de site-ervaring wordt verbeterd.
+                    Google Maps plaatst geografische kaarten op de websites. Ook
+                    kunnen hiermee routebeschrijvingen worden gemaakt. Bij het
+                    gebruik van Google Maps worden verschillende cookies gezet,
+                    om voorkeuren op te slaan zoals bijvoorbeeld om het in- of
+                    uitzoomniveau te onthouden en statistieken met betrekking
+                    tot het gebruik op te slaan.
+                  </p>
                 </div>
               </div>
             </div>
