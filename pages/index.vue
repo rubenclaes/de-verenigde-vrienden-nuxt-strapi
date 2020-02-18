@@ -16,26 +16,14 @@
               <h1 class="display-3 text-white">
                 Koninklijke Harmonie
                 <span>De Verenigde Vrienden Heusden-Zolder</span>
-                <span class="lead text-primary font-weight-bold"
-                  >Daar zit muziek in!</span
-                >
+                <span class="lead text-primary font-weight-bold">Daar zit muziek in!</span>
               </h1>
               <p></p>
-              <p
-                class="lead text-white d-none d-md-block d-lg-block d-xl-block"
-              >
+              <p class="lead text-white d-none d-md-block d-lg-block d-xl-block">
                 Samen muziek maken met passie en oog voor kwaliteit, zowel op
                 beginnersniveau als voor gevorderde muzikanten, is onze grootste
                 uitdaging.
               </p>
-              <div class="btn-wrapper">
-                <button
-                  v-scroll-to="'#contact'"
-                  class="btn btn btn-primary btn-lg"
-                >
-                  <span class="nav-link-inner--text">Ik word lid</span>
-                </button>
-              </div>
             </div>
           </div>
         </div>
@@ -125,11 +113,7 @@
                   class="svg-bg"
                 >
                   <polygon points="0,52 583,95 0,95" class="fill-default" />
-                  <polygon
-                    points="0,42 583,95 683,0 0,95"
-                    opacity=".2"
-                    class="fill-default"
-                  />
+                  <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default" />
                 </svg>
 
                 <h4 class="display-3 font-weight-bold text-white">Repetitie</h4>
@@ -230,12 +214,7 @@
               <ul class="list-unstyled mt-5">
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge
-                      type="blue"
-                      circle
-                      class="mr-3"
-                      icon="ni ni-check-bold"
-                    ></badge>
+                    <badge type="blue" circle class="mr-3" icon="ni ni-check-bold"></badge>
                     <p>
                       Speel je een blaasinstrument (trompet, klarinet, hoorn,
                       trombone, bariton, tuba, dwarsfluit, hobo, fagot,
@@ -246,12 +225,7 @@
                 </li>
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge
-                      type="blue"
-                      circle
-                      class="mr-3"
-                      icon="ni ni-like-2"
-                    ></badge>
+                    <badge type="blue" circle class="mr-3" icon="ni ni-like-2"></badge>
                     <p>
                       Je kan meespelen na je 1ste jaar instrumentles. Kevin
                       Absillis slaat er de maat. De harmonie stelt gratis een
@@ -261,12 +235,7 @@
                 </li>
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge
-                      type="blue"
-                      circle
-                      class="mr-3"
-                      icon="ni ni-calendar-grid-58"
-                    ></badge>
+                    <badge type="blue" circle class="mr-3" icon="ni ni-calendar-grid-58"></badge>
                     <p>
                       De jeugdharmonie repeteert elke maandagavond van 19u tot
                       19u45.
@@ -309,9 +278,7 @@
             </p>
           </div>
           <div class="col-lg-6 mb-lg-auto">
-            <div
-              class="rounded shadow-lg overflow-hidden transform-perspective-right"
-            >
+            <div class="rounded shadow-lg overflow-hidden transform-perspective-right">
               <client-only>
                 <b-carousel id="carousel3" controls indicators>
                   <!-- Text slides with image -->
@@ -355,9 +322,7 @@
                 fill="#88DD9B"
               />
             </svg>
-            <p class="mb-0">
-              Het belangrijkste in de muziek staat niet in de noten.
-            </p>
+            <p class="mb-0">Het belangrijkste in de muziek staat niet in de noten.</p>
             <footer class="blockquote-footer">Kevin Absillis</footer>
           </blockquote>
         </div>
@@ -429,7 +394,7 @@
               <b>{{ location.name }}</b>
               <br />
               <br />
-              <code> Lat: {{ location.lat }}, Lng: {{ location.lng }} </code>
+              <code>Lat: {{ location.lat }}, Lng: {{ location.lng }}</code>
             </GMapInfoWindow>
           </GMapMarker>
         </GMap>
@@ -439,27 +404,12 @@
         <div class="row text-center justify-content-center">
           <div class="col-lg-10">
             <a href="https://goo.gl/maps/YgziKZGExWnQW9cd7">
-              <icon
-                name="ni ni-pin-3"
-                class="mb-5 floating"
-                size="lg"
-                type="white"
-                shadow
-                rounded
-              ></icon>
+              <icon name="ni ni-pin-3" class="mb-5 floating" size="lg" type="white" shadow rounded></icon>
             </a>
-            <h1 class="text-white font-weight-light">
-              Hoe kan je ons bereiken?
-            </h1>
+            <h1 class="text-white font-weight-light">Hoe kan je ons bereiken?</h1>
 
-            <a
-              href="https://goo.gl/maps/YgziKZGExWnQW9cd7"
-              class="lead text-white"
-              target="blank"
-            >
-              <icon name="ni ni-map-big" size="sm" type="white"></icon
-              >&nbsp;Kerkenblook z/n
-
+            <a href="https://goo.gl/maps/YgziKZGExWnQW9cd7" class="lead text-white" target="blank">
+              <icon name="ni ni-map-big" size="sm" type="white"></icon>&nbsp;Kerkenblook z/n
               <p class="lead text-white">3550 Heusden-Zolder</p>
             </a>
           </div>
@@ -468,7 +418,13 @@
     </section>
     <!-- end Adres -->
 
-    <news-list></news-list>
+    <!-- Nieuws -->
+    <section id="nieuws" class="section section-lg">
+      <div class="container">
+        <news-list></news-list>
+      </div>
+    </section>
+    <!-- end Nieuws -->
 
     <!-- Contact -->
     <section class="section section-lg pt-lg-0 section-contact-us">
@@ -490,7 +446,9 @@
                 data-aos-delay="450"
               >
                 <h4 class="mb-1">Wil je meer van ons weten?</h4>
-                <p class="mt-0">Een mailtje kan geen kwaad.</p>
+                <p class="mt-0">
+                  <badge type="primary" class="mr-3">Laat een bericht achter</badge>
+                </p>
 
                 <div v-show="false">
                   <input name="form-name" value="contact" />
@@ -524,10 +482,7 @@
                       ></base-input>
                     </div>
                   </ValidationProvider>
-                  <ValidationProvider
-                    name="model.message"
-                    rules="required|min:1"
-                  >
+                  <ValidationProvider name="model.message" rules="required|min:1">
                     <div slot-scope="{ errors }">
                       <base-input class="mb-4" :error="errors[0]">
                         <textarea
@@ -541,13 +496,7 @@
                       </base-input>
                     </div>
                   </ValidationProvider>
-                  <b-button
-                    block
-                    type="submit"
-                    variant="default"
-                    round
-                    :disabled="invalid"
-                  >
+                  <b-button block type="submit" variant="default" round :disabled="invalid">
                     <icon name="ni ni-send" size="sm"></icon>&nbsp;Verstuur
                   </b-button>
                 </ValidationObserver>

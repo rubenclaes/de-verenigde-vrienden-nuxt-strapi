@@ -121,6 +121,7 @@
         </header>
       </vue-headroom>
     </client-only>
+
     <IfBot>
       <CookieControl />
     </IfBot>
@@ -251,18 +252,11 @@ export default class appHeader extends Vue {
     return this.$store.getters['cart/numberOfItems'];
   }
 
-  onNotTop() {
-    this.$emit('not-top', { time: Date.now() });
-    console.log('hello');
-  }
-
   onPin(pin: boolean) {
-    console.log('pinned');
     this.isPinned = pin;
   }
 
   onTop(top: boolean) {
-    console.log('pinned');
     this.isTop = top;
   }
 }
