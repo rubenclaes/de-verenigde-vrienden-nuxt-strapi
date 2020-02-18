@@ -16,7 +16,7 @@
               <h1 class="display-3 text-white">
                 Koninklijke Harmonie
                 <span>De Verenigde Vrienden Heusden-Zolder</span>
-                <span class="lead text-success font-weight-bold"
+                <span class="lead text-primary font-weight-bold"
                   >Daar zit muziek in!</span
                 >
               </h1>
@@ -31,7 +31,7 @@
               <div class="btn-wrapper">
                 <button
                   v-scroll-to="'#contact'"
-                  class="btn btn btn-secondary btn-lg"
+                  class="btn btn btn-primary btn-lg"
                 >
                   <span class="nav-link-inner--text">Ik word lid</span>
                 </button>
@@ -213,10 +213,9 @@
           <div class="col-md-6 order-md-1">
             <div class="pr-md-5" data-aos="fade-in" data-aos-delay="150">
               <icon
-                name="smile-beam"
+                name="ni ni-smile-beam"
                 class="mb-5 floating"
                 size="lg"
-                color="primary"
                 type="primary"
                 shadow
                 rounded

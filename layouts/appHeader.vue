@@ -1,13 +1,19 @@
 <template>
   <div>
     <client-only>
-      <vue-headroom @pin="onPin()" @top="onTop()" :upTolerance="upTolerance">
+      <vue-headroom
+        @pin="onPin(true)"
+        @top="onTop(true)"
+        @unpin="onPin(false)"
+        @not-top="onTop(false)"
+        :upTolerance="upTolerance"
+      >
         <header class="header-global">
           <div id="top"></div>
 
           <base-nav
             class="navbar-main"
-            :transparent="!isPinned && isTop"
+            :transparent="isTop"
             :effect="isPinned ? 'dark' : 'light'"
             type
             expand
@@ -34,37 +40,25 @@
                 </router-link>
               </li>
               <base-dropdown class="nav-item" menu-classes="dropdown-menu-xl">
-                <a
-                  slot="title"
-                  href="#"
-                  class="nav-link"
-                  data-toggle="dropdown"
-                  role="button"
-                >
+                <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
                   <i class="ni ni-bold-down d-lg-none"></i>
                   <span class="nav-link-inner--text">Harmonie</span>
                 </a>
                 <div class="dropdown-menu-inner">
-                  <router-link
-                    to="/dirigent"
-                    class="media d-flex align-items-center"
-                  >
+                  <router-link to="/dirigent" class="media d-flex align-items-center">
                     <div class="media-body ml-3">
                       <h6 class="heading text-success mb-md-1">Dirigent</h6>
-                      <p class="description d-none d-md-inline-block mb-0">
-                        Lees meer over onze dirigent.
-                      </p>
+                      <p
+                        class="description d-none d-md-inline-block mb-0"
+                      >Lees meer over onze dirigent.</p>
                     </div>
                   </router-link>
-                  <router-link
-                    to="/geschiedenis"
-                    class="media d-flex align-items-center"
-                  >
+                  <router-link to="/geschiedenis" class="media d-flex align-items-center">
                     <div class="media-body ml-3">
                       <h5 class="heading text-success mb-md-1">Geschiedenis</h5>
-                      <p class="description d-none d-md-inline-block mb-0">
-                        Lees hoe onze harmonie is ontstaan.
-                      </p>
+                      <p
+                        class="description d-none d-md-inline-block mb-0"
+                      >Lees hoe onze harmonie is ontstaan.</p>
                     </div>
                   </router-link>
                 </div>
@@ -73,7 +67,7 @@
             <a class="nav-link" href="/nieuws">
               <span class="nav-link-inner--text">Nieuws</span>
             </a>
-          </li>-->
+              </li>-->
               <li class="nav-item">
                 <router-link class="nav-link" to="/drumband">
                   <span class="nav-link-inner--text">Drumband</span>
@@ -94,9 +88,7 @@
               <li class="nav-item">
                 <router-link class="nav-link nav-link-icon" to="/checkout">
                   <i class="fa fa-shopping-cart"></i>
-                  <span class="nav-link-inner--text d-lg-none"
-                    >Winkelmandje</span
-                  >
+                  <span class="nav-link-inner--text d-lg-none">Winkelmandje</span>
                   <client-only>
                     <badge type="white" rounded>{{ numberOfItems() }}</badge>
                   </client-only>
@@ -162,21 +154,15 @@
               class="text-primary font-weight-light mb-2"
               data-aos="fade-right"
               data-aos-delay="150"
-            >
-              Begint het al een beetje te kriebelen?
-            </h3>
+            >Begint het al een beetje te kriebelen?</h3>
             <h4
               class="mb-0 font-weight-light"
               data-aos="fade-right"
               data-aos-delay="250"
-            >
-              Volg ons ook op social media!
-            </h4>
+            >Volg ons ook op social media!</h4>
           </div>
           <div class="col-lg-6 text-lg-center btn-wrapper">
-            <p class="lead">
-              Volg ons op
-            </p>
+            <p class="lead">Volg ons op</p>
             <a
               target="_blank"
               rel="noopener"
@@ -205,19 +191,13 @@
                 <router-link to="/" class="nav-link">Home</router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/geschiedenis" class="nav-link"
-                  >Geschiedenis</router-link
-                >
+                <router-link to="/geschiedenis" class="nav-link">Geschiedenis</router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/dirigent" class="nav-link"
-                  >Dirigent</router-link
-                >
+                <router-link to="/dirigent" class="nav-link">Dirigent</router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/drumband" class="nav-link"
-                  >Drumband</router-link
-                >
+                <router-link to="/drumband" class="nav-link">Drumband</router-link>
               </li>
               <li class="nav-item" @click="goTocontact()">
                 <span class="nav-link" style="cursor:pointer">Contact</span>
@@ -276,15 +256,14 @@ export default class appHeader extends Vue {
     console.log('hello');
   }
 
-  onPin() {
+  onPin(pin: boolean) {
     console.log('pinned');
-    this.isPinned = true;
+    this.isPinned = pin;
   }
 
-  onTop() {
+  onTop(top: boolean) {
     console.log('pinned');
-    this.isTop = true;
-    this.isPinned = false;
+    this.isTop = top;
   }
 }
 </script>
