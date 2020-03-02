@@ -7,6 +7,8 @@
         @unpin="onPin(false)"
         @not-top="onTop(false)"
         :upTolerance="upTolerance"
+        :downTolerance="downTolerance"
+        :speed="speed"
       >
         <header class="header-global">
           <div id="top"></div>
@@ -14,7 +16,7 @@
           <base-nav
             class="navbar-main"
             :transparent="isTop"
-            :effect="isPinned ? 'dark' : 'light'"
+            :effect="isPinned || !isTop ? 'dark' : 'light'"
             type
             expand
           >
@@ -109,7 +111,7 @@
               </li>
 
               <li class="nav-item ml-lg-4">
-                <button @click="goTocontact()" class="btn btn-primary btn-icon">
+                <button @click="goTocontact()" class="btn btn-primary btn-icon btn-block">
                   <span class="btn-inner--icon">
                     <i class="fa fa-envelope mr-2"></i>
                   </span>
@@ -240,8 +242,9 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class appHeader extends Vue {
   isPinned: boolean = false;
   isTop: boolean = false;
-  downTolerance: number = 0;
-  upTolerance: number = 0;
+  downTolerance: number = 40;
+  upTolerance: number = 40;
+  speed: number = 250;
   year = new Date().getFullYear();
 
   goTocontact() {

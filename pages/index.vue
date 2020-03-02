@@ -9,21 +9,37 @@
         `${require('../assets/img/home/header/music/music-chart_1600w.jpg')}`
       "
     >
-      <div class="container d-flex">
-        <div class="col px-0">
-          <div class="row">
-            <div v-parallax="0.3" class="col-lg-7">
-              <h1 class="display-3 text-white">
-                Koninklijke Harmonie
-                <span>De Verenigde Vrienden Heusden-Zolder</span>
-                <span class="lead text-primary font-weight-bold">Daar zit muziek in!</span>
-              </h1>
-              <p></p>
-              <p class="lead text-white d-none d-md-block d-lg-block d-xl-block">
-                Samen muziek maken met passie en oog voor kwaliteit, zowel op
-                beginnersniveau als voor gevorderde muzikanten, is onze grootste
-                uitdaging.
-              </p>
+      <div class="container">
+        <div class="row align-items-center text-left">
+          <div v-parallax="0.3" class="col-lg-5 col-12">
+            <h1 class="display-3 text-white">
+              Koninklijke Harmonie
+              <span class="text-primary">De Verenigde Vrienden Heusden-Zolder</span>
+            </h1>
+            <p class="lead pb-4 d-none d-md-block d-lg-block d-xl-block">
+              Samen muziek maken met passie en oog voor kwaliteit, zowel op
+              beginnersniveau als voor gevorderde muzikanten, is onze grootste
+              uitdaging.
+            </p>
+
+            <div class="row row-input">
+              <div class="col-sm-8 col-12">
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  id="signupSrEmail"
+                  placeholder="Your email"
+                  aria-label="Your email"
+                />
+              </div>
+              <div class="col-sm-4 col-12 pl-lg-0">
+                <button @click="goTocontact()" class="btn btn-primary btn-icon btn-block">
+                  <span class="btn-inner--icon">
+                    <i class="fa fa-envelope mr-2"></i>
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -897,5 +913,34 @@ export default class IndexPage extends Vue {
   100% {
     opacity: 0;
   }
+}
+
+.text__word {
+  opacity: 0;
+}
+
+.text__first-bg,
+.text__second-bg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+.text__first-bg {
+  background-color: #5fbff9;
+}
+
+.text__second-bg {
+  background-color: #f06543;
+}
+
+.text__second {
+  margin-left: 15vmin;
 }
 </style>
