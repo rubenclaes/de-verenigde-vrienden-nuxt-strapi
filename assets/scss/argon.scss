@@ -164,3 +164,54 @@
   align-items: center;
   justify-content: center;
 }
+
+/*---------------------------------------------------------------------
+                           jarallax
+-----------------------------------------------------------------------*/
+
+.jarallax {
+  position: relative;
+  z-index: 0;
+}
+
+.jarallax > .jarallax-img {
+  position: absolute;
+  object-fit: cover;
+  /* support for plugin https://github.com/bfred-it/object-fit-images */
+  font-family: 'object-fit:cover; ';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/*---------------------------------------------------------------------
+                             BG Effect
+-----------------------------------------------------------------------*/
+
+.iq-parallax {
+  position: relative;
+  background-size: cover !important;
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -ms-background-size: cover !important;
+  background-origin: initial;
+  background-position: center center !important;
+  background-repeat: no-repeat;
+}
+.iq-banner-07 {
+  position: relative;
+  overflow: hidden;
+}
+
+.iq-banner-07 .banner-text {
+  z-index: 9;
+  position: relative;
+  margin-top: 13%;
+  margin-bottom: 13%;
+}
+
+.iq-banner-07 .banner-img {
+  width: 100%;
+}

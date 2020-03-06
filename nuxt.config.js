@@ -7,16 +7,12 @@ const config = {
   /*
    ** Headers of the page
    */
-
   head: {
     htmlAttrs: {
       lang: 'nl-BE'
     },
-
     title: process.env.APP_ID,
-
     titleTemplate: '%s ← ' + process.env.APP_ID,
-
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -26,10 +22,14 @@ const config = {
         content: 'Koninklijke Harmonie de Verenige Vrienden Heusden-Zolder web'
       }
     ],
-
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'preconnect', href: 'https://res.cloudinary.com' }
+    ],
+    script: [
+      {
+        src: ''
+      }
     ]
   },
 
@@ -60,8 +60,9 @@ const config = {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    { src: '~/plugins/aos.js', mode: 'client' },
-    { src: '~/plugins/lazysizes.js', mode: 'client' },
+    '~/plugins/aos.client.js',
+    '~/plugins/lazysizes.client.js',
+    '~/plugins/rellax.client.js',
     { src: '~/plugins/vuex-persist', mode: 'client' },
     { src: '~/plugins/vue-toasted.js', mode: 'client' },
     { src: '~/plugins/vue-confetti.js', mode: 'client' },
@@ -281,6 +282,9 @@ const config = {
     baseURL: process.env.API_URL
   },
 
+  /*
+   ** Nuxt.js dev-modules
+   */
   buildModules: ['@nuxtjs/dotenv', '@nuxt/typescript-build'],
 
   /*

@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import { DiningDay } from '../store/diningday/types';
 import { diningDayVuexNamespace } from '~/store/diningday/const';
 

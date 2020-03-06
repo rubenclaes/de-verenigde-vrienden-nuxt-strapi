@@ -1,379 +1,10 @@
 <template>
   <div>
-    <!-- Full Page Image Header with Vertically Centered Content -->
-
-    <header
-      class="wrapper blur lazyload image-box demo parallax"
-      id="section10"
-      :data-bg="
-        `${require('../assets/img/home/header/music/music-chart_1600w.jpg')}`
-      "
-    >
-      <div class="container">
-        <div class="row align-items-center text-left">
-          <div v-parallax="0.3" class="col-lg-5 col-12">
-            <h1 class="display-3 text-white">
-              Koninklijke Harmonie
-              <span class="text-primary">De Verenigde Vrienden Heusden-Zolder</span>
-            </h1>
-            <p class="lead pb-4 d-none d-md-block d-lg-block d-xl-block">
-              Samen muziek maken met passie en oog voor kwaliteit, zowel op
-              beginnersniveau als voor gevorderde muzikanten, is onze grootste
-              uitdaging.
-            </p>
-
-            <div class="row row-input">
-              <div class="col-sm-8 col-12">
-                <input
-                  type="email"
-                  class="form-control"
-                  name="email"
-                  id="signupSrEmail"
-                  placeholder="Your email"
-                  aria-label="Your email"
-                />
-              </div>
-              <div class="col-sm-4 col-12 pl-lg-0">
-                <button @click="goTocontact()" class="btn btn-primary btn-icon btn-block">
-                  <span class="btn-inner--icon">
-                    <i class="fa fa-envelope mr-2"></i>
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <a v-scroll-to="'#harmonie'">
-        <span></span>
-      </a>
-    </header>
-
-    <!-- start important message -->
-    <!--     <section class="section section-lg pt-0">
-        <div class="container">
-          <card gradient="warning" no-body shadow-size="lg" class="border-0">
-            <div class="p-5">
-              <div class="row align-items-center">
-                <div class="col-lg-8">
-                  <h3 class="text-white">Muziekkamp HEMELTJE - HEL</h3>
-                  <p class="lead text-white mt-3">
-                    Samen muziek maken, samen actief zijn,... je beleeft het allemaal in dit muziekkamp.
-                    Info en inschrijven voor 10 juni bij
-                    <a
-                      href="mailto:lieselotte_kleykens@hotmail.com?SUBJECT=Muziekkamp"
-                    >lieselotte_kleykens@hotmail.com</a>
-                  </p>
-                </div>
-                <div class="col-lg-3 ml-lg-auto">
-                  <base-button
-                    tag="a"
-                    href="https://www.creative-tim.com/product/vue-argon-design-system"
-                    type="white"
-                    block
-                    size="lg"
-                  >Lees Meer</base-button>
-                </div>
-              </div>
-            </div>
-          </card>
-        </div>
-    </section>-->
-    <!-- end important message -->
-
-    <!-- Harmonie  -->
-    <section id="harmonie" class="section section-lg">
-      <div class="container">
-        <div class="row row-grid align-items-center">
-          <div class="col-md-6">
-            <div
-              data-aos="fade-in"
-              data-aos-delay="150"
-              class="pl-md-5"
-              data-aos-once="true"
-              data-aos-duration="1200"
-            >
-              <h1>Harmonie</h1>
-
-              <p class="lead">
-                We zijn toffe groep muzikanten van alle leeftijden die samen
-                muzikaal plezier maken. Al wie graag muziek speelt is welkom om
-                even te komen kennismaken!
-              </p>
-
-              <p class="lead">
-                Je krijgt de kans om te groeien binnen onze harmonie, een ideale
-                begeleiding van jeugd naar de ‘grote Harmonie’.
-              </p>
-
-              <p class="lead">
-                Onze zorg gaat vooral uit naar de opleiding van de jeugd in
-                samenwerking met de academie.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card bg-default shadow border-0">
-              <LazyImage
-                srcData="home/harmonie/close_up.jpeg"
-                fetchMode="srcset"
-                extraCss="card-img-top"
-              />
-
-              <blockquote class="card-blockquote">
-                <svg
-                  preserveAspectRatio="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 583 95"
-                  class="svg-bg"
-                >
-                  <polygon points="0,52 583,95 0,95" class="fill-default" />
-                  <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default" />
-                </svg>
-
-                <h4 class="display-3 font-weight-bold text-white">Repetitie</h4>
-                <p class="lead text-italic text-white">
-                  Maandagavond, van 20u tot 22u is het repetitie in onze
-                  muziekzaal (Kerkenblook) en dat is altijd een leuke tijd. Na
-                  de repetitie wordt er nog gezellig nagebabbeld.
-                </p>
-              </blockquote>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- end Harmonie -->
-
-    <!-- Jeugdorkest -->
-    <section class="section bg-secondary section-lg">
-      <div class="container">
-        <div class="row row-grid align-items-center">
-          <div class="col-md-6 order-md-2">
-            <div class="rounded shadow-lg overflow-hidden">
-              <client-only>
-                <b-carousel id="carousel1" :interval="4000" controls indicators>
-                  <!-- Slides with img slot -->
-                  <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
-                  <b-carousel-slide>
-                    <template v-slot:img>
-                      <LazyImage
-                        srcData="home/jeugdorkest/jeugdorkest-min.jpeg"
-                        fetchMode="srcset"
-                        extraCss="d-block img-fluid w-100"
-                        height="480"
-                      />
-                    </template>
-                  </b-carousel-slide>
-                  <b-carousel-slide>
-                    <template v-slot:img>
-                      <LazyImage
-                        srcData="home/jeugdorkest/jeugdorkest2-min.jpeg"
-                        fetchMode="srcset"
-                        extraCss="d-block img-fluid w-100"
-                        height="480"
-                      />
-                    </template>
-                  </b-carousel-slide>
-                  <b-carousel-slide>
-                    <template v-slot:img>
-                      <LazyImage
-                        srcData="home/jeugdorkest/jeugdorkest3-min.jpeg"
-                        fetchMode="srcset"
-                        extraCss="d-block img-fluid w-100"
-                        height="480"
-                      />
-                    </template>
-                  </b-carousel-slide>
-                  <b-carousel-slide>
-                    <template v-slot:img>
-                      <LazyImage
-                        srcData="home/jeugdorkest/jeugdorkest4-min.jpeg"
-                        fetchMode="srcset"
-                        extraCss="d-block img-fluid w-100"
-                        height="480"
-                      />
-                    </template>
-                  </b-carousel-slide>
-                  <b-carousel-slide>
-                    <template v-slot:img>
-                      <LazyImage
-                        srcData="home/jeugdorkest/jeugdorkest5-min.jpeg"
-                        fetchMode="srcset"
-                        extraCss="d-block img-fluid w-100"
-                        height="480"
-                      />
-                    </template>
-                  </b-carousel-slide>
-                </b-carousel>
-              </client-only>
-            </div>
-          </div>
-          <div class="col-md-6 order-md-1">
-            <div class="pr-md-5" data-aos="fade-in" data-aos-delay="150">
-              <icon
-                name="ni ni-smile-beam"
-                class="mb-5 floating"
-                size="lg"
-                type="primary"
-                shadow
-                rounded
-              ></icon>
-              <h1 id="jeugdorkest">Jeugdorkest</h1>
-              <p class="lead">
-                Heb je de muziekmicrobe te pakken? Wil je op een leuke en
-                speelse manier samen muziek maken? Dan moet je bij deze jeugdige
-                muzikale bende zijn.
-              </p>
-
-              <ul class="list-unstyled mt-5">
-                <li class="py-2">
-                  <div class="d-flex align-items-center">
-                    <badge type="blue" circle class="mr-3" icon="ni ni-check-bold"></badge>
-                    <p>
-                      Speel je een blaasinstrument (trompet, klarinet, hoorn,
-                      trombone, bariton, tuba, dwarsfluit, hobo, fagot,
-                      saxofoon) of doe je slagwerk, dan kan je bij ons
-                      aansluiten!
-                    </p>
-                  </div>
-                </li>
-                <li class="py-2">
-                  <div class="d-flex align-items-center">
-                    <badge type="blue" circle class="mr-3" icon="ni ni-like-2"></badge>
-                    <p>
-                      Je kan meespelen na je 1ste jaar instrumentles. Kevin
-                      Absillis slaat er de maat. De harmonie stelt gratis een
-                      instrument ter beschikking.
-                    </p>
-                  </div>
-                </li>
-                <li class="py-2">
-                  <div class="d-flex align-items-center">
-                    <badge type="blue" circle class="mr-3" icon="ni ni-calendar-grid-58"></badge>
-                    <p>
-                      De jeugdharmonie repeteert elke maandagavond van 19u tot
-                      19u45.
-                    </p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- end Jeugdorkest -->
-
-    <!-- Activiteiten -->
-    <section
-      class="section section-lg"
-      id="section10"
-      :data-bg="
-        `${require('../assets/img/home/header/trumpet-tamborine-and-flute-instruments.jpg')}`
-      "
-    >
-      <div class="container py-0 pb-lg">
-        <div class="row justify-content-between align-items-center">
-          <div class="col-lg-5 mb-5 mb-lg-0">
-            <icon
-              name="ni ni-calendar-grid-58"
-              class="mb-5 floating"
-              size="lg"
-              type="primary"
-              shadow
-              rounded
-            ></icon>
-
-            <h1 class="text-white font-weight-light">Activiteiten</h1>
-            <p class="lead text-white mt-4">
-              Ieder jaar zijn er een aantal vaste activiteiten: jaarconcert,
-              kaas- en wijnconcert, opening Heusden kermis, muziekkamp,
-              reuzenstoet, St. Cecilia,…
-            </p>
-          </div>
-          <div class="col-lg-6 mb-lg-auto">
-            <div class="rounded shadow-lg overflow-hidden transform-perspective-right">
-              <client-only>
-                <b-carousel id="carousel3" controls indicators>
-                  <!-- Text slides with image -->
-                  <b-carousel-slide>
-                    <template v-slot:img>
-                      <LazyImage
-                        srcData="home/activiteiten/jazz-min.jpeg"
-                        fetchMode="srcset"
-                        extraCss="d-block img-fluid w-100"
-                        height="480"
-                      />
-                    </template>
-                  </b-carousel-slide>
-                </b-carousel>
-              </client-only>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- end Activiteiten -->
-
-    <!-- Dirigent -->
-    <section class="section section-lg">
-      <div class="container">
-        <div class="row justify-content-center text-center mb-sm">
-          <div class="col-lg-8">
-            <h1>Dirigent</h1>
-          </div>
-
-          <blockquote class="blockquote text-center">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M0 14.1818L4.57143 0H9.52381L5.71429 13.2893H9.52381V24H0V14.1818ZM14.4762 14.1818L19.0476 0H24L20.1905 13.2893H24V24H14.4762V14.1818Z"
-                fill="#88DD9B"
-              />
-            </svg>
-            <p class="mb-0">Het belangrijkste in de muziek staat niet in de noten.</p>
-            <footer class="blockquote-footer">Kevin Absillis</footer>
-          </blockquote>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
-            <div class="px-4">
-              <LazyImage
-                srcData="home/dirigent/dirigent2.jpeg"
-                fetchMode="srcset"
-                extraCss="rounded img-center img-fluid shadow shadow-lg--hover"
-                height="width: 200px;"
-              />
-
-              <div class="pt-4 text-center">
-                <h5 class="title">
-                  <span class="d-block mb-1">Kevin Absillis</span>
-                  <small class="h6 text-muted">Dirigent</small>
-                </h5>
-                <div class="mt-3">
-                  <base-button
-                    tag="a"
-                    href="dirigent"
-                    type="primary"
-                    icon="fa fa-globe"
-                    rounded
-                    icon-only
-                  ></base-button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- end Dirigent -->
+    <Banner />
+    <harmonie />
+    <jeugdorkest />
+    <activiteiten />
+    <dirigent />
 
     <!-- Adres -->
     <section class="section section-shaped my-0 overflow-hidden">
@@ -529,20 +160,40 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
 
-import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 
 import { articleVuexNamespace } from '@/store/article/const';
+import { deverenigdevrienden } from '../assets/app/app';
 
 @Component({
-  layout: 'appHeader',
+  layout: 'default',
 
   components: {
+    Banner: () =>
+      import(/* webpackChunkName: 'header' */ '@/components/Home/Banner.vue'),
+    Harmonie: () =>
+      import(
+        /* webpackChunkName: 'harmonie' */ '@/components/Home/Harmonie.vue'
+      ),
+    Jeugdorkest: () =>
+      import(
+        /* webpackChunkName: 'jeugdorkest' */ '@/components/Home/Jeugdorkest.vue'
+      ),
+    Activiteiten: () =>
+      import(
+        /* webpackChunkName: 'activiteiten' */ '@/components/Home/Activiteiten.vue'
+      ),
+    Dirigent: () =>
+      import(
+        /* webpackChunkName: 'dirigent' */ '@/components/Home/Dirigent.vue'
+      ),
     BaseButton: () =>
       import(
         /* webpackChunkName: 'base-button' */ '@/components/BaseButton.vue'
       ),
+
     Card: () => import(/* webpackChunkName: 'card' */ '@/components/Card.vue'),
+
     Badge: () =>
       import(/* webpackChunkName: 'badge' */ '@/components/Badge.vue'),
     Icon: () => import(/* webpackChunkName: 'icon' */ '@/components/Icon.vue'),
@@ -552,12 +203,15 @@ import { articleVuexNamespace } from '@/store/article/const';
 
     LazyImage: () =>
       import(/* webpackChunkName: 'lazy-image' */ '@/components/LazyImage.vue'),
+
     LazyPicture: () =>
       import(
         /* webpackChunkName: 'lazy-picture' */ '@/components/LazyPicture.vue'
       ),
+
     NewsList: () =>
       import(/* webpackChunkName: 'news-list' */ '@/components/NewsList.vue'),
+
     ValidationObserver,
     ValidationProvider
   }
@@ -747,6 +401,10 @@ export default class IndexPage extends Vue {
     };
   }
 
+  mounted() {
+    deverenigdevrienden.index();
+  }
+
   head() {
     return {
       title: this.title
@@ -915,32 +573,19 @@ export default class IndexPage extends Vue {
   }
 }
 
-.text__word {
-  opacity: 0;
+.cnt {
+  width: 304px; /* 320px max-width on mobile with 8px margins */
+  height: 188px; /* width / 1.618 = golden ratio */
+  overflow: hidden;
+  background-color: white;
+  position: relative;
 }
-
-.text__first-bg,
-.text__second-bg {
-  display: block;
-  width: 100%;
-  height: 100%;
+.img {
   position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 100;
-  transform-origin: left;
-  transform: scaleX(0);
-}
-
-.text__first-bg {
-  background-color: #5fbff9;
-}
-
-.text__second-bg {
-  background-color: #f06543;
-}
-
-.text__second {
-  margin-left: 15vmin;
+  bottom: 0;
+  display: block;
+  width: 310px;
+  height: 197px;
+  background-image: url(http://www.tesco.com/christmas/2016/phase2/i/recipes-s5-gingerbread.jpg);
 }
 </style>
