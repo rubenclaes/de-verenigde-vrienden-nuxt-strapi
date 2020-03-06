@@ -7,6 +7,7 @@
       :styled-logo="true"
       class-name="header-global"
     ></header-style1>
+
     <IfBot>
       <CookieControl />
     </IfBot>

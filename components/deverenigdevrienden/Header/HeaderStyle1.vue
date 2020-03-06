@@ -1,14 +1,6 @@
 <template>
   <client-only>
-    <vue-headroom
-      @pin="onPin(true)"
-      @top="onTop(true)"
-      @unpin="onPin(false)"
-      @not-top="onTop(false)"
-      :upTolerance="upTolerance"
-      :downTolerance="downTolerance"
-      :speed="speed"
-    >
+    <Headroom :style="{ height: 0 + 'px' }" :downTolerance="20" :upTolerance="30">
       <header :class="className">
         <base-nav
           class="navbar-main"
@@ -98,16 +90,17 @@
           </ul>
         </base-nav>
       </header>
-    </vue-headroom>
+    </Headroom>
   </client-only>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 
-import { harmonieDropdown } from '../../../config/menu.js';
+import { headroom } from 'vue-headroom';
 @Component({
   components: {
+    Headroom: headroom,
     BaseNav: () =>
       import(/* webpackChunkName: 'base-nav' */ '@/components/BaseNav.vue'),
     CloseButton: () =>

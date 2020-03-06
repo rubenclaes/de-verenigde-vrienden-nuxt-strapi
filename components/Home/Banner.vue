@@ -4,7 +4,7 @@
       <div
         id="iq-home"
         data-parallax="true"
-        class="iq-banner-07 hero-section overview-block-pt iq-bg-over iq-over-black-10 iq-parallax"
+        class="iq-banner-07 hero-section overview-block-pt iq-bg-over iq-over-black-10 iq-parallax jarallax"
         style="background: none; z-index: 0;"
         data-v-fc815826
         data-jarallax-original-styles="background:url(/sofbox-vue/_nuxt/img/1aec722.jpg);"
@@ -81,36 +81,4 @@ export default class Header extends Vue {
 }
 </script>
 <style scoped lang="scss">
-.jarallax {
-  position: relative;
-  z-index: 0;
-}
-.jarallax > .jarallax-img {
-  position: absolute;
-  object-fit: cover;
-  /* support for plugin https://github.com/bfred-it/object-fit-images */
-  font-family: 'object-fit: cover;';
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-.wrapper {
-  /* The height needs to be set to a fixed value for the effect to work.
-   * 100vh is the full height of the viewport. */
-  height: 100vh;
-  /* The scaling of the images would add a horizontal scrollbar, so disable x overflow. */
-  overflow-x: hidden;
-  /* Enable scrolling on the page. */
-  overflow-y: auto;
-  /* Set the perspective to 2px. This is essentailly the simulated distance from the viewport to transformed objects.*/
-  perspective: 2px;
-  min-height: 500px;
-  background-image: url(../../assets/img/home/header/music/music-chart.jpg?lqip);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
 </style>
