@@ -2,10 +2,9 @@ if (typeof window !== 'undefined') {
   require('jarallax/dist/jarallax.min');
 }
 
-export const deverenigdevrienden = {
+export const verenigdevriendenApp = {
   index() {
     this.jarallax();
-    console.log('test');
   },
 
   jarallax() {

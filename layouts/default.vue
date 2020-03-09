@@ -106,6 +106,7 @@ import OfflineDetection from '@/components/OfflineDetection.vue';
 import IfBot from 'vue-if-bot/dist/vue-if-bot.es';
 
 import { harmonieDropdown } from '../config/menu.js';
+
 import logoImg from '~/assets/brand/logo_fulllogo_white.svg';
 import brandImg from '~/assets/brand/logo_color3.svg';
 
@@ -145,3 +146,4 @@ export default class appHeader extends Vue {
   ];
 }
 </script>
+

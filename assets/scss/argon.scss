@@ -99,6 +99,7 @@
 @import 'custom/vendor/flatpickr.scss';
 @import 'custom/vendor/headroom.scss';
 @import 'custom/vendor/nouislider.scss';
+@import 'custom/vendor/jarallax.scss';
 
 .page-enter-active,
 .page-leave-active {
@@ -166,27 +167,6 @@
 }
 
 /*---------------------------------------------------------------------
-                           jarallax
------------------------------------------------------------------------*/
-
-.jarallax {
-  position: relative;
-  z-index: 0;
-}
-
-.jarallax > .jarallax-img {
-  position: absolute;
-  object-fit: cover;
-  /* support for plugin https://github.com/bfred-it/object-fit-images */
-  font-family: 'object-fit:cover; ';
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-
-/*---------------------------------------------------------------------
                              BG Effect
 -----------------------------------------------------------------------*/
 
@@ -214,4 +194,85 @@
 
 .iq-banner-07 .banner-img {
   width: 100%;
+}
+
+/* Banner 7 */
+
+.iq-banner-07 {
+  position: relative;
+  overflow: hidden;
+}
+
+.iq-banner-07 .banner-text {
+  z-index: 9;
+  position: relative;
+  margin-top: 13%;
+  margin-bottom: 13%;
+}
+
+.iq-banner-07 .banner-img {
+  width: 100%;
+}
+
+.iq-banner-07 .iq-video {
+  background: #4ac4f3;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  font-size: 29px;
+  color: #fff;
+  float: left;
+  border-radius: 100%;
+  line-height: 2.1;
+  z-index: 9;
+  position: relative;
+}
+
+.iq-banner-07 .iq-video i {
+  margin-left: 5px;
+}
+
+.iq-banner-07 .waves-box {
+  position: relative;
+}
+
+.iq-banner-07 .iq-waves {
+  position: absolute;
+  width: 14rem;
+  height: 14rem;
+  left: -90px;
+  top: -90px;
+  z-index: 2;
+  float: right;
+}
+
+.iq-banner-07 .iq-waves .waves {
+  position: absolute;
+  width: 384px;
+  width: 15rem;
+  height: 384px;
+  height: 15rem;
+  background: rgba(74, 196, 243, 0.2);
+  opacity: 0;
+  -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
+  border-radius: 320px;
+  background-clip: padding-box;
+  -webkit-animation: waves 3s ease-in-out infinite;
+  animation: waves 3s ease-in-out infinite;
+}
+
+.iq-banner-07 .iq-waves .wave-1 {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+
+.iq-banner-07 .iq-waves .wave-2 {
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+.iq-banner-07 .iq-waves .wave-3 {
+  -webkit-animation-delay: 2s;
+  animation-delay: 2s;
 }
