@@ -8,9 +8,15 @@ export const verenigdevriendenApp = {
   },
 
   jarallax() {
-    // eslint-disable-next-line no-undef
-    jarallax(document.querySelectorAll('[data-parallax="true"]'), {
-      speed: 0.6
+    /* init Jarallax */
+    jarallax(document.querySelectorAll('.jarallax'));
+
+    jarallax(document.querySelectorAll('.jarallax-keep-img'), {
+      keepImg: true
+    });
+
+    jarallax(document.querySelectorAll('.jarallax'), {
+      speed: 0.2
     });
   }
 };

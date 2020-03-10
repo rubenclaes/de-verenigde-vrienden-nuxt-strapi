@@ -141,8 +141,7 @@ export default class appHeader extends Vue {
     },
     { href: '/drumband', title: 'Drumband' },
     { href: '/nieuws', title: 'Nieuws' },
-    { href: '/eetdag', title: 'Eetdag' },
-    { href: '/checkout', title: 'Winkelmandje' }
+    { href: '/eetdag', title: 'Eetdag' }
   ];
 }
 </script>

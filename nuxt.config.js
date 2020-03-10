@@ -62,12 +62,12 @@ const config = {
   plugins: [
     '~/plugins/aos.client.js',
     '~/plugins/lazysizes.client.js',
+    '~/plugins/vue-headroom.client.js',
 
     { src: '~/plugins/vuex-persist', mode: 'client' },
     { src: '~/plugins/vue-toasted.js', mode: 'client' },
     { src: '~/plugins/vue-confetti.js', mode: 'client' },
 
-    '~/plugins/vue-headroom.client.js',
     '~/plugins/composition-api',
     '~plugins/vue-scrollto.js',
     '~/plugins/filters',

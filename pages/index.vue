@@ -2,19 +2,17 @@
   <div>
     <Banner />
     <Harmonie />
-    <!--  <Jeugdorkest />
+    <Jeugdorkest />
     <Activiteiten />
     <Dirigent />
     <Adres />
-    <Contact />-->
+    <Contact />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
-
 import { verenigdevriendenApp } from '../assets/app/app';
-import { articleVuexNamespace } from '@/store/article/const';
 
 @Component({
   layout: 'default',
@@ -41,19 +39,7 @@ import { articleVuexNamespace } from '@/store/article/const';
     Adres: () =>
       import(/* webpackChunkName: 'adres' */ '@/components/Home/Adres.vue'),
     Contact: () =>
-      import(/* webpackChunkName: 'adres' */ '@/components/Home/Contact.vue'),
-    BaseButton: () =>
-      import(
-        /* webpackChunkName: 'base-button' */ '@/components/BaseButton.vue'
-      ),
-
-    LazyImage: () =>
-      import(/* webpackChunkName: 'lazy-image' */ '@/components/LazyImage.vue'),
-
-    LazyPicture: () =>
-      import(
-        /* webpackChunkName: 'lazy-picture' */ '@/components/LazyPicture.vue'
-      )
+      import(/* webpackChunkName: 'contact' */ '@/components/Home/Contact.vue')
   }
 })
 export default class IndexPage extends Vue {
@@ -95,139 +81,3 @@ export default class IndexPage extends Vue {
   }
 }
 </script>
-<style scoped lang="scss">
-.wrapper {
-  /* The height needs to be set to a fixed value for the effect to work.
-   * 100vh is the full height of the viewport. */
-  height: 100vh;
-  /* The scaling of the images would add a horizontal scrollbar, so disable x overflow. */
-  overflow-x: hidden;
-  /* Enable scrolling on the page. */
-  overflow-y: auto;
-  /* Set the perspective to 2px. This is essentailly the simulated distance from the viewport to transformed objects.*/
-  perspective: 2px;
-  min-height: 500px;
-  background-image: url(../assets/img/home/header/music/music-chart.jpg?lqip);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
-.wrapper.blur {
-  filter: blur(25px);
-}
-.wrapper.lazyloaded {
-  opacity: 0;
-  animation-name: fadein;
-  animation-duration: 0.5s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-  animation-direction: normal;
-  animation-timing-function: ease-out;
-  @keyframes fadein {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  &.blur {
-    filter: blur(0);
-  }
-}
-
-#thanks {
-  background-color: #fff;
-}
-#thanks::after {
-  content: none;
-}
-#thanks div {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 2;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.demo a {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  z-index: 2;
-  display: inline-block;
-  -webkit-transform: translate(0, -50%);
-  transform: translate(0, -50%);
-  color: #fff;
-  letter-spacing: 0.1em;
-  text-decoration: none;
-  transition: opacity 0.3s;
-}
-.demo a:hover {
-  opacity: 0.5;
-}
-#section10 a {
-  padding-top: 60px;
-}
-#section10 a span {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 30px;
-  height: 50px;
-  margin-left: -15px;
-  border: 2px solid #e9ecef;
-  border-radius: 50px;
-  box-sizing: border-box;
-}
-#section10 a span::before {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  content: '';
-  width: 6px;
-  height: 6px;
-  margin-left: -3px;
-  background-color: #e9ecef;
-  border-radius: 100%;
-  -webkit-animation: sdb10 2s infinite;
-  animation: sdb10 2s infinite;
-  box-sizing: border-box;
-}
-@-webkit-keyframes sdb10 {
-  0% {
-    -webkit-transform: translate(0, 0);
-    opacity: 0;
-  }
-  40% {
-    opacity: 1;
-  }
-  80% {
-    -webkit-transform: translate(0, 20px);
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes sdb10 {
-  0% {
-    transform: translate(0, 0);
-    opacity: 0;
-  }
-  40% {
-    opacity: 1;
-  }
-  80% {
-    transform: translate(0, 20px);
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-</style>

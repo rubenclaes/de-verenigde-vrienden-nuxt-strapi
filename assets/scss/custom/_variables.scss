@@ -356,6 +356,8 @@ $caret-width: 0.3em !default;
 $transition-base: all 0.15s ease !default;
 $transition-fade: opacity 0.15s linear !default;
 $transition-collapse: height 0.35s ease !default;
+$transition-navbar-ease: transform 0.4s ease, box-shadow 0.4s ease,
+  background-color 0.8s ease;
 
 // Fonts
 

@@ -1,11 +1,17 @@
 <template>
   <client-only>
-    <Headroom :style="{ height: 0 + 'px' }" :downTolerance="20" :upTolerance="30">
-      <header :class="className">
+    <Headroom
+      :style="{ height: 0 + 'px' }"
+      :downTolerance="downTolerance"
+      :upTolerance="upTolerance"
+      :speed="speed"
+      @pin="onPin(true)"
+      @top="onTop(true)"
+    >
+      <header :class="className" @mouseover="isHovering = true" @mouseleave="isHovering = false">
         <base-nav
           class="navbar-main"
-          :transparent="isTop"
-          :effect="isPinned || !isTop ? 'dark' : 'light'"
+          :effect="(isHovering  || isTop) ? 'dark' : 'light'"
           type
           expand
         >
@@ -24,7 +30,10 @@
             </div>
           </div>
 
-          <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+          <ul
+            v-if="isHovering || !isPinned || isTop"
+            class="navbar-nav navbar-nav-hover align-items-lg-center"
+          >
             <li v-for="(option, index) in navItemList" :key="index" class="nav-item">
               <router-link v-if="!option.children" :to="option.href" class="nav-link">
                 <span class="nav-link-inner--text">{{ option.title}}</span>
@@ -55,6 +64,7 @@
               </base-dropdown>
             </li>
           </ul>
+
           <ul class="navbar-nav align-items-lg-center ml-lg-auto">
             <li class="nav-item">
               <router-link class="nav-link nav-link-icon" to="/checkout">
@@ -121,11 +131,13 @@ import { headroom } from 'vue-headroom';
   }
 })
 export default class headerStyle1 extends Vue {
+  downTolerance: number = 40;
+  upTolerance: number = 0;
+  speed: number = 350;
+  isHovering: boolean = false;
+
   isPinned: boolean = false;
   isTop: boolean = false;
-  downTolerance: number = 40;
-  upTolerance: number = 40;
-  speed: number = 250;
 
   @Prop({ type: String })
   className!: String;
@@ -138,20 +150,19 @@ export default class headerStyle1 extends Vue {
   @Prop({ type: Boolean, default: true })
   styledLogo!: Boolean;
 
-  onPin(pin: boolean) {
-    this.isPinned = pin;
-  }
-
-  onTop(top: boolean) {
-    this.isTop = top;
-  }
-
   goTocontact() {
     this.$router.push({ name: 'index', hash: '#contact' });
   }
 
   numberOfItems() {
     return this.$store.getters['cart/numberOfItems'];
+  }
+
+  onPin(pin: boolean) {
+    this.isPinned = pin;
+  }
+  onTop(top: boolean) {
+    this.isTop = top;
   }
 }
 </script>
