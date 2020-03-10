@@ -27,7 +27,7 @@
     "@nuxtjs/pwa": "^2.6.0",
     "@nuxtjs/sentry": "^3.0.1",
     "@nuxtjs/sitemap": "^2.0.0",
-    "@types/dotenv": "^6.1.1",
+    "@types/dotenv": "^8.2.0",
     "aos": "^2.3.4",
     "bootstrap-vue": "^2.0.4",
     "dotenv": "^8.2.0",
