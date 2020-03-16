@@ -410,7 +410,7 @@
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
               <LazyImage
-                srcData="geschiedenis/buitengebeuren-mijn-kracht-lijdt-onder-het-weer.jpg"
+                srcData="geschiedenis/MineDance_2.jpg"
                 fetchMode="srcset"
                 extraCss="card-img"
               />

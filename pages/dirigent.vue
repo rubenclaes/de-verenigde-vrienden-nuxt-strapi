@@ -20,7 +20,7 @@
               <div class="col-lg-3 order-lg-2 mb-5">
                 <div class="card-profile-image">
                   <LazyImage
-                    srcData="/dirigent/dirigent3.jpeg"
+                    srcData="dirigent/dirigent3.jpeg"
                     fetchMode="srcset"
                     extraCss="rounded-circle"
                   />

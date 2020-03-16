@@ -2,31 +2,13 @@
   <div>
     <section class="section section-lg pt-lg-0">
       <div class="container pt-lg-md">
-        <div class="col-md-6">
-          <base-input
-            alternative
-            placeholder="Zoek"
-            addon-right-icon="ni ni-zoom-split-in"
-          ></base-input>
-        </div>
         <!-- Using components -->
         <b-input-group size="lg" class="mt-3">
-          <b-form-input
-            v-model="value"
-            type="text"
-            debounce="500"
-          ></b-form-input>
+          <b-form-input type="text" debounce="500"></b-form-input>
           <b-input-group-append>
             <b-button variant="outline-success">Zoek</b-button>
           </b-input-group-append>
         </b-input-group>
-
-        <blog-list v-bind:articles="articles">
-          <template v-slot:article="{ article }">
-            <span v-if="true">✓</span>
-            {{ article.name }}
-          </template>
-        </blog-list>
 
         <!-- start News -->
         <section class="section section-lg pt-lg-0 mt--100">
@@ -82,6 +64,9 @@ import { articleVuexNamespace } from '../store/article/const';
 export default class NieuwsPage extends Vue {
   @articleVuexNamespace.Getter('list')
   private articles!: Article[];
+
+  @articleVuexNamespace.Getter('loading')
+  private loading!: boolean;
 
   private title: string = 'Nieuws';
 
