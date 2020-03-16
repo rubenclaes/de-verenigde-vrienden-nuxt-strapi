@@ -32,7 +32,11 @@
               extraCss="img-fluid floating"
             />
           </div>
-          <div data-aos="fade-in" data-aos-delay="150" class="col-md-6 order-md-1">
+          <div
+            data-aos="fade-in"
+            data-aos-delay="150"
+            class="col-md-6 order-md-1"
+          >
             <div class="pr-md-5">
               <h3>1902</h3>
               <p>
@@ -68,7 +72,11 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <LazyImage srcData="geschiedenis/2.jpg" fetchMode="srcset" extraCss="card-img" />
+              <LazyImage
+                srcData="geschiedenis/2.jpg"
+                fetchMode="srcset"
+                extraCss="card-img"
+              />
             </div>
           </div>
           <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
@@ -112,7 +120,11 @@
               extraCss="img-fluid floating"
             />
           </div>
-          <div data-aos="fade-in" data-aos-delay="150" class="col-md-6 order-md-1">
+          <div
+            data-aos="fade-in"
+            data-aos-delay="150"
+            class="col-md-6 order-md-1"
+          >
             <div class="pr-md-5">
               <h3>1944</h3>
               <p>
@@ -147,7 +159,11 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <LazyImage srcData="geschiedenis/4.jpg" fetchMode="srcset" extraCss="card-img" />
+              <LazyImage
+                srcData="geschiedenis/4.jpg"
+                fetchMode="srcset"
+                extraCss="card-img"
+              />
             </div>
           </div>
           <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
@@ -183,7 +199,11 @@
               extraCss="img-fluid floating"
             />
           </div>
-          <div data-aos="fade-in" data-aos-delay="150" class="col-md-6 order-md-1">
+          <div
+            data-aos="fade-in"
+            data-aos-delay="150"
+            class="col-md-6 order-md-1"
+          >
             <div class="pr-md-5">
               <h3>Jaren 70</h3>
               <p>
@@ -215,7 +235,11 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <LazyImage srcData="geschiedenis/1.jpg" fetchMode="srcset" extraCss="card-img" />
+              <LazyImage
+                srcData="geschiedenis/1.jpg"
+                fetchMode="srcset"
+                extraCss="card-img"
+              />
             </div>
           </div>
           <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
@@ -257,7 +281,11 @@
               extraCss="img-fluid floating"
             />
           </div>
-          <div data-aos="fade-in" data-aos-delay="150" class="col-md-6 order-md-1">
+          <div
+            data-aos="fade-in"
+            data-aos-delay="150"
+            class="col-md-6 order-md-1"
+          >
             <div class="pr-md-5">
               <h3>1995</h3>
               <p>
@@ -300,7 +328,11 @@
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
             <div class="card bg-default shadow border-0">
-              <LazyImage srcData="geschiedenis/10.jpg" fetchMode="srcset" extraCss="card-img" />
+              <LazyImage
+                srcData="geschiedenis/10.jpg"
+                fetchMode="srcset"
+                extraCss="card-img"
+              />
             </div>
           </div>
           <div data-aos="fade-in" data-aos-delay="150" class="col-md-6">
@@ -342,7 +374,11 @@
               extraCss="img-fluid floating"
             />
           </div>
-          <div data-aos="fade-in" data-aos-delay="150" class="col-md-6 order-md-1">
+          <div
+            data-aos="fade-in"
+            data-aos-delay="150"
+            class="col-md-6 order-md-1"
+          >
             <div class="pl-md-5">
               <h3>2007</h3>
               <p>
@@ -419,11 +455,11 @@ import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
   }
 })
 export default class GeschiedenisPage extends Vue {
-  private title = 'Geschiedenis';
-
+  private title: string = 'Geschiedenis';
   head() {
     return {
-      title: this.title
+      title: this.title,
+      meta: [{ hid: 'og:title', property: 'og:title', content: this.title }]
     };
   }
 }

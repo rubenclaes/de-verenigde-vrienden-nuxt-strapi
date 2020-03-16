@@ -11,7 +11,10 @@
             <ul class="list-group mb-3">
               <cart></cart>
 
-              <li v-if="false" class="list-group-item d-flex justify-content-between bg-light">
+              <li
+                v-if="false"
+                class="list-group-item d-flex justify-content-between bg-light"
+              >
                 <div class="text-success">
                   <h6 class="my-0">Promo code</h6>
                   <small>EXAMPLECODE</small>
@@ -30,13 +33,31 @@
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="firstName">Voornaam</label>
-                  <input type="text" class="form-control" id="firstName" placeholder value required />
-                  <div class="invalid-feedback">Valid first name is required.</div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    placeholder
+                    value
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Valid first name is required.
+                  </div>
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="lastName">Achternaam</label>
-                  <input type="text" class="form-control" id="lastName" placeholder value required />
-                  <div class="invalid-feedback">Valid last name is required.</div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    placeholder
+                    value
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Valid last name is required.
+                  </div>
                 </div>
               </div>
 
@@ -45,10 +66,15 @@
                   E-mail
                   <span class="text-muted">(Optional)</span>
                 </label>
-                <input type="email" class="form-control" id="email" placeholder="you@example.com" />
-                <div
-                  class="invalid-feedback"
-                >Please enter a valid email address for shipping updates.</div>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="you@example.com"
+                />
+                <div class="invalid-feedback">
+                  Please enter a valid email address for shipping updates.
+                </div>
               </div>
 
               <div class="mb-3">
@@ -60,21 +86,35 @@
                   placeholder="1234 Main St"
                   required
                 />
-                <div class="invalid-feedback">Please enter your shipping address.</div>
+                <div class="invalid-feedback">
+                  Please enter your shipping address.
+                </div>
               </div>
 
               <div class="row">
                 <div class="col-md-5 mb-3">
                   <label for="country">Land</label>
-                  <select class="custom-select d-block w-100" id="country" required>
+                  <select
+                    class="custom-select d-block w-100"
+                    id="country"
+                    required
+                  >
                     <option selected>België</option>
                   </select>
-                  <div class="invalid-feedback">Please select a valid country.</div>
+                  <div class="invalid-feedback">
+                    Please select a valid country.
+                  </div>
                 </div>
 
                 <div class="col-md-3 mb-3">
                   <label for="zip">Postcode</label>
-                  <input type="text" class="form-control" id="zip" placeholder required />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="zip"
+                    placeholder
+                    required
+                  />
                   <div class="invalid-feedback">Zip code required.</div>
                 </div>
               </div>
@@ -92,30 +132,80 @@
                     class="custom-control-input"
                     required
                   />
-                  <label class="custom-control-label" for="debit">Debit card</label>
+                  <label class="custom-control-label" for="debit"
+                    >Debit card</label
+                  >
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="cc-name">Name on card</label>
-                  <input type="text" class="form-control" id="cc-name" placeholder required />
-                  <small class="text-muted">Full name as displayed on card</small>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cc-name"
+                    placeholder
+                    required
+                  />
+                  <small class="text-muted"
+                    >Full name as displayed on card</small
+                  >
                   <div class="invalid-feedback">Name on card is required</div>
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="cc-number">Credit card number</label>
-                  <input type="text" class="form-control" id="cc-number" placeholder required />
-                  <div class="invalid-feedback">Credit card number is required</div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cc-number"
+                    placeholder
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Credit card number is required
+                  </div>
                 </div>
               </div>
 
               <hr class="mb-4" />
-              <button class="btn btn-primary btn-lg btn-block" @click="checkout()">Afrekenen</button>
+              <button
+                class="btn btn-primary btn-lg btn-block"
+                @click="checkout()"
+              >
+                Afrekenen
+              </button>
             </form>
-            <base-button @click="checkout()" size="sm" type="danger" icon="fa fa-trash" outline></base-button>
-            <base-button @click="logout()" size="sm" type="danger" icon="fa fa-trash" outline>logout</base-button>
-            <base-button @click="auth0()" size="sm" type="danger" icon="fa fa-trash" outline>auth0</base-button>
-            <base-button @click="post()" size="sm" type="danger" icon="fa fa-trash" outline>post</base-button>
+            <base-button
+              @click="checkout()"
+              size="sm"
+              type="danger"
+              icon="fa fa-trash"
+              outline
+            ></base-button>
+            <base-button
+              @click="logout()"
+              size="sm"
+              type="danger"
+              icon="fa fa-trash"
+              outline
+              >logout</base-button
+            >
+            <base-button
+              @click="auth0()"
+              size="sm"
+              type="danger"
+              icon="fa fa-trash"
+              outline
+              >auth0</base-button
+            >
+            <base-button
+              @click="post()"
+              size="sm"
+              type="danger"
+              icon="fa fa-trash"
+              outline
+              >post</base-button
+            >
           </div>
         </div>
 
@@ -164,13 +254,14 @@ import { Item } from '../store/cart/types';
   }
 })
 export default class CheckoutPage extends Vue {
-  private title = 'Checkout';
-
+  private title: string = 'Checkout';
   head() {
     return {
-      title: this.title
+      title: this.title,
+      meta: [{ hid: 'og:title', property: 'og:title', content: this.title }]
     };
   }
+
   private stripeOptions = {
     // see https://stripe.com/docs/stripe.js#element-options for details
   };

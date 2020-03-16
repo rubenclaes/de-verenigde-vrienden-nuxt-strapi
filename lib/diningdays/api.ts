@@ -1,7 +1,7 @@
 import { $axios } from '~/utils/api';
 
 /**
- * Load Dining days.
+ * Load dining days.
  *
  */
 export async function loadDiningdays() {

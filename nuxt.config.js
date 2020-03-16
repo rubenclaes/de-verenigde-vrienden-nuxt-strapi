@@ -1,7 +1,9 @@
-import { IS_DEV } from './config';
 import axios from 'axios';
+const IS_DEV = process.env.NODE_ENV !== 'production';
 
-const config = {
+require('./utils/config');
+
+module.exports = {
   mode: 'universal',
 
   /*
@@ -19,7 +21,7 @@ const config = {
       {
         hid: 'description',
         name: 'description',
-        content: 'Koninklijke Harmonie de Verenige Vrienden Heusden-Zolder web'
+        content: 'Koninklijke Harmonie de Verenige Vrienden Heusden-Zolder'
       }
     ],
     link: [
@@ -39,11 +41,11 @@ const config = {
   loading: { color: '#39b982' },
 
   manifest: {
-    name: 'Harmonie De Verenigde Vrienden',
-    short_name: 'KH DVV H-Z',
+    name: 'Koninklijke Harmonie De Verenigde Vrienden',
+    short_name: 'Harmonie HZ',
     description:
       'Website Koninklijke Harmonie De Verenige Vrienden Heusden-Zolder',
-    theme_color: '#188269'
+    theme_color: '#39b982'
   },
 
   /*
@@ -61,6 +63,10 @@ const config = {
    */
   plugins: [
     '~/plugins/aos.client.js',
+    '~/plugins/axios-accessor.ts',
+
+    '~/plugins/notifier.js',
+
     '~/plugins/lazysizes.client.js',
     '~/plugins/vue-headroom.client.js',
 
@@ -73,13 +79,8 @@ const config = {
     '~/plugins/filters',
     '~/plugins/vee-validate',
     '~/plugins/click-outside.js',
-    `~/plugins/currency-filter.js`,
-    '~/plugins/axios-accessor.ts'
+    `~/plugins/currency-filter.js`
   ],
-
-  env: {
-    API_URL: 'https://strapi-de-verenigde-vrienden.herokuapp.com'
-  },
 
   /*
    ** Nuxt.js modules
@@ -91,6 +92,7 @@ const config = {
     'bootstrap-vue/nuxt',
     '@bazzite/nuxt-optimized-images',
     'vue-scrollto/nuxt',
+
     '@nuxtjs/markdownit',
     [
       'nuxt-cookie-control',
@@ -99,14 +101,14 @@ const config = {
         blockIframe: true,
         colors: {
           barTextColor: '#fff',
-          barBackground: '#12957b',
+          barBackground: '#06777c',
           barButtonColor: '#fff',
           barButtonBackground: '#206569',
           barButtonHoverColor: '#fff',
           barButtonHoverBackground: '#2e495e',
           modalButtonBackground: '#206569',
           modalButtonHoverColor: '#fff',
-          controlButtonBackground: '#12957b',
+          controlButtonBackground: '#06777c',
           controlButtonHoverBackground: '#2e495e',
           controlButtonIconHoverColor: '#fff',
           controlButtonIconColor: '#fff',
@@ -128,9 +130,14 @@ const config = {
     ],
 
     //Always at the end
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots'
   ],
 
+  /*
+   ** nuxt-cookie-control module config
+   **
+   */
   cookies: {
     necessary: [
       {
@@ -201,8 +208,8 @@ const config = {
   },
 
   /*
-  name: 'images/[name]-[width].[ext]', // use [name] to keep the original filename
    ** bootstrapVue module configuration
+   ** name: 'images/[name]-[width].[ext]', // use [name] to keep the original filename
    */
   bootstrapVue: {
     componentPlugins: [
@@ -247,6 +254,10 @@ const config = {
     ]
   },
 
+  robots: {
+    sitemap: 'https://pre-vue.web.app/sitemap.xml'
+  },
+
   /*
    ** @nuxtjs/pwa module configuration
    */
@@ -261,6 +272,9 @@ const config = {
    ** markdownit module configuration
    */
   markdownit: {
+    preset: 'default',
+    linkify: true,
+    breaks: true,
     injected: true
   },
 
@@ -270,7 +284,7 @@ const config = {
   sentry: {
     dsn: process.env.SENTRY_DSN,
     publishRelease: true,
-    disabled: true,
+    disabled: IS_DEV,
     config: {} // Additional config
   },
 
@@ -285,7 +299,7 @@ const config = {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxtjs/dotenv', '@nuxt/typescript-build'],
+  buildModules: ['@nuxt/typescript-build'],
 
   /*
    ** Build configuration
@@ -325,5 +339,3 @@ const config = {
     }
   }
 };
-
-export default config;

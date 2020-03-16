@@ -1,7 +1,7 @@
 {
   "name": "de-verenigde-vrienden-nuxt-strapi",
   "version": "2.0.0",
-  "description": "A Nuxt.js satic site with Strapi",
+  "description": "A Nuxt.js satic site with Strapi (Pre-rendered)",
   "author": "Ruben Claes",
   "private": true,
   "scripts": {
@@ -22,6 +22,7 @@
     "@nuxtjs/axios": "^5.9.5",
     "@nuxtjs/markdownit": "^1.2.9",
     "@nuxtjs/pwa": "^2.6.0",
+    "@nuxtjs/robots": "^2.4.2",
     "@nuxtjs/sentry": "^3.3.1",
     "@nuxtjs/sitemap": "^2.0.1",
     "@vue/composition-api": "^0.3.4",
@@ -48,8 +49,7 @@
   "devDependencies": {
     "@bazzite/nuxt-optimized-images": "^0.3.0",
     "@nuxt/typescript-build": "^0.5.8",
-    "@nuxtjs/dotenv": "^1.4.1",
-    "@types/dotenv": "^6.1.1",
+    "@types/dotenv": "^8.2.0",
     "@types/jest": "^24.0.19",
     "@vue/test-utils": "^1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
@@ -59,13 +59,13 @@
     "jest": "^24.9.0",
     "jest-serializer-vue": "^2.0.2",
     "lqip-loader": "^2.2.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "nodemon": "^1.19.4",
     "prettier": "^1.19.1",
-    "sass-loader": "^8.0.0",
+    "sass-loader": "^8.0.2",
     "ts-jest": "^24.1.0",
     "tslint-config-prettier": "^1.18.0",
-    "tslint-plugin-prettier": "^2.0.1",
+    "tslint-plugin-prettier": "^2.1.0",
     "vue-jest": "^3.0.5",
     "webp-loader": "^0.6.0"
   },

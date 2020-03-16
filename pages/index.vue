@@ -1,7 +1,7 @@
 <template>
   <div>
     <Banner />
-    <Harmonie />
+    <Harmonie :data="harmonieData" />
     <Jeugdorkest />
     <Activiteiten />
     <Dirigent />
@@ -13,6 +13,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
 import { verenigdevriendenApp } from '../assets/app/app';
+import { loadHome } from '../lib/home/api';
 
 @Component({
   layout: 'default',
@@ -43,16 +44,19 @@ import { verenigdevriendenApp } from '../assets/app/app';
   }
 })
 export default class IndexPage extends Vue {
-  private title = 'Home';
-
-  mounted() {
-    verenigdevriendenApp.index();
-  }
+  private title: string = 'Home';
 
   head() {
     return {
-      title: this.title
+      title: this.title,
+      meta: [{ hid: 'og:title', property: 'og:title', content: this.title }]
     };
+  }
+
+  async created() {}
+
+  mounted() {
+    verenigdevriendenApp.index();
   }
 
   scrollToHash() {
@@ -78,6 +82,21 @@ export default class IndexPage extends Vue {
       return await store.dispatch('article/fetchData');
     }
     console.info('Store was not empty --> fetched data from store'); */
+  }
+
+  async asyncData({ store, params }) {
+    let filter = {
+      __component: ['section.harmonie', 'section.activiteiten']
+    };
+    const harmonieData = await loadHome().then(data => {
+      return data.Content.filter(Content => {
+        return Content.__component === 'section.harmonie';
+      });
+    });
+
+    console.log(harmonieData);
+    //this.harmonieData = harmonieData;
+    return { harmonieData };
   }
 }
 </script>

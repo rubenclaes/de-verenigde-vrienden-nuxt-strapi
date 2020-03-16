@@ -1,13 +1,16 @@
 import { $axios } from '~/utils/api';
 
+const cloudinary =
+  'https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/';
+
 /**
- * Load news.
+ * Load articles.
  *
  */
 export async function loadArticles() {
   return await $axios.get(`restaurants`).then(res => {
     res.data.map(article => {
-      article.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${article.image.public_id}${article.image.ext}`;
+      article.image.url = `${cloudinary}${article.image.public_id}${article.image.ext}`;
     });
     return res.data;
   });
@@ -19,8 +22,8 @@ export async function loadArticles() {
  */
 export async function loadArticle(id: number) {
   return await $axios.get(`restaurants/${id}`).then(res => {
-    res.data.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${res.data.image.public_id}${res.data.image.ext}`;
-    return res.data;
+    res.data.image.url = `${cloudinary}/${res.data.image.public_id}${res.data.image.ext}`;
+    return res.data[0];
   });
 }
 
@@ -30,7 +33,7 @@ export async function loadArticle(id: number) {
  */
 export async function loadArticleBySlug(slug: string) {
   return await $axios.get(`restaurants?slug=${slug}`).then(res => {
-    res.data[0].image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${res.data[0].image.public_id}${res.data[0].image.ext}`;
-    return res.data;
+    res.data[0].image.url = `${cloudinary}${res.data[0].image.public_id}${res.data[0].image.ext}`;
+    return res.data[0];
   });
 }

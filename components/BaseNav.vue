@@ -14,9 +14,7 @@
       <slot name="container-pre"></slot>
       <slot name="brand">
         <a class="navbar-brand" href="#" @click.prevent="onTitleClick">
-          {{
-          title
-          }}
+          {{ title }}
         </a>
       </slot>
       <navbar-toggle-button
@@ -59,7 +57,7 @@ export default {
     },
     title: {
       type: String,
-      default: '',
+      default: ' ',
       description: 'Title of navbar'
     },
     contentId: {

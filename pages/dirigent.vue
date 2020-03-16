@@ -113,11 +113,11 @@ import { Component, Vue, namespace } from 'nuxt-property-decorator';
   }
 })
 export default class DirigentPage extends Vue {
-  private title = 'Dirigent';
-
+  private title: string = 'Dirigent';
   head() {
     return {
-      title: this.title
+      title: this.title,
+      meta: [{ hid: 'og:title', property: 'og:title', content: this.title }]
     };
   }
 }

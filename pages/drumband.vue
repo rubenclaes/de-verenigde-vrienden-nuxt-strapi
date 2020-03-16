@@ -54,7 +54,11 @@
                   class="svg-bg"
                 >
                   <polygon points="0,52 583,95 0,95" class="fill-default" />
-                  <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default" />
+                  <polygon
+                    points="0,42 583,95 683,0 0,95"
+                    opacity=".2"
+                    class="fill-default"
+                  />
                 </svg>
                 <h4 class="display-3 font-weight-bold text-white">Repetitie</h4>
                 <p class="lead text-italic text-white">
@@ -80,7 +84,10 @@
 
                 <b-carousel-slide>
                   <template v-slot:img>
-                    <LazyImage srcData="drumband/drumband1.jpg" fetchMode="srcset" />
+                    <LazyImage
+                      srcData="drumband/drumband1.jpg"
+                      fetchMode="srcset"
+                    />
                   </template>
                 </b-carousel-slide>
               </b-carousel>
@@ -102,7 +109,12 @@
               <ul class="list-unstyled mt-5">
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge type="success" circle class="mr-3" icon="ni ni-like-2"></badge>
+                    <badge
+                      type="success"
+                      circle
+                      class="mr-3"
+                      icon="ni ni-like-2"
+                    ></badge>
                     <p>
                       Drumband De Toekomst was in de jaren ’90 een stille dood
                       gestorven, maar in 2002 is er een nieuwe start gemaakt
@@ -112,7 +124,12 @@
                 </li>
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge type="success" circle class="mr-3" icon="ni ni-calendar-grid-58"></badge>
+                    <badge
+                      type="success"
+                      circle
+                      class="mr-3"
+                      icon="ni ni-calendar-grid-58"
+                    ></badge>
                     <p>
                       Het 100-jarig bestaan van de harmonie is aanleiding om de
                       vroegere leden, intussen allemaal volwassen mannen en
@@ -123,7 +140,12 @@
                 </li>
                 <li class="py-2">
                   <div class="d-flex align-items-center">
-                    <badge type="success" circle class="mr-3" icon="ni ni-check-bold"></badge>
+                    <badge
+                      type="success"
+                      circle
+                      class="mr-3"
+                      icon="ni ni-check-bold"
+                    ></badge>
                     <p>
                       Sindsdien repeteert de drumband regelmatig en neemt het
                       deel aan de activiteiten van de harmonie, zoals het
@@ -160,11 +182,11 @@ import { BCarousel, BCarouselSlide } from 'bootstrap-vue';
   }
 })
 export default class DrumbandPage extends Vue {
-  private title = 'Drumband';
-
+  private title: string = 'Drumband';
   head() {
     return {
-      title: this.title
+      title: this.title,
+      meta: [{ hid: 'og:title', property: 'og:title', content: this.title }]
     };
   }
 }

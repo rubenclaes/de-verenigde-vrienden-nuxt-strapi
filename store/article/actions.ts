@@ -64,8 +64,8 @@ export const actions: ActionTree<ArticleState, RootState> = {
     });
 
     commit('setCurrentArticle', {
-      id: article[0].id,
-      ...article[0]
+      id: article.id,
+      ...article
     });
   }
 };

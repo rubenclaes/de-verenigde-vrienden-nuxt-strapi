@@ -244,11 +244,12 @@ import { Component, Vue } from 'nuxt-property-decorator';
   }
 })
 export default class PrivacyPage extends Vue {
-  private title = 'Privacy';
+  private title: string = 'Privacy';
 
   head() {
     return {
-      title: this.title
+      title: this.title,
+      meta: [{ hid: 'og:title', property: 'og:title', content: this.title }]
     };
   }
 }

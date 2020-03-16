@@ -11,22 +11,14 @@
             data-aos-once="true"
             data-aos-duration="1200"
           >
-            <h1>Harmonie</h1>
+            <h1>{{ data[0].title }}</h1>
 
-            <p class="lead">
-              We zijn toffe groep muzikanten van alle leeftijden die samen
-              muzikaal plezier maken. Al wie graag muziek speelt is welkom om
-              even te komen kennismaken!
-            </p>
-
-            <p class="lead">
-              Je krijgt de kans om te groeien binnen onze harmonie, een ideale
-              begeleiding van jeugd naar de ‘grote Harmonie’.
-            </p>
-
-            <p class="lead">
-              Onze zorg gaat vooral uit naar de opleiding van de jeugd in
-              samenwerking met de academie.
+            <p
+              v-for="bullet in data[0].Bullet_points"
+              :key="bullet.id"
+              class="lead"
+            >
+              {{ bullet.Value }}
             </p>
           </div>
         </div>
@@ -46,7 +38,11 @@
                 class="svg-bg"
               >
                 <polygon points="0,52 583,95 0,95" class="fill-default" />
-                <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default" />
+                <polygon
+                  points="0,42 583,95 683,0 0,95"
+                  opacity=".2"
+                  class="fill-default"
+                />
               </svg>
 
               <h4 class="display-3 font-weight-bold text-white">Repetitie</h4>
@@ -65,7 +61,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component({
   components: {
@@ -73,5 +69,8 @@ import { Component, Vue } from 'vue-property-decorator';
       import(/* webpackChunkName: 'lazy-image' */ '@/components/LazyImage.vue')
   }
 })
-export default class Harmonie extends Vue {}
+export default class Harmonie extends Vue {
+  @Prop({ type: Array, required: true })
+  data;
+}
 </script>

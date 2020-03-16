@@ -71,23 +71,24 @@ import { articleVuexNamespace } from '../store/article/const';
     Icon: () => import('@/components/Icon.vue'),
     BaseInput: () => import('@/components/BaseInput.vue'),
     BlogList: () => import('@/components/BlogList.vue'),
-     NewsList: () =>
+    NewsList: () =>
       import(/* webpackChunkName: 'news-list' */ '@/components/NewsList.vue'),
     SkeletonCard: () =>
       import(
         /* webpackChunkName: 'skeleton-card' */ '@/components/SkeletonCard.vue'
-      ),
+      )
   }
 })
 export default class NieuwsPage extends Vue {
   @articleVuexNamespace.Getter('list')
   private articles!: Article[];
 
-  private title = 'Nieuws';
+  private title: string = 'Nieuws';
 
   head() {
     return {
-      title: this.title
+      title: this.title,
+      meta: [{ hid: 'og:title', property: 'og:title', content: this.title }]
     };
   }
 }

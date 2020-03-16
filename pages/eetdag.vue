@@ -7,7 +7,11 @@
             <!-- start DishList -->
             <div v-if="loading">
               <div class="text-center">
-                <b-spinner style="width: 3rem; height: 3rem;" label="Large Spinner" type="grow"></b-spinner>
+                <b-spinner
+                  style="width: 3rem; height: 3rem;"
+                  label="Large Spinner"
+                  type="grow"
+                ></b-spinner>
               </div>
             </div>
 
@@ -15,7 +19,12 @@
               <client-only>
                 <dish-list></dish-list>
                 <div class="text-center">
-                  <router-link to="/checkout" tag="a" class="btn btn-primary my-4">Ik ga bestellen</router-link>
+                  <router-link
+                    to="/checkout"
+                    tag="a"
+                    class="btn btn-primary my-4"
+                    >Ik ga bestellen</router-link
+                  >
                 </div>
               </client-only>
             </template>
@@ -51,15 +60,15 @@ import { diningDayVuexNamespace } from '~/store/diningday/const';
   }
 })
 export default class EetdagPage extends Vue {
-  private title = 'Eetdag';
+  private title: string = 'Eetdag';
+  head() {
+    return {
+      title: this.title,
+      meta: [{ hid: 'og:title', property: 'og:title', content: this.title }]
+    };
+  }
 
   @diningDayVuexNamespace.Getter('loading')
   private loading!: boolean;
-
-  head() {
-    return {
-      title: this.title
-    };
-  }
 }
 </script>

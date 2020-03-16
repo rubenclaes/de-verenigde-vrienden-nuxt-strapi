@@ -8,10 +8,14 @@
       @pin="onPin(true)"
       @top="onTop(true)"
     >
-      <header :class="className" @mouseover="isHovering = true" @mouseleave="isHovering = false">
+      <header
+        :class="className"
+        @mouseover="isHovering = true"
+        @mouseleave="isHovering = false"
+      >
         <base-nav
           class="navbar-main"
-          :effect="(isHovering  || isTop) ? 'dark' : 'light'"
+          :effect="isHovering || isTop ? 'dark' : 'light'"
           type
           expand
         >
@@ -34,9 +38,17 @@
             v-if="isHovering || !isPinned || isTop"
             class="navbar-nav navbar-nav-hover align-items-lg-center"
           >
-            <li v-for="(option, index) in navItemList" :key="index" class="nav-item">
-              <router-link v-if="!option.children" :to="option.href" class="nav-link">
-                <span class="nav-link-inner--text">{{ option.title}}</span>
+            <li
+              v-for="(option, index) in navItemList"
+              :key="index"
+              class="nav-item"
+            >
+              <router-link
+                v-if="!option.children"
+                :to="option.href"
+                class="nav-link"
+              >
+                <span class="nav-link-inner--text">{{ option.title }}</span>
               </router-link>
 
               <base-dropdown
@@ -44,9 +56,15 @@
                 class="nav-item"
                 menu-classes="dropdown-menu-xl"
               >
-                <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
+                <a
+                  slot="title"
+                  href="#"
+                  class="nav-link"
+                  data-toggle="dropdown"
+                  role="button"
+                >
                   <i class="ni ni-bold-down d-lg-none"></i>
-                  <span class="nav-link-inner--text">{{option.title}}</span>
+                  <span class="nav-link-inner--text">{{ option.title }}</span>
                 </a>
                 <div class="dropdown-menu-inner">
                   <router-link
@@ -56,8 +74,12 @@
                     class="media d-flex align-items-center"
                   >
                     <div class="media-body ml-3">
-                      <h6 class="heading text-success mb-md-1">{{child.title}}</h6>
-                      <p class="description d-none d-md-inline-block mb-0">{{ child.description }}</p>
+                      <h6 class="heading text-success mb-md-1">
+                        {{ child.title }}
+                      </h6>
+                      <p class="description d-none d-md-inline-block mb-0">
+                        {{ child.description }}
+                      </p>
                     </div>
                   </router-link>
                 </div>
@@ -90,7 +112,10 @@
             </li>
 
             <li class="nav-item ml-lg-4">
-              <button @click="goTocontact()" class="btn btn-primary btn-icon btn-block">
+              <button
+                @click="goTocontact()"
+                class="btn btn-primary btn-icon btn-block"
+              >
                 <span class="btn-inner--icon">
                   <i class="fa fa-envelope mr-2"></i>
                 </span>
@@ -131,7 +156,7 @@ import { headroom } from 'vue-headroom';
   }
 })
 export default class headerStyle1 extends Vue {
-  downTolerance: number = 40;
+  downTolerance: number = 0;
   upTolerance: number = 0;
   speed: number = 350;
   isHovering: boolean = false;
