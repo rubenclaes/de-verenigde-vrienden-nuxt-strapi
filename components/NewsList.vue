@@ -28,7 +28,7 @@ export default class NewsList extends Vue {
   max!: number;
 
   @articleVuexNamespace.Getter('latestArticles')
-  articles!: Article[];
+  private articles!: Article[];
 
   colors = ['default', 'primary', 'blue'];
   buttons = ['btn-default', 'btn-primary', 'btn-blue'];
@@ -38,11 +38,12 @@ export default class NewsList extends Vue {
    * We use created here instead of mounted because it doesn’t need to be rerun if we leave this layout and come back to it.
    */
   async created() {
-    if (this.$store.getters['article/list'].length === 0) {
+    //if (this.$store.getters['article/latestArticles'].length === 0) {
+    if (this.articles.length === 0) {
+      console.info(`Fetching articles from API`);
       return await this.$store.dispatch('article/fetchData');
-    } else {
-      console.info('Article store not empty --> fetching data from store');
     }
+    console.info('Fetched data from store');
   }
 
   icon(iconName) {

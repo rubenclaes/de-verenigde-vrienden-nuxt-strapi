@@ -10,7 +10,6 @@ import {
 
 /**
  * Action context specific to Article module
- *
  */
 interface ArticleActionContext extends ActionContext<ArticleState, RootState> {}
 
@@ -19,7 +18,7 @@ interface ArticleActionContext extends ActionContext<ArticleState, RootState> {}
  */
 export const actions: ActionTree<ArticleState, RootState> = {
   /**
-   * Fetch articles data en put them in the state
+   * Fetch articles data en put them in the aticles state
    */
   async fetchData({ commit }: ArticleActionContext) {
     commit('clear');

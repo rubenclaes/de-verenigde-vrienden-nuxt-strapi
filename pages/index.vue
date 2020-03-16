@@ -82,8 +82,15 @@ export default class IndexPage extends Vue {
       return await store.dispatch('article/fetchData');
     }
     console.info('Store was not empty --> fetched data from store'); */
+    console.log('hey');
   }
 
+  /**
+   * asyncData to make sure it is always 100% up to date and so
+   * refetch it every time this page is viewed
+   * Data fetched in a particular route is used only by a single component
+   * The result from asyncData will be merged with data.
+   */
   async asyncData({ store, params }) {
     let filter = {
       __component: ['section.harmonie', 'section.activiteiten']

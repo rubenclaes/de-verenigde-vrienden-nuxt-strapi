@@ -123,8 +123,12 @@ export default class ArticleView extends Vue {
   @articleVuexNamespace.Getter('formattedDate')
   private formattedDate!: Date;
 
-  currentPost() {
-    return this.$store.state.post.currentPost;
+  currentArticle() {
+    return this.$store.state.article.currentArticle;
+  }
+
+  articles() {
+    return this.$store.state.article.articles;
   }
 
   isLoading() {
@@ -138,30 +142,30 @@ export default class ArticleView extends Vue {
     };
   }
 
-  /**
-   * asyncData to make sure it is always 100% up to date and so
-   * refetch it every time this page is viewed
-   * Data fetched in a particular route is used only by a single component
-   * The result from asyncData will be merged with data.
-   */
   async fetch({ store, params, error, payload }) {
-    console.log('fetchfetch');
     // payload set during static generation
     if (payload) {
-      console.info('payload');
-
+      console.info('Fetched from payload');
       // setup the store as it would be in SPA mode
       return store.commit('article/setCurrentArticle', payload);
       //return { article: context.payload };
     } else {
-      //if (store.getters['article/currentArticle'].length === 0) {
-      console.info('Fetching article with Slug ' + params.id);
-      return await store.dispatch(
-        'article/fetchArticleBySlug',
-        //parseInt(params.id || 1)
-        params.id
-      );
-      //} else {
+      if (store.getters['article/list'].length != 0) {
+        console.log('paranp' + params.id);
+        const article = store.getters['article/bySlug'](params.id);
+        console.log(`Fetched from Store: %o`, article);
+        return store.commit('article/setCurrentArticle', article);
+      }
+      if (store.getters['article/list'].length === 0) {
+        console.info(
+          'Fetched from API --> Fetching article with Slug ' + params.id
+        );
+        return await store.dispatch(
+          'article/fetchArticleBySlug',
+          //parseInt(params.id || 1)
+          params.id
+        );
+      }
     }
   }
 
@@ -286,26 +290,5 @@ export default class ArticleView extends Vue {
   } */
 
   mounted() {}
-
-  /*  async fetch({ store, params, error, payload }) {
-    if (payload) {
-      console.log('we have a payload');
-      return { article: payload.article };
-    }
-    //if (typeof store.state.articles.id[params.id] === 'undefined') {
-    else {
-      console.log('Fetching article');
-      return await store.dispatch('article/fetchArticle', params.id);
-    }
-    // }
-  } */
-
-  created() {
-    //this.article(this.$route.params.id);
-  }
-
-  /*  get article() {
-    return this.articles[this.$route.params.id];
-  } */
 }
 </script>

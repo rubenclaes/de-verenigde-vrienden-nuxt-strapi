@@ -10,7 +10,7 @@
           </b-input-group-append>
         </b-input-group>
 
-        <!-- start News -->
+        <!-- start Loading News -->
         <section class="section section-lg pt-lg-0 mt--100">
           <div class="container">
             <div class="row justify-content-center">
@@ -31,7 +31,7 @@
             </div>
           </div>
         </section>
-        <!-- end news -->
+        <!-- end Loading News -->
       </div>
     </section>
   </div>
@@ -62,9 +62,6 @@ import { articleVuexNamespace } from '../store/article/const';
   }
 })
 export default class NieuwsPage extends Vue {
-  @articleVuexNamespace.Getter('list')
-  private articles!: Article[];
-
   @articleVuexNamespace.Getter('loading')
   private loading!: boolean;
 

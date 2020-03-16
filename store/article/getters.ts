@@ -8,7 +8,7 @@ import { RootState } from '../type';
  */
 export const getters: GetterTree<ArticleState, RootState> = {
   list: (state): Article[] => {
-    console.info('return list from store' + state.articles);
+    console.info(`return articles from store: %o`, state.articles);
     return state.articles;
   },
 
@@ -19,12 +19,22 @@ export const getters: GetterTree<ArticleState, RootState> = {
     return article;
   },
 
-  byId(state, id) {
-    const article = state.articles.find(articles => articles.id === id);
+  byId2(state, id) {
+    const article = state.articles.find(article => article.id === id);
     return article;
   },
 
-  // Fetch the total number of items in the cart
+  bySlug2(state, slug) {
+    const article = state.articles.find(article => article.slug === slug);
+    return article;
+  },
+
+  // Method-Style Access
+  bySlug: state => slug => {
+    return state.articles.find(article => article.slug === slug);
+  },
+
+  // Fetch the total number of articles in the state
   totalNumberOfArticleItems: state => {
     return state.articles.length;
   },
@@ -53,10 +63,16 @@ export const getters: GetterTree<ArticleState, RootState> = {
    *
    * @returns
    */
-  latestArticles(state) {
+  latestArticles(state): Article[] {
     //const user = this.profile && this.profile.user;
     //return (user && user.email) || '';
     const latestArticles = state.articles.slice(0, 3);
+
+    if (latestArticles.length === 0) {
+      console.warn(`Empty store`);
+    } else {
+      console.info(`return latest articles from store ` + latestArticles);
+    }
     return latestArticles;
   }
 };
