@@ -35,7 +35,7 @@
     "imagemin-pngquant": "^8.0.0",
     "imagemin-svgo": "^7.0.0",
     "nouislider": "^14.0.3",
-    "nuxt": "^2.10.2",
+    "nuxt": "^2.12.0",
     "nuxt-property-decorator": "^2.5.0",
     "strapi-sdk-javascript": "^0.3.3",
     "ts-node": "^8.4.1",
