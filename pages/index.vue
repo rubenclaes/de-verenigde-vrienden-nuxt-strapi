@@ -53,8 +53,7 @@ export default class IndexPage extends Vue {
     };
   }
 
-  async created() {}
-
+  // only clientside
   mounted() {
     verenigdevriendenApp.index();
   }
@@ -86,28 +85,67 @@ export default class IndexPage extends Vue {
   }
 
   /**
+   *
+   * You may want to fetch data and render it on the server-side.
+   * This method you handle async operations before setting the component data.
    * asyncData to make sure it is always 100% up to date and so
    * refetch it every time this page is viewed
-   * Data fetched in a particular route is used only by a single component
-   * The result from asyncData will be merged with data.
+   * Usage:
+   *  - When data fetched in a particular route is used only by a single component
+   *  - The result from asyncData will be merged with data.
    */
   async asyncData({ store, params }) {
-    // Don't re-evaluate ayncData when the client loads this page in the
-    // browser.
-    if (!process.client) {
-      let filter = {
-        __component: ['section.harmonie', 'section.activiteiten']
-      };
-      const harmonieData = await loadHome().then(data => {
-        return data.Content.filter(Content => {
-          return Content.__component === 'section.harmonie';
-        });
+    let filter = {
+      __component: [
+        'section.harmonie',
+        'section.activiteiten',
+        'section.jeugdorkest',
+        'section.dirigent',
+        'section.adres'
+      ]
+    };
+
+    const pageData = await loadHome().then(data => {
+      const harmonieData = data.Content.filter(Content => {
+        return Content.__component === 'section.harmonie';
       });
 
-      console.log(harmonieData);
-      //this.harmonieData = harmonieData;
-      return { harmonieData };
-    }
+      const activiteitenData = data.Content.filter(Content => {
+        return Content.__component === 'section.activiteiten';
+      });
+
+      const jeugdorkestData = data.Content.filter(Content => {
+        return Content.__component === 'section.jeugdorkest';
+      });
+
+      const dirigentData = data.Content.filter(Content => {
+        return Content.__component === 'section.dirigent';
+      });
+
+      const adresData = data.Content.filter(Content => {
+        return Content.__component === 'section.adres';
+      });
+
+      return {
+        harmonieData,
+        activiteitenData,
+        jeugdorkestData,
+        dirigentData,
+        adresData
+      };
+    });
+
+    return {
+      harmonieData: pageData.harmonieData,
+      activiteitenData: pageData.activiteitenData,
+      jeugdorkestData: pageData.jeugdorkestData,
+      dirigentData: pageData.dirigentData,
+      adresData: pageData.adresData
+    };
+  }
+
+  exactlyThree(word) {
+    return word.length === 3;
   }
 }
 </script>
