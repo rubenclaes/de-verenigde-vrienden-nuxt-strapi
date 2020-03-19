@@ -82,7 +82,7 @@ export default class IndexPage extends Vue {
       return await store.dispatch('article/fetchData');
     }
     console.info('Store was not empty --> fetched data from store'); */
-    console.log('hey');
+    //console.log('hey');
   }
 
   /**
@@ -92,18 +92,22 @@ export default class IndexPage extends Vue {
    * The result from asyncData will be merged with data.
    */
   async asyncData({ store, params }) {
-    let filter = {
-      __component: ['section.harmonie', 'section.activiteiten']
-    };
-    const harmonieData = await loadHome().then(data => {
-      return data.Content.filter(Content => {
-        return Content.__component === 'section.harmonie';
+    // Don't re-evaluate ayncData when the client loads this page in the
+    // browser.
+    if (!process.client) {
+      let filter = {
+        __component: ['section.harmonie', 'section.activiteiten']
+      };
+      const harmonieData = await loadHome().then(data => {
+        return data.Content.filter(Content => {
+          return Content.__component === 'section.harmonie';
+        });
       });
-    });
 
-    console.log(harmonieData);
-    //this.harmonieData = harmonieData;
-    return { harmonieData };
+      console.log(harmonieData);
+      //this.harmonieData = harmonieData;
+      return { harmonieData };
+    }
   }
 }
 </script>
