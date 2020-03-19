@@ -284,7 +284,7 @@ module.exports = {
   sentry: {
     dsn: process.env.SENTRY_DSN,
     publishRelease: true,
-    disabled: true,
+    disabled: IS_DEV,
     config: {} // Additional config
   },
 
