@@ -37,6 +37,13 @@
       class="lazyload blur"
       :data-src="image.opt"
     />
+    <img
+      v-else-if="fetchMode === 'cloudinary'"
+      :src="placeholder"
+      v-bind:class="extraCss"
+      class="lazyload blur"
+      :data-src="srcData"
+    />
     <img v-else v-bind:class="extraCss" class="lazyload" :data-src="srcData" />
   </figure>
 </template>
@@ -60,6 +67,11 @@ export default {
       type: String
     },
     srcData: {
+      default: 'cat2.jpg',
+      required: false,
+      type: String
+    },
+    placeholder: {
       default: 'cat2.jpg',
       required: false,
       type: String
