@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Banner />
     <Harmonie :data="harmonieData" />
     <Jeugdorkest />
     <Activiteiten />

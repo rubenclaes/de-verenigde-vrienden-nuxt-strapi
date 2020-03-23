@@ -2,7 +2,6 @@
   <!-- Harmonie  -->
   <section id="harmonie" class="section section-lg">
     <div class="container">
-      {{image()}}
       <div class="row row-grid align-items-center">
         <div class="col-md-6">
           <div class="card bg-default shadow border-0">
