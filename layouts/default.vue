@@ -107,9 +107,6 @@ import IfBot from 'vue-if-bot/dist/vue-if-bot.es';
 
 import { harmonieDropdown } from '../config/menu.js';
 
-import logoImg from '~/assets/brand/logo_fulllogo_white.svg';
-import brandImg from '~/assets/brand/logo_color3.svg';
-
 @Component({
   components: {
     BackToTop,
@@ -124,8 +121,8 @@ import brandImg from '~/assets/brand/logo_color3.svg';
 export default class appHeader extends Vue {
   year = new Date().getFullYear();
   styleLogo = false;
-  logo = logoImg;
-  brand = brandImg;
+  logo = require('../assets/brand/logo_fulllogo_white.svg');
+  brand = require('../assets/brand/logo_color3.svg');
 
   navItems = [
     {
