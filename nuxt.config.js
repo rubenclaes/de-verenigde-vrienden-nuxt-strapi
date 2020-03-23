@@ -188,6 +188,10 @@ module.exports = {
     }
   },
 
+  /*
+   ** optimized images configuration
+   ** name: 'images/[name]-[width].[ext]', // use [name] to keep the original filename
+   */
   optimizedImages: {
     inlineImageLimit: -1,
     handleImages: ['jpeg', 'png', 'svg', 'webp', 'gif'],
@@ -209,7 +213,6 @@ module.exports = {
 
   /*
    ** bootstrapVue module configuration
-   ** name: 'images/[name]-[width].[ext]', // use [name] to keep the original filename
    */
   bootstrapVue: {
     componentPlugins: [
