@@ -9,51 +9,12 @@
               <b-carousel id="carousel1" :interval="4000" controls indicators>
                 <!-- Slides with img slot -->
                 <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
-                <b-carousel-slide>
+                <b-carousel-slide v-for="(slide, itemObjKey) in data[0].Slider" :key="slide.id">
                   <template v-slot:img>
                     <LazyImage
-                      srcData="home/jeugdorkest/jeugdorkest-min.jpeg"
-                      fetchMode="srcset"
-                      extraCss="d-block img-fluid w-100"
-                      height="480"
-                    />
-                  </template>
-                </b-carousel-slide>
-                <b-carousel-slide>
-                  <template v-slot:img>
-                    <LazyImage
-                      srcData="home/jeugdorkest/jeugdorkest2-min.jpeg"
-                      fetchMode="srcset"
-                      extraCss="d-block img-fluid w-100"
-                      height="480"
-                    />
-                  </template>
-                </b-carousel-slide>
-                <b-carousel-slide>
-                  <template v-slot:img>
-                    <LazyImage
-                      srcData="home/jeugdorkest/jeugdorkest3-min.jpeg"
-                      fetchMode="srcset"
-                      extraCss="d-block img-fluid w-100"
-                      height="480"
-                    />
-                  </template>
-                </b-carousel-slide>
-                <b-carousel-slide>
-                  <template v-slot:img>
-                    <LazyImage
-                      srcData="home/jeugdorkest/jeugdorkest4-min.jpeg"
-                      fetchMode="srcset"
-                      extraCss="d-block img-fluid w-100"
-                      height="480"
-                    />
-                  </template>
-                </b-carousel-slide>
-                <b-carousel-slide>
-                  <template v-slot:img>
-                    <LazyImage
-                      srcData="home/jeugdorkest/jeugdorkest5-min.jpeg"
-                      fetchMode="srcset"
+                      :srcData="image(itemObjKey)"
+                      :placeholder="lqip(itemObjKey)"
+                      fetchMode="cloudinary"
                       extraCss="d-block img-fluid w-100"
                       height="480"
                     />
@@ -73,42 +34,14 @@
               shadow
               rounded
             ></icon>
-            <h1 id="jeugdorkest">Jeugdorkest</h1>
-            <p class="lead">
-              Heb je de muziekmicrobe te pakken? Wil je op een leuke en
-              speelse manier samen muziek maken? Dan moet je bij deze jeugdige
-              muzikale bende zijn.
-            </p>
+            <h1 id="jeugdorkest">{{ data[0].Title }}</h1>
+            <p class="lead">{{ data[0].Text }}</p>
 
             <ul class="list-unstyled mt-5">
-              <li class="py-2">
+              <li v-for="bullet in data[0].Bullet_points" :key="bullet.id" class="py-2">
                 <div class="d-flex align-items-center">
-                  <badge type="blue" circle class="mr-3" icon="ni ni-check-bold"></badge>
-                  <p>
-                    Speel je een blaasinstrument (trompet, klarinet, hoorn,
-                    trombone, bariton, tuba, dwarsfluit, hobo, fagot,
-                    saxofoon) of doe je slagwerk, dan kan je bij ons
-                    aansluiten!
-                  </p>
-                </div>
-              </li>
-              <li class="py-2">
-                <div class="d-flex align-items-center">
-                  <badge type="blue" circle class="mr-3" icon="ni ni-like-2"></badge>
-                  <p>
-                    Je kan meespelen na je 1ste jaar instrumentles. Kevin
-                    Absillis slaat er de maat. De harmonie stelt gratis een
-                    instrument ter beschikking.
-                  </p>
-                </div>
-              </li>
-              <li class="py-2">
-                <div class="d-flex align-items-center">
-                  <badge type="blue" circle class="mr-3" icon="ni ni-calendar-grid-58"></badge>
-                  <p>
-                    De jeugdharmonie repeteert elke maandagavond van 19u tot
-                    19u45.
-                  </p>
+                  <badge type="blue" circle class="mr-3" :icon="icon(bullet.Name)"></badge>
+                  <p>{{ bullet.Value }}</p>
                 </div>
               </li>
             </ul>
@@ -120,8 +53,7 @@
   <!-- end Jeugdorkest -->
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-
+import { Component, Vue, Prop } from 'vue-property-decorator';
 @Component({
   components: {
     Badge: () =>
@@ -131,5 +63,26 @@ import { Component, Vue } from 'vue-property-decorator';
       import(/* webpackChunkName: 'lazy-image' */ '@/components/LazyImage.vue')
   }
 })
-export default class Jeugdorkest extends Vue {}
+export default class Jeugdorkest extends Vue {
+  @Prop({ type: Array, required: true })
+  data;
+
+  icon(name: string) {
+    return `ni ni-${name}`;
+  }
+
+  lqip(key: number = 0) {
+    //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
+
+    let image = `https://res.cloudinary.com/deverenigdevrienden/images/t_lqip/${this.data[0].Slider[key].Picture[0].provider_metadata.public_id}/${this.data[0].Slider[key].Picture[0].name}`;
+    return image;
+  }
+
+  image(key: number = 0) {
+    //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
+
+    let image = `https://res.cloudinary.com/deverenigdevrienden/images/${this.data[0].Slider[key].Picture[0].provider_metadata.public_id}/${this.data[0].Slider[key].Picture[0].name}`;
+    return image;
+  }
+}
 </script>

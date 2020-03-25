@@ -2,7 +2,7 @@
   <div>
     <Banner />
     <Harmonie :data="harmonieData" />
-    <Jeugdorkest />
+    <Jeugdorkest :data="jeugdorkestData" />
     <Activiteiten />
     <Dirigent />
     <Adres />

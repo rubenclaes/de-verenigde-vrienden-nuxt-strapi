@@ -36,7 +36,7 @@
             data-aos-once="true"
             data-aos-duration="1200"
           >
-            <h1>{{ data[0].title }}</h1>
+            <h1>{{ data[0].Title }}</h1>
 
             <p
               v-for="bullet in data[0].Bullet_points"
