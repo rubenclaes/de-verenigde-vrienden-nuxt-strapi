@@ -25,7 +25,7 @@
 
     <nuxt />
 
-    <footer class="footer has-cards">
+    <footer class="footer">
       <div class="container">
         <back-to-top
           v-scroll-to="'#top'"

@@ -3,10 +3,10 @@
     <Banner />
     <Harmonie :data="harmonieData" />
     <Jeugdorkest :data="jeugdorkestData" />
-    <Activiteiten />
+    <Activiteiten :data="activiteitenData" />
     <Dirigent />
-    <Adres />
-    <Contact />
+    <!-- <Adres /> -->
+    <!--  <Contact /> -->
   </div>
 </template>
 
@@ -134,9 +134,6 @@ export default class IndexPage extends Vue {
         adresData
       };
     });
-
-    console.log(pageData.harmonieData);
-
     return {
       harmonieData: pageData.harmonieData,
       activiteitenData: pageData.activiteitenData,

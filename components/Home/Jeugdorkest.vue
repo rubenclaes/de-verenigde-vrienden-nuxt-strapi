@@ -27,10 +27,10 @@
         <div class="col-md-6 order-md-1">
           <div class="pr-md-5" data-aos="fade-in" data-aos-delay="150">
             <icon
-              name="ni ni-smile-beam"
+              name="ni ni ni-satisfied"
               class="mb-5 floating"
               size="lg"
-              type="primary"
+              type="info"
               shadow
               rounded
             ></icon>
@@ -40,7 +40,10 @@
             <ul class="list-unstyled mt-5">
               <li v-for="bullet in data[0].Bullet_points" :key="bullet.id" class="py-2">
                 <div class="d-flex align-items-center">
-                  <badge type="blue" circle class="mr-3" :icon="icon(bullet.Name)"></badge>
+                  <span class="badge badge-circle badge-primary mr-3">
+                    <i :class="icon(bullet.Name)"></i>
+                  </span>
+
                   <p>{{ bullet.Value }}</p>
                 </div>
               </li>
