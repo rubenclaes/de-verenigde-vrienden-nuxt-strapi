@@ -96,6 +96,7 @@
                 </div>
               </div>
               <div class="row">
+                stripe
                 <card
                   ref="card-stripe"
                   stripe="pk_test_Ict7P4E8rbEo4YCqZOj8sMpi"
@@ -115,7 +116,11 @@
               </div>
 
               <hr class="mb-4" />
-              <button class="btn btn-primary btn-lg btn-block" @click="handleSubmit()">Afrekenen</button>
+              <button
+                class="btn btn-primary btn-lg btn-block"
+                @click="handleSubmit()"
+                :disabled="!complete"
+              >Afrekenen</button>
             </form>
             <base-button @click="checkout()" size="sm" type="danger" icon="fa fa-trash" outline></base-button>
             <base-button @click="logout()" size="sm" type="danger" icon="fa fa-trash" outline>logout</base-button>
@@ -170,6 +175,8 @@ import { Card, createToken } from 'vue-stripe-elements-plus';
 })
 export default class CheckoutPage extends Vue {
   private title: string = 'Checkout';
+
+  private complete: boolean = false;
 
   private loading: boolean = false;
 
@@ -251,8 +258,9 @@ export default class CheckoutPage extends Vue {
     try {
       const response = await createToken();
       token = response.token.id;
+      console.log('jojojoj' + token);
     } catch (err) {
-      alert('An error occurred.');
+      alert(err);
       this.loading = false;
       return;
     }
@@ -270,7 +278,7 @@ export default class CheckoutPage extends Vue {
       this.$router.push('/');
     } catch (err) {
       this.loading = false;
-      alert('An error occurred.');
+      alert(err);
     }
   }
 
@@ -283,3 +291,12 @@ export default class CheckoutPage extends Vue {
   }
 }
 </script>
+<style>
+.stripe-card {
+  width: 300px;
+  border: 1px solid grey;
+}
+.stripe-card.complete {
+  border-color: green;
+}
+</style> 
