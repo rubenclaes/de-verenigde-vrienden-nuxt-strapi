@@ -29,13 +29,7 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div
-            data-aos="fade-in"
-            data-aos-delay="150"
-            class="pl-md-5"
-            data-aos-once="true"
-            data-aos-duration="1200"
-          >
+          <div data-aos="fade-in" data-aos-delay="150" class="pl-md-5" data-aos-duration="1200">
             <h1>{{ data[0].Title }}</h1>
 
             <p

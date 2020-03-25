@@ -4,7 +4,12 @@
   <section class="section section-lg lazyload" id="section10" :style="styles()">
     <div class="container py-0 pb-lg">
       <div class="row justify-content-between align-items-center">
-        <div class="col-lg-5 mb-5 mb-lg-0">
+        <div
+          class="col-lg-5 mb-5 mb-lg-0"
+          data-aos="fade-in"
+          data-aos-delay="250"
+          data-aos-duration="1200"
+        >
           <icon
             name="ni ni-calendar-grid-58"
             class="mb-5 floating"

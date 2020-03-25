@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="col-md-6 order-md-1">
-          <div class="pr-md-5" data-aos="fade-in" data-aos-delay="150">
+          <div class="pr-md-5" data-aos="fade-in" data-aos-delay="250" data-aos-duration="1200">
             <icon
               name="ni ni ni-satisfied"
               class="mb-5 floating"

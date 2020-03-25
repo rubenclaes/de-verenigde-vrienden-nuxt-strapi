@@ -5,8 +5,8 @@
     <Jeugdorkest :data="jeugdorkestData" />
     <Activiteiten :data="activiteitenData" />
     <Dirigent />
-    <!-- <Adres /> -->
-    <!--  <Contact /> -->
+    <Adres />
+    <Contact />
   </div>
 </template>
 
