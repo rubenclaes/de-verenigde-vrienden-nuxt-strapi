@@ -5,5 +5,5 @@ import { $axios } from '~/utils/api';
  *
  */
 export async function createOrder(payload) {
-  return await $axios.post(`order`, payload);
+  return await $axios.post(`orders`, payload);
 }
