@@ -2,6 +2,8 @@ import { ActionContext, ActionTree } from 'vuex/types';
 import { RootState } from '../type';
 import { CartState } from './types';
 
+import { createOrder } from '../../lib/orders/api';
+
 /**
  * Action context specific to DiningDays module
  */
@@ -11,26 +13,27 @@ interface CartActionContext extends ActionContext<CartState, RootState> {}
  * Cart actions
  */
 export const actions: ActionTree<CartState, RootState> = {
-  checkout({ commit, state }, products) {
+  async createEntry({ commit, state }, payload) {
     // save the items currently in the cart
     const savedCartItems = [...state.items];
     commit('setCheckoutStatus', null);
 
     // clear the cart
-    commit('setCartItems', { items: [] });
+    commit('clear');
     // send out checkout request, and optimistically
     commit('setCheckoutStatus', 'request');
     // the shop API accepts a success callback and a failure callback
 
-    /*  shop.buyProducts(
-      products,
-      () => commit('setCheckoutStatus', 'successful'),
-      () => {
+    await createOrder(payload)
+      .then(succes => {
+        commit('setCheckoutStatus', 'successful');
+      })
+      .catch(err => {
         commit('setCheckoutStatus', 'failed');
         // rollback to the cart saved before sending the request
         commit('setCartItems', { items: savedCartItems });
-      }
-    ); */
+        console.error('error', err);
+      });
   },
 
   addProductToCart({ state, commit }, product) {

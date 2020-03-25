@@ -11,10 +11,7 @@
             <ul class="list-group mb-3">
               <cart></cart>
 
-              <li
-                v-if="false"
-                class="list-group-item d-flex justify-content-between bg-light"
-              >
+              <li v-if="false" class="list-group-item d-flex justify-content-between bg-light">
                 <div class="text-success">
                   <h6 class="my-0">Promo code</h6>
                   <small>EXAMPLECODE</small>
@@ -33,31 +30,13 @@
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="firstName">Voornaam</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="firstName"
-                    placeholder
-                    value
-                    required
-                  />
-                  <div class="invalid-feedback">
-                    Valid first name is required.
-                  </div>
+                  <input type="text" class="form-control" id="firstName" placeholder value required />
+                  <div class="invalid-feedback">Valid first name is required.</div>
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="lastName">Achternaam</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="lastName"
-                    placeholder
-                    value
-                    required
-                  />
-                  <div class="invalid-feedback">
-                    Valid last name is required.
-                  </div>
+                  <input type="text" class="form-control" id="lastName" placeholder value required />
+                  <div class="invalid-feedback">Valid last name is required.</div>
                 </div>
               </div>
 
@@ -66,15 +45,10 @@
                   E-mail
                   <span class="text-muted">(Optional)</span>
                 </label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  placeholder="you@example.com"
-                />
-                <div class="invalid-feedback">
-                  Please enter a valid email address for shipping updates.
-                </div>
+                <input type="email" class="form-control" id="email" placeholder="you@example.com" />
+                <div
+                  class="invalid-feedback"
+                >Please enter a valid email address for shipping updates.</div>
               </div>
 
               <div class="mb-3">
@@ -86,35 +60,21 @@
                   placeholder="1234 Main St"
                   required
                 />
-                <div class="invalid-feedback">
-                  Please enter your shipping address.
-                </div>
+                <div class="invalid-feedback">Please enter your shipping address.</div>
               </div>
 
               <div class="row">
                 <div class="col-md-5 mb-3">
                   <label for="country">Land</label>
-                  <select
-                    class="custom-select d-block w-100"
-                    id="country"
-                    required
-                  >
+                  <select class="custom-select d-block w-100" id="country" required>
                     <option selected>België</option>
                   </select>
-                  <div class="invalid-feedback">
-                    Please select a valid country.
-                  </div>
+                  <div class="invalid-feedback">Please select a valid country.</div>
                 </div>
 
                 <div class="col-md-3 mb-3">
                   <label for="zip">Postcode</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="zip"
-                    placeholder
-                    required
-                  />
+                  <input type="text" class="form-control" id="zip" placeholder required />
                   <div class="invalid-feedback">Zip code required.</div>
                 </div>
               </div>
@@ -132,80 +92,35 @@
                     class="custom-control-input"
                     required
                   />
-                  <label class="custom-control-label" for="debit"
-                    >Debit card</label
-                  >
+                  <label class="custom-control-label" for="debit">Debit card</label>
                 </div>
               </div>
               <div class="row">
+                <card
+                  ref="card-stripe"
+                  stripe="pk_test_Ict7P4E8rbEo4YCqZOj8sMpi"
+                  @change="complete = $event.complete"
+                />
                 <div class="col-md-6 mb-3">
                   <label for="cc-name">Name on card</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="cc-name"
-                    placeholder
-                    required
-                  />
-                  <small class="text-muted"
-                    >Full name as displayed on card</small
-                  >
+                  <input type="text" class="form-control" id="cc-name" placeholder required />
+                  <small class="text-muted">Full name as displayed on card</small>
                   <div class="invalid-feedback">Name on card is required</div>
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="cc-number">Credit card number</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="cc-number"
-                    placeholder
-                    required
-                  />
-                  <div class="invalid-feedback">
-                    Credit card number is required
-                  </div>
+                  <input type="text" class="form-control" id="cc-number" placeholder required />
+                  <div class="invalid-feedback">Credit card number is required</div>
                 </div>
               </div>
 
               <hr class="mb-4" />
-              <button
-                class="btn btn-primary btn-lg btn-block"
-                @click="checkout()"
-              >
-                Afrekenen
-              </button>
+              <button class="btn btn-primary btn-lg btn-block" @click="handleSubmit()">Afrekenen</button>
             </form>
-            <base-button
-              @click="checkout()"
-              size="sm"
-              type="danger"
-              icon="fa fa-trash"
-              outline
-            ></base-button>
-            <base-button
-              @click="logout()"
-              size="sm"
-              type="danger"
-              icon="fa fa-trash"
-              outline
-              >logout</base-button
-            >
-            <base-button
-              @click="auth0()"
-              size="sm"
-              type="danger"
-              icon="fa fa-trash"
-              outline
-              >auth0</base-button
-            >
-            <base-button
-              @click="post()"
-              size="sm"
-              type="danger"
-              icon="fa fa-trash"
-              outline
-              >post</base-button
-            >
+            <base-button @click="checkout()" size="sm" type="danger" icon="fa fa-trash" outline></base-button>
+            <base-button @click="logout()" size="sm" type="danger" icon="fa fa-trash" outline>logout</base-button>
+            <base-button @click="auth0()" size="sm" type="danger" icon="fa fa-trash" outline>auth0</base-button>
+            <base-button @click="post()" size="sm" type="danger" icon="fa fa-trash" outline>post</base-button>
           </div>
         </div>
 
@@ -237,24 +152,27 @@ import { cartVuexNamespace } from '~/store/cart/const';
 import { Item } from '../store/cart/types';
 
 //import { stripeKey, stripeOptions } from './stripeConfig.json';
-//import { Card, createToken } from 'vue-stripe-elements-plus';
+import { Card, createToken } from 'vue-stripe-elements-plus';
 
 @Component({
   layout: 'appColor',
 
   components: {
     BaseButton: () => import('@/components/BaseButton.vue'),
-    Card: () => import('@/components/Card.vue'),
+
     Badge: () => import('@/components/Badge.vue'),
     Icon: () => import('@/components/Icon.vue'),
     BaseInput: () => import('@/components/BaseInput.vue'),
     BaseCheckbox: () => import('@/components/BaseCheckbox.vue'),
-    //Card
+    Card,
     Cart: () => import('@/components/Cart.vue')
   }
 })
 export default class CheckoutPage extends Vue {
   private title: string = 'Checkout';
+
+  private loading: boolean = false;
+
   head() {
     return {
       title: this.title,
@@ -327,7 +245,38 @@ export default class CheckoutPage extends Vue {
     });
   }
 
-  async checkout() {}
+  async handleSubmit() {
+    this.loading = true;
+    let token;
+    try {
+      const response = await createToken();
+      token = response.token.id;
+    } catch (err) {
+      alert('An error occurred.');
+      this.loading = false;
+      return;
+    }
+    try {
+      await this.$store.dispatch('cart/createEntry', {
+        amount: this.$store.getters['cart/cartTotalPrice'],
+        dishes: this.$store.getters['cart/numberOfItems'],
+        address: 'vroenweg',
+        postalCode: '3550',
+        city: 'heusden-zolder',
+        token
+      });
+      alert('Your order have been successfully submitted.');
+      this.emptyCart();
+      this.$router.push('/');
+    } catch (err) {
+      this.loading = false;
+      alert('An error occurred.');
+    }
+  }
+
+  emptyCart() {
+    this.$store.commit('cart/clear');
+  }
 
   numberOfItems() {
     return this.$store.getters['cart/numberOfItems'];

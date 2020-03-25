@@ -316,9 +316,11 @@ export default class Contact extends Vue {
 </script>
 
 <style>
+.card {
+  z-index: 2;
+}
 .skew-separator {
   margin-top: -220px !important;
-  z-index: -1;
 }
 
 .skew-separator.skew-top:after {

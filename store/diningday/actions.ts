@@ -3,7 +3,6 @@ import { DiningDayState } from './types';
 import { RootState } from '../type';
 
 import { loadDiningday, loadDiningdays } from '../../lib/diningdays/api';
-import { stringLiteral } from '@babel/types';
 
 /**
  * Action context specific to DiningDays module
