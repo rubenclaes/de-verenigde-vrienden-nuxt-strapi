@@ -6,6 +6,11 @@ require('./utils/config');
 module.exports = {
   mode: 'universal',
 
+  env: {
+    strapiUser: process.env.STRAPI_IDENTIFIER,
+    strapiPassword: process.env.STRAPI_PASSWORD
+  },
+
   /*
    ** Headers of the page
    */

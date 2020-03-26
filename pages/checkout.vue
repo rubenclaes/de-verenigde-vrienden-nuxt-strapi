@@ -35,6 +35,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="lastName">Achternaam</label>
+
                   <input type="text" class="form-control" id="lastName" placeholder value required />
                   <div class="invalid-feedback">Valid last name is required.</div>
                 </div>
@@ -97,11 +98,9 @@
               </div>
               <div class="row">
                 stripe
-                <card
-                  ref="card-stripe"
-                  stripe="pk_test_Ict7P4E8rbEo4YCqZOj8sMpi"
-                  @change="complete = $event.complete"
-                />
+                <client-only>
+                  <CardNumber stripe="pk_test_Ict7P4E8rbEo4YCqZOj8sMpi" />
+                </client-only>
                 <div class="col-md-6 mb-3">
                   <label for="cc-name">Name on card</label>
                   <input type="text" class="form-control" id="cc-name" placeholder required />
@@ -126,6 +125,13 @@
             <base-button @click="logout()" size="sm" type="danger" icon="fa fa-trash" outline>logout</base-button>
             <base-button @click="auth0()" size="sm" type="danger" icon="fa fa-trash" outline>auth0</base-button>
             <base-button @click="post()" size="sm" type="danger" icon="fa fa-trash" outline>post</base-button>
+            <base-button
+              @click="login()"
+              size="sm"
+              type="danger"
+              icon="fa fa-trash"
+              outline
+            >login to strapi</base-button>
           </div>
         </div>
 
@@ -157,7 +163,7 @@ import { cartVuexNamespace } from '~/store/cart/const';
 import { Item } from '../store/cart/types';
 
 //import { stripeKey, stripeOptions } from './stripeConfig.json';
-import { Card, createToken } from 'vue-stripe-elements-plus';
+import { Card, createToken, CardNumber } from 'vue-stripe-elements-plus';
 
 @Component({
   layout: 'appColor',
@@ -170,6 +176,7 @@ import { Card, createToken } from 'vue-stripe-elements-plus';
     BaseInput: () => import('@/components/BaseInput.vue'),
     BaseCheckbox: () => import('@/components/BaseCheckbox.vue'),
     Card,
+    CardNumber,
     Cart: () => import('@/components/Cart.vue')
   }
 })
@@ -202,6 +209,13 @@ export default class CheckoutPage extends Vue {
 
   price() {
     return this.$store.getters['cart/cartTotalPrice'];
+  }
+
+  async login() {
+    await this.$store.dispatch('auth/login', {
+      identifier: process.env.strapiUser,
+      password: process.env.strapiPassword
+    });
   }
 
   logout() {}

@@ -5,7 +5,7 @@ import { CartState } from './types';
 import { createOrder } from '../../lib/orders/api';
 
 /**
- * Action context specific to DiningDays module
+ * Action context specific to Cart module
  */
 interface CartActionContext extends ActionContext<CartState, RootState> {}
 
