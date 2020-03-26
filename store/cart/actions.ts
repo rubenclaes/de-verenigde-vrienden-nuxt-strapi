@@ -13,7 +13,7 @@ interface CartActionContext extends ActionContext<CartState, RootState> {}
  * Cart actions
  */
 export const actions: ActionTree<CartState, RootState> = {
-  async createEntry({ commit, state }, payload) {
+  async createOrder({ commit, state }, payload) {
     // save the items currently in the cart
     const savedCartItems = [...state.items];
     commit('setCheckoutStatus', null);
@@ -31,7 +31,7 @@ export const actions: ActionTree<CartState, RootState> = {
       .catch(err => {
         commit('setCheckoutStatus', 'failed');
         // rollback to the cart saved before sending the request
-        commit('setCartItems', { items: savedCartItems });
+        commit('set', { items: savedCartItems });
         console.error('error', err);
       });
   },

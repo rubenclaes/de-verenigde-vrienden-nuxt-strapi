@@ -118,13 +118,20 @@
               <button
                 class="btn btn-primary btn-lg btn-block"
                 @click="handleSubmit()"
-                :disabled="!complete"
+                :disabled="!isLoggedIn()"
               >Afrekenen</button>
             </form>
             <base-button @click="checkout()" size="sm" type="danger" icon="fa fa-trash" outline></base-button>
             <base-button @click="logout()" size="sm" type="danger" icon="fa fa-trash" outline>logout</base-button>
             <base-button @click="auth0()" size="sm" type="danger" icon="fa fa-trash" outline>auth0</base-button>
             <base-button @click="post()" size="sm" type="danger" icon="fa fa-trash" outline>post</base-button>
+            <base-button
+              @click="isLoggedIn()"
+              size="sm"
+              type="danger"
+              icon="fa fa-trash"
+              outline
+            >isLoggedin</base-button>
             <base-button
               @click="login()"
               size="sm"
@@ -194,6 +201,13 @@ export default class CheckoutPage extends Vue {
     };
   }
 
+  created() {
+    if (!this.isLoggedIn()) {
+      this.login();
+    }
+    //this.$axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  }
+
   private stripeOptions = {
     // see https://stripe.com/docs/stripe.js#element-options for details
   };
@@ -215,14 +229,23 @@ export default class CheckoutPage extends Vue {
     return this.$store.getters['auth/token'];
   }
 
-  async login() {
-    await this.$store.dispatch('auth/login', {
-      identifier: process.env.strapiUser,
-      password: process.env.strapiPassword
-    });
+  isLoggedIn() {
+    return this.$store.getters['auth/isLoggedIn'];
   }
 
-  logout() {}
+  async login() {
+    try {
+      await this.$store.dispatch('auth/login', {
+        identifier: process.env.strapiUser,
+        password: process.env.strapiPassword
+      });
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        throw new Error('Bad credentials or Token expired');
+      }
+      throw error;
+    }
+  }
 
   auth0() {
     var bodyFormData = new FormData();
@@ -273,7 +296,7 @@ export default class CheckoutPage extends Vue {
   async handleSubmit() {
     this.loading = true;
     let token;
-    try {
+    /*   try {
       const response = await createToken();
       token = response.token.id;
       console.log('jojojoj' + token);
@@ -281,22 +304,28 @@ export default class CheckoutPage extends Vue {
       alert(err);
       this.loading = false;
       return;
-    }
+    } */
     try {
-      await this.$store.dispatch('cart/createEntry', {
+      await this.$store.dispatch('cart/createOrder', {
         amount: this.$store.getters['cart/cartTotalPrice'],
         dishes: this.$store.getters['cart/numberOfItems'],
         address: 'vroenweg',
         postalCode: '3550',
-        city: 'heusden-zolder',
-        token
+        city: 'heusden-zolder'
       });
       alert('Your order have been successfully submitted.');
       this.emptyCart();
-      this.$router.push('/');
-    } catch (err) {
+      //this.$router.push('/');
+    } catch (error) {
       this.loading = false;
-      alert(err);
+      if (error.response && error.response.status === 403) {
+        throw new Error('Not found');
+      }
+      if (error.response && error.response.status === 401) {
+        throw new Error('Token expired');
+      }
+      throw error;
+      alert(error);
     }
   }
 

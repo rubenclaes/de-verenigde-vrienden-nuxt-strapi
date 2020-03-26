@@ -11,7 +11,9 @@ export const getters: GetterTree<AuthState, RootState> = {
     if (!state.token) return 0;
 
     return state.token;
-  }
+  },
+  isLoggedIn: state => !!state.token,
+  authStatus: state => state.status
 };
 
 export default getters;
