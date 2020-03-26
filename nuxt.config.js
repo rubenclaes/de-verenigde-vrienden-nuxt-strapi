@@ -263,7 +263,7 @@ module.exports = {
   },
 
   robots: {
-    sitemap: 'https://pre-vue.web.app/sitemap.xml'
+    sitemap: `${process.env.HOSTNAME}/sitemap.xml`
   },
 
   /*
