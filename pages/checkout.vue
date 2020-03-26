@@ -11,7 +11,10 @@
             <ul class="list-group mb-3">
               <cart></cart>
 
-              <li v-if="false" class="list-group-item d-flex justify-content-between bg-light">
+              <li
+                v-if="false"
+                class="list-group-item d-flex justify-content-between bg-light"
+              >
                 <div class="text-success">
                   <h6 class="my-0">Promo code</h6>
                   <small>EXAMPLECODE</small>
@@ -30,14 +33,32 @@
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="firstName">Voornaam</label>
-                  <input type="text" class="form-control" id="firstName" placeholder value required />
-                  <div class="invalid-feedback">Valid first name is required.</div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    placeholder
+                    value
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Valid first name is required.
+                  </div>
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="lastName">Achternaam</label>
 
-                  <input type="text" class="form-control" id="lastName" placeholder value required />
-                  <div class="invalid-feedback">Valid last name is required.</div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    placeholder
+                    value
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Valid last name is required.
+                  </div>
                 </div>
               </div>
 
@@ -46,10 +67,15 @@
                   E-mail
                   <span class="text-muted">(Optional)</span>
                 </label>
-                <input type="email" class="form-control" id="email" placeholder="you@example.com" />
-                <div
-                  class="invalid-feedback"
-                >Please enter a valid email address for shipping updates.</div>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="you@example.com"
+                />
+                <div class="invalid-feedback">
+                  Please enter a valid email address for shipping updates.
+                </div>
               </div>
 
               <div class="mb-3">
@@ -61,21 +87,35 @@
                   placeholder="1234 Main St"
                   required
                 />
-                <div class="invalid-feedback">Please enter your shipping address.</div>
+                <div class="invalid-feedback">
+                  Please enter your shipping address.
+                </div>
               </div>
 
               <div class="row">
                 <div class="col-md-5 mb-3">
                   <label for="country">Land</label>
-                  <select class="custom-select d-block w-100" id="country" required>
+                  <select
+                    class="custom-select d-block w-100"
+                    id="country"
+                    required
+                  >
                     <option selected>België</option>
                   </select>
-                  <div class="invalid-feedback">Please select a valid country.</div>
+                  <div class="invalid-feedback">
+                    Please select a valid country.
+                  </div>
                 </div>
 
                 <div class="col-md-3 mb-3">
                   <label for="zip">Postcode</label>
-                  <input type="text" class="form-control" id="zip" placeholder required />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="zip"
+                    placeholder
+                    required
+                  />
                   <div class="invalid-feedback">Zip code required.</div>
                 </div>
               </div>
@@ -93,24 +133,55 @@
                     class="custom-control-input"
                     required
                   />
-                  <label class="custom-control-label" for="debit">Debit card</label>
+                  <label class="custom-control-label" for="debit">IBAN</label>
                 </div>
               </div>
               <div class="row">
-                stripe
+                <!-- stripe Iban element -->
                 <client-only>
-                  <CardNumber stripe="pk_test_Ict7P4E8rbEo4YCqZOj8sMpi" />
+                  stripe
+                  <stripe-element
+                    type="iban"
+                    stripe="pk_test_Ict7P4E8rbEo4YCqZOj8sMpi"
+                    :elOptions="ibanOptions"
+                    @change="ibcompleted = $event.complete"
+                  />
+
+                  <!-- stripe Card element -->
+                  <stripe-element
+                    type="card"
+                    stripe="pk_test_Ict7P4E8rbEo4YCqZOj8sMpi"
+                    :elsOptions="elsOptions"
+                    @change="cdcompleted = $event.complete"
+                  />
                 </client-only>
+
                 <div class="col-md-6 mb-3">
                   <label for="cc-name">Name on card</label>
-                  <input type="text" class="form-control" id="cc-name" placeholder required />
-                  <small class="text-muted">Full name as displayed on card</small>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cc-name"
+                    placeholder
+                    required
+                  />
+                  <small class="text-muted"
+                    >Full name as displayed on card</small
+                  >
                   <div class="invalid-feedback">Name on card is required</div>
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="cc-number">Credit card number</label>
-                  <input type="text" class="form-control" id="cc-number" placeholder required />
-                  <div class="invalid-feedback">Credit card number is required</div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cc-number"
+                    placeholder
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Credit card number is required
+                  </div>
                 </div>
               </div>
 
@@ -119,26 +190,60 @@
                 class="btn btn-primary btn-lg btn-block"
                 @click="handleSubmit()"
                 :disabled="!isLoggedIn()"
-              >Afrekenen</button>
+              >
+                Afrekenen
+              </button>
+              <button class="btn btn-primary btn-lg btn-block" @click="pay()">
+                Pay
+              </button>
             </form>
-            <base-button @click="checkout()" size="sm" type="danger" icon="fa fa-trash" outline></base-button>
-            <base-button @click="logout()" size="sm" type="danger" icon="fa fa-trash" outline>logout</base-button>
-            <base-button @click="auth0()" size="sm" type="danger" icon="fa fa-trash" outline>auth0</base-button>
-            <base-button @click="post()" size="sm" type="danger" icon="fa fa-trash" outline>post</base-button>
+            <base-button
+              @click="checkout()"
+              size="sm"
+              type="danger"
+              icon="fa fa-trash"
+              outline
+            ></base-button>
+            <base-button
+              @click="logout()"
+              size="sm"
+              type="danger"
+              icon="fa fa-trash"
+              outline
+              >logout</base-button
+            >
+            <base-button
+              @click="auth0()"
+              size="sm"
+              type="danger"
+              icon="fa fa-trash"
+              outline
+              >auth0</base-button
+            >
+            <base-button
+              @click="post()"
+              size="sm"
+              type="danger"
+              icon="fa fa-trash"
+              outline
+              >post</base-button
+            >
             <base-button
               @click="isLoggedIn()"
               size="sm"
               type="danger"
               icon="fa fa-trash"
               outline
-            >isLoggedin</base-button>
+              >isLoggedin</base-button
+            >
             <base-button
               @click="login()"
               size="sm"
               type="danger"
               icon="fa fa-trash"
               outline
-            >login to strapi</base-button>
+              >login to strapi</base-button
+            >
           </div>
         </div>
 
@@ -170,7 +275,8 @@ import { cartVuexNamespace } from '~/store/cart/const';
 import { Item } from '../store/cart/types';
 
 //import { stripeKey, stripeOptions } from './stripeConfig.json';
-import { Card, createToken, CardNumber } from 'vue-stripe-elements-plus';
+
+import { StripeElement, Stripe } from 'vue-stripe-better-elements';
 
 @Component({
   layout: 'appColor',
@@ -182,8 +288,8 @@ import { Card, createToken, CardNumber } from 'vue-stripe-elements-plus';
     Icon: () => import('@/components/Icon.vue'),
     BaseInput: () => import('@/components/BaseInput.vue'),
     BaseCheckbox: () => import('@/components/BaseCheckbox.vue'),
-    Card,
-    CardNumber,
+
+    StripeElement,
     Cart: () => import('@/components/Cart.vue')
   }
 })
@@ -193,6 +299,29 @@ export default class CheckoutPage extends Vue {
   private complete: boolean = false;
 
   private loading: boolean = false;
+
+  private stripeOptions = {
+    supportedCountries: ['SEPA'],
+    // If you know the country of the customer, you can optionally pass it to
+    // the Element as placeholderCountry. The example IBAN that is being used
+    // as placeholder reflects the IBAN format of that country.
+    placeholderCountry: 'BE'
+  };
+
+  data() {
+    return {
+      // set the locale to german
+      elsOptions: {
+        locale: 'nl'
+      },
+      ibanOptions: {
+        supportedCountries: [`SEPA`],
+        placeholderCountry: `BE`
+      },
+      ibcompleted: false,
+      cdcompleted: false
+    };
+  }
 
   head() {
     return {
@@ -208,17 +337,13 @@ export default class CheckoutPage extends Vue {
     //this.$axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   }
 
-  private stripeOptions = {
-    // see https://stripe.com/docs/stripe.js#element-options for details
-  };
-
-  pay() {
+  async pay() {
     // createToken returns a Promise which resolves in a result object with
     // either a token or an error key.
     // See https://stripe.com/docs/api#tokens for the token object.
     // See https://stripe.com/docs/api#errors for the error object.
     // More general https://stripe.com/docs/stripe.js#stripe-create-token.
-    //createToken().then(data => console.log(data.token));
+    await createToken().then(data => console.log(data.token));
   }
 
   price() {
@@ -296,26 +421,34 @@ export default class CheckoutPage extends Vue {
   async handleSubmit() {
     this.loading = true;
     let token;
-    /*   try {
-      const response = await createToken();
-      token = response.token.id;
-      console.log('jojojoj' + token);
+    try {
+      await createToken().then(response => {
+        token = response.token.id;
+      });
+
+      const { token } = await stripe.createToken(cardElement);
+
+      alert(token);
     } catch (err) {
-      alert(err);
+      //alert(err);
       this.loading = false;
       return;
-    } */
+    }
     try {
-      await this.$store.dispatch('cart/createOrder', {
-        amount: this.$store.getters['cart/cartTotalPrice'],
-        dishes: this.$store.getters['cart/numberOfItems'],
-        address: 'vroenweg',
-        postalCode: '3550',
-        city: 'heusden-zolder'
-      });
-      alert('Your order have been successfully submitted.');
-      this.emptyCart();
-      //this.$router.push('/');
+      await this.$store
+        .dispatch('cart/createOrder', {
+          amount: this.$store.getters['cart/cartTotalPrice'],
+          dishes: this.$store.getters['cart/cartProducts'],
+          address: 'vroenweg',
+          postalCode: '3550',
+          city: 'heusden-zolder',
+          token: token
+        })
+        .then(() => {
+          alert('Your order have been successfully submitted.');
+          this.emptyCart();
+          //this.$router.push('/');});
+        });
     } catch (error) {
       this.loading = false;
       if (error.response && error.response.status === 403) {
@@ -346,4 +479,4 @@ export default class CheckoutPage extends Vue {
 .stripe-card.complete {
   border-color: green;
 }
-</style> 
+</style>

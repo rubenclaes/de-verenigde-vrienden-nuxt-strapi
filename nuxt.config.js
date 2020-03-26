@@ -75,6 +75,8 @@ module.exports = {
     '~/plugins/lazysizes.client.js',
     '~/plugins/vue-headroom.client.js',
 
+    '~/plugins/vue-stripe-better-elements.client.js',
+
     { src: '~/plugins/vuex-persist', mode: 'client' },
     { src: '~/plugins/vue-toasted.js', mode: 'client' },
     { src: '~/plugins/vue-confetti.js', mode: 'client' },
