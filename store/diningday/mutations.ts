@@ -48,14 +48,14 @@ export const mutations: MutationTree<DiningDayState> = {
   setLoading(state, loading) {
     //state.status.loading = !state.status.loading;
     Vue.set(state.status, 'loading', loading);
-    console.info('loading diningdays...--> ' + state.status.loading);
+    //console.info('loading diningdays...--> ' + state.status.loading);
   },
 
   setSuccess(state, success) {
     //state.status.loading = !state.status.loading;
     Vue.set(state.status, 'success', success);
     //state.status.success = success;
-    console.info('successfully fetched diningdays -->' + state.status.success);
+    //console.info('successfully fetched diningdays -->' + state.status.success);
   }
 
   /*  setDiningDay(

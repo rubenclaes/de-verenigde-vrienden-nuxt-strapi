@@ -28,7 +28,7 @@ export const actions: ActionTree<DiningDayState, RootState> = {
         commit('setLoading', false);
         commit('setSuccess', true);
         commit('set', diningdays);
-        console.info(`Dining Days: %o`, diningdays);
+        //console.info(`Dining Days: %o`, diningdays);
       })
       .catch(err => {
         console.error('error', err);
@@ -43,7 +43,7 @@ export const actions: ActionTree<DiningDayState, RootState> = {
       console.error('error', err);
     });
 
-    console.info(diningday);
+    //console.info(diningday);
 
     commit('setCurrentDiningDay', {
       id: diningday.id,
