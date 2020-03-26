@@ -343,7 +343,7 @@ export default class CheckoutPage extends Vue {
     // See https://stripe.com/docs/api#tokens for the token object.
     // See https://stripe.com/docs/api#errors for the error object.
     // More general https://stripe.com/docs/stripe.js#stripe-create-token.
-    await createToken().then(data => console.log(data.token));
+    //await createToken().then(data => console.log(data.token));
   }
 
   price() {
@@ -421,7 +421,7 @@ export default class CheckoutPage extends Vue {
   async handleSubmit() {
     this.loading = true;
     let token;
-    try {
+/*     try {
       await createToken().then(response => {
         token = response.token.id;
       });
@@ -433,7 +433,7 @@ export default class CheckoutPage extends Vue {
       //alert(err);
       this.loading = false;
       return;
-    }
+    } */
     try {
       await this.$store
         .dispatch('cart/createOrder', {
