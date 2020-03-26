@@ -211,6 +211,10 @@ export default class CheckoutPage extends Vue {
     return this.$store.getters['cart/cartTotalPrice'];
   }
 
+  token() {
+    return this.$store.getters['auth/token'];
+  }
+
   async login() {
     await this.$store.dispatch('auth/login', {
       identifier: process.env.strapiUser,

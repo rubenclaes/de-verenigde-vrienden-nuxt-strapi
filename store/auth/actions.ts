@@ -19,9 +19,21 @@ export const actions: ActionTree<AuthState, RootState> = {
     await login({
       identifier: identifier,
       password: password
-    }).then(response => {
-      console.log(response);
-    });
+    })
+      .then(resp => {
+        const token = resp.data.jwt;
+        const user = resp.data.user;
+
+        console.log(token);
+        //localStorage.setItem('token', token);
+        //axios.defaults.headers.common['Authorization'] = token;
+        commit('authSuccess', { token, user });
+      })
+      .catch(err => {
+        commit('authError');
+        console.error(err);
+        //localStorage.removeItem('token');
+      });
   },
 
   logout({ commit }) {
