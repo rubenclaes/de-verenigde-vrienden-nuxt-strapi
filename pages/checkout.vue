@@ -343,7 +343,41 @@ export default class CheckoutPage extends Vue {
     // See https://stripe.com/docs/api#tokens for the token object.
     // See https://stripe.com/docs/api#errors for the error object.
     // More general https://stripe.com/docs/stripe.js#stripe-create-token.
-    //await createToken().then(data => console.log(data.token));
+
+    Stripe.get('iban', 'pk_test_Ict7P4E8rbEo4YCqZOj8sMpi')
+      .createSource({
+        type: 'sepa_debit',
+        currency: 'eur',
+        owner: {
+          name: 'foobar',
+          email: 'foo@bar.com'
+        },
+        mandate: {
+          notification_method: 'email'
+        }
+      })
+      .then(console.log)
+      .catch(console.error);
+
+    // Initiate the payment.
+    /*   stripe
+    .confirmSepaDebitPayment(clientSecret, {
+      payment_method: {
+        sepa_debit: 'BE43 7350 2000 2001',
+        billing_details: {
+          name: 'Ruben Claes',
+          email: 'rubes.claes@gmail.com'
+        }
+      } 
+    }) */
+    /*    .then(function(result) {
+      if (result.error) {
+        // Show error to your customer
+        console.log(result.error.message);
+      } else {
+        console.log(result.paymentIntent.client_secret);
+      }
+    }); */
   }
 
   price() {
@@ -420,20 +454,22 @@ export default class CheckoutPage extends Vue {
 
   async handleSubmit() {
     this.loading = true;
-    let token;
-/*     try {
-      await createToken().then(response => {
-        token = response.token.id;
-      });
 
-      const { token } = await stripe.createToken(cardElement);
+    Stripe.get('iban', 'pk_test_Ict7P4E8rbEo4YCqZOj8sMpi')
+      .createSource({
+        type: 'sepa_debit',
+        currency: 'eur',
+        owner: {
+          name: 'foobar',
+          email: 'foo@bar.com'
+        },
+        mandate: {
+          notification_method: 'email'
+        }
+      })
+      .then(console.log)
+      .catch(console.error);
 
-      alert(token);
-    } catch (err) {
-      //alert(err);
-      this.loading = false;
-      return;
-    } */
     try {
       await this.$store
         .dispatch('cart/createOrder', {
@@ -441,8 +477,7 @@ export default class CheckoutPage extends Vue {
           dishes: this.$store.getters['cart/cartProducts'],
           address: 'vroenweg',
           postalCode: '3550',
-          city: 'heusden-zolder',
-          token: token
+          city: 'heusden-zolder'
         })
         .then(() => {
           alert('Your order have been successfully submitted.');
