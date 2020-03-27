@@ -29,7 +29,12 @@
           </div>
           <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Facturatieadres</h4>
-            <form class="needs-validation" novalidate>
+
+            <form
+              class="needs-validation"
+              v-on:submit.prevent="onSubmit"
+              novalidate
+            >
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="firstName">Voornaam</label>
@@ -138,22 +143,22 @@
               </div>
               <div class="row">
                 <!-- stripe Iban element -->
+
                 <client-only>
-                  stripe
-                  <stripe-element
+                  <!--   <stripe-element
                     type="iban"
                     stripe="pk_test_Ict7P4E8rbEo4YCqZOj8sMpi"
                     :elOptions="ibanOptions"
                     @change="ibcompleted = $event.complete"
-                  />
+                  /> -->
 
                   <!-- stripe Card element -->
-                  <stripe-element
+                  <!--  <stripe-element
                     type="card"
                     stripe="pk_test_Ict7P4E8rbEo4YCqZOj8sMpi"
                     :elsOptions="elsOptions"
                     @change="cdcompleted = $event.complete"
-                  />
+                  /> -->
                 </client-only>
 
                 <div class="col-md-6 mb-3">
@@ -172,13 +177,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="cc-number">Credit card number</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="cc-number"
-                    placeholder
-                    required
-                  />
+                  <div ref="card"></div>
                   <div class="invalid-feedback">
                     Credit card number is required
                   </div>
@@ -276,7 +275,9 @@ import { Item } from '../store/cart/types';
 
 //import { stripeKey, stripeOptions } from './stripeConfig.json';
 
-import { StripeElement, Stripe } from 'vue-stripe-better-elements';
+//import { StripeElement, Stripe } from 'vue-stripe-better-elements';
+
+import { loadStripe } from '@stripe/stripe-js';
 
 @Component({
   layout: 'appColor',
@@ -288,8 +289,6 @@ import { StripeElement, Stripe } from 'vue-stripe-better-elements';
     Icon: () => import('@/components/Icon.vue'),
     BaseInput: () => import('@/components/BaseInput.vue'),
     BaseCheckbox: () => import('@/components/BaseCheckbox.vue'),
-
-    StripeElement,
     Cart: () => import('@/components/Cart.vue')
   }
 })
@@ -300,6 +299,9 @@ export default class CheckoutPage extends Vue {
 
   private loading: boolean = false;
 
+  private stripe;
+  private card;
+
   private stripeOptions = {
     supportedCountries: ['SEPA'],
     // If you know the country of the customer, you can optionally pass it to
@@ -307,6 +309,19 @@ export default class CheckoutPage extends Vue {
     // as placeholder reflects the IBAN format of that country.
     placeholderCountry: 'BE'
   };
+
+  private paymentMethods = {
+    bancontact: {
+      name: 'Bancontact',
+      flow: 'redirect',
+      countries: ['BE'],
+      currencies: ['eur']
+    }
+  };
+
+  onSubmit() {
+    // DO Something
+  }
 
   data() {
     return {
@@ -337,47 +352,85 @@ export default class CheckoutPage extends Vue {
     //this.$axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   }
 
-  async pay() {
-    // createToken returns a Promise which resolves in a result object with
-    // either a token or an error key.
-    // See https://stripe.com/docs/api#tokens for the token object.
-    // See https://stripe.com/docs/api#errors for the error object.
-    // More general https://stripe.com/docs/stripe.js#stripe-create-token.
+  async mounted() {
+    this.stripe = await loadStripe('pk_test_Ict7P4E8rbEo4YCqZOj8sMpi');
 
-    Stripe.get('iban', 'pk_test_Ict7P4E8rbEo4YCqZOj8sMpi')
-      .createSource({
-        type: 'sepa_debit',
-        currency: 'eur',
-        owner: {
-          name: 'foobar',
-          email: 'foo@bar.com'
-        },
-        mandate: {
-          notification_method: 'email'
-        }
-      })
-      .then(console.log)
-      .catch(console.error);
+    this.createAndMountFormElements();
+  }
 
-    // Initiate the payment.
-    /*   stripe
-    .confirmSepaDebitPayment(clientSecret, {
-      payment_method: {
-        sepa_debit: 'BE43 7350 2000 2001',
-        billing_details: {
-          name: 'Ruben Claes',
-          email: 'rubes.claes@gmail.com'
-        }
-      } 
-    }) */
-    /*    .then(function(result) {
-      if (result.error) {
-        // Show error to your customer
-        console.log(result.error.message);
-      } else {
-        console.log(result.paymentIntent.client_secret);
+  createAndMountFormElements() {
+    let elements = this.stripe.elements();
+    this.card = elements.create('card');
+    //this.card.mount('#card');
+    this.card.mount(this.$refs.card);
+  }
+
+  async pay(clientSecret) {
+    /*  Stripe.get('bancontact', 'pk_test_Ict7P4E8rbEo4YCqZOj8sMpi').createSource({
+      type: 'bancontact',
+      amount: 1099,
+      currency: 'eur',
+      owner: {
+        name: 'foobar',
+        email: 'foo@bar.com'
+      },
+      redirect: {
+        return_url: 'http://localhost:3000/checkout?'
       }
     }); */
+
+    // Call stripe.confirmSepaDebitPayment() with the client secret.
+    // Initiate the payment.
+    let redirect;
+
+    this.stripe
+      .createSource({
+        type: 'bancontact',
+        amount: 1099,
+        currency: 'eur',
+        owner: {
+          name: 'Jenny Rosen',
+          email: 'foo@bar.com'
+        },
+        redirect: {
+          return_url: 'http://localhost:3000/checkout'
+        }
+      })
+      .then(result => {
+        if (result.error) {
+          // Show error to your customer
+          console.error(result.error.message);
+        } else {
+          // handle result.error or result.source
+          console.log(result.source.redirect.url);
+          redirect = result.source.redirect.url;
+          window.location.href = redirect;
+        }
+      });
+    //
+
+    /*   Stripe.get('iban', 'pk_test_Ict7P4E8rbEo4YCqZOj8sMpi')
+      .confirmSepaDebitPayment(clientSecret, {
+        payment_method: {
+          sepa_debit: {
+            iban: 'DE89370400440532013000'
+          },
+          billing_details: {
+            name: 'Ruben Claes',
+            email: 'rubes.claes@gmail.com'
+          }
+        }
+      })
+      .then(function(result) {
+        if (result.error) {
+          // Show error to your customer
+          console.log(result.error.message);
+        } else {
+          // The payment has succeeded
+          // Display a success message
+          console.log(result.paymentIntent.client_secret);
+        }
+      }); */
   }
 
   price() {
@@ -392,6 +445,10 @@ export default class CheckoutPage extends Vue {
     return this.$store.getters['auth/isLoggedIn'];
   }
 
+  /**
+   * TODO: Remove this in production!!
+   *
+   */
   async login() {
     try {
       await this.$store.dispatch('auth/login', {
@@ -455,21 +512,6 @@ export default class CheckoutPage extends Vue {
   async handleSubmit() {
     this.loading = true;
 
-    Stripe.get('iban', 'pk_test_Ict7P4E8rbEo4YCqZOj8sMpi')
-      .createSource({
-        type: 'sepa_debit',
-        currency: 'eur',
-        owner: {
-          name: 'foobar',
-          email: 'foo@bar.com'
-        },
-        mandate: {
-          notification_method: 'email'
-        }
-      })
-      .then(console.log)
-      .catch(console.error);
-
     try {
       await this.$store
         .dispatch('cart/createOrder', {
@@ -479,13 +521,18 @@ export default class CheckoutPage extends Vue {
           postalCode: '3550',
           city: 'heusden-zolder'
         })
-        .then(() => {
+        .then(data => {
           alert('Your order have been successfully submitted.');
+          console.info(data.clientSecret);
+          console.info(data.order);
           this.emptyCart();
+
+          this.pay(data.clientSecret);
           //this.$router.push('/');});
         });
     } catch (error) {
       this.loading = false;
+
       if (error.response && error.response.status === 403) {
         throw new Error('Not found');
       }

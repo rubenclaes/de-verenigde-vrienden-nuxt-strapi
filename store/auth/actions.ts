@@ -33,7 +33,7 @@ export const actions: ActionTree<AuthState, RootState> = {
       .catch(err => {
         commit('authError');
         console.error(err);
-        //localStorage.removeItem('token');
+        localStorage.removeItem('token');
       });
   },
 

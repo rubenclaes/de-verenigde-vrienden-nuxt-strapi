@@ -20,13 +20,14 @@ export const actions: ActionTree<CartState, RootState> = {
 
     // clear the cart
     commit('clear');
-    // send out checkout request, and optimistically
+    // send out checkout request
     commit('setCheckoutStatus', 'request');
-    // the shop API accepts a success callback and a failure callback
 
-    await createOrder(payload)
-      .then(succes => {
+    // create an order to process
+    const response = await createOrder(payload)
+      .then(data => {
         commit('setCheckoutStatus', 'successful');
+        return data;
       })
       .catch(err => {
         commit('setCheckoutStatus', 'failed');
@@ -34,6 +35,8 @@ export const actions: ActionTree<CartState, RootState> = {
         commit('set', { items: savedCartItems });
         console.error('error', err);
       });
+
+    return { clientSecret: response.clientSecret, order: response.order };
   },
 
   addProductToCart({ state, commit }, product) {
