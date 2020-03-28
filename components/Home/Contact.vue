@@ -20,11 +20,13 @@
             >
               <h4 class="mb-1">Wil je meer van ons weten?</h4>
               <p class="mt-0">
-                <badge type="primary" class="mr-3">Laat een bericht achter</badge>
+                <badge type="primary" class="mr-3"
+                  >Laat een bericht achter</badge
+                >
               </p>
 
               <div v-show="false">
-                <input name="form-name" value="contact" />
+                <input name="bot-field" value="contact" />
               </div>
 
               <ValidationObserver v-slot="{ invalid }">
@@ -69,7 +71,13 @@
                     </base-input>
                   </div>
                 </ValidationProvider>
-                <b-button block type="submit" variant="default" round :disabled="invalid">
+                <b-button
+                  block
+                  type="submit"
+                  variant="default"
+                  round
+                  :disabled="invalid"
+                >
                   <icon name="ni ni-send" size="sm"></icon>Verstuur
                 </b-button>
               </ValidationObserver>
@@ -89,13 +97,13 @@
         :cluster="{ options: { styles: clusterStyle } }"
         :center="{ lat: 51.0472056, lng: 5.2807416 }"
         :options="{
-            fullscreenControl: true,
-            streetViewControl: true,
-            mapTypeControl: true,
-            zoomControl: true,
-            gestureHandling: 'cooperative',
-            styles: mapStyle
-          }"
+          fullscreenControl: true,
+          streetViewControl: true,
+          mapTypeControl: true,
+          zoomControl: true,
+          gestureHandling: 'cooperative',
+          styles: mapStyle
+        }"
         :zoom="14"
         :style="{ height: 100 + '%' }"
       >
@@ -104,17 +112,17 @@
           :key="location.id"
           :position="{ lat: location.lat, lng: location.lng }"
           :options="{
-              icon:
-                location === currentLocation ? pins.selected : pins.notSelected
-            }"
+            icon:
+              location === currentLocation ? pins.selected : pins.notSelected
+          }"
           @click="currentLocation = location"
         >
           <GMapInfoWindow>
             <b>{{ location.name }}</b>
             <br />
-            {{ location.street}}
+            {{ location.street }}
             <br />
-            {{location.city}}
+            {{ location.city }}
             <br />
             <code>Lat: {{ location.lat }}, Lng: {{ location.lng }}</code>
           </GMapInfoWindow>

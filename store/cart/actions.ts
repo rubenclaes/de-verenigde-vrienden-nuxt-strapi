@@ -36,7 +36,7 @@ export const actions: ActionTree<CartState, RootState> = {
         console.error('error', err);
       });
 
-    return { clientSecret: response.clientSecret, order: response.order };
+    return response;
   },
 
   addProductToCart({ state, commit }, product) {

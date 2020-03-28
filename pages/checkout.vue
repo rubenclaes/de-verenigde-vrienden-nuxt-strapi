@@ -23,12 +23,12 @@
               </li>
               <li class="list-group-item d-flex justify-content-between">
                 <span>Totaal (EUR)</span>
-                <strong>&euro; {{ price() }}</strong>
+                <strong>{{ price() | euro }}</strong>
               </li>
             </ul>
           </div>
           <div class="col-md-8 order-md-1">
-            <h4 class="mb-3">Facturatieadres</h4>
+            <h4 class="mb-3">Betalingsgegevens</h4>
 
             <form
               class="needs-validation"
@@ -42,6 +42,7 @@
                     type="text"
                     class="form-control"
                     id="firstName"
+                    v-model="paymentInfo.firstName"
                     placeholder
                     value
                     required
@@ -57,6 +58,7 @@
                     type="text"
                     class="form-control"
                     id="lastName"
+                    v-model="paymentInfo.lastName"
                     placeholder
                     value
                     required
@@ -70,13 +72,13 @@
               <div class="mb-3">
                 <label for="email">
                   E-mail
-                  <span class="text-muted">(Optional)</span>
                 </label>
                 <input
                   type="email"
                   class="form-control"
                   id="email"
-                  placeholder="you@example.com"
+                  v-model="paymentInfo.email"
+                  placeholder="you@outlook.com"
                 />
                 <div class="invalid-feedback">
                   Please enter a valid email address for shipping updates.
@@ -89,7 +91,8 @@
                   type="text"
                   class="form-control"
                   id="address"
-                  placeholder="1234 Main St"
+                  v-model="paymentInfo.address"
+                  placeholder="Kerkenblook z/n"
                   required
                 />
                 <div class="invalid-feedback">
@@ -115,9 +118,10 @@
                 <div class="col-md-3 mb-3">
                   <label for="zip">Postcode</label>
                   <input
-                    type="text"
+                    type="number"
                     class="form-control"
                     id="zip"
+                    v-model="paymentInfo.zip"
                     placeholder
                     required
                   />
@@ -130,16 +134,35 @@
               <h4 class="mb-3">Betaling</h4>
 
               <div class="d-block my-3">
-                <div class="custom-control custom-radio">
-                  <input
-                    id="debit"
-                    name="paymentMethod"
-                    type="radio"
-                    class="custom-control-input"
-                    required
-                  />
-                  <label class="custom-control-label" for="debit">IBAN</label>
-                </div>
+                <base-radio
+                  name="paymentMethod"
+                  class="mb-3"
+                  :value="selectedRadio"
+                  :label="paymentMethods.bancontact.name"
+                  @change="changeValue"
+                >
+                  Bancontact
+                </base-radio>
+
+                <base-radio
+                  name="paymentMethod"
+                  class="mb-3"
+                  :value="selectedRadio"
+                  :label="paymentMethods.sepa_debit.name"
+                  @change="changeValue"
+                >
+                  IBAN
+                </base-radio>
+
+                <base-radio
+                  name="paymentMethod"
+                  class="mb-3"
+                  :value="selectedRadio"
+                  :label="paymentMethods.card.name"
+                  @change="changeValue"
+                >
+                  Mastercard / Visa
+                </base-radio>
               </div>
               <div class="row">
                 <!-- stripe Iban element -->
@@ -177,7 +200,8 @@
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="cc-number">Credit card number</label>
-                  <div ref="card"></div>
+                  <div class="form-control" ref="card"></div>
+                  <div class="form-control" ref="ibanElement"></div>
                   <div class="invalid-feedback">
                     Credit card number is required
                   </div>
@@ -186,14 +210,21 @@
 
               <hr class="mb-4" />
               <button
+                v-if="processing"
                 class="btn btn-primary btn-lg btn-block"
                 @click="handleSubmit()"
-                :disabled="!isLoggedIn()"
+                :disabled="processing"
               >
-                Afrekenen
+                <b-spinner small type="grow"></b-spinner>
+                Verwerken...
               </button>
-              <button class="btn btn-primary btn-lg btn-block" @click="pay()">
-                Pay
+              <button
+                v-else
+                class="btn btn-primary btn-lg btn-block"
+                @click="handleSubmit()"
+                :disabled="!isLoggedIn() && loading"
+              >
+                Betaal {{ price() | euro }}
               </button>
             </form>
             <base-button
@@ -246,6 +277,8 @@
           </div>
         </div>
 
+        {{ this.selectedRadio }}
+
         <div class="row justify-content-center">
           <div class="col-lg-10">
             <div class="row mt-3">
@@ -289,6 +322,7 @@ import { loadStripe } from '@stripe/stripe-js';
     Icon: () => import('@/components/Icon.vue'),
     BaseInput: () => import('@/components/BaseInput.vue'),
     BaseCheckbox: () => import('@/components/BaseCheckbox.vue'),
+    BaseRadio: () => import('@/components/BaseRadio.vue'),
     Cart: () => import('@/components/Cart.vue')
   }
 })
@@ -299,23 +333,70 @@ export default class CheckoutPage extends Vue {
 
   private loading: boolean = false;
 
+  private paymentInfo = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    address: '',
+    zip: 3550
+  };
+
   private stripe;
   private card;
+  private iban;
+  // Global variable to store the PaymentIntent object.
+  private paymentIntent;
 
-  private stripeOptions = {
-    supportedCountries: ['SEPA'],
-    // If you know the country of the customer, you can optionally pass it to
-    // the Element as placeholderCountry. The example IBAN that is being used
-    // as placeholder reflects the IBAN format of that country.
-    placeholderCountry: 'BE'
-  };
+  private selectedRadio: string = 'bancontact';
+  private processing: boolean = false;
 
   private paymentMethods = {
     bancontact: {
-      name: 'Bancontact',
+      name: 'bancontact',
       flow: 'redirect',
       countries: ['BE'],
       currencies: ['eur']
+    },
+
+    sepa_debit: {
+      name: 'iban',
+      flow: 'redirect',
+      supportedCountries: ['SEPA'],
+      placeholderCountry: 'BE',
+      currencies: ['eur']
+    },
+
+    card: {
+      name: 'card',
+      flow: 'redirect',
+      supportedCountries: ['SEPA'],
+      placeholderCountry: 'BE',
+      currencies: ['eur']
+    }
+  };
+
+  // Custom styling can be passed to options when creating an Element.
+  // (Note that this demo uses a wider set of styles than the guide below.)
+  private style = {
+    base: {
+      color: '#32325d',
+      fontFamily:
+        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+      fontSmoothing: 'antialiased',
+      fontSize: '16px',
+      '::placeholder': {
+        color: '#aab7c4'
+      },
+      ':-webkit-autofill': {
+        color: '#32325d'
+      }
+    },
+    invalid: {
+      color: '#fa755a',
+      iconColor: '#fa755a',
+      ':-webkit-autofill': {
+        color: '#fa755a'
+      }
     }
   };
 
@@ -323,26 +404,15 @@ export default class CheckoutPage extends Vue {
     // DO Something
   }
 
-  data() {
-    return {
-      // set the locale to german
-      elsOptions: {
-        locale: 'nl'
-      },
-      ibanOptions: {
-        supportedCountries: [`SEPA`],
-        placeholderCountry: `BE`
-      },
-      ibcompleted: false,
-      cdcompleted: false
-    };
-  }
-
   head() {
     return {
       title: this.title,
       meta: [{ hid: 'og:title', property: 'og:title', content: this.title }]
     };
+  }
+
+  changeValue(newValue) {
+    this.selectedRadio = newValue;
   }
 
   created() {
@@ -363,40 +433,96 @@ export default class CheckoutPage extends Vue {
     this.card = elements.create('card');
     //this.card.mount('#card');
     this.card.mount(this.$refs.card);
+
+    // Create an instance of the iban Element.
+    this.iban = elements.create('iban', {
+      style: this.style,
+      supportedCountries: this.paymentMethods.sepa_debit.supportedCountries
+    });
+
+    // Add an instance of the iban Element into the `iban-element` <div>.
+    this.iban.mount(this.$refs.ibanElement);
   }
 
-  async pay(clientSecret) {
-    /*  Stripe.get('bancontact', 'pk_test_Ict7P4E8rbEo4YCqZOj8sMpi').createSource({
-      type: 'bancontact',
-      amount: 1099,
-      currency: 'eur',
-      owner: {
-        name: 'foobar',
-        email: 'foo@bar.com'
-      },
-      redirect: {
-        return_url: 'http://localhost:3000/checkout?'
+  async pay() {
+    // Retrieve the user information from the form.
+    const { address, firstName, lastName, email, zip } = this.paymentInfo;
+
+    const payment = this.selectedRadio;
+    const name = firstName + ' ' + lastName;
+
+    const shipping = {
+      name,
+      address: {
+        line1: address,
+        postal_code: zip,
+        country: 'BE'
       }
-    }); */
+    };
 
     // Call stripe.confirmSepaDebitPayment() with the client secret.
     // Initiate the payment.
     let redirect;
 
-    this.stripe
-      .createSource({
-        type: 'bancontact',
-        amount: 1099,
-        currency: 'eur',
+    // Disable the Pay button to prevent multiple click events.
+    this.processing = true;
+
+    if (payment === 'card') {
+      // Let Stripe.js handle the confirmation of the PaymentIntent with the card Element.
+      console.log('card');
+      this.processing = false;
+      /*  const response = await this.stripe.confirmCardPayment(
+        this.paymentIntent.client_secret,
+        {
+          payment_method: {
+            card,
+            billing_details: {
+              name
+            }
+          },
+          shipping
+        }
+      );
+      handlePayment(response); */
+    } else if (payment === 'iban') {
+      // Confirm the PaymentIntent with the IBAN Element.
+      console.log('iban');
+      this.processing = false;
+      /*  const response = await stripe.confirmSepaDebitPayment(
+        paymentIntent.client_secret,
+        {
+          payment_method: {
+            sepa_debit: iban,
+            billing_details: {
+              name,
+              email
+            }
+          }
+        }
+      );
+      handlePayment(response); */
+    } else {
+      // Prepare all the Stripe source common data.
+      const sourceData = {
+        type: payment,
+        amount: this.paymentIntent.amount,
+        currency: this.paymentIntent.currency,
         owner: {
-          name: 'Jenny Rosen',
-          email: 'foo@bar.com'
+          name,
+          email
         },
         redirect: {
-          return_url: 'http://localhost:3000/checkout'
+          return_url: window.location.href
+        },
+        statement_descriptor: 'Stripe Payments Demo',
+        metadata: {
+          paymentIntent: this.paymentIntent.id
         }
-      })
-      .then(result => {
+      };
+
+      // Create a Stripe source with the common data and extra information.
+      await this.stripe.createSource(sourceData).then(result => {
+        this.processing = false;
         if (result.error) {
           // Show error to your customer
           console.error(result.error.message);
@@ -404,9 +530,35 @@ export default class CheckoutPage extends Vue {
           // handle result.error or result.source
           console.log(result.source.redirect.url);
           redirect = result.source.redirect.url;
-          window.location.href = redirect;
+          // window.location.href = redirect;
         }
       });
+
+      /*      this.stripe
+        .createSource({
+          type: 'bancontact',
+          amount: 1099,
+          currency: 'eur',
+          owner: {
+            name: 'Jenny Rosen',
+            email: 'foo@bar.com'
+          },
+          redirect: {
+            return_url: 'http://localhost:3000/checkout'
+          }
+        })
+        .then(result => {
+          if (result.error) {
+            // Show error to your customer
+            console.error(result.error.message);
+          } else {
+            // handle result.error or result.source
+            console.log(result.source.redirect.url);
+            redirect = result.source.redirect.url;
+            window.location.href = redirect;
+          }
+        }); */
+    }
     //
 
     /*   Stripe.get('iban', 'pk_test_Ict7P4E8rbEo4YCqZOj8sMpi')
@@ -503,35 +655,36 @@ export default class CheckoutPage extends Vue {
       });
   }
 
-  post() {
-    this.$axios.get('orders').then(res => {
-      console.log(res.data);
-    });
-  }
-
   async handleSubmit() {
-    this.loading = true;
+    this.processing = true;
+
+    // Retrieve the user information from the form.
+    const { address, firstName, lastName, email, zip } = this.paymentInfo;
 
     try {
       await this.$store
         .dispatch('cart/createOrder', {
-          amount: this.$store.getters['cart/cartTotalPrice'],
-          dishes: this.$store.getters['cart/cartProducts'],
-          address: 'vroenweg',
-          postalCode: '3550',
-          city: 'heusden-zolder'
+          amount: this.price(),
+          dishes: this.numberOfItems(),
+          address: address,
+          currency: 'eur',
+          postalCode: zip
         })
         .then(data => {
           alert('Your order have been successfully submitted.');
-          console.info(data.clientSecret);
-          console.info(data.order);
+
+          const { clientSecret, order, paymentIntent } = data;
+          console.info(clientSecret);
+          console.info(order);
+          console.info(paymentIntent);
+
+          this.paymentIntent = paymentIntent;
           this.emptyCart();
 
-          this.pay(data.clientSecret);
-          //this.$router.push('/');});
+          this.pay();
         });
     } catch (error) {
-      this.loading = false;
+      this.processing = false;
 
       if (error.response && error.response.status === 403) {
         throw new Error('Not found');

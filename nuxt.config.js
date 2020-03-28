@@ -35,7 +35,7 @@ module.exports = {
     ],
     script: [
       {
-        src: 'https://js.stripe.com/v3'
+        src: ''
       }
     ]
   },
