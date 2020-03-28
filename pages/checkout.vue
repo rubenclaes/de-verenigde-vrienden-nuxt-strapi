@@ -223,7 +223,7 @@
                 v-else
                 class="btn btn-primary btn-lg btn-block"
                 @click="handleSubmit()"
-                :disabled="!isLoggedIn() && loading"
+                :disabled="!isLoggedIn() || numberOfItems() <= 0"
               >
                 Betaal {{ price() | euro }}
               </button>
