@@ -145,6 +145,7 @@
                 </base-radio>
 
                 <base-radio
+                  v-if="false"
                   name="paymentMethod"
                   class="mb-3"
                   :value="selectedRadio"
@@ -184,7 +185,7 @@
                   /> -->
                 </client-only>
 
-                <div class="col-md-6 mb-3">
+                <div class="col-md-6 mb-3" v-if="selectedRadio === 'card'">
                   <label for="cc-name">Name on card</label>
                   <input
                     type="text"
@@ -201,7 +202,7 @@
                 <div class="col-md-6 mb-3">
                   <label for="cc-number">Credit card number</label>
                   <div class="form-control" ref="card"></div>
-                  <div class="form-control" ref="ibanElement"></div>
+                  <!-- <div class="form-control" ref="ibanElement"></div> -->
                   <div class="invalid-feedback">
                     Credit card number is required
                   </div>
@@ -276,8 +277,6 @@
             >
           </div>
         </div>
-
-        {{ this.selectedRadio }}
 
         <div class="row justify-content-center">
           <div class="col-lg-10">
@@ -434,14 +433,15 @@ export default class CheckoutPage extends Vue {
     //this.card.mount('#card');
     this.card.mount(this.$refs.card);
 
+    // Wait for invite
     // Create an instance of the iban Element.
-    this.iban = elements.create('iban', {
+    /*  this.iban = elements.create('iban', {
       style: this.style,
       supportedCountries: this.paymentMethods.sepa_debit.supportedCountries
-    });
+    }); */
 
     // Add an instance of the iban Element into the `iban-element` <div>.
-    this.iban.mount(this.$refs.ibanElement);
+    //this.iban.mount(this.$refs.ibanElement);
   }
 
   async pay() {
@@ -514,7 +514,9 @@ export default class CheckoutPage extends Vue {
         redirect: {
           return_url: window.location.href
         },
-        statement_descriptor: 'Stripe Payments Demo',
+
+        bancontact: { preferred_language: 'nl' },
+        statement_descriptor: 'ORDER Eetdag',
         metadata: {
           paymentIntent: this.paymentIntent.id
         }
@@ -530,7 +532,7 @@ export default class CheckoutPage extends Vue {
           // handle result.error or result.source
           console.log(result.source.redirect.url);
           redirect = result.source.redirect.url;
-          // window.location.href = redirect;
+          window.location.href = redirect;
         }
       });
 
@@ -661,40 +663,47 @@ export default class CheckoutPage extends Vue {
     // Retrieve the user information from the form.
     const { address, firstName, lastName, email, zip } = this.paymentInfo;
 
-    try {
-      await this.$store
-        .dispatch('cart/createOrder', {
-          amount: this.price(),
-          dishes: this.numberOfItems(),
-          address: address,
-          currency: 'eur',
-          postalCode: zip
-        })
-        .then(data => {
-          alert('Your order have been successfully submitted.');
+    // Create Payment intends for IBAN and Card
 
-          const { clientSecret, order, paymentIntent } = data;
-          console.info(clientSecret);
-          console.info(order);
-          console.info(paymentIntent);
+    // Create Source for Bancontact
+    await this.$store
+      .dispatch('cart/createOrder', {
+        amount: this.price(),
+        dishes: this.productsInCart(),
+        address: address,
+        currency: 'eur',
+        postalCode: zip
+      })
+      .then(data => {
+        alert('Your order have been successfully submitted.');
 
-          this.paymentIntent = paymentIntent;
-          this.emptyCart();
+        const { clientSecret, order, paymentIntent } = data;
+        console.info(clientSecret);
+        console.info(order);
+        console.info(paymentIntent);
 
-          this.pay();
-        });
-    } catch (error) {
-      this.processing = false;
+        this.paymentIntent = paymentIntent;
+        this.emptyCart();
 
-      if (error.response && error.response.status === 403) {
-        throw new Error('Not found');
-      }
-      if (error.response && error.response.status === 401) {
-        throw new Error('Token expired');
-      }
-      throw error;
-      alert(error);
-    }
+        this.pay();
+      })
+      .catch(err => {
+        this.processing = false;
+
+        if (err.response && err.response.status === 400) {
+          throw new Error(
+            err.response.statusText + ' ' + err.response.data.message
+          );
+        }
+
+        if (err.response && err.response.status === 403) {
+          throw new Error(err.response.statusText + ' Not found');
+        }
+        if (err.response && err.response.status === 401) {
+          throw new Error(err.response.statusText + ' Token expired');
+        }
+        alert(err.response.data.message);
+      });
   }
 
   emptyCart() {
@@ -703,6 +712,10 @@ export default class CheckoutPage extends Vue {
 
   numberOfItems() {
     return this.$store.getters['cart/numberOfItems'];
+  }
+
+  productsInCart() {
+    return this.$store.getters['cart/cartProducts'];
   }
 }
 </script>

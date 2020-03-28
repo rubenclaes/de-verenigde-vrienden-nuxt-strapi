@@ -33,7 +33,7 @@ export const actions: ActionTree<CartState, RootState> = {
         commit('setCheckoutStatus', 'failed');
         // rollback to the cart saved before sending the request
         commit('set', { items: savedCartItems });
-        console.error('error', err);
+        throw err;
       });
 
     return response;
