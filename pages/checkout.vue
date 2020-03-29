@@ -515,7 +515,7 @@ export default class CheckoutPage extends Vue {
         },
 
         bancontact: { preferred_language: 'nl' },
-        statement_descriptor: 'ORDER Eetdag',
+        statement_descriptor: 'Eetdag KH De Verenigde Vrienden',
         metadata: {
           paymentIntent: this.paymentIntent.id
         }
@@ -652,9 +652,9 @@ export default class CheckoutPage extends Vue {
         alert('Your order have been successfully submitted.');
 
         const { clientSecret, order, paymentIntent } = data;
-        console.info(clientSecret);
+        /* console.info(clientSecret);
         console.info(order);
-        console.info(paymentIntent);
+        console.info(paymentIntent); */
 
         this.paymentIntent = paymentIntent;
         this.emptyCart();
