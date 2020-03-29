@@ -23,6 +23,9 @@ export const actions: ActionTree<CartState, RootState> = {
     // send out checkout request
     commit('setCheckoutStatus', 'request');
 
+    const { stripeIdempotency } = payload;
+    console.log(stripeIdempotency);
+
     // create an order to process
     const response = await createOrder(payload)
       .then(data => {

@@ -307,9 +307,8 @@ import { Item } from '../store/cart/types';
 
 //import { stripeKey, stripeOptions } from './stripeConfig.json';
 
-//import { StripeElement, Stripe } from 'vue-stripe-better-elements';
-
 import { loadStripe } from '@stripe/stripe-js';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   layout: 'appColor',
@@ -530,36 +529,10 @@ export default class CheckoutPage extends Vue {
           console.error(result.error.message);
         } else {
           // handle result.error or result.source
-          console.log(result.source.redirect.url);
-          redirect = result.source.redirect.url;
-          window.location.href = redirect;
+          console.info(result.source.redirect.url);
+          window.location.href = result.source.redirect.url;
         }
       });
-
-      /*      this.stripe
-        .createSource({
-          type: 'bancontact',
-          amount: 1099,
-          currency: 'eur',
-          owner: {
-            name: 'Jenny Rosen',
-            email: 'foo@bar.com'
-          },
-          redirect: {
-            return_url: 'http://localhost:3000/checkout'
-          }
-        })
-        .then(result => {
-          if (result.error) {
-            // Show error to your customer
-            console.error(result.error.message);
-          } else {
-            // handle result.error or result.source
-            console.log(result.source.redirect.url);
-            redirect = result.source.redirect.url;
-            window.location.href = redirect;
-          }
-        }); */
     }
     //
 
@@ -672,7 +645,8 @@ export default class CheckoutPage extends Vue {
         dishes: this.productsInCart(),
         address: address,
         currency: 'eur',
-        postalCode: zip
+        postalCode: zip,
+        stripeIdempotency: uuidv4()
       })
       .then(data => {
         alert('Your order have been successfully submitted.');
