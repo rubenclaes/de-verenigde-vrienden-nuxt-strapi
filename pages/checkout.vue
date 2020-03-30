@@ -164,27 +164,17 @@
                 >
                   Mastercard / Visa
                 </base-radio>
+                <base-radio
+                  name="paymentMethod"
+                  class="mb-3"
+                  :value="selectedRadio"
+                  :label="paymentMethods.paymentRequestBtn.name"
+                  @change="changeValue"
+                >
+                  Apple Pay / Google Pay
+                </base-radio>
               </div>
               <div class="row">
-                <!-- stripe Iban element -->
-
-                <client-only>
-                  <!--   <stripe-element
-                    type="iban"
-                    stripe="pk_test_Ict7P4E8rbEo4YCqZOj8sMpi"
-                    :elOptions="ibanOptions"
-                    @change="ibcompleted = $event.complete"
-                  /> -->
-
-                  <!-- stripe Card element -->
-                  <!--  <stripe-element
-                    type="card"
-                    stripe="pk_test_Ict7P4E8rbEo4YCqZOj8sMpi"
-                    :elsOptions="elsOptions"
-                    @change="cdcompleted = $event.complete"
-                  /> -->
-                </client-only>
-
                 <div class="col-md-6 mb-3" v-if="selectedRadio === 'card'">
                   <label for="cc-name">Name on card</label>
                   <input
@@ -202,6 +192,10 @@
                 <div class="col-md-6 mb-3">
                   <label for="cc-number">Credit card number</label>
                   <div class="form-control" ref="card"></div>
+                  <div ref="payment-request-button">
+                    <!-- A Stripe Element will be inserted here. -->
+                  </div>
+
                   <!-- <div class="form-control" ref="ibanElement"></div> -->
                   <div class="invalid-feedback">
                     Credit card number is required
@@ -342,8 +336,10 @@ export default class CheckoutPage extends Vue {
   private stripe;
   private card;
   private iban;
+  private prButton;
   // Global variable to store the PaymentIntent object.
   private paymentIntent;
+  private paymentRequest;
 
   private selectedRadio: string = 'bancontact';
   private processing: boolean = false;
@@ -370,23 +366,35 @@ export default class CheckoutPage extends Vue {
       supportedCountries: ['SEPA'],
       placeholderCountry: 'BE',
       currencies: ['eur']
+    },
+    paymentRequestBtn: {
+      name: 'paymentRequestButton',
+      country: 'BE',
+      currency: 'eur',
+      total: {
+        label: 'Total',
+        amount: this.price()
+      },
+      requestShipping: false,
+      requestPayerEmail: true
     }
   };
 
-  // Custom styling can be passed to options when creating an Element.
-  // (Note that this demo uses a wider set of styles than the guide below.)
+  // Prepare the styles for Elements.
   private style = {
     base: {
-      color: '#32325d',
+      iconColor: '#666ee8',
+      color: '#31325f',
+      fontWeight: 400,
       fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
       fontSmoothing: 'antialiased',
-      fontSize: '16px',
+      fontSize: '15px',
       '::placeholder': {
         color: '#aab7c4'
       },
       ':-webkit-autofill': {
-        color: '#32325d'
+        color: '#666ee8'
       }
     },
     invalid: {
@@ -398,15 +406,15 @@ export default class CheckoutPage extends Vue {
     }
   };
 
-  onSubmit() {
-    // DO Something
-  }
-
   head() {
     return {
       title: this.title,
       meta: [{ hid: 'og:title', property: 'og:title', content: this.title }]
     };
+  }
+
+  onSubmit() {
+    // DO Something
   }
 
   changeValue(newValue) {
@@ -423,14 +431,44 @@ export default class CheckoutPage extends Vue {
   async mounted() {
     this.stripe = await loadStripe('pk_test_Ict7P4E8rbEo4YCqZOj8sMpi');
 
+    // Code that will run only after the
+    // entire view has been rendered
+    // Create the payment request.
+    this.paymentRequest = this.stripe.paymentRequest({
+      country: this.paymentMethods.paymentRequestBtn.country,
+      currency: this.paymentMethods.paymentRequestBtn.currency,
+      total: {
+        label: 'Total',
+        amount: this.paymentMethods.paymentRequestBtn.total.amount
+      },
+      requestShipping: true,
+      requestPayerEmail: true
+    });
+
     this.createAndMountFormElements();
   }
 
   createAndMountFormElements() {
     let elements = this.stripe.elements();
-    this.card = elements.create('card');
+    this.card = elements.create('card', { style: this.style });
     //this.card.mount('#card');
     this.card.mount(this.$refs.card);
+
+    this.prButton = elements.create('paymentRequestButton', {
+      paymentRequest: this.paymentRequest
+    });
+
+    // Check the availability of the Payment Request API first.
+    this.paymentRequest.canMakePayment().then(result => {
+      if (result) {
+        this.prButton.mount(this.$refs.paymentRequestButton);
+      } else {
+        /* document.getElementById('payment-request-button').style.display =
+          'none'; */
+
+        console.log('none');
+      }
+    });
 
     // Wait for invite
     // Create an instance of the iban Element.
@@ -450,15 +488,6 @@ export default class CheckoutPage extends Vue {
     const payment = this.selectedRadio;
     const name = firstName + ' ' + lastName;
 
-    const shipping = {
-      name,
-      address: {
-        line1: address,
-        postal_code: zip,
-        country: 'BE'
-      }
-    };
-
     // Call stripe.confirmSepaDebitPayment() with the client secret.
     // Initiate the payment.
     let redirect;
@@ -468,21 +497,32 @@ export default class CheckoutPage extends Vue {
 
     if (payment === 'card') {
       // Let Stripe.js handle the confirmation of the PaymentIntent with the card Element.
-      console.log('card');
-      this.processing = false;
-      /*  const response = await this.stripe.confirmCardPayment(
-        this.paymentIntent.client_secret,
-        {
-          payment_method: {
-            card,
-            billing_details: {
-              name
-            }
-          },
-          shipping
+      const cardPaymentData = {
+        payment_method: {
+          card: this.card,
+          billing_details: {
+            name,
+            address: {
+              country: 'BE',
+              line1: address,
+              postal_code: zip
+            },
+            email: email
+          }
         }
-      );
-      handlePayment(response); */
+      };
+
+      const response = await this.stripe
+        .confirmCardPayment(this.paymentIntent.client_secret, cardPaymentData)
+        .then(result => {
+          this.processing = false;
+          if (result.error) {
+            // Show error to your customer
+            console.error(result.error.message);
+          } else {
+            console.info(result);
+          }
+        });
     } else if (payment === 'iban') {
       // Confirm the PaymentIntent with the IBAN Element.
       console.log('iban');
@@ -508,7 +548,12 @@ export default class CheckoutPage extends Vue {
         currency: this.paymentIntent.currency,
         owner: {
           name,
-          email
+          email,
+          address: {
+            country: 'BE',
+            line1: address,
+            postal_code: zip
+          }
         },
         redirect: {
           return_url: window.location.href
@@ -534,30 +579,6 @@ export default class CheckoutPage extends Vue {
         }
       });
     }
-    //
-
-    /*   Stripe.get('iban', 'pk_test_Ict7P4E8rbEo4YCqZOj8sMpi')
-      .confirmSepaDebitPayment(clientSecret, {
-        payment_method: {
-          sepa_debit: {
-            iban: 'DE89370400440532013000'
-          },
-          billing_details: {
-            name: 'Ruben Claes',
-            email: 'rubes.claes@gmail.com'
-          }
-        }
-      })
-      .then(function(result) {
-        if (result.error) {
-          // Show error to your customer
-          console.log(result.error.message);
-        } else {
-          // The payment has succeeded
-          // Display a success message
-          console.log(result.paymentIntent.client_secret);
-        }
-      }); */
   }
 
   price() {
