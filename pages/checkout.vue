@@ -322,8 +322,8 @@ export default class CheckoutPage extends Vue {
   private title: string = 'Checkout';
 
   private complete: boolean = false;
-
   private loading: boolean = false;
+  private processing: boolean = false;
 
   private paymentInfo = {
     firstName: '',
@@ -334,6 +334,8 @@ export default class CheckoutPage extends Vue {
   };
 
   private stripe;
+
+  // Stripe Elements
   private card;
   private iban;
   private prButton;
@@ -342,7 +344,6 @@ export default class CheckoutPage extends Vue {
   private paymentRequest;
 
   private selectedRadio: string = 'bancontact';
-  private processing: boolean = false;
 
   private paymentMethods = {
     bancontact: {
@@ -466,7 +467,7 @@ export default class CheckoutPage extends Vue {
         /* document.getElementById('payment-request-button').style.display =
           'none'; */
 
-        console.log('none');
+        console.log(result);
       }
     });
 
