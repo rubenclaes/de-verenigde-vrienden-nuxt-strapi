@@ -165,6 +165,7 @@
                   Mastercard / Visa
                 </base-radio>
                 <base-radio
+                  v-if="false"
                   name="paymentMethod"
                   class="mb-3"
                   :value="selectedRadio"
@@ -192,7 +193,7 @@
                 <div class="col-md-6 mb-3">
                   <label for="cc-number">Credit card number</label>
                   <div class="form-control" ref="card"></div>
-                  <div ref="payment-request-button">
+                  <div ref="paymentRequestButton">
                     <!-- A Stripe Element will be inserted here. -->
                   </div>
 
@@ -339,7 +340,7 @@ export default class CheckoutPage extends Vue {
   private card;
   private iban;
   private prButton;
-  // Global variable to store the PaymentIntent object.
+  // Global variables to store the PaymentIntent & PaymemtRequest object.
   private paymentIntent;
   private paymentRequest;
 
@@ -435,17 +436,17 @@ export default class CheckoutPage extends Vue {
     // Code that will run only after the
     // entire view has been rendered
     // Create the payment request.
-    this.paymentRequest = this.stripe.paymentRequest({
-      country: this.paymentMethods.paymentRequestBtn.country,
-      currency: this.paymentMethods.paymentRequestBtn.currency,
+    /*     this.paymentRequest = this.stripe.paymentRequest({
+      country: 'US',
+      currency: 'usd',
       total: {
-        label: 'Total',
-        amount: this.paymentMethods.paymentRequestBtn.total.amount
+        label: 'Demo total',
+        amount: 1000
       },
-      requestShipping: true,
+      requestPayerName: true,
       requestPayerEmail: true
     });
-
+ */
     this.createAndMountFormElements();
   }
 
@@ -455,7 +456,7 @@ export default class CheckoutPage extends Vue {
     //this.card.mount('#card');
     this.card.mount(this.$refs.card);
 
-    this.prButton = elements.create('paymentRequestButton', {
+    /*    this.prButton = elements.create('paymentRequestButton', {
       paymentRequest: this.paymentRequest
     });
 
@@ -464,12 +465,14 @@ export default class CheckoutPage extends Vue {
       if (result) {
         this.prButton.mount(this.$refs.paymentRequestButton);
       } else {
-        /* document.getElementById('payment-request-button').style.display =
-          'none'; */
+       //  document.getElementById('payment-request-button').style.display =
+         // 'none'; 
 
         console.log(result);
       }
     });
+
+    this.prButton.mount(this.$refs.paymentRequestButton); */
 
     // Wait for invite
     // Create an instance of the iban Element.
@@ -485,13 +488,8 @@ export default class CheckoutPage extends Vue {
   async pay() {
     // Retrieve the user information from the form.
     const { address, firstName, lastName, email, zip } = this.paymentInfo;
-
     const payment = this.selectedRadio;
     const name = firstName + ' ' + lastName;
-
-    // Call stripe.confirmSepaDebitPayment() with the client secret.
-    // Initiate the payment.
-    let redirect;
 
     // Disable the Pay button to prevent multiple click events.
     this.processing = true;
@@ -600,10 +598,12 @@ export default class CheckoutPage extends Vue {
    */
   async login() {
     try {
-      await this.$store.dispatch('auth/login', {
-        identifier: process.env.strapiUser,
-        password: process.env.strapiPassword
-      });
+      await this.$store
+        .dispatch('auth/login', {
+          identifier: process.env.strapiUser,
+          password: process.env.strapiPassword
+        })
+        .then(result => console.log(result));
     } catch (error) {
       if (error.response && error.response.status === 401) {
         throw new Error('Bad credentials or Token expired');

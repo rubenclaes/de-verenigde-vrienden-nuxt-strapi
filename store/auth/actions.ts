@@ -23,6 +23,7 @@ export const actions: ActionTree<AuthState, RootState> = {
       password: password
     })
       .then(resp => {
+        console.log(resp);
         const token = resp.data.jwt;
         const user = resp.data.user;
 
@@ -32,7 +33,7 @@ export const actions: ActionTree<AuthState, RootState> = {
       })
       .catch(err => {
         commit('authError');
-        console.error(err);
+        console.error(`Trying to login failed ${err}`);
         localStorage.removeItem('token');
       });
   },
