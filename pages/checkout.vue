@@ -223,53 +223,6 @@
                 Betaal {{ price() | euro }}
               </button>
             </form>
-            <base-button
-              @click="checkout()"
-              size="sm"
-              type="danger"
-              icon="fa fa-trash"
-              outline
-            ></base-button>
-            <base-button
-              @click="logout()"
-              size="sm"
-              type="danger"
-              icon="fa fa-trash"
-              outline
-              >logout</base-button
-            >
-            <base-button
-              @click="auth0()"
-              size="sm"
-              type="danger"
-              icon="fa fa-trash"
-              outline
-              >auth0</base-button
-            >
-            <base-button
-              @click="post()"
-              size="sm"
-              type="danger"
-              icon="fa fa-trash"
-              outline
-              >post</base-button
-            >
-            <base-button
-              @click="isLoggedIn()"
-              size="sm"
-              type="danger"
-              icon="fa fa-trash"
-              outline
-              >isLoggedin</base-button
-            >
-            <base-button
-              @click="login()"
-              size="sm"
-              type="danger"
-              icon="fa fa-trash"
-              outline
-              >login to strapi</base-button
-            >
           </div>
         </div>
 
@@ -421,13 +374,6 @@ export default class CheckoutPage extends Vue {
 
   changeValue(newValue) {
     this.selectedRadio = newValue;
-  }
-
-  created() {
-    if (!this.isLoggedIn()) {
-      this.login();
-    }
-    //this.$axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   }
 
   async mounted() {
@@ -590,66 +536,6 @@ export default class CheckoutPage extends Vue {
 
   isLoggedIn() {
     return this.$store.getters['auth/isLoggedIn'];
-  }
-
-  /**
-   * TODO: Remove this in production!!
-   *
-   */
-  async login() {
-    try {
-      await this.$store
-        .dispatch('auth/login', {
-          identifier: process.env.strapiUser,
-          password: process.env.strapiPassword
-        })
-        .then(result => console.log(result));
-    } catch (error) {
-      if (error.response && error.response.status === 401) {
-        throw new Error('Bad credentials or Token expired');
-      }
-      throw error;
-    }
-  }
-
-  auth0() {
-    var bodyFormData = new FormData();
-    bodyFormData.set('grant_type', 'client_credentials');
-    bodyFormData.set('client_id', 'mbtZb23JrNMR4jNFFIYkciWL3AtuEk3I');
-    bodyFormData.set(
-      'client_secret',
-      'OWCagftZ5H7BsflaJW3Or8VHHbFNlJq-dX9al6R1d8vwViMKH_R-M1aLzpRXgsRP'
-    );
-    bodyFormData.set(
-      'audience',
-      'https://strapi-de-verenigde-vrienden.herokuapp.com/orders'
-    );
-
-    const options = {
-      headers: { 'content-type': 'application/json' }
-    };
-
-    this.$axios
-      .post(
-        'https://dev-xx5zris5.auth0.com/oauth/token',
-        {
-          client_id: 'mbtZb23JrNMR4jNFFIYkciWL3AtuEk3I',
-          client_secret:
-            'OWCagftZ5H7BsflaJW3Or8VHHbFNlJq-dX9al6R1d8vwViMKH_R-M1aLzpRXgsRP',
-          audience: 'https://strapi-de-verenigde-vrienden.herokuapp.com/orders',
-          grant_type: 'client_credentials'
-        },
-
-        options
-      )
-      .then(function(response) {
-        //handle success
-        console.log(response);
-      })
-      .catch(function(response) {
-        //handle error
-        console.log(response);
-      });
   }
 
   async handleSubmit() {
