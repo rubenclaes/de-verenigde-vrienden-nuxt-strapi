@@ -13,21 +13,23 @@ interface CartActionContext extends ActionContext<CartState, RootState> {}
  * Cart actions
  */
 export const actions: ActionTree<CartState, RootState> = {
-  async createOrder({ commit, state }, payload) {
+  async createOrder({ commit, state, rootState }, payload) {
+    if (!state.items.length) throw new Error('State is empty');
+
+    if (!rootState.auth.token.length) throw new Error('Note logged in!');
+
     // save the items currently in the cart
     const savedCartItems = [...state.items];
-    commit('setCheckoutStatus', null);
+
+    const token = rootState.auth.token;
 
     // clear the cart
     commit('clear');
     // send out checkout request
     commit('setCheckoutStatus', 'request');
 
-    const { stripeIdempotency } = payload;
-    console.log(stripeIdempotency);
-
     // create an order to process
-    const response = await createOrder(payload)
+    const response = await createOrder(payload, token)
       .then(data => {
         commit('setCheckoutStatus', 'successful');
         return data;

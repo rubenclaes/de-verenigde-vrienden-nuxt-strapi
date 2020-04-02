@@ -4,8 +4,12 @@ import { $axios } from '~/utils/api';
  * Create an order with a payload.
  *
  */
-export async function createOrder(payload) {
-  return await $axios.post(`orders`, payload).then(res => {
+export async function createOrder(payload, token) {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` }
+  };
+
+  return await $axios.post(`orders`, payload, config).then(res => {
     return res.data;
   });
 }

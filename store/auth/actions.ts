@@ -22,18 +22,21 @@ export const actions: ActionTree<AuthState, RootState> = {
       identifier: identifier,
       password: password
     })
-      .then(resp => {
-        console.log(resp);
-        const token = resp.data.jwt;
-        const user = resp.data.user;
+      .then(response => {
+        console.log(response);
+        const token = response.data.jwt;
+        const user = response.data.user;
+
+        console.log('User profile', response.data.user);
+        console.log('User token', response.data.jwt);
 
         //localStorage.setItem('token', token);
-        $axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        //$axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         commit('authSuccess', { token, user });
       })
       .catch(err => {
         commit('authError');
-        console.error(`Trying to login failed ${err}`);
+        console.error(`Trying to login failed: ${err}`);
         localStorage.removeItem('token');
       });
   },

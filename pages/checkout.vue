@@ -226,6 +226,23 @@
           </div>
         </div>
 
+        <base-button
+          @click="isLoggedIn()"
+          size="sm"
+          type="danger"
+          icon="fa fa-trash"
+          outline
+          >isLoggedin</base-button
+        >
+        <base-button
+          @click="price()"
+          size="sm"
+          type="danger"
+          icon="fa fa-trash"
+          outline
+          >price</base-button
+        >
+
         <div class="row justify-content-center">
           <div class="col-lg-10">
             <div class="row mt-3">
@@ -376,7 +393,26 @@ export default class CheckoutPage extends Vue {
     this.selectedRadio = newValue;
   }
 
+  async login() {
+    try {
+      await this.$store
+        .dispatch('auth/login', {
+          identifier: process.env.strapiUser,
+          password: process.env.strapiPassword
+        })
+        .then(result => console.log(result));
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        throw new Error('Bad credentials or Token expired');
+      }
+      throw error;
+    }
+  }
+
   async mounted() {
+    if (!this.isLoggedIn()) {
+      this.login();
+    }
     this.stripe = await loadStripe('pk_test_Ict7P4E8rbEo4YCqZOj8sMpi');
 
     // Code that will run only after the
@@ -526,7 +562,8 @@ export default class CheckoutPage extends Vue {
     }
   }
 
-  price() {
+  price(): number {
+    console.info(this.$store.getters['cart/cartTotalPrice']);
     return this.$store.getters['cart/cartTotalPrice'];
   }
 
@@ -535,6 +572,7 @@ export default class CheckoutPage extends Vue {
   }
 
   isLoggedIn() {
+    console.info(this.$store.getters['auth/isLoggedIn']);
     return this.$store.getters['auth/isLoggedIn'];
   }
 
@@ -553,7 +591,7 @@ export default class CheckoutPage extends Vue {
         dishes: this.productsInCart(),
         address: address,
         currency: 'eur',
-        postalCode: zip,
+        zip: zip.toString(),
         stripeIdempotency: uuidv4()
       })
       .then(data => {
