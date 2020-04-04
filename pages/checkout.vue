@@ -405,6 +405,9 @@ export default class CheckoutPage extends Vue {
       this.login();
     }
 
+    // Reset the checkout status
+    this.$store.commit('cart/setCheckoutStatus', '');
+
     const stripeKey: string = process.env.stripePublicKey || '';
     this.stripe = await loadStripe(stripeKey);
 

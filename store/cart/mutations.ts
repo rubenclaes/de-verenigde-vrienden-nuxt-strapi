@@ -44,7 +44,9 @@ export const mutations: MutationTree<CartState> = {
    */
   decrementItemQuantity(state, { id }) {
     const cartItem = state.items.find(item => item.id === id);
-    if (cartItem) cartItem.quantity--;
+    if (cartItem && cartItem.quantity > 0) {
+      cartItem.quantity--;
+    }
   },
 
   /**

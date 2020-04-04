@@ -5,46 +5,52 @@
     <li
       v-for="product in productsInCart()"
       :key="product.id"
-      class="list-group-item d-flex justify-content-between lh-condensed"
+      class="list-group-item d-flex justify-content-between align-items-center"
     >
       <div>
         <h6 class="my-0">{{ product.title }}</h6>
       </div>
 
       <base-button
-        @click="quantity > 0 ? quantity-- : (quantity = 0)"
+        @click="decrementItemQuantity(product.id)"
         size="sm"
         type="secondary"
         icon="fa fa-minus"
         rounded
+        outline
         icon-only
       ></base-button>
 
       {{ product.quantity }}
 
       <base-button
-        @click="quantity++"
+        @click="incrementItemQuantity(product.id)"
         size="sm"
         type="primary"
         icon="fa fa-plus"
-        rounded
-        icon-only
-      ></base-button>
-
-      <span class="text-muted">&euro; {{ product.price }}</span>
-
-      <base-button
-        @click="removeFromCart(product)"
-        size="sm"
-        type="danger"
-        icon="fa fa-trash"
         outline
+        rounded
       ></base-button>
+
+      <span class="badge badge-primary badge-pill"
+        >&euro; {{ product.price }}</span
+      >
+
+      <div class="col-auto">
+        <base-button
+          @click="removeFromCart(product)"
+          size="sm"
+          type="danger"
+          icon="fa fa-trash"
+          outline
+          rounded
+        ></base-button>
+      </div>
     </li>
   </div>
   <li
     v-else
-    class="list-group-item d-flex justify-content-between lh-condensed"
+    class="list-group-item d-flex justify-content-between align-items-center"
   >
     Winkelmandje is leeg. 😔
   </li>
@@ -58,19 +64,20 @@ import { Item } from '../store/cart/types';
   components: { BaseButton: () => import('@/components/BaseButton.vue') }
 })
 export default class Cart extends Vue {
-  data() {
-    return {
-      quantity: 1,
-      tempcart: [] // this object should be the same as the json store object, with an additional param, quantity
-    };
-  }
-
   removeFromCart(dish) {
     this.$store.commit('cart/remove', dish);
   }
 
   productsInCart() {
     return this.$store.getters['cart/cartProducts'];
+  }
+
+  incrementItemQuantity(id) {
+    this.$store.commit('cart/incrementItemQuantity', { id });
+  }
+
+  decrementItemQuantity(id) {
+    this.$store.commit('cart/decrementItemQuantity', { id });
   }
 
   /**
