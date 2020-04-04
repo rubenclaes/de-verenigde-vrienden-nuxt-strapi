@@ -50,6 +50,10 @@ export const getters: GetterTree<CartState, RootState> = {
       (accumulator, item) => accumulator + item.quantity,
       0
     );
+  },
+
+  checkoutStatus: state => {
+    return state.checkoutStatus;
   }
 };
 

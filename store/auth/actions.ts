@@ -23,12 +23,12 @@ export const actions: ActionTree<AuthState, RootState> = {
       password: password
     })
       .then(response => {
-        console.log(response);
+        //console.log(response);
         const token = response.data.jwt;
         const user = response.data.user;
 
-        console.log('User profile', response.data.user);
-        console.log('User token', response.data.jwt);
+        //console.log('User profile', response.data.user);
+        //console.log('User token', response.data.jwt);
 
         //localStorage.setItem('token', token);
         //$axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;

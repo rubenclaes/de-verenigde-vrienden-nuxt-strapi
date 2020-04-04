@@ -27,7 +27,13 @@
               </li>
             </ul>
           </div>
-          <div class="col-md-8 order-md-1">
+          <div
+            v-if="checkoutStatus() === 'successful'"
+            class="col-md-8 order-md-1"
+          >
+            Overzicht Bestelling
+          </div>
+          <div v-else class="col-md-8 order-md-1">
             <h4 class="mb-3">Betalingsgegevens</h4>
 
             <form
@@ -38,15 +44,15 @@
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="firstName">Voornaam</label>
-                  <input
-                    type="text"
-                    class="form-control"
+
+                  <base-input
                     id="firstName"
                     v-model="paymentInfo.firstName"
-                    placeholder
-                    value
+                    alternative
                     required
-                  />
+                    :disabled="processing"
+                    type="text"
+                  ></base-input>
                   <div class="invalid-feedback">
                     Valid first name is required.
                   </div>
@@ -54,15 +60,15 @@
                 <div class="col-md-6 mb-3">
                   <label for="lastName">Achternaam</label>
 
-                  <input
-                    type="text"
-                    class="form-control"
+                  <base-input
                     id="lastName"
                     v-model="paymentInfo.lastName"
-                    placeholder
+                    alternative
                     value
                     required
-                  />
+                    :disabled="processing"
+                    type="text"
+                  ></base-input>
                   <div class="invalid-feedback">
                     Valid last name is required.
                   </div>
@@ -73,13 +79,14 @@
                 <label for="email">
                   E-mail
                 </label>
-                <input
+                <base-input
                   type="email"
-                  class="form-control"
                   id="email"
                   v-model="paymentInfo.email"
                   placeholder="you@outlook.com"
-                />
+                  :disabled="processing"
+                  alternative
+                ></base-input>
                 <div class="invalid-feedback">
                   Please enter a valid email address for shipping updates.
                 </div>
@@ -87,14 +94,15 @@
 
               <div class="mb-3">
                 <label for="address">Adres</label>
-                <input
+                <base-input
                   type="text"
-                  class="form-control"
                   id="address"
                   v-model="paymentInfo.address"
                   placeholder="Kerkenblook z/n"
                   required
-                />
+                  :disabled="processing"
+                  alternative
+                ></base-input>
                 <div class="invalid-feedback">
                   Please enter your shipping address.
                 </div>
@@ -117,14 +125,15 @@
 
                 <div class="col-md-3 mb-3">
                   <label for="zip">Postcode</label>
-                  <input
+                  <base-input
                     type="number"
-                    class="form-control"
                     id="zip"
                     v-model="paymentInfo.zip"
                     placeholder
                     required
-                  />
+                    :disabled="processing"
+                    alternative
+                  ></base-input>
                   <div class="invalid-feedback">Zip code required.</div>
                 </div>
               </div>
@@ -140,6 +149,7 @@
                   :value="selectedRadio"
                   :label="paymentMethods.bancontact.name"
                   @change="changeValue"
+                  :disabled="processing"
                 >
                   Bancontact
                 </base-radio>
@@ -151,6 +161,7 @@
                   :value="selectedRadio"
                   :label="paymentMethods.sepa_debit.name"
                   @change="changeValue"
+                  :disabled="processing"
                 >
                   IBAN
                 </base-radio>
@@ -161,6 +172,7 @@
                   :value="selectedRadio"
                   :label="paymentMethods.card.name"
                   @change="changeValue"
+                  :disabled="processing"
                 >
                   Mastercard / Visa
                 </base-radio>
@@ -171,6 +183,7 @@
                   :value="selectedRadio"
                   :label="paymentMethods.paymentRequestBtn.name"
                   @change="changeValue"
+                  :disabled="processing"
                 >
                   Apple Pay / Google Pay
                 </base-radio>
@@ -178,13 +191,14 @@
               <div class="row">
                 <div class="col-md-6 mb-3" v-if="selectedRadio === 'card'">
                   <label for="cc-name">Name on card</label>
-                  <input
+                  <base-input
                     type="text"
-                    class="form-control"
                     id="cc-name"
                     placeholder
                     required
-                  />
+                    alternative
+                    :disabled="processing"
+                  ></base-input>
                   <small class="text-muted"
                     >Full name as displayed on card</small
                   >
@@ -212,7 +226,7 @@
                 :disabled="processing"
               >
                 <b-spinner small type="grow"></b-spinner>
-                Verwerken...
+                Even geduld...
               </button>
               <button
                 v-else
@@ -225,23 +239,6 @@
             </form>
           </div>
         </div>
-
-        <base-button
-          @click="isLoggedIn()"
-          size="sm"
-          type="danger"
-          icon="fa fa-trash"
-          outline
-          >isLoggedin</base-button
-        >
-        <base-button
-          @click="price()"
-          size="sm"
-          type="danger"
-          icon="fa fa-trash"
-          outline
-          >price</base-button
-        >
 
         <div class="row justify-content-center">
           <div class="col-lg-10">
@@ -292,8 +289,6 @@ import { v4 as uuidv4 } from 'uuid';
 export default class CheckoutPage extends Vue {
   private title: string = 'Checkout';
 
-  private complete: boolean = false;
-  private loading: boolean = false;
   private processing: boolean = false;
 
   private paymentInfo = {
@@ -334,10 +329,7 @@ export default class CheckoutPage extends Vue {
 
     card: {
       name: 'card',
-      flow: 'redirect',
-      supportedCountries: ['SEPA'],
-      placeholderCountry: 'BE',
-      currencies: ['eur']
+      flow: 'none'
     },
     paymentRequestBtn: {
       name: 'paymentRequestButton',
@@ -377,6 +369,7 @@ export default class CheckoutPage extends Vue {
       }
     }
   };
+  $swal: any;
 
   head() {
     return {
@@ -395,12 +388,10 @@ export default class CheckoutPage extends Vue {
 
   async login() {
     try {
-      await this.$store
-        .dispatch('auth/login', {
-          identifier: process.env.strapiUser,
-          password: process.env.strapiPassword
-        })
-        .then(result => console.log(result));
+      await this.$store.dispatch('auth/login', {
+        identifier: process.env.strapiUser,
+        password: process.env.strapiPassword
+      });
     } catch (error) {
       if (error.response && error.response.status === 401) {
         throw new Error('Bad credentials or Token expired');
@@ -413,7 +404,9 @@ export default class CheckoutPage extends Vue {
     if (!this.isLoggedIn()) {
       this.login();
     }
-    this.stripe = await loadStripe('pk_test_Ict7P4E8rbEo4YCqZOj8sMpi');
+
+    const stripeKey: string = process.env.stripePublicKey || '';
+    this.stripe = await loadStripe(stripeKey);
 
     // Code that will run only after the
     // entire view has been rendered
@@ -430,6 +423,23 @@ export default class CheckoutPage extends Vue {
     });
  */
     this.createAndMountFormElements();
+    await this.monitorPaymentStatus();
+  }
+
+  async monitorPaymentStatus() {
+    if (this.$route.query.source && this.$route.query.client_secret) {
+      // Update the interface to display the processing screen.
+      // mainElement.classList.add('checkout', 'success', 'processing');
+
+      const { source } = await this.stripe.retrieveSource({
+        id: this.$route.query.source,
+        client_secret: this.$route.query.client_secret
+      });
+
+      await this.pollPaymentIntentStatus({
+        paymentIntent: source.metadata.paymentIntent
+      });
+    }
   }
 
   createAndMountFormElements() {
@@ -448,7 +458,7 @@ export default class CheckoutPage extends Vue {
         this.prButton.mount(this.$refs.paymentRequestButton);
       } else {
        //  document.getElementById('payment-request-button').style.display =
-         // 'none'; 
+         // 'none';
 
         console.log(result);
       }
@@ -499,9 +509,19 @@ export default class CheckoutPage extends Vue {
           this.processing = false;
           if (result.error) {
             // Show error to your customer
+            this.$store.commit('cart/setCheckoutStatus', 'failed');
             console.error(result.error.message);
           } else {
-            console.info(result);
+            // The payment has been processed!
+            if (result.paymentIntent.status === 'succeeded') {
+              // Show a success message to your customer
+              // There's a risk of the customer closing the window before callback
+              // execution. Set up a webhook or plugin to listen for the
+              // payment_intent.succeeded event that handles any business critical
+              // post-payment actions.
+              this.$store.commit('cart/setCheckoutStatus', 'successful');
+              console.info('payment succeeded');
+            }
           }
         });
     } else if (payment === 'iban') {
@@ -539,7 +559,6 @@ export default class CheckoutPage extends Vue {
         redirect: {
           return_url: window.location.href
         },
-
         bancontact: { preferred_language: 'nl' },
         statement_descriptor: 'Eetdag KH De Verenigde Vrienden',
         metadata: {
@@ -552,28 +571,58 @@ export default class CheckoutPage extends Vue {
         this.processing = false;
         if (result.error) {
           // Show error to your customer
-          console.error(result.error.message);
+          this.$store.commit('cart/setCheckoutStatus', 'failed');
+          console.error(new Error(result.error.message));
         } else {
-          // handle result.error or result.source
-          console.info(result.source.redirect.url);
+          //console.info(result.source.redirect.url);
+          //console.info(result.source.metadata.paymentIntent);
+          // Immediately redirect the customer.
           window.location.href = result.source.redirect.url;
         }
       });
     }
   }
 
-  price(): number {
-    console.info(this.$store.getters['cart/cartTotalPrice']);
-    return this.$store.getters['cart/cartTotalPrice'];
-  }
+  async pollPaymentIntentStatus({
+    paymentIntent,
+    timeout = 30000,
+    interval = 500,
+    start = Date.now()
+  }: {
+    paymentIntent;
+    timeout?: number;
+    interval?: number;
+    start?: number;
+  }) {
+    const endStates = [
+      'succeeded',
+      'processing',
+      'canceled',
+      'requires_payment_method'
+    ];
+    // Retrieve the PaymentIntent status from our server.
+    const { data } = await this.$store.dispatch(
+      'cart/fetchPaymentIntent',
+      paymentIntent
+    );
 
-  token() {
-    return this.$store.getters['auth/token'];
-  }
+    console.log(data.paymentIntent.status);
 
-  isLoggedIn() {
-    console.info(this.$store.getters['auth/isLoggedIn']);
-    return this.$store.getters['auth/isLoggedIn'];
+    if (
+      !endStates.includes(data.paymentIntent.status) &&
+      Date.now() < start + timeout
+    ) {
+      // console.log('not done yet');
+      // console.log(Date.now() < start + timeout);
+      // Not done yet. Let's wait and check again.
+      setTimeout(this.pollPaymentIntentStatus, interval, { paymentIntent });
+    } else {
+      this.handlePayment(data);
+      if (!endStates.includes(data.paymentIntent.status)) {
+        // Status has not changed yet. Let's time out.
+        console.warn(new Error('Polling timed out.'));
+      }
+    }
   }
 
   async handleSubmit() {
@@ -595,7 +644,7 @@ export default class CheckoutPage extends Vue {
         stripeIdempotency: uuidv4()
       })
       .then(data => {
-        alert('Your order have been successfully submitted.');
+        // The order is successfully been submitted.'
 
         const { clientSecret, order, paymentIntent } = data;
         /* console.info(clientSecret);
@@ -626,16 +675,78 @@ export default class CheckoutPage extends Vue {
       });
   }
 
+  handlePayment(paymentResponse) {
+    const { paymentIntent, error } = paymentResponse;
+
+    if (error) {
+      console.error(new Error('Er is een fout opgetreden met de betaling'));
+      this.$swal.fire({
+        title: 'Fout!',
+        text: 'Er is een fout opgetreden met de betaling.',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      });
+    } else if (paymentIntent.status === 'succeeded') {
+      // Success! Payment is confirmed. Update the interface to display the confirmation screen.
+
+      // Update the note about receipt and shipping (the payment has been fully confirmed by the bank).
+      console.log(
+        'We just sent your receipt to your email address, and your items will be on their way shortly.'
+      );
+
+      this.$swal.fire({
+        title: 'Bedankt!',
+        text:
+          'We hebben zojuist een e-mail verzonden met bevestiging van de betaling. Breng deze mee naar de eetdag.',
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      });
+      this.$store.commit('cart/setCheckoutStatus', 'successful');
+    } else if (paymentIntent.status === 'processing') {
+      // Success! Now waiting for payment confirmation. Update the interface to display the confirmation screen.
+
+      // Update the note about receipt and shipping (the payment is not yet confirmed by the bank).
+      console.log(
+        'We’ll send your receipt and ship your items as soon as your payment is confirmed.'
+      );
+    } else {
+      // Payment has failed.
+      console.error(new Error('Er is een fout opgetreden met de betaling'));
+      this.$swal.fire({
+        title: 'Fout!',
+        text: 'Er is een fout opgetreden met de betaling.',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      });
+    }
+  }
+
   emptyCart() {
     this.$store.commit('cart/clear');
   }
 
-  numberOfItems() {
+  numberOfItems(): number {
     return this.$store.getters['cart/numberOfItems'];
   }
 
   productsInCart() {
     return this.$store.getters['cart/cartProducts'];
+  }
+
+  checkoutStatus() {
+    return this.$store.getters['cart/checkoutStatus'];
+  }
+
+  price(): number {
+    return this.$store.getters['cart/cartTotalPrice'];
+  }
+
+  token() {
+    return this.$store.getters['auth/token'];
+  }
+
+  isLoggedIn(): boolean {
+    return this.$store.getters['auth/isLoggedIn'];
   }
 }
 </script>

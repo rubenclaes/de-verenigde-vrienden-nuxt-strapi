@@ -37,6 +37,7 @@
     "nuxt-gmaps": "^1.1.8",
     "nuxt-payload-extractor": "^1.0.0",
     "nuxt-property-decorator": "^2.5.1",
+    "sweetalert2": "^9.10.9",
     "uuid": "^7.0.2",
     "vee-validate": "^3.2.5",
     "vue-clamp": "^0.2.2",

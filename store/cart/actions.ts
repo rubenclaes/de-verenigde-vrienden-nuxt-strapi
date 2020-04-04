@@ -3,6 +3,7 @@ import { RootState } from '../type';
 import { CartState } from './types';
 
 import { createOrder } from '../../lib/orders/api';
+import { fetchPaymentIntent } from '../../lib/payment-intents/api';
 
 /**
  * Action context specific to Cart module
@@ -16,22 +17,22 @@ export const actions: ActionTree<CartState, RootState> = {
   async createOrder({ commit, state, rootState }, payload) {
     if (!state.items.length) throw new Error('State is empty');
 
-    if (!rootState.auth.token.length) throw new Error('Note logged in!');
+    if (!rootState.auth.token.length) throw new Error('Not logged in!');
 
     // save the items currently in the cart
     const savedCartItems = [...state.items];
 
     const token = rootState.auth.token;
 
-    // clear the cart
-    commit('clear');
     // send out checkout request
     commit('setCheckoutStatus', 'request');
 
     // create an order to process
     const response = await createOrder(payload, token)
       .then(data => {
-        commit('setCheckoutStatus', 'successful');
+        // clear the cart
+        commit('clear');
+        commit('setCheckoutStatus', 'order_created');
         return data;
       })
       .catch(err => {
@@ -61,6 +62,22 @@ export const actions: ActionTree<CartState, RootState> = {
       { root: true }
     ); */
     //}
+  },
+
+  async fetchPaymentIntent({ state, commit, rootState }, paymentIntent) {
+    if (!rootState.auth.token.length) throw new Error('Not logged in!');
+
+    const token = rootState.auth.token;
+
+    const response = await fetchPaymentIntent(paymentIntent, token)
+      .then(response => {
+        return response;
+      })
+      .catch(err => {
+        throw err;
+      });
+
+    return response;
   }
 };
 

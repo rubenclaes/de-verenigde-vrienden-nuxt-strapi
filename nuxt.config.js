@@ -8,7 +8,8 @@ module.exports = {
 
   env: {
     strapiUser: process.env.STRAPI_IDENTIFIER,
-    strapiPassword: process.env.STRAPI_PASSWORD
+    strapiPassword: process.env.STRAPI_PASSWORD,
+    stripePublicKey: process.env.STRIPE_PUBLIC_KEY
   },
 
   /*
@@ -74,6 +75,8 @@ module.exports = {
 
     '~/plugins/lazysizes.client.js',
     '~/plugins/vue-headroom.client.js',
+
+    { src: '~/plugins/sweetalert.ts', mode: 'client' },
 
     { src: '~/plugins/vuex-persist', mode: 'client' },
     { src: '~/plugins/vue-toasted.js', mode: 'client' },
