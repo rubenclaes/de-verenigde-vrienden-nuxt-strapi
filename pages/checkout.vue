@@ -5,27 +5,11 @@
         <div class="row">
           <div class="col-md-4 order-md-2 mb-4">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
-              <span class="text-muted">Uw winkelmandje</span>
-              <badge pill type="primary" rounded>{{ numberOfItems() }}</badge>
+              <span>Uw winkelmandje</span>
+              <badge pill type="info" rounded>{{ numberOfItems() }}</badge>
             </h4>
-            <ul class="list-group mb-3">
-              <cart></cart>
 
-              <li
-                v-if="false"
-                class="list-group-item d-flex justify-content-between bg-light"
-              >
-                <div class="text-success">
-                  <h6 class="my-0">Promo code</h6>
-                  <small>EXAMPLECODE</small>
-                </div>
-                <span class="text-success">-$5</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between">
-                <span>Totaal (EUR)</span>
-                <strong>{{ price() | euro }}</strong>
-              </li>
-            </ul>
+            <cart></cart>
           </div>
           <div
             v-if="checkoutStatus() === 'successful'"

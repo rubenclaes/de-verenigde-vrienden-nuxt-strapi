@@ -71,9 +71,7 @@ export const mutations: MutationTree<CartState> = {
   remove(state, item) {
     const record = state.items.find(i => i.id === item.id);
 
-    if (record != null && record.quantity > 1) {
-      record.quantity--;
-    } else {
+    if (record) {
       const index = state.items.findIndex(i => i.id === item.id);
       state.items.splice(index, 1);
     }
