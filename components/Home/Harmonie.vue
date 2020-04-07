@@ -1,6 +1,6 @@
 <template>
   <!-- Harmonie  -->
-  <section id="harmonie" class="section section-lg">
+  <section id="harmonie" class="section section-lg features-6">
     <div class="container">
       <div class="row row-grid align-items-center">
         <div class="col-md-6">
@@ -20,23 +20,41 @@
                 class="svg-bg"
               >
                 <polygon points="0,52 583,95 0,95" class="fill-default" />
-                <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default" />
+                <polygon
+                  points="0,42 583,95 683,0 0,95"
+                  opacity=".2"
+                  class="fill-default"
+                />
               </svg>
-              {{data[0].Picture.Picture.url}}
-              <h4 class="display-3 font-weight-bold text-white">{{data[0].Picture.Title}}</h4>
-              <p class="lead text-italic text-white">{{data[0].Picture.Text}}</p>
+              {{ data[0].Picture.Picture.url }}
+              <h4 class="display-3 font-weight-bold text-white">
+                {{ data[0].Picture.Title }}
+              </h4>
+              <p class="lead text-italic text-white">
+                {{ data[0].Picture.Text }}
+              </p>
             </blockquote>
           </div>
         </div>
-        <div class="col-md-6">
-          <div data-aos="fade-in" data-aos-delay="150" class="pl-md-5" data-aos-duration="1200">
-            <h1>{{ data[0].Title }}</h1>
 
-            <p
-              v-for="bullet in data[0].Bullet_points"
-              :key="bullet.id"
-              class="lead"
-            >{{ bullet.Value }}</p>
+        <div
+          class="col-lg-6"
+          data-aos="fade-in"
+          data-aos-delay="200"
+          data-aos-duration="1000"
+          data-aos-once="true"
+        >
+          <div
+            v-for="bullet in data[0].Bullet_points"
+            :key="bullet.id"
+            class="info info-horizontal info-hover-primary"
+          >
+            <div class="description pl-4">
+              <h5 class="title">{{ bullet.Name }}</h5>
+              <p>
+                {{ bullet.Value }}
+              </p>
+            </div>
           </div>
         </div>
       </div>

@@ -6,23 +6,6 @@
         <div class="col-lg-8">
           <h1>Dirigent</h1>
         </div>
-
-        <blockquote class="blockquote text-center">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M0 14.1818L4.57143 0H9.52381L5.71429 13.2893H9.52381V24H0V14.1818ZM14.4762 14.1818L19.0476 0H24L20.1905 13.2893H24V24H14.4762V14.1818Z"
-              fill="#88DD9B"
-            />
-          </svg>
-          <p class="mb-0">Het belangrijkste in de muziek staat niet in de noten.</p>
-          <footer class="blockquote-footer">Kevin Absillis</footer>
-        </blockquote>
       </div>
       <div class="row justify-content-center">
         <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
@@ -39,15 +22,29 @@
                 <span class="d-block mb-1">Kevin Absillis</span>
                 <small class="h6 text-muted">Dirigent</small>
               </h5>
+
+              <blockquote class="blockquote text-center">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 14.1818L4.57143 0H9.52381L5.71429 13.2893H9.52381V24H0V14.1818ZM14.4762 14.1818L19.0476 0H24L20.1905 13.2893H24V24H14.4762V14.1818Z"
+                    fill="#88DD9B"
+                  />
+                </svg>
+                <p class="mb-0">
+                  Het belangrijkste in de muziek staat niet in de noten.
+                </p>
+              </blockquote>
               <div class="mt-3">
-                <base-button
-                  tag="a"
-                  href="dirigent"
-                  type="primary"
-                  icon="fa fa-globe"
-                  rounded
-                  icon-only
-                ></base-button>
+                <a href="dirigent" class="text-primary"
+                  >Lees meer
+                  <i class="ni ni-bold-right text-primary"></i>
+                </a>
               </div>
             </div>
           </div>

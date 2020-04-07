@@ -9,33 +9,31 @@
         class="list-group-item d-flex justify-content-between align-items-center"
       >
         <div>
-          <h6 class="my-0">{{ product.title }}</h6>
+          <h6 class="my-0">
+            {{ product.title }}
+            <span class="badge badge-primary badge-pill"
+              >&euro; {{ product.price }}</span
+            >
+          </h6>
+        </div>
+        <div class="btn-group mb-1">
+          <base-button
+            @click="decrementItemQuantity(product.id)"
+            size="sm"
+            type="info"
+            icon="fa fa-minus"
+            icon-only
+          ></base-button>
+          <base-button
+            @click="incrementItemQuantity(product.id)"
+            size="sm"
+            type="info"
+            icon="fa fa-plus"
+            icon-only
+          ></base-button>
         </div>
 
-        <base-button
-          @click="decrementItemQuantity(product.id)"
-          size="sm"
-          type="secondary"
-          icon="fa fa-minus"
-          rounded
-          outline
-          icon-only
-        ></base-button>
-
-        {{ product.quantity }}
-
-        <base-button
-          @click="incrementItemQuantity(product.id)"
-          size="sm"
-          type="primary"
-          icon="fa fa-plus"
-          outline
-          rounded
-        ></base-button>
-
-        <span class="badge badge-primary badge-pill"
-          >&euro; {{ product.price }}</span
-        >
+        <span> {{ product.quantity }} </span>
 
         <div class="col-auto">
           <base-button

@@ -14,18 +14,22 @@
                   <h1 class="display-3 text-white">
                     Koninklijke Harmonie
                     <span>De Verenigde Vrienden Heusden-Zolder</span>
-                    <span class="lead text-primary font-weight-bold">Daar zit muziek in!</span>
+                    <span class="lead text-primary font-weight-bold"
+                      >Daar zit muziek in!</span
+                    >
                   </h1>
                 </transition>
 
                 <p></p>
-                <p class="lead text-white d-none d-md-block d-lg-block d-xl-block">
+                <p
+                  class="lead text-white d-none d-md-block d-lg-block d-xl-block"
+                >
                   Samen muziek maken met passie en oog voor kwaliteit, zowel op
-                  beginnersniveau als voor gevorderde muzikanten, is onze grootste
-                  uitdaging.
+                  beginnersniveau als voor gevorderde muzikanten, is onze
+                  grootste uitdaging.
                 </p>
                 <div class="btn-wrapper">
-                  <button v-scroll-to="'#contact'" class="btn btn btn-primary btn-lg">
+                  <button v-scroll-to="'#contact'" class="btn btn btn-primary">
                     <span class="nav-link-inner--text">Ik word lid</span>
                   </button>
                 </div>

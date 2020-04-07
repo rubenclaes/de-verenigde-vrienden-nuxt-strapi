@@ -23,7 +23,7 @@
                     to="/checkout"
                     tag="a"
                     class="btn btn-primary my-4"
-                    >Ik ga bestellen</router-link
+                    >Ik wil betalen</router-link
                   >
                 </div>
               </client-only>

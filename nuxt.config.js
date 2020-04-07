@@ -234,6 +234,7 @@ module.exports = {
       'FormInputPlugin'
     ],
     directivePlugins: ['VBPopoverPlugin', 'VBTooltipPlugin'],
+
     bootstrapCSS: false, // Or `css: false`
     bootstrapVueCSS: false // Or `bvCSS: false`
   },

@@ -18,7 +18,7 @@
     "lintfix": "tslint --fix --project ."
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "^0.3.10",
+    "@nuxt/typescript-runtime": "^0.4.2",
     "@nuxtjs/axios": "^5.9.5",
     "@nuxtjs/markdownit": "^1.2.9",
     "@nuxtjs/pwa": "^2.6.0",
@@ -28,7 +28,7 @@
     "@stripe/stripe-js": "^1.3.0",
     "@vue/composition-api": "^0.3.4",
     "aos": "^2.3.4",
-    "bootstrap-vue": "^2.6.1",
+    "bootstrap-vue": "^2.10.1",
     "dotenv": "^8.2.0",
     "lazysizes": "^5.2.0",
     "nouislider": "^14.1.1",
@@ -50,8 +50,8 @@
     "vuex-persist": "^2.2.0"
   },
   "devDependencies": {
-    "@bazzite/nuxt-optimized-images": "^0.3.0",
-    "@nuxt/typescript-build": "^0.5.8",
+    "@bazzite/nuxt-optimized-images": "^0.4.0",
+    "@nuxt/typescript-build": "^0.6.2",
     "@types/dotenv": "^8.2.0",
     "@types/jest": "^24.0.19",
     "@vue/test-utils": "^1.0.0-beta.29",

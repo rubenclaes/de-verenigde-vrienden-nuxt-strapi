@@ -15,7 +15,7 @@
             v-if="checkoutStatus() === 'successful'"
             class="col-md-8 order-md-1"
           >
-            Overzicht Bestelling
+            <h4 class="mb-3">Overzicht Bestelling</h4>
           </div>
           <div v-else class="col-md-8 order-md-1">
             <h4 class="mb-3">Betalingsgegevens</h4>
@@ -118,7 +118,7 @@
                     :disabled="processing"
                     alternative
                   ></base-input>
-                  <div class="invalid-feedback">Zip code required.</div>
+                  <div class="invalid-feedback">Postcode code required.</div>
                 </div>
               </div>
 
@@ -127,6 +127,17 @@
               <h4 class="mb-3">Betaling</h4>
 
               <div class="d-block my-3">
+                <tabs>
+                  <tab-pane
+                    title="Bancontact"
+                    :label="paymentMethods.bancontact.name"
+                  ></tab-pane>
+                  <tab-pane
+                    title="Mastercard / Visa"
+                    :label="paymentMethods.card.name"
+                  >
+                  </tab-pane>
+                </tabs>
                 <base-radio
                   name="paymentMethod"
                   class="mb-3"
@@ -171,33 +182,32 @@
                 >
                   Apple Pay / Google Pay
                 </base-radio>
-              </div>
-              <div class="row">
-                <div class="col-md-6 mb-3" v-if="selectedRadio === 'card'">
-                  <label for="cc-name">Name on card</label>
-                  <base-input
-                    type="text"
-                    id="cc-name"
-                    placeholder
-                    required
-                    alternative
-                    :disabled="processing"
-                  ></base-input>
-                  <small class="text-muted"
-                    >Full name as displayed on card</small
-                  >
-                  <div class="invalid-feedback">Name on card is required</div>
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label for="cc-number">Credit card number</label>
-                  <div class="form-control" ref="card"></div>
-                  <div ref="paymentRequestButton">
-                    <!-- A Stripe Element will be inserted here. -->
-                  </div>
 
-                  <!-- <div class="form-control" ref="ibanElement"></div> -->
-                  <div class="invalid-feedback">
-                    Credit card number is required
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="cc-name">Name on card</label>
+                    <base-input
+                      type="text"
+                      id="cc-name"
+                      placeholder
+                      required
+                      alternative
+                      :disabled="processing"
+                    ></base-input>
+
+                    <small class="text-muted"
+                      >Full name as displayed on card</small
+                    >
+                    <div class="invalid-feedback">
+                      Name on card is required
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="cc-number">Creditcard nummer</label>
+                    <div class="form-control" ref="card"></div>
+                    <div class="invalid-feedback">
+                      Credit card number is required
+                    </div>
                   </div>
                 </div>
               </div>
@@ -228,13 +238,11 @@
           <div class="col-lg-10">
             <div class="row mt-3">
               <div class="col-6">
-                <a href="#" class="text-light">
+                <a
+                  href="mailto:info@deverenigdevriendenheusden.be"
+                  class="text-light"
+                >
                   <small>Problemen?</small>
-                </a>
-              </div>
-              <div class="col-6 text-right">
-                <a href="#" class="text-light">
-                  <small>Create new account</small>
                 </a>
               </div>
             </div>
@@ -249,9 +257,6 @@
 import { Component, Vue, namespace } from 'nuxt-property-decorator';
 
 import { cartVuexNamespace } from '~/store/cart/const';
-import { Item } from '../store/cart/types';
-
-//import { stripeKey, stripeOptions } from './stripeConfig.json';
 
 import { loadStripe } from '@stripe/stripe-js';
 import { v4 as uuidv4 } from 'uuid';
@@ -267,7 +272,9 @@ import { v4 as uuidv4 } from 'uuid';
     BaseInput: () => import('@/components/BaseInput.vue'),
     BaseCheckbox: () => import('@/components/BaseCheckbox.vue'),
     BaseRadio: () => import('@/components/BaseRadio.vue'),
-    Cart: () => import('@/components/Cart.vue')
+    Cart: () => import('@/components/Cart.vue'),
+    Tabs: () => import('@/components/Tabs/Tabs.vue'),
+    TabPane: () => import('@/components/Tabs/TabPane.vue')
   }
 })
 export default class CheckoutPage extends Vue {
@@ -289,10 +296,12 @@ export default class CheckoutPage extends Vue {
   private card;
   private iban;
   private prButton;
-  // Global variables to store the PaymentIntent & PaymemtRequest object.
+
+  // Global variables: PaymentIntent & PaymemtRequest object.
   private paymentIntent;
   private paymentRequest;
 
+  private $swal: any;
   private selectedRadio: string = 'bancontact';
 
   private paymentMethods = {
@@ -315,6 +324,7 @@ export default class CheckoutPage extends Vue {
       name: 'card',
       flow: 'none'
     },
+
     paymentRequestBtn: {
       name: 'paymentRequestButton',
       country: 'BE',
@@ -353,7 +363,6 @@ export default class CheckoutPage extends Vue {
       }
     }
   };
-  $swal: any;
 
   head() {
     return {
@@ -364,10 +373,6 @@ export default class CheckoutPage extends Vue {
 
   onSubmit() {
     // DO Something
-  }
-
-  changeValue(newValue) {
-    this.selectedRadio = newValue;
   }
 
   async login() {
@@ -385,32 +390,25 @@ export default class CheckoutPage extends Vue {
   }
 
   async mounted() {
+    // Reset the checkout status
+    this.$store.commit('cart/setCheckoutStatus', '');
+    // Fetch token
     if (!this.isLoggedIn()) {
       this.login();
     }
 
-    // Reset the checkout status
-    this.$store.commit('cart/setCheckoutStatus', '');
+    await this.loadStripe();
 
+    this.$nextTick(function() {
+      this.createAndMountFormElements();
+    });
+    // Monitor succesfull Bancontact Payments
+    await this.monitorPaymentStatus();
+  }
+
+  async loadStripe() {
     const stripeKey: string = process.env.stripePublicKey || '';
     this.stripe = await loadStripe(stripeKey);
-
-    // Code that will run only after the
-    // entire view has been rendered
-    // Create the payment request.
-    /*     this.paymentRequest = this.stripe.paymentRequest({
-      country: 'US',
-      currency: 'usd',
-      total: {
-        label: 'Demo total',
-        amount: 1000
-      },
-      requestPayerName: true,
-      requestPayerEmail: true
-    });
- */
-    this.createAndMountFormElements();
-    await this.monitorPaymentStatus();
   }
 
   async monitorPaymentStatus() {
@@ -432,9 +430,7 @@ export default class CheckoutPage extends Vue {
   createAndMountFormElements() {
     let elements = this.stripe.elements();
     this.card = elements.create('card', { style: this.style });
-    //this.card.mount('#card');
     this.card.mount(this.$refs.card);
-
     /*    this.prButton = elements.create('paymentRequestButton', {
       paymentRequest: this.paymentRequest
     });
@@ -452,14 +448,12 @@ export default class CheckoutPage extends Vue {
     });
 
     this.prButton.mount(this.$refs.paymentRequestButton); */
-
     // Wait for invite
     // Create an instance of the iban Element.
     /*  this.iban = elements.create('iban', {
       style: this.style,
       supportedCountries: this.paymentMethods.sepa_debit.supportedCountries
     }); */
-
     // Add an instance of the iban Element into the `iban-element` <div>.
     //this.iban.mount(this.$refs.ibanElement);
   }
@@ -708,6 +702,10 @@ export default class CheckoutPage extends Vue {
     }
   }
 
+  changeValue(newValue) {
+    this.selectedRadio = newValue;
+  }
+
   emptyCart() {
     this.$store.commit('cart/clear');
   }
@@ -737,12 +735,4 @@ export default class CheckoutPage extends Vue {
   }
 }
 </script>
-<style>
-.stripe-card {
-  width: 300px;
-  border: 1px solid grey;
-}
-.stripe-card.complete {
-  border-color: green;
-}
-</style>
+<style></style>

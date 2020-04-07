@@ -1,4 +1,8 @@
 import Vue from 'vue';
 import Toasted from 'vue-toasted';
 
-Vue.use(Toasted);
+const options = {
+  containerClass: ['alert']
+};
+
+Vue.use(Toasted, options);

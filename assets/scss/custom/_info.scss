@@ -1,0 +1,91 @@
+.info {
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  text-align: center;
+  border-radius: 0.25rem;
+  transition: all 0.5s;
+}
+
+.info.info-hover-default:hover {
+  background-color: #172b4d;
+  box-shadow: 13px 13px 50px -24px #172b4d;
+}
+
+.info.info-hover-primary:hover {
+  background-color: $primary;
+  box-shadow: 13px 13px 50px -24px $primary;
+}
+
+.info.info-hover-info:hover {
+  background-color: #11cdef;
+  box-shadow: 13px 13px 50px -24px #11cdef;
+}
+
+.info.info-hover-warning:hover {
+  background-color: #fb6340;
+  box-shadow: 13px 13px 50px -24px #fb6340;
+}
+
+.info.info-hover-danger:hover {
+  background-color: #f5365c;
+  box-shadow: 13px 13px 50px -24px #f5365c;
+}
+
+.info.info-hover-success:hover {
+  background-color: #2dce89;
+  box-shadow: 13px 13px 50px -24px #2dce89;
+}
+
+.info .icon {
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.info .icon.icon-circle {
+  max-width: 80px;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  border-radius: 50%;
+  box-shadow: 0 9px 35px -6px rgba(0, 0, 0, 0.3);
+  font-size: 0.75rem;
+  background-color: #fff;
+  position: relative;
+}
+
+.info .icon.icon-circle i {
+  line-height: 2.7;
+}
+
+.info .info-title {
+  margin: 25px 0 15px;
+  padding: 0 15px;
+}
+
+.info p {
+  padding: 0 15px 0 0;
+}
+
+.info-horizontal {
+  max-width: 500px !important;
+  text-align: left !important;
+}
+
+.info-horizontal .icon {
+  float: left;
+}
+
+.info-horizontal .description {
+  overflow: hidden;
+}
+
+.features-6 .info {
+  margin-bottom: 10px;
+}
+
+.features-6 .info:hover .icon i,
+.features-6 .info:hover .title,
+.features-6 .info:hover a,
+.features-6 .info:hover p {
+  color: #fff !important;
+}
