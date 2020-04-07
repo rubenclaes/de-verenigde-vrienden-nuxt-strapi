@@ -1,7 +1,27 @@
 <template>
-  <div>
-    <section class="section section-lg pt-lg-0">
-      <div class="container pt-lg-md">
+  <div class="diningday-page">
+    <section class="section-shaped my-0 skew-separator skew-mini">
+      <div class="page-header page-header-small header-filter">
+        <div
+          class="page-header-image"
+          :style="{ backgroundImage: 'url(' + image + ')' }"
+        ></div>
+        <div class="container">
+          <div class="header-body text-center mb-7">
+            <div class="row justify-content-center">
+              <div class="col-xl-5 col-lg-6 col-md-8 px-5">
+                <h1 class="text-white">Eeetdag</h1>
+
+                <p class="text-lead text-white">
+                  Kies een gerecht
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-10">
             <!-- start DishList -->
@@ -17,7 +37,7 @@
 
             <template v-else>
               <client-only>
-                <dish-list></dish-list>
+                <dish-list class="mt--200"></dish-list>
                 <div class="text-center">
                   <router-link
                     to="/checkout"
@@ -52,19 +72,21 @@ import { diningDayVuexNamespace } from '~/store/diningday/const';
 //import { Card, createToken } from 'vue-stripe-elements-plus';
 
 @Component({
-  layout: 'appColor',
+  layout: 'appHeader',
 
   components: {
     //Card
-    DishList: () => import('@/components/DishList.vue')
-  }
+    DishList: () => import('@/components/DishList.vue'),
+  },
 })
 export default class EetdagPage extends Vue {
   private title: string = 'Eetdag';
+  private image = '../img/eetdag/eetdag.jpeg';
+
   head() {
     return {
       title: this.title,
-      meta: [{ hid: 'og:title', property: 'og:title', content: this.title }]
+      meta: [{ hid: 'og:title', property: 'og:title', content: this.title }],
     };
   }
 

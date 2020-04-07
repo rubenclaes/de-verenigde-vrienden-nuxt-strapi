@@ -54,15 +54,15 @@ import { Component, Vue } from 'vue-property-decorator';
     ParallaxStyle1: () =>
       import(
         /* webpackChunkName: 'parallax-style1' */ '@/components/parallax/ParallaxStyle1.vue'
-      )
-  }
+      ),
+  },
 })
 export default class Header extends Vue {
   data() {
     return {
       show: true,
       bgImage: require('../../assets/img/home/header/music/music-chart_1600w.jpg'),
-      parallax: { type: 'scale-opacity' }
+      parallax: { type: 'scale-opacity' },
     };
   }
 }

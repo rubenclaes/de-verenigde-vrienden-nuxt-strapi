@@ -58,6 +58,12 @@
       .card-profile-actions {
         margin-top: 0px;
       }
+
+      .card-profile-image {
+        img {
+          transform: translate(-50%, 30%);
+        }
+      }
     }
 
     @include media-breakpoint-between(sm, md) {

@@ -398,10 +398,8 @@ export default class CheckoutPage extends Vue {
     }
 
     await this.loadStripe();
+    this.createAndMountFormElements();
 
-    this.$nextTick(function () {
-      this.createAndMountFormElements();
-    });
     // Monitor succesfull Bancontact Payments
     await this.monitorPaymentStatus();
   }
@@ -431,31 +429,6 @@ export default class CheckoutPage extends Vue {
     let elements = this.stripe.elements();
     this.card = elements.create('card', { style: this.style });
     this.card.mount(this.$refs.card);
-    /*    this.prButton = elements.create('paymentRequestButton', {
-      paymentRequest: this.paymentRequest
-    });
-
-    // Check the availability of the Payment Request API first.
-    this.paymentRequest.canMakePayment().then(result => {
-      if (result) {
-        this.prButton.mount(this.$refs.paymentRequestButton);
-      } else {
-       //  document.getElementById('payment-request-button').style.display =
-         // 'none';
-
-        console.log(result);
-      }
-    });
-
-    this.prButton.mount(this.$refs.paymentRequestButton); */
-    // Wait for invite
-    // Create an instance of the iban Element.
-    /*  this.iban = elements.create('iban', {
-      style: this.style,
-      supportedCountries: this.paymentMethods.sepa_debit.supportedCountries
-    }); */
-    // Add an instance of the iban Element into the `iban-element` <div>.
-    //this.iban.mount(this.$refs.ibanElement);
   }
 
   async pay() {

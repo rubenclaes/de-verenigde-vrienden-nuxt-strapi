@@ -1,20 +1,41 @@
 <template>
   <div class="profile-page">
-    <section class="section-profile-cover section-shaped my-0">
-      <div class="shape shape-style-1 shape-primary shape-skew alpha-4">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </section>
+    <section class="section-shaped my-0 skew-separator skew-mini">
+      <div class="page-header page-header-small header-filter">
+        <div
+          class="page-header-image"
+          :style="{ backgroundImage: 'url(' + image + ')' }"
+        ></div>
+        <div class="container">
+          <div class="header-body text-center mb-7">
+            <div class="row justify-content-center">
+              <div class="col-xl-5 col-lg-6 col-md-8 px-5">
+                <h1 class="text-white">Kevin Absillis</h1>
 
-    <section class="section section-skew">
+                <blockquote class="blockquote text-center">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0 14.1818L4.57143 0H9.52381L5.71429 13.2893H9.52381V24H0V14.1818ZM14.4762 14.1818L19.0476 0H24L20.1905 13.2893H24V24H14.4762V14.1818Z"
+                      fill="#88DD9B"
+                    />
+                  </svg>
+                  <p class="text-lead text-white">
+                    Het belangrijkste in de muziek staat niet in de noten.
+                  </p>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="container">
-        <card shadow class="card-profile mt--300" no-body>
+        <card shadow class="card-profile mt--200" no-body>
           <div class="px-4">
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2 mb-5">
@@ -50,7 +71,6 @@
             </div>
 
             <div class="text-center mt-5">
-              <h3>KEVIN ABSILLIS</h3>
               <div class="h6 font-weight-300"></div>
             </div>
 
@@ -58,9 +78,9 @@
               <div class="row justify-content-center">
                 <div class="col-lg-9">
                   <p>
-                    Onze harmonie wordt thans geleid door Kevin Absillis. Kevin
-                    zette op 7-jarige leeftijd zijn eerste stappen in de muziek
-                    bij Brassband Sint-Cecilia in Leest. Toen hij 17 jaar was,
+                    Onze harmonie wordt geleid door Kevin Absillis. Kevin zette
+                    op 7-jarige leeftijd zijn eerste stappen in de muziek bij
+                    Brassband Sint-Cecilia in Leest. Toen hij 17 jaar was,
                     besloot hij van zijn hobby zijn beroep te maken. Hij begon
                     studies tenortrombone aan het Lemmensinstituut te Leuven,
                     maar ruilde er al vlug zijn instrument in voor een
@@ -104,20 +124,21 @@ import { Component, Vue, namespace } from 'nuxt-property-decorator';
   layout: 'appHeader',
   components: {
     Logo: () => import('@/components/Logo.vue'),
-    BaseButton: () => import('@/components/BaseButton.vue'),
+
     Card: () => import('@/components/Card.vue'),
-    Badge: () => import('@/components/Badge.vue'),
+
     Icon: () => import('@/components/Icon.vue'),
-    BaseInput: () => import('@/components/BaseInput.vue'),
-    LazyImage: () => import('@/components/LazyImage.vue')
-  }
+
+    LazyImage: () => import('@/components/LazyImage.vue'),
+  },
 })
 export default class DirigentPage extends Vue {
   private title: string = 'Dirigent';
+  private image = '../img/dirigent/dirigent.jpeg';
   head() {
     return {
       title: this.title,
-      meta: [{ hid: 'og:title', property: 'og:title', content: this.title }]
+      meta: [{ hid: 'og:title', property: 'og:title', content: this.title }],
     };
   }
 }

@@ -4,7 +4,7 @@
     <Harmonie :data="harmonieData" />
     <Jeugdorkest :data="jeugdorkestData" />
     <Activiteiten :data="activiteitenData" />
-    <Dirigent />
+
     <Adres />
     <Contact />
   </div>
@@ -40,8 +40,8 @@ import { loadHome } from '../lib/home/api';
     Adres: () =>
       import(/* webpackChunkName: 'adres' */ '@/components/Home/Adres.vue'),
     Contact: () =>
-      import(/* webpackChunkName: 'contact' */ '@/components/Home/Contact.vue')
-  }
+      import(/* webpackChunkName: 'contact' */ '@/components/Home/Contact.vue'),
+  },
 })
 export default class IndexPage extends Vue {
   private title: string = 'Home';
@@ -49,7 +49,7 @@ export default class IndexPage extends Vue {
   head() {
     return {
       title: this.title,
-      meta: [{ hid: 'og:title', property: 'og:title', content: this.title }]
+      meta: [{ hid: 'og:title', property: 'og:title', content: this.title }],
     };
   }
 
@@ -101,28 +101,28 @@ export default class IndexPage extends Vue {
         'section.activiteiten',
         'section.jeugdorkest',
         'section.dirigent',
-        'section.adres'
-      ]
+        'section.adres',
+      ],
     };
 
-    const pageData = await loadHome().then(data => {
-      const harmonieData = data.Content.filter(Content => {
+    const pageData = await loadHome().then((data) => {
+      const harmonieData = data.Content.filter((Content) => {
         return Content.__component === 'section.harmonie';
       });
 
-      const activiteitenData = data.Content.filter(Content => {
+      const activiteitenData = data.Content.filter((Content) => {
         return Content.__component === 'section.activiteiten';
       });
 
-      const jeugdorkestData = data.Content.filter(Content => {
+      const jeugdorkestData = data.Content.filter((Content) => {
         return Content.__component === 'section.jeugdorkest';
       });
 
-      const dirigentData = data.Content.filter(Content => {
+      const dirigentData = data.Content.filter((Content) => {
         return Content.__component === 'section.dirigent';
       });
 
-      const adresData = data.Content.filter(Content => {
+      const adresData = data.Content.filter((Content) => {
         return Content.__component === 'section.adres';
       });
 
@@ -131,7 +131,7 @@ export default class IndexPage extends Vue {
         activiteitenData,
         jeugdorkestData,
         dirigentData,
-        adresData
+        adresData,
       };
     });
     return {
@@ -139,7 +139,7 @@ export default class IndexPage extends Vue {
       activiteitenData: pageData.activiteitenData,
       jeugdorkestData: pageData.jeugdorkestData,
       dirigentData: pageData.dirigentData,
-      adresData: pageData.adresData
+      adresData: pageData.adresData,
     };
   }
 

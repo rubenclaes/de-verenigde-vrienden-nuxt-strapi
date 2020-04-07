@@ -64,8 +64,8 @@ import { Component, Vue } from 'vue-property-decorator';
     BaseButton: () =>
       import(
         /* webpackChunkName: 'base-button' */ '@/components/BaseButton.vue'
-      )
-  }
+      ),
+  },
 })
 export default class Dirigent extends Vue {}
 </script>

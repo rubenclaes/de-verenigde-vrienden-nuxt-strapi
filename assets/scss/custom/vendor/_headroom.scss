@@ -1,8 +1,7 @@
 .headroom {
   will-change: transform;
-  transition: transform 0.4s ease, box-shadow 0.4s ease,
-    background-color 0.8s ease !important;
-    
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.5s ease !important;
 
   background-color: inherit;
 }

@@ -38,7 +38,7 @@ $grays: map-merge(
     '600': $gray-600,
     '700': $gray-700,
     '800': $gray-800,
-    '900': $gray-900
+    '900': $gray-900,
   ),
   $grays
 );
@@ -71,7 +71,7 @@ $colors: map-merge(
     'gray': $gray-600,
     'light': $gray-400,
     'lighter': $gray-200,
-    'gray-dark': $gray-800
+    'gray-dark': $gray-800,
   ),
   $colors
 );
@@ -111,7 +111,7 @@ $theme-colors: map-merge(
     'neutral': $white,
     'dark': $dark,
     'darker': $darker,
-    'blue': $blue
+    'blue': $blue,
   ),
   $theme-colors
 );
@@ -128,7 +128,7 @@ $brand-colors: map-merge(
     'slack': $slack,
     'dribbble': $dribbble,
     'github': $github,
-    'blue': $blue
+    'blue': $blue,
   ),
   $brand-colors
 );
@@ -140,7 +140,7 @@ $shape-colors: map-merge(
     'primary': #5533ff,
     'secondary': #24b47e,
     'neutral': #e9ecef,
-    'blue-gray': #b2cbe1
+    'blue-gray': #b2cbe1,
   ),
   $shape-colors
 );
@@ -155,7 +155,7 @@ $shapes-primary-colors: map-merge(
     'span-2-bg': #4553ff,
     'span-3-bg': #4f40ff,
     'span-4-bg': #25ddf5,
-    'span-5-bg': #1fa2ff
+    'span-5-bg': #1fa2ff,
   ),
   $shapes-primary-colors
 );
@@ -170,7 +170,7 @@ $shapes-default-colors: map-merge(
     'span-2-bg': #7b9aff,
     'span-3-bg': #6f8ff8,
     'span-4-bg': #76eea7,
-    'span-5-bg': #6adaff
+    'span-5-bg': #6adaff,
   ),
   $shapes-default-colors
 );
@@ -185,7 +185,7 @@ $shapes-light-colors: map-merge(
     'span-2-bg': #c5dbef,
     'span-3-bg': #b9d5ed,
     'span-4-bg': #74e4a2,
-    'span-5-bg': #008169
+    'span-5-bg': #008169,
   ),
   $shapes-light-colors
 );
@@ -200,7 +200,7 @@ $shapes-dark-colors: map-merge(
     'span-2-bg': #2b2b58,
     'span-3-bg': #25254d,
     'span-4-bg': #d782d9,
-    'span-5-bg': #008169
+    'span-5-bg': #008169,
   ),
   $shapes-dark-colors
 );
@@ -238,7 +238,7 @@ $section-colors: map-merge(
     'secondary': $secondary,
     'light': $gray-400,
     'dark': $dark,
-    'darker': $darker
+    'darker': $darker,
   ),
   $section-colors
 );
@@ -257,7 +257,7 @@ $grid-breakpoints: (
   sm: 576px,
   md: 768px,
   lg: 992px,
-  xl: 1200px
+  xl: 1200px,
 );
 
 @include _assert-ascending($grid-breakpoints, '$grid-breakpoints');
@@ -271,7 +271,7 @@ $container-max-widths: (
   sm: 540px,
   md: 720px,
   lg: 960px,
-  xl: 1040px
+  xl: 1040px,
 );
 
 @include _assert-ascending($container-max-widths, '$container-max-widths');
@@ -284,30 +284,30 @@ $spacers: map-merge(
   (
     0: 0,
     1: (
-      $spacer * 0.25
+      $spacer * 0.25,
     ),
     2: (
-      $spacer * 0.5
+      $spacer * 0.5,
     ),
     3: $spacer,
     4: (
-      $spacer * 1.5
+      $spacer * 1.5,
     ),
     5: (
-      $spacer * 3
+      $spacer * 3,
     ),
     'sm': (
-      $spacer * 2
+      $spacer * 2,
     ),
     'md': (
-      $spacer * 4
+      $spacer * 4,
     ),
     'lg': (
-      $spacer * 6
+      $spacer * 6,
     ),
     'xl': (
-      $spacer * 8
-    )
+      $spacer * 8,
+    ),
   ),
   $spacers
 );
@@ -320,7 +320,7 @@ $sizes: map-merge(
     25: 25%,
     50: 50%,
     75: 75%,
-    100: 100%
+    100: 100%,
   ),
   $sizes
 );
@@ -692,7 +692,7 @@ $nav-pills-box-shadow: $btn-box-shadow !default;
 // Navbar
 
 $navbar-transition: all 0.15s linear !default;
-$navbar-padding-y: 0.5rem !default;
+$navbar-padding-y: 1rem !default;
 $navbar-padding-x: 1rem !default;
 
 $navbar-nav-link-padding-x: 1rem !default;
