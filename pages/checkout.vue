@@ -274,8 +274,8 @@ import { v4 as uuidv4 } from 'uuid';
     BaseRadio: () => import('@/components/BaseRadio.vue'),
     Cart: () => import('@/components/Cart.vue'),
     Tabs: () => import('@/components/Tabs/Tabs.vue'),
-    TabPane: () => import('@/components/Tabs/TabPane.vue')
-  }
+    TabPane: () => import('@/components/Tabs/TabPane.vue'),
+  },
 })
 export default class CheckoutPage extends Vue {
   private title: string = 'Checkout';
@@ -287,7 +287,7 @@ export default class CheckoutPage extends Vue {
     lastName: '',
     email: '',
     address: '',
-    zip: 3550
+    zip: 3550,
   };
 
   private stripe;
@@ -301,7 +301,7 @@ export default class CheckoutPage extends Vue {
   private paymentIntent;
   private paymentRequest;
 
-  private $swal: any;
+  $swal: any;
   private selectedRadio: string = 'bancontact';
 
   private paymentMethods = {
@@ -309,7 +309,7 @@ export default class CheckoutPage extends Vue {
       name: 'bancontact',
       flow: 'redirect',
       countries: ['BE'],
-      currencies: ['eur']
+      currencies: ['eur'],
     },
 
     sepa_debit: {
@@ -317,12 +317,12 @@ export default class CheckoutPage extends Vue {
       flow: 'redirect',
       supportedCountries: ['SEPA'],
       placeholderCountry: 'BE',
-      currencies: ['eur']
+      currencies: ['eur'],
     },
 
     card: {
       name: 'card',
-      flow: 'none'
+      flow: 'none',
     },
 
     paymentRequestBtn: {
@@ -331,11 +331,11 @@ export default class CheckoutPage extends Vue {
       currency: 'eur',
       total: {
         label: 'Total',
-        amount: this.price()
+        amount: this.price(),
       },
       requestShipping: false,
-      requestPayerEmail: true
-    }
+      requestPayerEmail: true,
+    },
   };
 
   // Prepare the styles for Elements.
@@ -349,25 +349,25 @@ export default class CheckoutPage extends Vue {
       fontSmoothing: 'antialiased',
       fontSize: '15px',
       '::placeholder': {
-        color: '#aab7c4'
+        color: '#aab7c4',
       },
       ':-webkit-autofill': {
-        color: '#666ee8'
-      }
+        color: '#666ee8',
+      },
     },
     invalid: {
       color: '#fa755a',
       iconColor: '#fa755a',
       ':-webkit-autofill': {
-        color: '#fa755a'
-      }
-    }
+        color: '#fa755a',
+      },
+    },
   };
 
   head() {
     return {
       title: this.title,
-      meta: [{ hid: 'og:title', property: 'og:title', content: this.title }]
+      meta: [{ hid: 'og:title', property: 'og:title', content: this.title }],
     };
   }
 
@@ -379,7 +379,7 @@ export default class CheckoutPage extends Vue {
     try {
       await this.$store.dispatch('auth/login', {
         identifier: process.env.strapiUser,
-        password: process.env.strapiPassword
+        password: process.env.strapiPassword,
       });
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -399,7 +399,7 @@ export default class CheckoutPage extends Vue {
 
     await this.loadStripe();
 
-    this.$nextTick(function() {
+    this.$nextTick(function () {
       this.createAndMountFormElements();
     });
     // Monitor succesfull Bancontact Payments
@@ -418,11 +418,11 @@ export default class CheckoutPage extends Vue {
 
       const { source } = await this.stripe.retrieveSource({
         id: this.$route.query.source,
-        client_secret: this.$route.query.client_secret
+        client_secret: this.$route.query.client_secret,
       });
 
       await this.pollPaymentIntentStatus({
-        paymentIntent: source.metadata.paymentIntent
+        paymentIntent: source.metadata.paymentIntent,
       });
     }
   }
@@ -477,16 +477,16 @@ export default class CheckoutPage extends Vue {
             address: {
               country: 'BE',
               line1: address,
-              postal_code: zip
+              postal_code: zip,
             },
-            email: email
-          }
-        }
+            email: email,
+          },
+        },
       };
 
       const response = await this.stripe
         .confirmCardPayment(this.paymentIntent.client_secret, cardPaymentData)
-        .then(result => {
+        .then((result) => {
           this.processing = false;
           if (result.error) {
             // Show error to your customer
@@ -534,21 +534,21 @@ export default class CheckoutPage extends Vue {
           address: {
             country: 'BE',
             line1: address,
-            postal_code: zip
-          }
+            postal_code: zip,
+          },
         },
         redirect: {
-          return_url: window.location.href
+          return_url: window.location.href,
         },
         bancontact: { preferred_language: 'nl' },
         statement_descriptor: 'Eetdag KH De Verenigde Vrienden',
         metadata: {
-          paymentIntent: this.paymentIntent.id
-        }
+          paymentIntent: this.paymentIntent.id,
+        },
       };
 
       // Create a Stripe source with the common data and extra information.
-      await this.stripe.createSource(sourceData).then(result => {
+      await this.stripe.createSource(sourceData).then((result) => {
         this.processing = false;
         if (result.error) {
           // Show error to your customer
@@ -568,7 +568,7 @@ export default class CheckoutPage extends Vue {
     paymentIntent,
     timeout = 30000,
     interval = 500,
-    start = Date.now()
+    start = Date.now(),
   }: {
     paymentIntent;
     timeout?: number;
@@ -579,7 +579,7 @@ export default class CheckoutPage extends Vue {
       'succeeded',
       'processing',
       'canceled',
-      'requires_payment_method'
+      'requires_payment_method',
     ];
     // Retrieve the PaymentIntent status from our server.
     const { data } = await this.$store.dispatch(
@@ -622,9 +622,9 @@ export default class CheckoutPage extends Vue {
         address: address,
         currency: 'eur',
         zip: zip.toString(),
-        stripeIdempotency: uuidv4()
+        stripeIdempotency: uuidv4(),
       })
-      .then(data => {
+      .then((data) => {
         // The order is successfully been submitted.'
 
         const { clientSecret, order, paymentIntent } = data;
@@ -637,7 +637,7 @@ export default class CheckoutPage extends Vue {
 
         this.pay();
       })
-      .catch(err => {
+      .catch((err) => {
         this.processing = false;
 
         if (err.response && err.response.status === 400) {
@@ -665,7 +665,7 @@ export default class CheckoutPage extends Vue {
         title: 'Fout!',
         text: 'Er is een fout opgetreden met de betaling.',
         icon: 'error',
-        confirmButtonText: 'Ok'
+        confirmButtonText: 'Ok',
       });
     } else if (paymentIntent.status === 'succeeded') {
       // Success! Payment is confirmed. Update the interface to display the confirmation screen.
@@ -680,7 +680,7 @@ export default class CheckoutPage extends Vue {
         text:
           'We hebben zojuist een e-mail verzonden met bevestiging van de betaling. Breng deze mee naar de eetdag.',
         icon: 'success',
-        confirmButtonText: 'Ok'
+        confirmButtonText: 'Ok',
       });
       this.$store.commit('cart/setCheckoutStatus', 'successful');
     } else if (paymentIntent.status === 'processing') {
@@ -697,7 +697,7 @@ export default class CheckoutPage extends Vue {
         title: 'Fout!',
         text: 'Er is een fout opgetreden met de betaling.',
         icon: 'error',
-        confirmButtonText: 'Ok'
+        confirmButtonText: 'Ok',
       });
     }
   }
