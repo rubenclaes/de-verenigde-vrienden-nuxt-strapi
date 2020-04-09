@@ -202,6 +202,7 @@ import { Component, Vue, namespace } from 'nuxt-property-decorator';
 
 import { cartVuexNamespace } from '~/store/cart/const';
 
+import '@stripe/stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -464,9 +465,6 @@ export default class CheckoutPage extends Vue {
           paymentIntent: this.paymentIntent.id,
         },
       };
-
-      console.log(sourceData);
-      console.log(this.stripe);
 
       // Create a Stripe source with the common data and extra information.
       await this.stripe.createSource(sourceData).then((result) => {
