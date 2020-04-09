@@ -1,9 +1,9 @@
 <template>
   <div>
     <Banner />
-    <Harmonie :data="harmonieData" />
-    <Jeugdorkest :data="jeugdorkestData" />
-    <Activiteiten :data="activiteitenData" />
+    <Harmonie v-if="harmonieData" :data="harmonieData" />
+    <Jeugdorkest v-if="jeugdorkestData" :data="jeugdorkestData" />
+    <Activiteiten v-if="activiteitenData" :data="activiteitenData" />
 
     <Adres />
     <Contact />
@@ -94,7 +94,7 @@ export default class IndexPage extends Vue {
    *  - When data fetched in a particular route is used only by a single component
    *  - The result from asyncData will be merged with data.
    */
-  async asyncData({ store, params }) {
+  async asyncData({ store, params, error, payload }) {
     let filter = {
       __component: [
         'section.harmonie',
@@ -105,42 +105,46 @@ export default class IndexPage extends Vue {
       ],
     };
 
-    const pageData = await loadHome().then((data) => {
-      const harmonieData = data.Content.filter((Content) => {
-        return Content.__component === 'section.harmonie';
-      });
+    try {
+      const pageData = await loadHome().then((data) => {
+        const harmonieData = data.Content.filter((Content) => {
+          return Content.__component === 'section.harmonie';
+        });
 
-      const activiteitenData = data.Content.filter((Content) => {
-        return Content.__component === 'section.activiteiten';
-      });
+        const activiteitenData = data.Content.filter((Content) => {
+          return Content.__component === 'section.activiteiten';
+        });
 
-      const jeugdorkestData = data.Content.filter((Content) => {
-        return Content.__component === 'section.jeugdorkest';
-      });
+        const jeugdorkestData = data.Content.filter((Content) => {
+          return Content.__component === 'section.jeugdorkest';
+        });
 
-      const dirigentData = data.Content.filter((Content) => {
-        return Content.__component === 'section.dirigent';
-      });
+        const dirigentData = data.Content.filter((Content) => {
+          return Content.__component === 'section.dirigent';
+        });
 
-      const adresData = data.Content.filter((Content) => {
-        return Content.__component === 'section.adres';
-      });
+        const adresData = data.Content.filter((Content) => {
+          return Content.__component === 'section.adres';
+        });
 
+        return {
+          harmonieData,
+          activiteitenData,
+          jeugdorkestData,
+          dirigentData,
+          adresData,
+        };
+      });
       return {
-        harmonieData,
-        activiteitenData,
-        jeugdorkestData,
-        dirigentData,
-        adresData,
+        harmonieData: pageData.harmonieData,
+        activiteitenData: pageData.activiteitenData,
+        jeugdorkestData: pageData.jeugdorkestData,
+        dirigentData: pageData.dirigentData,
+        adresData: pageData.adresData,
       };
-    });
-    return {
-      harmonieData: pageData.harmonieData,
-      activiteitenData: pageData.activiteitenData,
-      jeugdorkestData: pageData.jeugdorkestData,
-      dirigentData: pageData.dirigentData,
-      adresData: pageData.adresData,
-    };
+    } catch (error) {
+      throw error;
+    }
   }
 
   exactlyThree(word) {
