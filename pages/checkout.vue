@@ -350,6 +350,7 @@ export default class CheckoutPage extends Vue {
 
   async loadStripe() {
     const stripeKey: string = process.env.stripePublicKey || '';
+    console.log(stripeKey);
     this.stripe = await loadStripe(stripeKey);
   }
 
@@ -465,6 +466,7 @@ export default class CheckoutPage extends Vue {
       };
 
       console.log(sourceData);
+      console.log(this.stripe);
 
       // Create a Stripe source with the common data and extra information.
       await this.stripe.createSource(sourceData).then((result) => {
