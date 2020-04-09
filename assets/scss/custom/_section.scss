@@ -119,8 +119,8 @@
 }
 
 .page-header .container {
-  padding-top: 13vh;
-  padding-bottom: 13vh;
+  padding-top: 16vh;
+  padding-bottom: 16vh;
 }
 
 // Hero sections
@@ -141,52 +141,6 @@
 @include media-breakpoint-down(md) {
   .section-profile-cover {
     height: 400px;
-  }
-}
-
-// Components section (for demo)
-.section-components {
-  > .form-control {
-    + .form-control {
-      margin-top: 0.5rem;
-    }
-  }
-
-  > .nav + .nav,
-  > .alert + .alert,
-  > .navbar + .navbar,
-  > .progress + .progress,
-  > .progress + .btn,
-  .badge,
-  .btn {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .btn-group {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    .btn {
-      margin: 0;
-    }
-  }
-
-  .alert {
-    margin: 0;
-
-    + .alert {
-      margin-top: 1.25rem;
-    }
-  }
-
-  .badge {
-    margin-right: 0.5rem;
-  }
-
-  .modal-footer {
-    .btn {
-      margin: 0;
-    }
   }
 }
 

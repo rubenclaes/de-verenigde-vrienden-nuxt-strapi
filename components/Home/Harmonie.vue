@@ -3,7 +3,7 @@
   <section id="harmonie" class="section section-lg features-6">
     <div class="container">
       <div class="row row-grid align-items-center">
-        <div class="col-md-6">
+        <div class="col-md-6 order-md-1">
           <div class="card bg-default shadow border-0">
             <LazyImage
               fetchMode="cloudinary"
@@ -38,7 +38,7 @@
         </div>
 
         <div
-          class="col-lg-6"
+          class="col-md-6 order-md-2"
           data-aos="fade-in"
           data-aos-delay="200"
           data-aos-duration="1000"
@@ -69,8 +69,8 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 @Component({
   components: {
     LazyImage: () =>
-      import(/* webpackChunkName: 'lazy-image' */ '@/components/LazyImage.vue')
-  }
+      import(/* webpackChunkName: 'lazy-image' */ '@/components/LazyImage.vue'),
+  },
 })
 export default class Harmonie extends Vue {
   @Prop({ type: Array, required: true })

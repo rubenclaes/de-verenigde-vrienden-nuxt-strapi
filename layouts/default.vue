@@ -41,15 +41,18 @@
               class="text-primary font-weight-light mb-2"
               data-aos="fade-right"
               data-aos-delay="150"
-            >Begint het al een beetje te kriebelen?</h3>
+            >
+              Begint het al een beetje te kriebelen?
+            </h3>
             <h4
               class="mb-0 font-weight-light"
               data-aos="fade-right"
               data-aos-delay="250"
-            >Volg ons ook op social media!</h4>
+            >
+              Volg ons ook op social media!
+            </h4>
           </div>
           <div class="col-lg-6 text-lg-center btn-wrapper">
-            <p class="lead">Volg ons op</p>
             <a
               target="_blank"
               rel="noopener"
@@ -78,16 +81,22 @@
                 <router-link to="/" class="nav-link">Home</router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/geschiedenis" class="nav-link">Geschiedenis</router-link>
+                <router-link to="/geschiedenis" class="nav-link"
+                  >Geschiedenis</router-link
+                >
               </li>
               <li class="nav-item">
-                <router-link to="/dirigent" class="nav-link">Dirigent</router-link>
+                <router-link to="/dirigent" class="nav-link"
+                  >Dirigent</router-link
+                >
               </li>
               <li class="nav-item">
-                <router-link to="/drumband" class="nav-link">Drumband</router-link>
+                <router-link to="/drumband" class="nav-link"
+                  >Drumband</router-link
+                >
               </li>
               <li class="nav-item" @click="goTocontact()">
-                <span class="nav-link" style="cursor:pointer">Contact</span>
+                <span class="nav-link" style="cursor: pointer;">Contact</span>
               </li>
             </ul>
           </div>
@@ -115,8 +124,8 @@ import { harmonieDropdown } from '../config/menu.js';
     HeaderStyle1: () =>
       import(
         /* webpackChunkName: 'header-style1' */ '@/components/deverenigdevrienden/Header/HeaderStyle1.vue'
-      )
-  }
+      ),
+  },
 })
 export default class appHeader extends Vue {
   year = new Date().getFullYear();
@@ -128,18 +137,17 @@ export default class appHeader extends Vue {
     {
       href: '/',
       title: 'Home',
-      active: true
+      active: true,
     },
     {
       href: '#',
       title: 'Harmonie',
       children: true,
-      child: harmonieDropdown
+      child: harmonieDropdown,
     },
     { href: '/drumband', title: 'Drumband' },
     { href: '/nieuws', title: 'Nieuws' },
-    { href: '/eetdag', title: 'Eetdag' }
+    { href: '/eetdag', title: 'Eetdag' },
   ];
 }
 </script>
-

@@ -152,8 +152,8 @@ import { headroom } from 'vue-headroom';
       ),
     Badge: () =>
       import(/* webpackChunkName: 'badge' */ '@/components/Badge.vue'),
-    Icon: () => import(/* webpackChunkName: 'icon' */ '@/components/Icon.vue')
-  }
+    Icon: () => import(/* webpackChunkName: 'icon' */ '@/components/Icon.vue'),
+  },
 })
 export default class headerStyle1 extends Vue {
   downTolerance: number = 0;
@@ -191,5 +191,3 @@ export default class headerStyle1 extends Vue {
   }
 }
 </script>
-
-<style scoped></style>

@@ -91,8 +91,8 @@
 .list-group-item.active {
   z-index: 2;
   color: #fff;
-  border-color: #5e72e4;
-  background-color: #5e72e4;
+  border-color: $primary;
+  background-color: $primary;
 }
 
 .list-group-item + .list-group-item {
