@@ -349,9 +349,12 @@ export default class CheckoutPage extends Vue {
   }
 
   async loadStripe() {
-    const stripeKey: string = process.env.stripePublicKey || '';
-    console.log(stripeKey);
-    this.stripe = await loadStripe(stripeKey);
+    const stripeKey = process.env.stripePublicKey;
+    if (stripeKey) {
+      this.stripe = await loadStripe(stripeKey);
+    } else {
+      throw new Error('Stripe is not loaded');
+    }
   }
 
   async monitorPaymentStatus() {
