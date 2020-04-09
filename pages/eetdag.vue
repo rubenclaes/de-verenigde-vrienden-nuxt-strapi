@@ -75,7 +75,6 @@ import { diningDayVuexNamespace } from '~/store/diningday/const';
   layout: 'appHeader',
 
   components: {
-    //Card
     DishList: () => import('@/components/DishList.vue'),
   },
 })
