@@ -202,7 +202,6 @@ import { Component, Vue, namespace } from 'nuxt-property-decorator';
 
 import { cartVuexNamespace } from '~/store/cart/const';
 
-import '@stripe/stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { v4 as uuidv4 } from 'uuid';
 

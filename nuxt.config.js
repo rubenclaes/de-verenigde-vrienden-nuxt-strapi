@@ -9,7 +9,7 @@ module.exports = {
   env: {
     strapiUser: process.env.STRAPI_IDENTIFIER,
     strapiPassword: process.env.STRAPI_PASSWORD,
-    stripePublicKey: process.env.STRIPE_PUBLIC_KEY
+    stripePublicKey: process.env.STRIPE_PUBLIC_KEY,
   },
 
   /*
@@ -17,7 +17,7 @@ module.exports = {
    */
   head: {
     htmlAttrs: {
-      lang: 'nl-BE'
+      lang: 'nl-BE',
     },
     title: process.env.APP_ID,
     titleTemplate: '%s ← ' + process.env.APP_ID,
@@ -27,18 +27,19 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: 'Koninklijke Harmonie de Verenige Vrienden Heusden-Zolder'
-      }
+        content: 'Koninklijke Harmonie de Verenige Vrienden Heusden-Zolder',
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'preconnect', href: 'https://res.cloudinary.com' }
+      { rel: 'preconnect', href: 'https://res.cloudinary.com' },
     ],
     script: [
       {
-        src: ''
-      }
-    ]
+        src: 'https://js.stripe.com/v3',
+        async: true,
+      },
+    ],
   },
 
   /*
@@ -51,7 +52,7 @@ module.exports = {
     short_name: 'Harmonie HZ',
     description:
       'Website Koninklijke Harmonie De Verenige Vrienden Heusden-Zolder',
-    theme_color: '#39b982'
+    theme_color: '#39b982',
   },
 
   /*
@@ -61,7 +62,7 @@ module.exports = {
     '@/assets/vendor/font-awesome/css/font-awesome.css',
     '@/assets/vendor/nucleo/css/nucleo.css',
     '@/assets/scss/argon.scss',
-    'aos/dist/aos.css'
+    'aos/dist/aos.css',
   ],
 
   /*
@@ -87,7 +88,7 @@ module.exports = {
     '~/plugins/filters',
     '~/plugins/vee-validate',
     '~/plugins/click-outside.js',
-    `~/plugins/currency-filter.js`
+    `~/plugins/currency-filter.js`,
   ],
 
   /*
@@ -126,20 +127,20 @@ module.exports = {
           checkboxActiveCircleBackground: '#00c58e',
           checkboxInactiveCircleBackground: '#f44336',
           checkboxDisabledBackground: '#ddd',
-          checkboxDisabledCircleBackground: '#fff'
-        }
-      }
+          checkboxDisabledCircleBackground: '#fff',
+        },
+      },
     ],
     [
       'nuxt-gmaps',
       {
-        key: process.env.GOOGLE_MAPS
-      }
+        key: process.env.GOOGLE_MAPS,
+      },
     ],
 
     //Always at the end
     '@nuxtjs/sitemap',
-    '@nuxtjs/robots'
+    '@nuxtjs/robots',
   ],
 
   /*
@@ -153,8 +154,8 @@ module.exports = {
 
         description:
           'Zijn nodig om de website goed te laten functioneren en worden automatisch ingeschakeld als u de site bezoekt',
-        cookies: ['cookie_control_consent', 'cookie_control_enabled_cookies']
-      }
+        cookies: ['cookie_control_consent', 'cookie_control_enabled_cookies'],
+      },
     ],
     optional: [
       {
@@ -173,8 +174,8 @@ module.exports = {
           }
           gtag('js', new Date());
           gtag('config', 'GTM-TW8TSMW');
-        }
-      }
+        },
+      },
     ],
 
     //default texts
@@ -192,8 +193,8 @@ module.exports = {
       optional: 'Optionele cookies',
       functional: 'Functionele cookies',
       blockedIframe: 'Schakel functionele cookies in om dit te zien',
-      here: 'hier'
-    }
+      here: 'hier',
+    },
   },
 
   /*
@@ -207,16 +208,16 @@ module.exports = {
     optimizeImagesInDev: false,
     defaultImageLoader: 'img-loader',
     mozjpeg: {
-      quality: 85
+      quality: 85,
     },
     optipng: false,
     pngquant: {
       speed: 7,
-      quality: [0.65, 0.8]
+      quality: [0.65, 0.8],
     },
     webp: {
-      quality: 80
-    }
+      quality: 80,
+    },
   },
 
   /*
@@ -231,12 +232,12 @@ module.exports = {
       'ImagePlugin',
       'SpinnerPlugin',
       'InputGroupPlugin',
-      'FormInputPlugin'
+      'FormInputPlugin',
     ],
     directivePlugins: ['VBPopoverPlugin', 'VBTooltipPlugin'],
 
     bootstrapCSS: false, // Or `css: false`
-    bootstrapVueCSS: false // Or `bvCSS: false`
+    bootstrapVueCSS: false, // Or `bvCSS: false`
   },
 
   /*
@@ -249,25 +250,25 @@ module.exports = {
     defaults: {
       changefreq: 'daily',
       priority: 1,
-      lastmodrealtime: true
+      lastmodrealtime: true,
     },
     routes: [
       '/',
       '/nieuws',
       '/dirigent',
       '/geschiedenis',
-      '/drumband'
+      '/drumband',
       /* {
         url: '/page/2',
         changefreq: 'daily',
         priority: 1,
         lastmodISO: '2017-06-30T13:30:00.000Z'
       } */
-    ]
+    ],
   },
 
   robots: {
-    sitemap: `${process.env.HOSTNAME}/sitemap.xml`
+    sitemap: `${process.env.HOSTNAME}/sitemap.xml`,
   },
 
   /*
@@ -276,8 +277,8 @@ module.exports = {
   pwa: {
     workbox: {
       /* workbox options */
-      offlineAnalytics: true
-    }
+      offlineAnalytics: true,
+    },
   },
 
   /*
@@ -287,7 +288,7 @@ module.exports = {
     preset: 'default',
     linkify: true,
     breaks: true,
-    injected: true
+    injected: true,
   },
 
   /*
@@ -297,7 +298,7 @@ module.exports = {
     dsn: process.env.SENTRY_DSN,
     publishRelease: true,
     disabled: IS_DEV,
-    config: {} // Additional config
+    config: {}, // Additional config
   },
 
   /*
@@ -305,7 +306,7 @@ module.exports = {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.API_URL
+    baseURL: process.env.API_URL,
   },
 
   /*
@@ -327,27 +328,27 @@ module.exports = {
         vue.transformAssetUrls.img = ['data-src', 'src'];
         vue.transformAssetUrls.source = ['data-srcset', 'srcset'];
       }
-    }
+    },
   },
 
   generate: {
     fallback: true,
 
-    routes: async function() {
+    routes: async function () {
       return await axios
         .get(`${process.env.API_URL}/restaurants`)
-        .then(res => {
-          return res.data.map(article => {
+        .then((res) => {
+          return res.data.map((article) => {
             article.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${article.image.public_id}${article.image.ext}`;
             return {
               route: `/articles/${article.slug}`,
-              payload: article
+              payload: article,
             };
           });
         })
-        .catch(err => {
+        .catch((err) => {
           console.error('error', err);
         });
-    }
-  }
+    },
+  },
 };
