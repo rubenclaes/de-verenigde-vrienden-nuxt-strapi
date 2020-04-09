@@ -353,7 +353,7 @@ export default class CheckoutPage extends Vue {
     if (stripeKey) {
       this.stripe = await loadStripe(stripeKey);
     } else {
-      throw new Error('Stripe is not loaded');
+      throw new Error('Stripe is not loaded!');
     }
   }
 
