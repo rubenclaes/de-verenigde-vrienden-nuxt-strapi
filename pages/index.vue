@@ -4,7 +4,6 @@
     <Harmonie v-if="harmonieData" :data="harmonieData" />
     <Jeugdorkest v-if="jeugdorkestData" :data="jeugdorkestData" />
     <Activiteiten v-if="activiteitenData" :data="activiteitenData" />
-
     <Adres />
     <Contact />
   </div>
@@ -32,10 +31,6 @@ import { loadHome } from '../lib/home/api';
     Activiteiten: () =>
       import(
         /* webpackChunkName: 'activiteiten' */ '@/components/Home/Activiteiten.vue'
-      ),
-    Dirigent: () =>
-      import(
-        /* webpackChunkName: 'dirigent' */ '@/components/Home/Dirigent.vue'
       ),
     Adres: () =>
       import(/* webpackChunkName: 'adres' */ '@/components/Home/Adres.vue'),
@@ -119,10 +114,6 @@ export default class IndexPage extends Vue {
           return Content.__component === 'section.jeugdorkest';
         });
 
-        const dirigentData = data.Content.filter((Content) => {
-          return Content.__component === 'section.dirigent';
-        });
-
         const adresData = data.Content.filter((Content) => {
           return Content.__component === 'section.adres';
         });
@@ -131,7 +122,6 @@ export default class IndexPage extends Vue {
           harmonieData,
           activiteitenData,
           jeugdorkestData,
-          dirigentData,
           adresData,
         };
       });
@@ -139,16 +129,11 @@ export default class IndexPage extends Vue {
         harmonieData: pageData.harmonieData,
         activiteitenData: pageData.activiteitenData,
         jeugdorkestData: pageData.jeugdorkestData,
-        dirigentData: pageData.dirigentData,
         adresData: pageData.adresData,
       };
     } catch (error) {
       throw error;
     }
-  }
-
-  exactlyThree(word) {
-    return word.length === 3;
   }
 }
 </script>
