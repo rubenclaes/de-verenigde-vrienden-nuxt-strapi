@@ -3,10 +3,10 @@
   <section class="section bg-secondary section-lg">
     <div class="container">
       <div class="row row-grid align-items-center">
-        <div class="col-md-6 order-md-2">
+        <div class="col-md-6 order-md-2" data-aos="reveal-img">
           <div class="rounded shadow-lg overflow-hidden">
             <client-only>
-              <b-carousel id="carousel1" :interval="4000" controls indicators>
+              <b-carousel id="carousel1" controls no-animation :interval="0" indicators>
                 <!-- Slides with img slot -->
                 <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
                 <b-carousel-slide v-for="(slide, itemObjKey) in data[0].Slider" :key="slide.id">
@@ -24,8 +24,8 @@
             </client-only>
           </div>
         </div>
-        <div class="col-md-6 order-md-1">
-          <div class="pr-md-5" data-aos="fade-in" data-aos-delay="250" data-aos-duration="1200">
+        <div class="col-md-6 order-md-1" data-aos="reveal-up">
+          <div class="pr-md-5">
             <icon
               name="ni ni ni-satisfied"
               class="mb-5 floating"
@@ -63,8 +63,8 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
       import(/* webpackChunkName: 'badge' */ '@/components/Badge.vue'),
     Icon: () => import(/* webpackChunkName: 'icon' */ '@/components/Icon.vue'),
     LazyImage: () =>
-      import(/* webpackChunkName: 'lazy-image' */ '@/components/LazyImage.vue')
-  }
+      import(/* webpackChunkName: 'lazy-image' */ '@/components/LazyImage.vue'),
+  },
 })
 export default class Jeugdorkest extends Vue {
   @Prop({ type: Array, required: true })

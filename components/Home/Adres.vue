@@ -1,14 +1,7 @@
 <template>
   <!-- Adres -->
-  <section class="section section-shaped my-0 overflow-hidden">
-    <div class="shape">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-    <div class="container pt-lg pb-300">
+  <section class="section section-lg bg-secondary my-0 overflow-hidden">
+    <div class="container py-0 pb-300">
       <div class="row text-center justify-content-center">
         <div class="col-lg-10">
           <a href="https://goo.gl/maps/YgziKZGExWnQW9cd7">
@@ -33,8 +26,8 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
   components: {
-    Icon: () => import(/* webpackChunkName: 'icon' */ '@/components/Icon.vue')
-  }
+    Icon: () => import(/* webpackChunkName: 'icon' */ '@/components/Icon.vue'),
+  },
 })
 export default class Adres extends Vue {}
 </script>

@@ -4,12 +4,7 @@
   <section class="section section-lg lazyload" id="section10" :style="styles()">
     <div class="container py-0 pb-lg">
       <div class="row justify-content-between align-items-center">
-        <div
-          class="col-lg-5 mb-5 mb-lg-0"
-          data-aos="fade-in"
-          data-aos-delay="250"
-          data-aos-duration="1200"
-        >
+        <div class="col-lg-5 mb-5 mb-lg-0" data-aos="reveal-up">
           <icon
             name="ni ni-calendar-grid-58"
             class="mb-5 floating"
@@ -26,7 +21,7 @@
         <div class="col-lg-6 mb-lg-auto">
           <div class="rounded shadow-lg overflow-hidden transform-perspective-right">
             <client-only>
-              <b-carousel id="carousel3" controls indicators>
+              <b-carousel id="carousel3" no-animation controls>
                 <b-carousel-slide>
                   <template v-slot:img>
                     <LazyImage
