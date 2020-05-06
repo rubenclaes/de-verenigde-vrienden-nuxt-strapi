@@ -10,18 +10,9 @@
 
       <!-- You can add more ".slideshow-image" elements, but remember to update the "$items" variable on SCSS -->
       <div class="slideshow">
-        <div
-          class="slideshow-image"
-          :style="{ backgroundImage: 'url(' + slideshow.image1 + ')' }"
-        ></div>
-        <div
-          class="slideshow-image"
-          :style="{ backgroundImage: 'url(' + slideshow.image2 + ')' }"
-        ></div>
-        <div
-          class="slideshow-image"
-          :style="{ backgroundImage: 'url(' + slideshow.image3 + ')' }"
-        ></div>
+        <div class="slideshow-image" :style="{ backgroundImage: 'url(' + slideshow.image1 + ')' }"></div>
+        <div class="slideshow-image" :style="{ backgroundImage: 'url(' + slideshow.image2 + ')' }"></div>
+        <div class="slideshow-image" :style="{ backgroundImage: 'url(' + slideshow.image3 + ')' }"></div>
       </div>
     </div>
     <!--     <div class="page-header" id="banner">
@@ -81,7 +72,7 @@
       <a v-scroll-to="'#harmonie'">
         <span></span>
       </a>
-    </div> -->
+    </div>-->
   </section>
 
   <!--  <parallax-style1
@@ -124,7 +115,7 @@
         <a v-scroll-to="'#harmonie'">
           <span></span>
         </a>
-      </parallax-style1> -->
+  </parallax-style1>-->
 </template>
 
 <script lang="ts">
@@ -139,8 +130,8 @@ export default class Header extends Vue {
       show: true,
       slideshow: {
         image1: require('../../assets/img/home/header/music/music-chart_1200.jpg'),
-        image2: require('../../assets/img/home/header/music/shiny-trumpet-instrument-valves-and-mouthpiece.jpg'),
-        image3: require('../../assets/img/home/header/music/silver-trumpet-buttons-and-valves.jpg'),
+        image2: require('../../assets/img/home/header/music/shiny-trumpet-instrument-valves-and-mouthpiece.jpeg'),
+        image3: require('../../assets/img/home/header/music/silver-trumpet-buttons-and-valves.jpeg'),
       },
     };
   }

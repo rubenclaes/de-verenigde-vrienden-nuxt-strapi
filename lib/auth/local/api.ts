@@ -5,5 +5,9 @@ import { $axios } from '~/utils/api';
  *
  */
 export async function login(payload) {
-  return await $axios.post(`auth/local`, payload);
+  try {
+    return await $axios.post(`auth/local`, payload);
+  } catch (error) {
+    throw error;
+  }
 }

@@ -54,8 +54,8 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
   components: {
     LazyImage: () =>
       import(/* webpackChunkName: 'lazy-image' */ '@/components/LazyImage.vue'),
-    Icon: () => import(/* webpackChunkName: 'icon' */ '@/components/Icon.vue')
-  }
+    Icon: () => import(/* webpackChunkName: 'icon' */ '@/components/Icon.vue'),
+  },
 })
 export default class Activiteiten extends Vue {
   @Prop({ type: Array, required: true })
@@ -68,11 +68,11 @@ export default class Activiteiten extends Vue {
   }
   styles() {
     return {
-      'background-image': `url(${require('../../assets/img/home/header/trumpet-tamborine-and-flute-instruments.jpg')})`,
+      'background-image': `url(${require('../../assets/img/home/header/trumpet-tamborine-and-flute-instruments-compressed.jpg')})`,
       'background-attachement': `fixed`,
       'background-repeat': `no-repeat`,
       'background-position': `center`,
-      'background-size': `cover`
+      'background-size': `cover`,
     };
   }
 

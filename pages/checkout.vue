@@ -12,7 +12,7 @@
             <cart></cart>
           </div>
           <div v-if="checkoutStatus() === 'successful'" class="col-md-8 order-md-1">
-            <h4 class="mb-3">Overzicht Bestelling</h4>
+            <h4 class="mb-3">1. Bestelling</h4>
           </div>
           <div v-else class="col-md-8 order-md-1">
             <h4 class="mb-3">Betalingsgegevens</h4>
@@ -35,7 +35,14 @@
                 <div class="col-md-6 mb-3">
                   <label for="lastName">Achternaam</label>
 
-                  <base-input></base-input>
+                  <base-input
+                    id="lastName"
+                    v-model="paymentInfo.lastName"
+                    alternative
+                    required
+                    :disabled="processing"
+                    type="text"
+                  ></base-input>
                   <div class="invalid-feedback">Valid last name is required.</div>
                 </div>
               </div>
@@ -100,7 +107,9 @@
               <div class="d-block my-3">
                 <tabs>
                   <tab-pane title="Bancontact" :label="paymentMethods.bancontact.name"></tab-pane>
-                  <tab-pane title="Mastercard / Visa" :label="paymentMethods.card.name"></tab-pane>
+                  <tab-pane title="Mastercard / Visa" :label="paymentMethods.card.name">
+                    <div class="form-control" ref="card"></div>
+                  </tab-pane>
                 </tabs>
                 <base-radio
                   name="paymentMethod"
@@ -156,7 +165,7 @@
                   </div>
                   <div class="col-md-6 mb-3">
                     <label for="cc-number">Creditcard nummer</label>
-                    <div class="form-control" ref="card"></div>
+
                     <div class="invalid-feedback">Credit card number is required</div>
                   </div>
                 </div>
@@ -342,6 +351,7 @@ export default class CheckoutPage extends Vue {
     }
 
     await this.loadStripe();
+
     this.createAndMountFormElements();
 
     // Monitor succesfull Bancontact Payments
@@ -375,8 +385,13 @@ export default class CheckoutPage extends Vue {
 
   createAndMountFormElements() {
     let elements = this.stripe.elements();
-    this.card = elements.create('card', { style: this.style });
-    this.card.mount(this.$refs.card);
+
+    this.$nextTick(() => {
+      if (this.$refs.card) {
+        this.card = elements.create('card', { style: this.style });
+        this.card.mount(this.$refs.card);
+      }
+    });
   }
 
   async pay() {
@@ -578,10 +593,11 @@ export default class CheckoutPage extends Vue {
   }
 
   handlePayment(paymentResponse) {
+    console.log(paymentResponse);
     const { paymentIntent, error } = paymentResponse;
 
     if (error) {
-      console.error(new Error('Er is een fout opgetreden met de betaling'));
+      console.error(error.message);
       this.$swal.fire({
         title: 'Fout!',
         text: 'Er is een fout opgetreden met de betaling.',

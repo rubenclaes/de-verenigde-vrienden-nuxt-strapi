@@ -132,7 +132,7 @@ export default class IndexPage extends Vue {
         adresData: pageData.adresData,
       };
     } catch (error) {
-      throw error;
+      console.error('Error', error);
     }
   }
 }

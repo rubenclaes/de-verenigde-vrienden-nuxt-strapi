@@ -2,19 +2,14 @@
   <div class="diningday-page">
     <section class="section-shaped my-0 skew-separator skew-mini">
       <div class="page-header page-header-small header-filter">
-        <div
-          class="page-header-image"
-          :style="{ backgroundImage: 'url(' + image + ')' }"
-        ></div>
+        <div class="page-header-image" :style="{ backgroundImage: 'url(' + image + ')' }"></div>
         <div class="container">
           <div class="header-body text-center mb-7">
             <div class="row justify-content-center">
               <div class="col-xl-5 col-lg-6 col-md-8 px-5">
                 <h1 class="text-white">Invoice</h1>
 
-                <p class="text-lead text-white">
-                  Bedankt voor je bestelling
-                </p>
+                <p class="text-lead text-white">Bedankt voor je bestelling</p>
               </div>
             </div>
           </div>
@@ -34,16 +29,18 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, namespace } from 'nuxt-property-decorator';
+import { Component, Vue } from 'nuxt-property-decorator';
 
 @Component({
   layout: 'appHeader',
+
+  middleware: ['authenticated'],
 
   components: {
     InvoiceCard: () => import('@/components/InvoiceCard.vue'),
   },
 })
-export default class EetdagPage extends Vue {
+export default class InvoicePage extends Vue {
   private title: string = 'Invoice';
   private image = '../img/invoice/payment.jpg';
   head() {

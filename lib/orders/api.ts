@@ -5,11 +5,15 @@ import { $axios } from '~/utils/api';
  *
  */
 export async function createOrder(payload, token) {
-  const config = {
-    headers: { Authorization: `Bearer ${token}` }
-  };
+  try {
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
 
-  return await $axios.post(`orders`, payload, config).then(res => {
-    return res.data;
-  });
+    return await $axios.post(`orders`, payload, config).then((res) => {
+      return res.data;
+    });
+  } catch (error) {
+    throw error;
+  }
 }

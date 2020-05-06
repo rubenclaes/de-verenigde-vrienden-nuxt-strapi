@@ -34,12 +34,7 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'preconnect', href: 'https://res.cloudinary.com' },
     ],
-    script: [
-      {
-        src: 'https://js.stripe.com/v3',
-        async: true,
-      },
-    ],
+    script: [{}],
   },
 
   /*
@@ -347,6 +342,7 @@ module.exports = {
           });
         })
         .catch((err) => {
+          console.error('Problem with generating routes');
           console.error('error', err);
         });
     },

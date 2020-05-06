@@ -8,12 +8,16 @@ const cloudinary =
  *
  */
 export async function loadArticles() {
-  return await $axios.get(`restaurants`).then(res => {
-    res.data.map(article => {
-      article.image.url = `${cloudinary}${article.image.public_id}${article.image.ext}`;
+  try {
+    return await $axios.get(`restaurants`).then((res) => {
+      res.data.map((article) => {
+        article.image.url = `${cloudinary}${article.image.public_id}${article.image.ext}`;
+      });
+      return res.data;
     });
-    return res.data;
-  });
+  } catch (error) {
+    throw error;
+  }
 }
 
 /**
@@ -21,10 +25,14 @@ export async function loadArticles() {
  *
  */
 export async function loadArticle(id: number) {
-  return await $axios.get(`restaurants/${id}`).then(res => {
-    res.data.image.url = `${cloudinary}/${res.data.image.public_id}${res.data.image.ext}`;
-    return res.data[0];
-  });
+  try {
+    return await $axios.get(`restaurants/${id}`).then((res) => {
+      res.data.image.url = `${cloudinary}/${res.data.image.public_id}${res.data.image.ext}`;
+      return res.data[0];
+    });
+  } catch (error) {
+    throw error;
+  }
 }
 
 /**
@@ -32,8 +40,12 @@ export async function loadArticle(id: number) {
  *
  */
 export async function loadArticleBySlug(slug: string) {
-  return await $axios.get(`restaurants?slug=${slug}`).then(res => {
-    res.data[0].image.url = `${cloudinary}${res.data[0].image.public_id}${res.data[0].image.ext}`;
-    return res.data[0];
-  });
+  try {
+    return await $axios.get(`restaurants?slug=${slug}`).then((res) => {
+      res.data[0].image.url = `${cloudinary}${res.data[0].image.public_id}${res.data[0].image.ext}`;
+      return res.data[0];
+    });
+  } catch (error) {
+    throw error;
+  }
 }
