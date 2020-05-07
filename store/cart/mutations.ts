@@ -32,7 +32,7 @@ export const mutations: MutationTree<CartState> = {
    * @param {*} { id }
    */
   incrementItemQuantity(state, { id }) {
-    const cartItem = state.items.find(item => item.id === id);
+    const cartItem = state.items.find((item) => item.id === id);
     if (cartItem) cartItem.quantity++;
   },
 
@@ -43,7 +43,7 @@ export const mutations: MutationTree<CartState> = {
    * @param {*} { id }
    */
   decrementItemQuantity(state, { id }) {
-    const cartItem = state.items.find(item => item.id === id);
+    const cartItem = state.items.find((item) => item.id === id);
     if (cartItem && cartItem.quantity > 0) {
       cartItem.quantity--;
     }
@@ -58,7 +58,7 @@ export const mutations: MutationTree<CartState> = {
   pushProductToCart(state, { id }) {
     state.items.push({
       id,
-      quantity: 1
+      quantity: 1,
     });
   },
 
@@ -69,10 +69,10 @@ export const mutations: MutationTree<CartState> = {
    * @param {*} item
    */
   remove(state, item) {
-    const record = state.items.find(i => i.id === item.id);
+    const record = state.items.find((i) => i.id === item.id);
 
     if (record) {
-      const index = state.items.findIndex(i => i.id === item.id);
+      const index = state.items.findIndex((i) => i.id === item.id);
       state.items.splice(index, 1);
     }
   },
@@ -81,10 +81,10 @@ export const mutations: MutationTree<CartState> = {
    *  Clearing the Cart state and setting checkoutStatus to idle
    *
    */
-  clear: state => {
+  clear: (state) => {
     state.items = [];
     state.checkoutStatus = 'idle';
-  }
+  },
 };
 
 export default mutations;

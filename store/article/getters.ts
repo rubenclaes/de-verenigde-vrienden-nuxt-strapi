@@ -12,30 +12,30 @@ export const getters: GetterTree<ArticleState, RootState> = {
     return state.articles;
   },
 
-  selected: state => {
+  selected: (state) => {
     const article = state.articles.find(
-      article => article.id === state.selected
+      (article) => article.id === state.selected
     );
     return article;
   },
 
   byId2(state, id) {
-    const article = state.articles.find(article => article.id === id);
+    const article = state.articles.find((article) => article.id === id);
     return article;
   },
 
   bySlug2(state, slug) {
-    const article = state.articles.find(article => article.slug === slug);
+    const article = state.articles.find((article) => article.slug === slug);
     return article;
   },
 
   // Method-Style Access
-  bySlug: state => slug => {
-    return state.articles.find(article => article.slug === slug);
+  bySlug: (state) => (slug) => {
+    return state.articles.find((article) => article.slug === slug);
   },
 
   // Fetch the total number of articles in the state
-  totalNumberOfArticleItems: state => {
+  totalNumberOfArticleItems: (state) => {
     return state.articles.length;
   },
 
@@ -52,7 +52,7 @@ export const getters: GetterTree<ArticleState, RootState> = {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
     };
     let time = new Date(state.currentArticle.created_at);
     return time.toLocaleDateString('nl-BE', options);
@@ -69,12 +69,12 @@ export const getters: GetterTree<ArticleState, RootState> = {
     const latestArticles = state.articles.slice(0, 3);
 
     if (latestArticles.length === 0) {
-      console.warn(`Empty store`);
+      console.warn(`The store is Empty`);
     } else {
-      console.info(`return latest articles from store ` + latestArticles);
+      console.info(`return latest articles from store: %o`, latestArticles);
     }
     return latestArticles;
-  }
+  },
 };
 
 export default getters;

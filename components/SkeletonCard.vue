@@ -28,10 +28,9 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 @Component({
   components: {
     Card: () => import('@/components/Card.vue'),
-
     Icon: () => import('@/components/Icon.vue'),
-    SkeletonBox: () => import('@/components/SkeletonBox.vue')
-  }
+    SkeletonBox: () => import('@/components/SkeletonBox.vue'),
+  },
 })
 export default class NewsPreview extends Vue {
   @Prop({ type: String, default: 'ni ni-note-03' })
@@ -47,5 +46,3 @@ export default class NewsPreview extends Vue {
   textColor!: String;
 }
 </script>
-
-

@@ -1,11 +1,16 @@
 <template>
   <div>
-    <Banner />
-    <Harmonie v-if="harmonieData" :data="harmonieData" />
-    <Jeugdorkest v-if="jeugdorkestData" :data="jeugdorkestData" />
-    <Activiteiten v-if="activiteitenData" :data="activiteitenData" />
-    <Adres />
-    <Contact />
+    <banner />
+
+    <div v-if="harmonieData || jeugdorkestData || activiteitenData">
+      <harmonie :data="harmonieData" />
+      <jeugdorkest :data="jeugdorkestData" />
+      <activiteiten :data="activiteitenData" />
+      <recent-writings />
+    </div>
+
+    <adres />
+    <contact />
   </div>
 </template>
 
@@ -32,6 +37,10 @@ import { loadHome } from '../lib/home/api';
       import(
         /* webpackChunkName: 'activiteiten' */ '@/components/Home/Activiteiten.vue'
       ),
+    RecentWritings: () =>
+      import(
+        /* webpackChunkName: 'recentwritings' */ '@/components/Home/RecentWritings.vue'
+      ),
     Adres: () =>
       import(/* webpackChunkName: 'adres' */ '@/components/Home/Adres.vue'),
     Contact: () =>
@@ -40,6 +49,10 @@ import { loadHome } from '../lib/home/api';
 })
 export default class IndexPage extends Vue {
   private title: string = 'Home';
+  private harmonieData = null;
+  private activiteitenData = null;
+  private jeugdorkestData = null;
+  private adresData = null;
 
   head() {
     return {
@@ -48,7 +61,16 @@ export default class IndexPage extends Vue {
     };
   }
 
-  // only clientside
+  data() {
+    return {
+      harmonieData: null,
+      activiteitenData: null,
+      jeugdorkestData: null,
+      adresData: null,
+    };
+  }
+
+  // only clientside after components are created
   mounted() {
     verenigdevriendenApp.index();
   }
@@ -70,26 +92,7 @@ export default class IndexPage extends Vue {
    * It can use async/await.
    * Warning: You don't have access of the component instance through this inside fetch because it is called before initiating the component.
    * */
-  async fetch({ store, params }) {
-    /* if (store.getters['article/list'].length === 0) {
-      console.info('Fetching data from API');
-      return await store.dispatch('article/fetchData');
-    }
-    console.info('Store was not empty --> fetched data from store'); */
-    //console.log('hey');
-  }
-
-  /**
-   *
-   * You may want to fetch data and render it on the server-side.
-   * This method you handle async operations before setting the component data.
-   * asyncData to make sure it is always 100% up to date and so
-   * refetch it every time this page is viewed
-   * Usage:
-   *  - When data fetched in a particular route is used only by a single component
-   *  - The result from asyncData will be merged with data.
-   */
-  async asyncData({ store, params, error, payload }) {
+  async fetch({ store, params, error }) {
     let filter = {
       __component: [
         'section.harmonie',
@@ -125,15 +128,31 @@ export default class IndexPage extends Vue {
           adresData,
         };
       });
-      return {
-        harmonieData: pageData.harmonieData,
-        activiteitenData: pageData.activiteitenData,
-        jeugdorkestData: pageData.jeugdorkestData,
-        adresData: pageData.adresData,
-      };
-    } catch (error) {
-      console.error('Error', error);
+
+      this.harmonieData = pageData.harmonieData;
+      this.activiteitenData = pageData.activiteitenData;
+      this.jeugdorkestData = pageData.jeugdorkestData;
+      this.adresData = pageData.adresData;
+    } catch (e) {
+      // set status code on server and
+      if (process.server) {
+        this.$nuxt.context.res.statusCode = 404;
+      }
+      console.error('Error', e);
+      error({ statusCode: 500, message: e });
     }
   }
+
+  /**
+   *
+   * You may want to fetch data and render it on the server-side.
+   * This method you handle async operations before setting the component data.
+   * asyncData to make sure it is always 100% up to date and so
+   * refetch it every time this page is viewed
+   * Usage:
+   *  - When data fetched in a particular route is used only by a single component
+   *  - The result from asyncData will be merged with data.
+   */
+  async asyncData({ store, params, error, payload }) {}
 }
 </script>

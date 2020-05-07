@@ -56,11 +56,6 @@ export default class Activiteiten extends Vue {
   @Prop({ type: Array, required: true })
   data;
 
-  backgroundUrl() {
-    let backgroundUrl =
-      'https://res.cloudinary.com/deverenigdevrienden/images/t_lqip/cnw8vefia1amaozsgibf/jeugdorkest2-min.jpeg';
-    return backgroundUrl;
-  }
   styles() {
     return {
       'background-image': `url(${require('../../assets/img/home/header/trumpet-tamborine-and-flute-instruments-compressed.jpg')})`,

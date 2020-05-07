@@ -1,27 +1,38 @@
 <template>
-  <div class="card-deck">
-    <news-card
-      v-for="(article, index) in articles"
-      :key="article.id"
-      :article="article"
-      :icon="icon(index)"
-      :type="colors[index]"
-      :buttonType="buttons[index]"
-      :textColor="text[index]"
-    ></news-card>
+  <div class="card-deck" data-aos="reveal-up">
+    <template v-if="loading">
+      <skeleton-card />
+      <skeleton-card />
+      <skeleton-card />
+    </template>
+    <template v-else>
+      <news-card
+        v-for="(article, index) in articles"
+        :key="article.id"
+        :article="article"
+        :icon="icon(index)"
+        :type="colors[index]"
+        :buttonType="buttons[index]"
+        :textColor="text[index]"
+      ></news-card
+    ></template>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'nuxt-property-decorator';
 
 import { Article } from '../store/article/types';
 import { articleVuexNamespace } from '../store/article/const';
 
 @Component({
   components: {
-    NewsCard: () => import('@/components/NewsCard.vue')
-  }
+    NewsCard: () => import('@/components/NewsCard.vue'),
+    SkeletonCard: () =>
+      import(
+        /* webpackChunkName: 'skeleton-card' */ '@/components/SkeletonCard.vue'
+      ),
+  },
 })
 export default class NewsList extends Vue {
   @Prop({ type: String })
@@ -30,20 +41,24 @@ export default class NewsList extends Vue {
   @articleVuexNamespace.Getter('latestArticles')
   private articles!: Article[];
 
+  @articleVuexNamespace.Getter('loading')
+  private loading!: boolean;
+
   colors = ['default', 'primary', 'blue'];
   buttons = ['btn-default', 'btn-primary', 'btn-blue'];
   text = ['text-default', 'text-primary', 'text-blue'];
 
-  /**
-   * We use created here instead of mounted because it doesn’t need to be rerun if we leave this layout and come back to it.
-   */
-  async created() {
-    //if (this.$store.getters['article/latestArticles'].length === 0) {
+  async fetch() {
     if (this.articles.length === 0) {
-      console.info(`Fetching articles from API`);
-      return await this.$store.dispatch('article/fetchData');
+      try {
+        await this.$store.dispatch('article/fetchData');
+      } catch (e) {
+        // set status code on server and
+
+        console.error('Error', e);
+      }
     }
-    console.info('Fetched data from store');
+    console.info('Fetched articles from store');
   }
 
   icon(iconName) {
@@ -79,5 +94,3 @@ export default class NewsList extends Vue {
   }
 }
 </script>
-
-<style lang="scss"></style>

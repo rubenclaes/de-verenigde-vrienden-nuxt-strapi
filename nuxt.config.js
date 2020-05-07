@@ -71,6 +71,7 @@ module.exports = {
 
     '~/plugins/lazysizes.client.js',
     '~/plugins/vue-headroom.client.js',
+    '~/plugins/vue-observe-visibility.client.js',
 
     { src: '~/plugins/sweetalert.ts', mode: 'client' },
 

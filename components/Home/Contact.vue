@@ -1,6 +1,6 @@
 <template>
   <!-- Contact -->
-  <section class="section section-lg pt-lg-0 section-contact-us pb-0">
+  <section class="section section-lg pt-lg-0 bg-secondary pb-0" :style="styles()">
     <div class="container">
       <div class="row justify-content-center mt--200">
         <div class="col-lg-8">
@@ -20,9 +20,7 @@
             >
               <h4 class="mb-1">Wil je meer van ons weten?</h4>
               <p class="mt-0">
-                <badge type="primary" class="mr-3"
-                  >Laat een bericht achter</badge
-                >
+                <badge type="primary" class="mr-3">Laat een bericht achter</badge>
               </p>
 
               <div v-show="false">
@@ -71,13 +69,8 @@
                     </base-input>
                   </div>
                 </ValidationProvider>
-                <b-button
-                  block
-                  type="submit"
-                  variant="default"
-                  round
-                  :disabled="invalid"
-                >
+
+                <b-button block type="submit" variant="default" :disabled="invalid" round>
                   <icon name="ni ni-send" size="sm"></icon>Verstuur
                 </b-button>
               </ValidationObserver>
@@ -95,7 +88,7 @@
       <GMap
         ref="gMap"
         :cluster="{ options: { styles: clusterStyle } }"
-        :center="{ lat: 51.0472056, lng: 5.2807416 }"
+        :center="{ lat: 51.0422056, lng: 5.2807416 }"
         :options="{
           fullscreenControl: true,
           streetViewControl: true,
@@ -124,7 +117,9 @@
             <br />
             {{ location.city }}
             <br />
-            <code>Lat: {{ location.lat }}, Lng: {{ location.lng }}</code>
+            <code>
+              <a href="https://goo.gl/maps/YgziKZGExWnQW9cd7" target="blank">Bekijk op grotere kaart</a>
+            </code>
           </GMapInfoWindow>
         </GMapMarker>
       </GMap>
@@ -155,6 +150,16 @@ export default class Contact extends Vue {
     name: '',
     message: '',
   };
+
+  styles() {
+    return {
+      'background-image': `url(${require('../../assets/svg/inn.svg')})`,
+      'background-attachement': `fixed`,
+      'background-repeat': `no-repeat`,
+      'background-position': `center`,
+      'background-size': `cover`,
+    };
+  }
 
   data() {
     return {

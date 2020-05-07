@@ -1,5 +1,5 @@
 <template>
-  <section class="section-hero">
+  <section class="section-hero" data-aos="reveal-header-bg">
     <div class="page-header" id="banner">
       <div class="text-box">
         <h1>

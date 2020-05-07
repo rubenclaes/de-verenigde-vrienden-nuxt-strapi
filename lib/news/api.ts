@@ -9,6 +9,7 @@ const cloudinary =
  */
 export async function loadArticles() {
   try {
+    // new Promise((resolve) => setTimeout(resolve, 10000));
     return await $axios.get(`restaurants`).then((res) => {
       res.data.map((article) => {
         article.image.url = `${cloudinary}${article.image.public_id}${article.image.ext}`;

@@ -36,7 +36,7 @@ export const mutations: MutationTree<ArticleState> = {
    *  Clearing the Article state
    *
    */
-  clear: state => {
+  clear: (state) => {
     console.info('clearing the state');
     state.articles = [];
   },
@@ -45,8 +45,8 @@ export const mutations: MutationTree<ArticleState> = {
    *  Sorting the Artilce state
    *
    */
-  sort: state => {
-    state.articles.sort(function(a, b) {
+  sort: (state) => {
+    state.articles.sort(function (a, b) {
       return a.id - b.id || a.name.localeCompare(b.name);
     });
   },
@@ -69,13 +69,13 @@ export const mutations: MutationTree<ArticleState> = {
    */
   setLoading(state, loading) {
     Vue.set(state.status, 'loading', loading);
-    console.info('loading Articles...--> ' + state.status.loading);
+    console.info(`Loading Articles: %o`, state.status.loading);
   },
 
   setSuccess(state, success) {
     Vue.set(state.status, 'success', success);
-    console.info('successfully fetched Articles --> ' + state.status.success);
-  }
+    console.info(`Successfully fetched Articles: %o`, state.status.success);
+  },
 };
 
 export default mutations;

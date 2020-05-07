@@ -6,6 +6,7 @@ import { $axios } from '~/utils/api';
  */
 export async function loadHome() {
   try {
+    //await new Promise((resolve) => setTimeout(resolve, 10000));
     return await $axios.get(`home`).then((res) => {
       return res.data;
     });

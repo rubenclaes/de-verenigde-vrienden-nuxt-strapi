@@ -29,18 +29,18 @@
       }}</badge>
     </div>
 
-    <router-link
+    <nuxt-link
       :to="{ name: 'articles-id', params: { id: article.slug } }"
       tag="a"
       class="btn mt-4"
       :class="buttonType"
-      >Lees meer</router-link
+      >Lees meer</nuxt-link
     >
   </card>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'nuxt-property-decorator';
 import { Article } from '../store/article/types';
 
 @Component({
@@ -48,8 +48,8 @@ import { Article } from '../store/article/types';
     Card: () => import('@/components/Card.vue'),
     Badge: () => import('@/components/Badge.vue'),
     Icon: () => import('@/components/Icon.vue'),
-    LazyImage: () => import('@/components/LazyImage.vue')
-  }
+    LazyImage: () => import('@/components/LazyImage.vue'),
+  },
 })
 export default class NewsCard extends Vue {
   @Prop({ type: Object, required: true })
@@ -66,36 +66,6 @@ export default class NewsCard extends Vue {
 
   @Prop({ type: String, default: 'text-primary' })
   textColor!: String;
-
-  /* @Watch('$store.state.article.status.loading')
-  private watchSomething() {
-    console.log('wow');
-  } */
-  /**
-   * We use created here instead of mounted because it doesn’t need to be rerun if we leave this layout and come back to it.
-   * */
-  /*   created() {
-    this.$store.watch(
-      state => state.article.status.loading,
-      () => {
-        console.log('created watch');
-        const loading = this.$store.state.article.status.loading;
-        if (loading === false) {
-          this.show = true;
-          //this.$store.commit('snackbar/setSnack', '');
-        }
-      }
-    );
-  } */
-
-  /* mounted() {
-    this.$store.watch(
-      () => this.$store.state.article.status.loading,
-      () => {
-        console.log('watched: ');
-      }
-    );
-  } */
 }
 </script>
 

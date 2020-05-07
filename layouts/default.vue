@@ -23,7 +23,7 @@
       </offline-detection>
     </client-only>
 
-    <nuxt />
+    <nuxt keep-alive />
 
     <footer class="footer">
       <div class="container">

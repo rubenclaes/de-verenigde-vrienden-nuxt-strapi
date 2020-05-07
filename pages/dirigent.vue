@@ -3,6 +3,7 @@
     <section class="section-shaped my-0 skew-separator skew-mini">
       <div class="page-header page-header-small header-filter">
         <div
+          data-aos="reveal-header-bg"
           class="page-header-image"
           :style="{ backgroundImage: 'url(' + image + ')' }"
         ></div>
@@ -25,9 +26,9 @@
                       fill="#88DD9B"
                     />
                   </svg>
-                  <p class="text-lead text-white">
-                    Het belangrijkste in de muziek staat niet in de noten.
-                  </p>
+                  <p
+                    class="text-lead text-white"
+                  >Het belangrijkste in de muziek staat niet in de noten.</p>
                 </blockquote>
               </div>
             </div>
@@ -47,9 +48,7 @@
                   />
                 </div>
               </div>
-              <div
-                class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center"
-              >
+              <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
                 <div class="card-profile-actions py-4 mt-lg-0"></div>
               </div>
               <div class="col-lg-4 order-lg-1">
@@ -70,6 +69,14 @@
               </div>
             </div>
 
+            <div class="back-top hidden-lg col-lg-12 col-md-12">
+              <base-button
+                size="lg"
+                type="secondary"
+                icon="ni ni-bold-left"
+                @click="goToHome()"
+              >naar home</base-button>
+            </div>
             <div class="text-center mt-5">
               <div class="h6 font-weight-300"></div>
             </div>
@@ -123,13 +130,16 @@ import { Component, Vue, namespace } from 'nuxt-property-decorator';
 @Component({
   layout: 'appHeader',
   components: {
-    Logo: () => import('@/components/Logo.vue'),
-
     Card: () => import('@/components/Card.vue'),
 
-    Icon: () => import('@/components/Icon.vue'),
+    Icon: () => import(/* webpackChunkName: 'icon' */ '@/components/Icon.vue'),
+    LazyImage: () =>
+      import(/* webpackChunkName: 'lazy-image' */ '@/components/LazyImage.vue'),
 
-    LazyImage: () => import('@/components/LazyImage.vue'),
+    BaseButton: () =>
+      import(
+        /* webpackChunkName: 'base-button' */ '@/components/BaseButton.vue'
+      ),
   },
 })
 export default class DirigentPage extends Vue {
@@ -140,6 +150,10 @@ export default class DirigentPage extends Vue {
       title: this.title,
       meta: [{ hid: 'og:title', property: 'og:title', content: this.title }],
     };
+  }
+
+  goToHome() {
+    this.$router.push({ path: '/' });
   }
 }
 </script>
