@@ -3,16 +3,25 @@
     <div class="page-header" id="banner">
       <div class="text-box">
         <h1>
-          <small>Koninlijke Harmonie</small> De Verenigde Vrienden
+          <small>Koninklijke Harmonie</small> De Verenigde Vrienden
           <small>Daar zit muziek in!</small>
         </h1>
       </div>
 
       <!-- You can add more ".slideshow-image" elements, but remember to update the "$items" variable on SCSS -->
       <div class="slideshow">
-        <div class="slideshow-image" :style="{ backgroundImage: 'url(' + slideshow.image1 + ')' }"></div>
-        <div class="slideshow-image" :style="{ backgroundImage: 'url(' + slideshow.image2 + ')' }"></div>
-        <div class="slideshow-image" :style="{ backgroundImage: 'url(' + slideshow.image3 + ')' }"></div>
+        <div
+          class="slideshow-image"
+          :style="{ backgroundImage: 'url(' + slideshow.image1 + ')' }"
+        ></div>
+        <div
+          class="slideshow-image"
+          :style="{ backgroundImage: 'url(' + slideshow.image2 + ')' }"
+        ></div>
+        <div
+          class="slideshow-image"
+          :style="{ backgroundImage: 'url(' + slideshow.image3 + ')' }"
+        ></div>
       </div>
     </div>
     <!--     <div class="page-header" id="banner">

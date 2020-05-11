@@ -27,7 +27,8 @@ import { articleVuexNamespace } from '../store/article/const';
 
 @Component({
   components: {
-    NewsCard: () => import('@/components/NewsCard.vue'),
+    NewsCard: () =>
+      import(/* webpackChunkName: 'news-card' */ '@/components/NewsCard.vue'),
     SkeletonCard: () =>
       import(
         /* webpackChunkName: 'skeleton-card' */ '@/components/SkeletonCard.vue'

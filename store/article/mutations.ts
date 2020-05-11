@@ -16,7 +16,7 @@ export const mutations: MutationTree<ArticleState> = {
    * @param {*} state
    * @param {Article[]} articles
    */
-  set(state, articles: Article[]) {
+  set(state: ArticleState, articles: Article[]) {
     console.info('set articles state');
     state.articles = articles;
   },
@@ -27,7 +27,7 @@ export const mutations: MutationTree<ArticleState> = {
    * @param state
    * @param restaurant
    */
-  add(state, article: Article) {
+  add(state: ArticleState, article: Article) {
     console.info('add article to state');
     state.articles.push(article);
   },

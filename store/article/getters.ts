@@ -64,15 +64,11 @@ export const getters: GetterTree<ArticleState, RootState> = {
    * @returns
    */
   latestArticles(state): Article[] {
-    //const user = this.profile && this.profile.user;
-    //return (user && user.email) || '';
     const latestArticles = state.articles.slice(0, 3);
-
     if (latestArticles.length === 0) {
       console.warn(`The store is Empty`);
-    } else {
-      console.info(`return latest articles from store: %o`, latestArticles);
     }
+    console.info(`return latest articles from store: %o`, latestArticles);
     return latestArticles;
   },
 };

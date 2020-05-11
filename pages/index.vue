@@ -2,12 +2,17 @@
   <div>
     <banner />
 
-    <div v-if="harmonieData || jeugdorkestData || activiteitenData">
-      <harmonie :data="harmonieData" />
-      <jeugdorkest :data="jeugdorkestData" />
-      <activiteiten :data="activiteitenData" />
-      <recent-writings />
-    </div>
+    <client-only>
+      <template v-if="loading">
+        STILL LOADING
+      </template>
+      <template v-else>
+        <harmonie :data="homePageData.harmonieData" />
+        <jeugdorkest :data="homePageData.jeugdorkestData" />
+        <activiteiten :data="homePageData.activiteitenData" />
+        <recent-writings />
+      </template>
+    </client-only>
 
     <adres />
     <contact />
@@ -17,7 +22,9 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
 import { verenigdevriendenApp } from '../assets/app/app';
-import { loadHome } from '../lib/home/api';
+
+import { HomePage } from '../store/page/types';
+import { pageVuexNamespace } from '../store/page/const';
 
 @Component({
   layout: 'default',
@@ -39,7 +46,7 @@ import { loadHome } from '../lib/home/api';
       ),
     RecentWritings: () =>
       import(
-        /* webpackChunkName: 'recentwritings' */ '@/components/Home/RecentWritings.vue'
+        /* webpackChunkName: 'recent-writings' */ '@/components/Home/RecentWritings.vue'
       ),
     Adres: () =>
       import(/* webpackChunkName: 'adres' */ '@/components/Home/Adres.vue'),
@@ -49,24 +56,17 @@ import { loadHome } from '../lib/home/api';
 })
 export default class IndexPage extends Vue {
   private title: string = 'Home';
-  private harmonieData = null;
-  private activiteitenData = null;
-  private jeugdorkestData = null;
-  private adresData = null;
+
+  @pageVuexNamespace.Getter('loading')
+  private loading!: boolean;
+
+  @pageVuexNamespace.Getter('homePageData')
+  private homePageData!: HomePage;
 
   head() {
     return {
       title: this.title,
       meta: [{ hid: 'og:title', property: 'og:title', content: this.title }],
-    };
-  }
-
-  data() {
-    return {
-      harmonieData: null,
-      activiteitenData: null,
-      jeugdorkestData: null,
-      adresData: null,
     };
   }
 
@@ -93,54 +93,18 @@ export default class IndexPage extends Vue {
    * Warning: You don't have access of the component instance through this inside fetch because it is called before initiating the component.
    * */
   async fetch({ store, params, error }) {
-    let filter = {
-      __component: [
-        'section.harmonie',
-        'section.activiteiten',
-        'section.jeugdorkest',
-        'section.dirigent',
-        'section.adres',
-      ],
-    };
+    //console.log(this.homePageData.activiteitenData);
+    //console.log(store.getters['page/homePageData']);
 
-    try {
-      const pageData = await loadHome().then((data) => {
-        const harmonieData = data.Content.filter((Content) => {
-          return Content.__component === 'section.harmonie';
-        });
-
-        const activiteitenData = data.Content.filter((Content) => {
-          return Content.__component === 'section.activiteiten';
-        });
-
-        const jeugdorkestData = data.Content.filter((Content) => {
-          return Content.__component === 'section.jeugdorkest';
-        });
-
-        const adresData = data.Content.filter((Content) => {
-          return Content.__component === 'section.adres';
-        });
-
-        return {
-          harmonieData,
-          activiteitenData,
-          jeugdorkestData,
-          adresData,
-        };
-      });
-
-      this.harmonieData = pageData.harmonieData;
-      this.activiteitenData = pageData.activiteitenData;
-      this.jeugdorkestData = pageData.jeugdorkestData;
-      this.adresData = pageData.adresData;
-    } catch (e) {
-      // set status code on server and
-      if (process.server) {
-        this.$nuxt.context.res.statusCode = 404;
+    if (store.getters['page/homePageData'] === null) {
+      try {
+        await store.dispatch('page/fetchData');
+      } catch (e) {
+        // set status code on server and
+        console.error('Error', e);
       }
-      console.error('Error', e);
-      error({ statusCode: 500, message: e });
     }
+    console.info('Fetched homepagedata from store');
   }
 
   /**

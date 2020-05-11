@@ -21,7 +21,7 @@
           <div class="card card-blog card-background" data-animation="zooming">
             <div
               class="full-background"
-              style="background-image: url('./assets/img/sections/damian.jpg"
+              :style="{ backgroundImage: 'url(' + slideshow.image1 + ')' }"
             ></div>
             <a href="javascript:;">
               <div class="card-body">
@@ -55,7 +55,7 @@
           <div class="card card-blog card-background" data-animation="zooming">
             <div
               class="full-background"
-              style="background-image: url('./assets/img/sections/odin.jpg"
+              :style="{ backgroundImage: 'url(' + slideshow.image1 + ')' }"
             ></div>
             <a href="javascript:;">
               <div class="card-body">
@@ -73,7 +73,7 @@
           <div class="card card-blog card-background" data-animation="zooming">
             <div
               class="full-background"
-              style="background-image: url('./assets/img/sections/dane.jpg"
+              :style="{ backgroundImage: 'url(' + slideshow.image1 + ')' }"
             ></div>
             <a href="javascript:;">
               <div class="card-body">
