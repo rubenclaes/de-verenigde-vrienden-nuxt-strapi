@@ -1,94 +1,11 @@
 {
-  "name": "de-verenigde-vrienden-nuxt-strapi",
-  "version": "2.0.0",
-  "description": "A Nuxt.js satic site with Strapi (Pre-rendered)",
-  "author": "Ruben Claes",
-  "private": true,
+  "name": "de-verenigde-vrienden-monorepo",
+  "version": "1.0.0",
+  "license": "MIT",
   "scripts": {
-    "test": "jest",
-    "dev": "nuxt-ts",
-    "build": "nuxt-ts build",
-    "analyze": "nuxt-ts build --analyze",
-    "generate": "nuxt-ts generate --devtools",
-    "start": "nuxt-ts start",
-    "tsc": "tsc --showConfig",
-    "test:watch": "jest --watchAll",
-    "testc": "tsc -p tsconfig.json",
-    "lint": "tslint --project .",
-    "lintfix": "tslint --fix --project ."
-  },
-  "dependencies": {
-    "@nuxt/typescript-runtime": "^0.4.2",
-    "@nuxtjs/axios": "^5.10.3",
-    "@nuxtjs/markdownit": "^1.2.9",
-    "@nuxtjs/pwa": "^2.6.0",
-    "@nuxtjs/robots": "^2.4.2",
-    "@nuxtjs/sentry": "^4.0.0",
-    "@nuxtjs/sitemap": "^2.1.0",
-    "@stripe/stripe-js": "^1.5.0",
-    "@vue/composition-api": "^0.3.4",
-    "aos": "^2.3.4",
-    "bootstrap-vue": "^2.10.1",
-    "dotenv": "^8.2.0",
-    "lazysizes": "^5.2.0",
-    "nouislider": "^14.1.1",
-    "nuxt": "^2.12.0",
-    "nuxt-cookie-control": "^1.7.7",
-    "nuxt-gmaps": "^1.1.8",
-    "nuxt-payload-extractor": "^1.0.0",
-    "nuxt-property-decorator": "^2.5.1",
-    "sweetalert2": "^9.10.9",
-    "uuid": "^7.0.2",
-    "vee-validate": "^3.2.5",
-    "vue-clamp": "^0.2.2",
-    "vue-confetti": "^2.0.8",
-    "vue-headroom": "^0.10.1",
-    "vue-if-bot": "^1.2.0",
-    "vue-observe-visibility": "^0.4.6",
-    "vue-scrollto": "^2.17.1",
-    "vue-toasted": "^1.1.27",
-    "vuex-persist": "^2.2.0"
-  },
-  "devDependencies": {
-    "@bazzite/nuxt-optimized-images": "^0.4.0",
-    "@nuxt/typescript-build": "^0.6.2",
-    "@types/dotenv": "^8.2.0",
-    "@types/jest": "^24.0.19",
-    "@vue/test-utils": "^1.0.0-beta.29",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "^24.9.0",
-    "imagemin-mozjpeg": "^8.0.0",
-    "imagemin-pngquant": "^8.0.0",
-    "jest": "^24.9.0",
-    "jest-serializer-vue": "^2.0.2",
-    "lqip-loader": "^2.2.0",
-    "node-sass": "^4.13.1",
-    "nodemon": "^1.19.4",
-    "prettier": "^2.0.4",
-    "sass-loader": "^8.0.2",
-    "ts-jest": "^24.1.0",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-plugin-prettier": "^2.3.0",
-    "vue-jest": "^3.0.5",
-    "webp-loader": "^0.6.0"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "ts",
-      "json",
-      "vue"
-    ],
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/$1"
-    },
-    "transform": {
-      ".*\\.(vue)$": "vue-jest",
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.ts$",
-    "snapshotSerializers": [
-      "jest-serializer-vue"
-    ]
+    "build:site-nuxt": "npm --prefix site-nuxt run build",
+    "generate:site-nuxt": "npm --prefix site-nuxt run generate",
+    "build:calendar-nuxt": "npm --prefix calendar-nuxt run build",
+    "generate:calendar-nuxt": "npm --prefix calendar-nuxt run generate"
   }
 }
