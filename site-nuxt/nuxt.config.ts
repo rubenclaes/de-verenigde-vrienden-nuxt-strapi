@@ -2,14 +2,15 @@ import axios from 'axios';
 const IS_DEV = process.env.NODE_ENV !== 'production';
 
 require('./utils/config');
+import { Configuration } from '@nuxt/types';
 
-module.exports = {
+const config: Configuration = {
   mode: 'universal',
 
   env: {
-    strapiUser: process.env.STRAPI_IDENTIFIER,
-    strapiPassword: process.env.STRAPI_PASSWORD,
-    stripePublicKey: process.env.STRIPE_PUBLIC_KEY,
+    strapiUser: process.env.STRAPI_IDENTIFIER || '',
+    strapiPassword: process.env.STRAPI_PASSWORD || '',
+    stripePublicKey: process.env.STRIPE_PUBLIC_KEY || '',
   },
 
   /*
@@ -34,7 +35,7 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'preconnect', href: 'https://res.cloudinary.com' },
     ],
-    script: [{}],
+    script: [],
   },
 
   /*
@@ -88,14 +89,14 @@ module.exports = {
   ],
 
   /*
-   ** Nuxt.js modules
+   ** Nuxt modules
    */
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/sentry',
     'bootstrap-vue/nuxt',
-    '@bazzite/nuxt-optimized-images',
+    '@aceforth/nuxt-optimized-images',
     'vue-scrollto/nuxt',
 
     '@nuxtjs/markdownit',
@@ -349,3 +350,4 @@ module.exports = {
     },
   },
 };
+export default config;

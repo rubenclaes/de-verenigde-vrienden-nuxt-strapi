@@ -150,5 +150,10 @@ export default class appHeader extends Vue {
     { href: '/nieuws', title: 'Nieuws', active: false },
     { href: '/eetdag', title: 'Eetdag', active: false },
   ];
+
+  async asyncData({ params }) {
+    const { data } = await axios.get(`https://my-api/posts/${params.id}`);
+    return { title: data.title };
+  }
 }
 </script>
