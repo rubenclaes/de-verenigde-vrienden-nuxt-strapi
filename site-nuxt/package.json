@@ -18,7 +18,6 @@
     "lintfix": "tslint --fix --project ."
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "^0.4.6",
     "@nuxtjs/axios": "^5.10.3",
     "@nuxtjs/markdownit": "^1.2.9",
     "@nuxtjs/pwa": "^2.6.0",
@@ -32,7 +31,6 @@
     "dotenv": "^8.2.0",
     "lazysizes": "^5.2.0",
     "nouislider": "^14.1.1",
-    "nuxt": "^2.12.0",
     "nuxt-cookie-control": "^1.7.7",
     "nuxt-gmaps": "^1.1.8",
     "nuxt-payload-extractor": "^1.0.0",
