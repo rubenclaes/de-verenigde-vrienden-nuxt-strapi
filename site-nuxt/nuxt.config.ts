@@ -66,8 +66,6 @@ const dynamicRoutes = async () => {
 const config: Configuration = {
   mode: 'universal',
 
-  target: 'static',
-
   env: {
     strapiUser: process.env.STRAPI_IDENTIFIER || '',
     strapiPassword: process.env.STRAPI_PASSWORD || '',
