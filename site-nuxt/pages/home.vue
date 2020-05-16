@@ -35,40 +35,17 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
-import { verenigdevriendenApp } from '../assets/app/app';
 
-import { HomePage } from '../store/page/types';
-import { pageVuexNamespace } from '../store/page/const';
+import { verenigdevriendenApp } from '../assets/app/app';
+import { HomePage } from '../store/flexpage/types';
+import { pageVuexNamespace } from '../store/flexpage/const';
 
 @Component({
   layout: 'default',
 
-  components: {
-    Banner: () =>
-      import(/* webpackChunkName: 'header' */ '@/components/Home/Banner.vue'),
-    Harmonie: () =>
-      import(
-        /* webpackChunkName: 'harmonie' */ '@/components/Home/Harmonie.vue'
-      ),
-    Jeugdorkest: () =>
-      import(
-        /* webpackChunkName: 'jeugdorkest' */ '@/components/Home/Jeugdorkest.vue'
-      ),
-    Activiteiten: () =>
-      import(
-        /* webpackChunkName: 'activiteiten' */ '@/components/Home/Activiteiten.vue'
-      ),
-    RecentWritings: () =>
-      import(
-        /* webpackChunkName: 'recent-writings' */ '@/components/Home/RecentWritings.vue'
-      ),
-    Adres: () =>
-      import(/* webpackChunkName: 'adres' */ '@/components/Home/Adres.vue'),
-    Contact: () =>
-      import(/* webpackChunkName: 'contact' */ '@/components/Home/Contact.vue'),
-  },
+  components: {},
 })
-export default class IndexPage extends Vue {
+export default class HomePageC extends Vue {
   private title: string = 'Home';
 
   @pageVuexNamespace.Getter('loading')
@@ -110,15 +87,14 @@ export default class IndexPage extends Vue {
     //console.log(this.homePageData.activiteitenData);
     //console.log(store.getters['page/homePageData']);
 
-    if (store.getters['page/homePageData'] === null) {
+    if (store.getters['flexpage/homePageData'] === null) {
       try {
-        await store.dispatch('page/fetchData');
+        await store.dispatch('flexpage/fetchData');
       } catch (e) {
         // set status code on server and
         console.error('Error', e);
       }
     }
-    console.info('Fetched homepagedata from store');
   }
 
   /**

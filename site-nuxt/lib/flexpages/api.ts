@@ -1,13 +1,13 @@
-import { $axios } from '~/utils/api';
+import { $axios } from '../../utils/api';
 
 /**
  * Load dining days.
  *
  */
-export async function loadHome() {
+export async function loadFlexPage() {
   try {
     //await new Promise((resolve) => setTimeout(resolve, 10000));
-    return await $axios.get(`home`).then((res) => {
+    return await $axios.get(`flex-pages`).then((res) => {
       return res.data;
     });
   } catch (error) {

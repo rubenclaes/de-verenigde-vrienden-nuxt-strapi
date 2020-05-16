@@ -19,15 +19,15 @@
           type
           expand
         >
-          <router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
+          <nuxt-link slot="brand" class="navbar-brand mr-lg-5" to="/">
             <img :src="logoImg" alt="logo" />
-          </router-link>
+          </nuxt-link>
 
           <div class="row" slot="content-header" slot-scope="{ closeMenu }">
             <div class="col-6 collapse-brand">
-              <router-link to="/">
+              <nuxt-link to="/">
                 <img :src="brandImg" alt="logo" />
-              </router-link>
+              </nuxt-link>
             </div>
             <div class="col-6 collapse-close">
               <close-button @click="closeMenu"></close-button>
@@ -38,6 +38,9 @@
             v-if="isHovering || !isPinned || isTop"
             class="navbar-nav navbar-nav-hover align-items-lg-center"
           >
+            {{
+              navItemList
+            }}
             <li
               v-for="(option, index) in navItemList"
               :key="index"
@@ -93,7 +96,9 @@
             <li class="nav-item" v-if="false">
               <router-link class="nav-link nav-link-icon" to="/checkout">
                 <i class="fa fa-shopping-cart"></i>
-                <span class="nav-link-inner--text d-lg-none">Winkelmandje</span>
+                <span class="nav-link-inner--text d-lg-none"
+                  >Winkelmandje
+                </span>
                 <client-only>
                   <badge type="white" rounded>{{ numberOfItems() }}</badge>
                 </client-only>
@@ -132,9 +137,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
-
+import { Component, Vue, Prop } from 'nuxt-property-decorator';
 import { headroom } from 'vue-headroom';
+
 @Component({
   components: {
     Headroom: headroom,
@@ -188,8 +193,22 @@ export default class headerStyle1 extends Vue {
   onPin(pin: boolean) {
     this.isPinned = pin;
   }
+
   onTop(top: boolean) {
     this.isTop = top;
   }
+
+  /*   async asyncData({ $axios, $payloadURL, route }) {
+    //if generated and works as client navigation, fetch previously saved static JSON payload
+    if (process.static && process.client && $payloadURL)
+      return await $axios.$get($payloadURL(route));
+
+    //your request logic
+    let post = await $axios.$get(`/data/index.json`);
+    console.log(post);
+    return {
+      post,
+    };
+  } */
 }
 </script>

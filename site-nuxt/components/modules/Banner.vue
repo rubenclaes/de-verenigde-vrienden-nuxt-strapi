@@ -9,18 +9,10 @@
       </div>
 
       <!-- You can add more ".slideshow-image" elements, but remember to update the "$items" variable on SCSS -->
-      <div class="slideshow">
+      <div class="slideshow" v-for="(slide, index) in slideshow" :key="index">
         <div
           class="slideshow-image"
-          :style="{ backgroundImage: 'url(' + slideshow.image1 + ')' }"
-        ></div>
-        <div
-          class="slideshow-image"
-          :style="{ backgroundImage: 'url(' + slideshow.image2 + ')' }"
-        ></div>
-        <div
-          class="slideshow-image"
-          :style="{ backgroundImage: 'url(' + slideshow.image3 + ')' }"
+          :style="{ backgroundImage: 'url(' + slide.image + ')' }"
         ></div>
       </div>
     </div>
@@ -137,11 +129,17 @@ export default class Header extends Vue {
   data() {
     return {
       show: true,
-      slideshow: {
-        image1: require('../../assets/img/home/header/music/music-chart_1200.jpg'),
-        image2: require('../../assets/img/home/header/music/shiny-trumpet-instrument-valves-and-mouthpiece.jpeg'),
-        image3: require('../../assets/img/home/header/music/silver-trumpet-buttons-and-valves.jpeg'),
-      },
+      slideshow: [
+        {
+          image: require('../../assets/img/home/header/music/music-chart_1200.jpg'),
+        },
+        {
+          image: require('../../assets/img/home/header/music/shiny-trumpet-instrument-valves-and-mouthpiece.jpeg'),
+        },
+        {
+          image: require('../../assets/img/home/header/music/silver-trumpet-buttons-and-valves.jpeg'),
+        },
+      ],
     };
   }
 }

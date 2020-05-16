@@ -129,18 +129,6 @@ export default class ArticleView extends Vue {
   @articleVuexNamespace.Getter('formattedDate')
   private formattedDate!: Date;
 
-  currentArticle() {
-    return this.$store.state.article.currentArticle;
-  }
-
-  articles() {
-    return this.$store.state.article.articles;
-  }
-
-  isLoading() {
-    return this.$store.state.post.isLoading;
-  }
-
   data() {
     return {
       id: this.$route.params.id,
@@ -152,30 +140,22 @@ export default class ArticleView extends Vue {
     this.$router.push({ path: '/' });
   }
 
-  async fetch({ store, params, error, payload }) {
-    // payload set during static generation
+  async middleware({ params, payload, store }) {
+    // Payload set during static generation
+    // If a payload is provided,
+    // no API request is made.
     if (payload) {
-      console.info('Fetched from payload');
-      // setup the store as it would be in SPA mode
+      console.info('Payload');
       return store.commit('article/setCurrentArticle', payload);
-      //return { article: context.payload };
-    } else {
-      if (store.getters['article/list'].length != 0) {
-        console.log('paranp' + params.id);
-        const article = store.getters['article/bySlug'](params.id);
-        console.log(`Fetched from Store: %o`, article);
-        return store.commit('article/setCurrentArticle', article);
-      }
-      if (store.getters['article/list'].length === 0) {
-        console.info(
-          'Fetched from API --> Fetching article with Slug ' + params.id
-        );
-        return await store.dispatch(
-          'article/fetchArticleBySlug',
-          //parseInt(params.id || 1)
-          params.id
-        );
-      }
+    }
+    if (store.getters['article/list'].length != 0) {
+      const article = store.getters['article/bySlug'](params.id);
+      console.log(`Return from state: %o`, article);
+      store.commit('article/setCurrentArticle', article);
+    }
+    if (store.getters['article/list'].length === 0) {
+      console.info('Fetched from API' + params.id);
+      await store.dispatch('article/fetchArticleBySlug', params.id);
     }
   }
 
@@ -282,23 +262,5 @@ export default class ArticleView extends Vue {
       ],
     };
   }
-
-  /*  share() {
-    window.FB.ui(
-      {
-        method: 'share_open_graph',
-        action_type: 'og.likes',
-        action_properties: JSON.stringify({
-          object: 'https://developers.facebook.com/docs/javascript/examples'
-        })
-      },
-      function(response) {
-        // Debug response (optional)
-        console.log(response);
-      }
-    );
-  } */
-
-  mounted() {}
 }
 </script>

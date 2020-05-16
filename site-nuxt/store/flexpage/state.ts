@@ -1,4 +1,4 @@
-import { PageState, HomePage } from './types';
+import { PageState, HomePage, MainNavigation, FlexPage } from './types';
 
 export const initState = (): PageState => ({
   status: {
@@ -8,6 +8,8 @@ export const initState = (): PageState => ({
   },
 
   homePage: {} as HomePage,
+  flexPages: [] as FlexPage[],
+  mainNavigation: {} as MainNavigation,
 });
 
 export default initState;

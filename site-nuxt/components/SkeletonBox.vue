@@ -11,24 +11,24 @@ export default createComponent({
     maxWidth: {
       // The default maxiumum width is 100%.
       default: 100,
-      type: Number
+      type: Number,
     },
     minWidth: {
       // Lines have a minimum width of 80%.
       default: 80,
-      type: Number
+      type: Number,
     },
     height: {
       // Make lines the same height as text.
       default: '1em',
-      type: String
+      type: String,
     },
     width: {
       // Make it possible to define a fixed
       // width instead of using a random one.
       default: null,
-      type: String
-    }
+      type: String,
+    },
   },
 
   setup(props) {
@@ -40,8 +40,10 @@ export default createComponent({
     // Computed Properties
     const computedWidth = computed(
       () =>
-        `${props.width ||
-          Math.random() * (props.maxWidth - props.minWidth) + props.minWidth}`
+        `${
+          props.width ||
+          Math.random() * (props.maxWidth - props.minWidth) + props.minWidth
+        }`
     );
 
     return {
@@ -49,9 +51,9 @@ export default createComponent({
       // changes is a ref, can be returned as such
 
       // return computed properties
-      computedWidth
+      computedWidth,
     };
-  }
+  },
 });
 </script>
 

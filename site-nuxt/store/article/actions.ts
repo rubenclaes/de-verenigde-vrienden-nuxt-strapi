@@ -25,7 +25,7 @@ export const actions: ActionTree<ArticleState, RootState> = {
     commit('clear');
     commit('setLoading', true);
 
-    //await new Promise(resolve => setTimeout(resolve, 10000));
+    //await new Promise((resolve) => setTimeout(resolve, 10000));
     await loadArticles().then((articles) => {
       commit('setLoading', false);
       commit('setSuccess', true);
@@ -39,7 +39,7 @@ export const actions: ActionTree<ArticleState, RootState> = {
    */
   async fetchArticle({ commit }: ArticleActionContext, id) {
     const article = await loadArticle(id);
-    //console.info(article);
+
     commit('setCurrentArticle', {
       id: article.id,
       ...article,

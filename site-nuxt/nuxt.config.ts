@@ -1,11 +1,72 @@
 import axios from 'axios';
+import { Configuration } from '@nuxt/types';
+require('./utils/config');
+
 const IS_DEV = process.env.NODE_ENV !== 'production';
 
-require('./utils/config');
-import { Configuration } from '@nuxt/types';
+interface MyWindow extends Window {
+  dataLayer: any;
+}
+declare var window: MyWindow;
+
+const dynamicRoutes = async () => {
+  const routesForArticles = await axios
+    .get(`${process.env.API_URL}/restaurants`)
+    .then((res) => {
+      return res.data.map((article) => {
+        article.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${article.image.public_id}${article.image.ext}`;
+        return {
+          route: `/articles/${article.slug}`,
+          payload: article,
+        };
+      });
+    })
+    .catch((err) => {
+      console.error('Problem with generating routes for articles');
+      console.error('error', err);
+    });
+
+  /*   const routesForFlexPages = await axios
+    .get(`${process.env.API_URL}/flex-pages`)
+    .then((res) => {
+      return res.data.map((page) => {
+        const retPath = page.id == 1 ? `/` : `/${page.slug}`;
+        return {
+          route: retPath,
+          payload: page,
+        };
+      });
+    })
+    .catch((err) => {
+      console.error('Problem with generating routes for FlexPages');
+      console.error('error', err);
+    }); */
+
+  const routesForMainNavigation = await axios
+    .get(`${process.env.API_URL}/main-navigation`)
+    .then((res) => {
+      return res.data.Link.map((link, index) => {
+        const retPath = index == 0 ? '/' : link.link.slug;
+
+        return {
+          route: retPath,
+          payload: link,
+        };
+      });
+    })
+    .catch((err) => {
+      console.error('Problem with generating routes for FlexPages');
+      console.error('error', err);
+    });
+
+  const routes = routesForArticles.concat(routesForMainNavigation);
+  return routes;
+};
 
 const config: Configuration = {
   mode: 'universal',
+
+  target: 'static',
 
   env: {
     strapiUser: process.env.STRAPI_IDENTIFIER || '',
@@ -75,13 +136,12 @@ const config: Configuration = {
     '~/plugins/vue-observe-visibility.client.js',
 
     { src: '~/plugins/sweetalert.ts', mode: 'client' },
-
     { src: '~/plugins/vuex-persist', mode: 'client' },
     { src: '~/plugins/vue-toasted.js', mode: 'client' },
     { src: '~/plugins/vue-confetti.js', mode: 'client' },
 
     '~/plugins/composition-api',
-    '~plugins/vue-scrollto.js',
+    '~/plugins/vue-scrollto.js',
     '~/plugins/filters',
     '~/plugins/vee-validate',
     '~/plugins/click-outside.js',
@@ -98,6 +158,8 @@ const config: Configuration = {
     'bootstrap-vue/nuxt',
     '@aceforth/nuxt-optimized-images',
     'vue-scrollto/nuxt',
+
+    '~/modules/menu',
 
     '@nuxtjs/markdownit',
     [
@@ -141,8 +203,7 @@ const config: Configuration = {
   ],
 
   /*
-   ** nuxt-cookie-control module config
-   **
+   ** Nuxt-cookie-control module
    */
   cookies: {
     necessary: [
@@ -165,17 +226,16 @@ const config: Configuration = {
         async: true,
         cookies: ['_ga', '_gat_gtag_GTM-TW8TSMW', '_gid'],
         accepted: () => {
-          window.dataLayer = window.dataLayer || [];
-          function gtag() {
+          window.dataLayer.dataLayer = window.dataLayer || [];
+          function gtag(...args: any) {
             window.dataLayer.push(arguments);
           }
+
           gtag('js', new Date());
           gtag('config', 'GTM-TW8TSMW');
         },
       },
     ],
-
-    //default texts
     text: {
       barTitle: 'Cookies',
       barDescription:
@@ -195,7 +255,7 @@ const config: Configuration = {
   },
 
   /*
-   ** optimized images configuration
+   ** optimizedImages module
    ** name: 'images/[name]-[width].[ext]', // use [name] to keep the original filename
    */
   optimizedImages: {
@@ -218,7 +278,7 @@ const config: Configuration = {
   },
 
   /*
-   ** bootstrapVue module configuration
+   ** BootstrapVue module
    */
   bootstrapVue: {
     componentPlugins: [
@@ -238,7 +298,7 @@ const config: Configuration = {
   },
 
   /*
-   ** sitemap module configuration
+   ** Sitemap module
    */
   sitemap: {
     hostname: process.env.HOSTNAME,
@@ -269,7 +329,7 @@ const config: Configuration = {
   },
 
   /*
-   ** @nuxtjs/pwa module configuration
+   ** @nuxtjs/pwa module
    */
   pwa: {
     workbox: {
@@ -279,7 +339,7 @@ const config: Configuration = {
   },
 
   /*
-   ** markdownit module configuration
+   ** Markdownit module
    */
   markdownit: {
     preset: 'default',
@@ -289,7 +349,7 @@ const config: Configuration = {
   },
 
   /*
-   ** sentry module configuration
+   ** Sentry module
    */
   sentry: {
     dsn: process.env.SENTRY_DSN,
@@ -299,8 +359,7 @@ const config: Configuration = {
   },
 
   /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
+   ** Axios module
    */
   axios: {
     baseURL: process.env.API_URL,
@@ -330,24 +389,7 @@ const config: Configuration = {
 
   generate: {
     fallback: true,
-
-    routes: async function () {
-      return await axios
-        .get(`${process.env.API_URL}/restaurants`)
-        .then((res) => {
-          return res.data.map((article) => {
-            article.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${article.image.public_id}${article.image.ext}`;
-            return {
-              route: `/articles/${article.slug}`,
-              payload: article,
-            };
-          });
-        })
-        .catch((err) => {
-          console.error('Problem with generating routes');
-          console.error('error', err);
-        });
-    },
+    routes: dynamicRoutes,
   },
 };
 export default config;

@@ -37,16 +37,19 @@ import { ProfileState } from './types';
 import { RootState } from '../types';
  */
 
-/* import cookieparser from 'cookie-parser';
+/* import cookieparser from 'cookie-parser'; */
+
+// If nuxt generate is ran, nuxtServerInit will be executed for every dynamic route generated.
 
 export const actions = {
   nuxtServerInit({ commit }, { req }) {
-    let cart = [];
+    /*  let cart = [];
     if (req && req.headers && req.headers.cookie) {
       const parsed = cookieparser.parse(req.headers.cookie);
       cart = (parsed.cart && JSON.parse(parsed.cart)) || [];
     }
 
-    commit('cart/add', cart);
-  }
-}; */
+    commit('cart/add', cart); */
+    console.log('hello');
+  },
+};

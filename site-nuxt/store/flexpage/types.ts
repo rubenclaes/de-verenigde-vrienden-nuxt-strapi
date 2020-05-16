@@ -14,16 +14,18 @@ import { Status } from '../type';
  */
 export interface PageState {
   homePage: HomePage;
+  flexPages: FlexPage[];
+  mainNavigation: MainNavigation;
   status: Status;
 }
 
 // Models
 
 /**
- * HomePage interface
+ * HomePage class
  *
  * @export
- * @interface HomePage
+ * @class HomePage
  */
 export class HomePage {
   public harmonieData = [];
@@ -44,5 +46,39 @@ export class HomePage {
     this.jeugdorkestData = jeugdorkestData;
     this.adresData = adresData;
     this.recentNieuwsData = recentNieuwsData;
+  }
+}
+
+/**
+ * MainNavigation class
+ *
+ * @export
+ * @class MainNavigation
+ */
+export class MainNavigation {
+  public links = [];
+
+  constructor(links: []) {
+    this.links = links;
+  }
+}
+
+/**
+ * FlexPage class
+ *
+ * @export
+ * @class FlexPage
+ */
+export class FlexPage {
+  public content = [];
+  public id: number;
+  public title: string;
+  public slug: string;
+
+  constructor(content: [], id: number, title: string, slug: string) {
+    this.content = content;
+    this.id = id;
+    this.title = title;
+    this.slug = slug;
   }
 }

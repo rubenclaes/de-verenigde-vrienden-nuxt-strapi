@@ -30,7 +30,7 @@ export const getters: GetterTree<ArticleState, RootState> = {
   },
 
   // Method-Style Access
-  bySlug: (state) => (slug) => {
+  bySlug: (state) => (slug: string) => {
     return state.articles.find((article) => article.slug === slug);
   },
 
@@ -68,7 +68,7 @@ export const getters: GetterTree<ArticleState, RootState> = {
     if (latestArticles.length === 0) {
       console.warn(`The store is Empty`);
     }
-    console.info(`return latest articles from store: %o`, latestArticles);
+    console.info(`return latest articles from store`);
     return latestArticles;
   },
 };

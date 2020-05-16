@@ -16,7 +16,7 @@
                 <!-- Slides with img slot -->
                 <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
                 <b-carousel-slide
-                  v-for="(slide, itemObjKey) in data[0].Slider"
+                  v-for="(slide, itemObjKey) in data.Slider"
                   :key="slide.id"
                 >
                   <template v-slot:img>
@@ -43,12 +43,12 @@
               shadow
               rounded
             ></icon>
-            <h1 id="jeugdorkest">{{ data[0].Title }}</h1>
-            <p class="lead">{{ data[0].Text }}</p>
+            <h1 id="jeugdorkest">{{ data.Title }}</h1>
+            <p class="lead">{{ data.Text }}</p>
 
             <ul class="list-unstyled mt-5">
               <li
-                v-for="bullet in data[0].Bullet_points"
+                v-for="bullet in data.Bullet_points"
                 :key="bullet.id"
                 class="py-2"
               >
@@ -69,7 +69,7 @@
   <!-- end Jeugdorkest -->
 </template>
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'nuxt-property-decorator';
 @Component({
   components: {
     Badge: () =>
@@ -80,7 +80,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
   },
 })
 export default class Jeugdorkest extends Vue {
-  @Prop({ type: Array, required: true })
+  @Prop({ type: Object, required: true })
   data;
 
   icon(name: string) {
@@ -90,14 +90,14 @@ export default class Jeugdorkest extends Vue {
   lqip(key: number = 0) {
     //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
 
-    let image = `https://res.cloudinary.com/deverenigdevrienden/images/t_lqip/${this.data[0].Slider[key].Picture[0].provider_metadata.public_id}/${this.data[0].Slider[key].Picture[0].name}`;
+    let image = `https://res.cloudinary.com/deverenigdevrienden/images/t_lqip/${this.data.Slider[key].Picture[0].provider_metadata.public_id}/${this.data.Slider[key].Picture[0].name}`;
     return image;
   }
 
   image(key: number = 0) {
     //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
 
-    let image = `https://res.cloudinary.com/deverenigdevrienden/images/${this.data[0].Slider[key].Picture[0].provider_metadata.public_id}/${this.data[0].Slider[key].Picture[0].name}`;
+    let image = `https://res.cloudinary.com/deverenigdevrienden/images/${this.data.Slider[key].Picture[0].provider_metadata.public_id}/${this.data.Slider[key].Picture[0].name}`;
     return image;
   }
 }

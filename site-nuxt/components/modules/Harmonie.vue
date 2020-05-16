@@ -20,18 +20,26 @@
                 class="svg-bg"
               >
                 <polygon points="0,52 583,95 0,95" class="fill-default" />
-                <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default" />
+                <polygon
+                  points="0,42 583,95 683,0 0,95"
+                  opacity=".2"
+                  class="fill-default"
+                />
               </svg>
-              {{ data[0].Picture.Picture.url }}
-              <h4 class="display-3 font-weight-bold text-white">{{ data[0].Picture.Title }}</h4>
-              <p class="lead text-italic text-white">{{ data[0].Picture.Text }}</p>
+              {{ data.Picture.Picture.url }}
+              <h4 class="display-3 font-weight-bold text-white">
+                {{ data.Picture.Title }}
+              </h4>
+              <p class="lead text-italic text-white">
+                {{ data.Picture.Text }}
+              </p>
             </blockquote>
           </div>
         </div>
 
         <div class="col-md-6 order-md-2" data-aos="reveal-up">
           <div
-            v-for="bullet in data[0].Bullet_points"
+            v-for="bullet in data.Bullet_points"
             :key="bullet.id"
             class="info info-horizontal info-hover-primary"
           >
@@ -48,7 +56,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'nuxt-property-decorator';
 
 @Component({
   components: {
@@ -57,20 +65,20 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
   },
 })
 export default class Harmonie extends Vue {
-  @Prop({ type: Array, required: true })
+  @Prop({ type: Object, required: true })
   data;
 
   lqip() {
     //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
 
-    let image = `https://res.cloudinary.com/deverenigdevrienden/images/t_lqip/${this.data[0].Picture.Picture[0].provider_metadata.public_id}/${this.data[0].Picture.Picture[0].name}`;
+    let image = `https://res.cloudinary.com/deverenigdevrienden/images/t_lqip/${this.data.Picture.Picture[0].provider_metadata.public_id}/${this.data.Picture.Picture[0].name}`;
     return image;
   }
 
   image() {
     //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
 
-    let image = `https://res.cloudinary.com/deverenigdevrienden/images/${this.data[0].Picture.Picture[0].provider_metadata.public_id}/${this.data[0].Picture.Picture[0].name}`;
+    let image = `https://res.cloudinary.com/deverenigdevrienden/images/${this.data.Picture.Picture[0].provider_metadata.public_id}/${this.data.Picture.Picture[0].name}`;
     return image;
   }
 }

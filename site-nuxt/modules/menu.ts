@@ -1,27 +1,43 @@
-import { loadMenu } from 'lib/menu/api';
 import fs from 'fs-extra';
+import axios from 'axios';
+
 import { Module } from '@nuxt/types';
 
-const optionName = '<%= menu %>';
-
 interface Options {
-  a: boolean;
-  b: number;
-  c: string;
+  namespace: string;
+  enable: boolean;
 }
 
-const menu: Module<Options> = function (moduleOptions) {
-  const options = Object.assign(
-    {},
-    this.options[optionName],
-    moduleOptions || {}
-  );
-
+const menu: Module<Options> = async function (moduleOptions) {
   // expose the namespace / set a default
-  if (!options.namespace) options.namespace = 'menu';
-  const { namespace } = options;
+  if (!moduleOptions.namespace) moduleOptions.namespace = 'menu';
+  const { namespace } = moduleOptions;
 
-  const writeData = (path: string, data: JSON) => {
+  const loadMenu = async () => {
+    try {
+      //await new Promise((resolve) => setTimeout(resolve, 10000));
+      return await axios
+        .get(`http://localhost:1338/main-navigation`)
+        .then((res) => {
+          return res.data.Link;
+        });
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const loadFlexPages = async () => {
+    try {
+      //await new Promise((resolve) => setTimeout(resolve, 10000));
+      return await axios.get(`http://localhost:1338/flex-pages`).then((res) => {
+        return res.data;
+      });
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const writeData = (path, data) => {
     return new Promise((resolve, reject) => {
       try {
         fs.ensureFileSync(path);
@@ -39,12 +55,19 @@ const menu: Module<Options> = function (moduleOptions) {
     fs.emptyDir('static/data');
 
     // Empty array to fill with promises
-    let fetcher;
+    let fetcher: Promise<any>[] = [];
 
-    const menu = await loadMenu();
+    const flexpages = await loadFlexPages().then((flexpages) => {
+      return flexpages;
+    });
+
+    const menu = await loadMenu().then((menu) => {
+      return menu;
+    });
 
     // One of these for every top level page, a loop for dynamic nested pages
-    fetcher.push(writeData('static/data/index.json', menu));
+    fetcher.push(writeData('static/data/flexpages.json', { data: flexpages }));
+    fetcher.push(writeData('static/data/index.json', { content: menu }));
 
     // Finish when all of them are done
     return Promise.all(fetcher)
@@ -58,6 +81,3 @@ const menu: Module<Options> = function (moduleOptions) {
 };
 
 export default menu;
-
-// REQUIRED if publishing the module as npm package
-export const meta = require('./package.json');

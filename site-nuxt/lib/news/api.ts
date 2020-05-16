@@ -1,4 +1,4 @@
-import { $axios } from '~/utils/api';
+import { $axios } from '../../utils/api';
 
 const cloudinary =
   'https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/';
