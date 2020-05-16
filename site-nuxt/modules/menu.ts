@@ -17,7 +17,7 @@ const menu: Module<Options> = async function (moduleOptions) {
     try {
       //await new Promise((resolve) => setTimeout(resolve, 10000));
       return await axios
-        .get(`http://localhost:1338/main-navigation`)
+        .get(`${process.env.API_URL}/main-navigation`)
         .then((res) => {
           return res.data.Link;
         });
@@ -29,9 +29,11 @@ const menu: Module<Options> = async function (moduleOptions) {
   const loadFlexPages = async () => {
     try {
       //await new Promise((resolve) => setTimeout(resolve, 10000));
-      return await axios.get(`http://localhost:1338/flex-pages`).then((res) => {
-        return res.data;
-      });
+      return await axios
+        .get(`${process.env.API_URL}/flex-pages`)
+        .then((res) => {
+          return res.data;
+        });
     } catch (error) {
       throw error;
     }
