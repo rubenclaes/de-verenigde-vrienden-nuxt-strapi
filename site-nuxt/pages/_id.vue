@@ -1,15 +1,5 @@
 <template>
   <div>
-    <!--     <p v-if="$fetchState.pending">Fetching posts...</p>
-    <p v-else-if="$fetchState.error">
-      Error while fetching posts: {{ $fetchState.error.message }}
-    </p>
-    <ul v-else>
-      <li v-for="post of posts" :key="post.id">
-        <n-link :to="`/posts/${post.id}`">{{ post.title }}</n-link>
-      </li>
-    </ul> -->
-
     <FlexPage :flexPage="flexPage"></FlexPage>
   </div>
 </template>
@@ -50,14 +40,6 @@ export default class IndexPage extends Vue {
       ],
     };
   } */
-
-  scrollToHash() {
-    var hash = this.$nuxt.$route.hash;
-
-    this.$nextTick(() => {
-      this.$scrollTo(hash, 0, { offset: -120 });
-    });
-  }
 
   async asyncData({ params, payload, store }) {
     // Payload set during static generation

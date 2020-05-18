@@ -61,5 +61,13 @@ export default class appHeader extends Vue {
 
   @menulinkVuexNamespace.Getter('list')
   private navItemList!: MainNavigationLink[];
+
+  scrollToHash() {
+    var hash = this.$nuxt.$route.hash;
+
+    this.$nextTick(() => {
+      this.$scrollTo(hash, 0, { offset: -120 });
+    });
+  }
 }
 </script>

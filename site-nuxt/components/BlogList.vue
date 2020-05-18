@@ -95,7 +95,6 @@ export default class BlogList extends Vue {
         await this.$store.dispatch('article/fetchData');
       } catch (e) {
         // set status code on server and
-
         console.error('Error', e);
       }
     }

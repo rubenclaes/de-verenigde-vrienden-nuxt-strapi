@@ -49,13 +49,12 @@ export default class NewsList extends Vue {
   buttons = ['btn-default', 'btn-primary', 'btn-blue'];
   text = ['text-default', 'text-primary', 'text-blue'];
 
-  async fetch() {
+  async created() {
     if (this.articles.length === 0) {
       try {
         await this.$store.dispatch('article/fetchData');
       } catch (e) {
         // set status code on server and
-
         console.error('Error', e);
       }
     }
