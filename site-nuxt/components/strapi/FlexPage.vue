@@ -109,17 +109,6 @@ export default class FlexPageComponent extends Vue {
     return modules;
   }
 
-  /*   head() {
-    return {
-      title: this.title,
-      meta: [{ hid: 'og:title', property: 'og:title', content: this.title }],
-    };
-  } */
-
-  /*   get title(): string {
-    return this.flexPages[0].title;
-  } */
-
   /**
    *
    * You may want to fetch data and render it on the server-side.
