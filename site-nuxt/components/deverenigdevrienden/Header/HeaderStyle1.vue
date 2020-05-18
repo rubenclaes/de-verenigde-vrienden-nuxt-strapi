@@ -198,7 +198,7 @@ export default class headerStyle1 extends Vue {
   }
 
   pageSlug(slug: string) {
-    const pageSlug = slug == `home` ? `/` : slug;
+    const pageSlug = slug == `home` ? `/` : `/${slug}`;
     return pageSlug;
   }
 

@@ -34,56 +34,6 @@ export default class IndexPage extends Vue {
   /* @pageVuexNamespace.Getter('currentFlexPage')
   private flexPage!: FlexPage; */
 
-  /*
-  scrollToHash() {
-    var hash = this.$nuxt.$route.hash;
-
-    this.$nextTick(() => {
-      this.$scrollTo(hash, 0, { offset: -120 });
-    });
-  } */
-
-  /*     getters: {
-    stuff: state => n => {
-      if (!state.stuff[n]) {
-        store.dispatch('fetchStuff', n)
-      }
-      return state.stuff[n]
-    }
-  } */
-
-  async asyncData({ params, payload, store }) {
-    // Payload set during static generation
-    // If a payload is provided,
-    // no API request is made.
-    if (payload) {
-      console.info('Payload page: %o', payload);
-      const { page } = payload;
-      return { flexPage: page };
-      //return store.commit('article/setCurrentArticle', payload);
-    }
-
-    // this is just to get the npmr run dev working in not fully static mode
-    if (store.getters['flexpage/list'].length != 0) {
-      const page = store.getters['flexpage/bySlug'](params.id);
-      console.log(`Return from state: %o`, page);
-      store.commit('flexpage/setCurrentFlexPage', page);
-    }
-    if (store.getters['flexpage/list'].length === 0) {
-      const param = params.id == undefined ? `home` : params.id;
-      console.info('Fetched from API' + param);
-
-      try {
-        await store.dispatch('flexpage/fetchFlexPageBySlug', param);
-        const page = store.getters['flexpage/currentFlexPage'];
-        return { flexPage: page };
-      } catch (e) {
-        console.log(e);
-        // error({ statusCode: 404, message: 'Post not found' });
-      }
-    }
-  }
-
   /*   head() {
     return {
       title: this.flexPages
@@ -100,5 +50,45 @@ export default class IndexPage extends Vue {
       ],
     };
   } */
+
+  scrollToHash() {
+    var hash = this.$nuxt.$route.hash;
+
+    this.$nextTick(() => {
+      this.$scrollTo(hash, 0, { offset: -120 });
+    });
+  }
+
+  async asyncData({ params, payload, store }) {
+    // Payload set during static generation
+    // If a payload is provided,
+    // no API request is made.
+
+    if (payload) {
+      console.info('Payload page: %o', payload);
+      const { page } = payload;
+      return { flexPage: page };
+    } else {
+      // this is just to get the npmr run dev working in not fully static mode
+      if (store.getters['flexpage/list'].length != 0) {
+        const page = store.getters['flexpage/bySlug'](params.id);
+        console.log(`Return from state: %o`, page);
+        store.commit('flexpage/setCurrentFlexPage', page);
+      }
+      if (store.getters['flexpage/list'].length === 0) {
+        const param = params.id == undefined ? `home` : params.id;
+        console.info('Fetched from API' + param);
+
+        try {
+          await store.dispatch('flexpage/fetchFlexPageBySlug', param);
+          const page = store.getters['flexpage/currentFlexPage'];
+          return { flexPage: page };
+        } catch (e) {
+          console.log(e);
+          // error({ statusCode: 404, message: 'Post not found' });
+        }
+      }
+    }
+  }
 }
 </script>
