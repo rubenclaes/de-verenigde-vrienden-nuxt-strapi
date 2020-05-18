@@ -12,7 +12,7 @@
         v-for="article in articles"
         :key="article.id"
       >
-        <nuxt-link
+        <n-link
           :to="{ name: 'articles-id', params: { id: article.slug } }"
           tag="a"
         >
@@ -48,7 +48,7 @@
               </div>
             </div>
           </div>
-        </nuxt-link>
+        </n-link>
       </div>
     </div>
   </div>
@@ -89,7 +89,7 @@ export default class BlogList extends Vue {
   @Prop({ type: String, default: 'text-primary' })
   textColor!: String;
 
-  async fetch() {
+  async created() {
     if (this.articles.length === 0) {
       try {
         await this.$store.dispatch('article/fetchData');

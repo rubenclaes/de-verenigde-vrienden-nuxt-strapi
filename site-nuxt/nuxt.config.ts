@@ -17,54 +17,41 @@ const dynamicRoutes = async () => {
         article.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${article.image.public_id}${article.image.ext}`;
         return {
           route: `/articles/${article.slug}`,
-          payload: article,
+          payload: { article: article },
         };
       });
     })
     .catch((err) => {
-      console.error('Problem with generating routes for articles');
-      console.error('error', err);
+      console.error(`Problem with generating articles routes ${err}`);
     });
 
-  /*   const routesForFlexPages = await axios
-    .get(`${process.env.API_URL}/flex-pages`)
-    .then((res) => {
-      return res.data.map((page) => {
-        const retPath = page.id == 1 ? `/` : `/${page.slug}`;
-        return {
-          route: retPath,
-          payload: page,
-        };
-      });
+  const routesForFlexPages = await axios
+    .get(`${process.env.API_URL}/flex-pages`, {
+      params: {
+        active: true,
+      },
     })
-    .catch((err) => {
-      console.error('Problem with generating routes for FlexPages');
-      console.error('error', err);
-    }); */
-
-  const routesForMainNavigation = await axios
-    .get(`${process.env.API_URL}/main-navigation`)
     .then((res) => {
-      return res.data.Link.map((link, index) => {
-        const retPath = index == 0 ? '/' : link.link.slug;
+      return res.data.map((page, index) => {
+        const retPath = index == 0 ? `/` : `/${page.slug}`;
 
         return {
           route: retPath,
-          payload: link,
+          payload: { page: page },
         };
       });
     })
     .catch((err) => {
-      console.error('Problem with generating routes for FlexPages');
-      console.error('error', err);
+      console.error(`Problem with generating FlexPages routes ${err}`);
     });
 
-  const routes = routesForArticles.concat(routesForMainNavigation);
+  const routes = routesForArticles.concat(routesForFlexPages);
   return routes;
 };
 
 const config: Configuration = {
   mode: 'universal',
+  target: 'static',
 
   env: {
     strapiUser: process.env.STRAPI_IDENTIFIER || '',

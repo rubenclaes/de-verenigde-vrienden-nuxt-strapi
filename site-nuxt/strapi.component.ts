@@ -11,7 +11,8 @@ export default {
     Harmonie: () => import('@/components/modules/Harmonie.vue'),
     ImportantMessage: () => import('@/components/modules/ImportantMessage.vue'),
     Jeugdorkest: () => import('@/components/modules/Jeugdorkest.vue'),
-    RecentWritings: () => import('@/components/modules/RecentWritings.vue'),
+    LatestArticles: () => import('@/components/modules/LatestArticles.vue'),
+    Address: () => import('@/components/modules/Address.vue'),
   },
   pageTemplateComponents: {},
 };

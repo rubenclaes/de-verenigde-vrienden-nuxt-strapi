@@ -17,22 +17,13 @@ const menu: Module<Options> = async function (moduleOptions) {
     try {
       //await new Promise((resolve) => setTimeout(resolve, 10000));
       return await axios
-        .get(`${process.env.API_URL}/main-navigation`)
+        .get(`${process.env.API_URL}/main-navigation`, {
+          params: {
+            active: true,
+          },
+        })
         .then((res) => {
           return res.data.Link;
-        });
-    } catch (error) {
-      throw error;
-    }
-  };
-
-  const loadFlexPages = async () => {
-    try {
-      //await new Promise((resolve) => setTimeout(resolve, 10000));
-      return await axios
-        .get(`${process.env.API_URL}/flex-pages`)
-        .then((res) => {
-          return res.data;
         });
     } catch (error) {
       throw error;
@@ -59,16 +50,10 @@ const menu: Module<Options> = async function (moduleOptions) {
     // Empty array to fill with promises
     let fetcher: Promise<any>[] = [];
 
-    const flexpages = await loadFlexPages().then((flexpages) => {
-      return flexpages;
-    });
-
     const menu = await loadMenu().then((menu) => {
       return menu;
     });
 
-    // One of these for every top level page, a loop for dynamic nested pages
-    fetcher.push(writeData('static/data/flexpages.json', { data: flexpages }));
     fetcher.push(writeData('static/data/index.json', { content: menu }));
 
     // Finish when all of them are done

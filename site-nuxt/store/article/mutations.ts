@@ -37,7 +37,7 @@ export const mutations: MutationTree<ArticleState> = {
    *
    */
   clear: (state) => {
-    console.info('clearing the state');
+    console.info('clearing Article state');
     state.articles = [];
   },
 

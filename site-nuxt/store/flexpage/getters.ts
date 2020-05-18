@@ -1,9 +1,9 @@
 import { GetterTree } from 'vuex/types';
-import { PageState, HomePage, MainNavigation, FlexPage } from './types';
+import { PageState, HomePage, FlexPage } from './types';
 import { RootState } from '../type';
 
 /**
- * Article getters
+ * Page getters
  *
  */
 export const getters: GetterTree<PageState, RootState> = {
@@ -27,33 +27,28 @@ export const getters: GetterTree<PageState, RootState> = {
   },
 
   /**
-   * Getter for MainNavigation state
-   *
-   * @param {*} state
-   * @returns {(MainNavigation | null)}
-   */
-  mainNavigatoin(state): MainNavigation | null {
-    if (Object.keys(state.mainNavigation).length === 0) {
-      console.warn(`MainNavigation is empty!`);
-      return null;
-    }
-    console.info(`returning MainNavigation from state`);
-    return state.mainNavigation;
-  },
-
-  /**
    * Getter for FlexPage state
    *
    * @param {*} state
-   * @returns {(FlexPage[] | null)}
+   * @returns {(FlexPage[] )}
    */
-  flexPages(state): FlexPage[] | null {
-    if (state.flexPages.length === 0) {
-      console.warn(`FlexPage is empty!`);
+  list: (state): FlexPage[] => {
+    /*  if (state.flexPages.length === 0) {
+      console.warn(`FlexPages state is empty!`);
       return null;
-    }
-    console.info(`returning FlexPage from state`);
+    } */
+    console.info(`returning FlexPages from state`);
     return state.flexPages;
+  },
+
+  /**
+   * Getter for currentFlexPage
+   *
+   * @param {*} state
+   * @returns
+   */
+  currentFlexPage(state) {
+    return state.currentFlexPage;
   },
 
   // Method-Style Access

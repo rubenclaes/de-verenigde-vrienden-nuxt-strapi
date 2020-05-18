@@ -40,9 +40,12 @@ import { RootState } from '../types';
 /* import cookieparser from 'cookie-parser'; */
 
 // If nuxt generate is ran, nuxtServerInit will be executed for every dynamic route generated.
-
+// IDEAL for navigationlinks.
 export const actions = {
-  nuxtServerInit({ commit }, { req }) {
+  async nuxtServerInit({ commit }, { req }) {
+    // importing json to avoid multiple call to API
+    const mainNavigationData = await import(`~/static/data/index.json`);
+    commit('menulink/set', mainNavigationData.content);
     /*  let cart = [];
     if (req && req.headers && req.headers.cookie) {
       const parsed = cookieparser.parse(req.headers.cookie);
@@ -50,6 +53,5 @@ export const actions = {
     }
 
     commit('cart/add', cart); */
-    console.log('hello');
   },
 };

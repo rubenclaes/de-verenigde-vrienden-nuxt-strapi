@@ -38,25 +38,24 @@
             v-if="isHovering || !isPinned || isTop"
             class="navbar-nav navbar-nav-hover align-items-lg-center"
           >
-            {{
-              navItemList
-            }}
             <li
-              v-for="(option, index) in navItemList"
+              v-for="(link, index) in navItemList"
               :key="index"
               class="nav-item"
             >
-              <template v-if="option.active">
-                <router-link
-                  v-if="!option.children"
-                  :to="option.href"
+              <template v-if="link.active">
+                <n-link
+                  v-if="!link.children"
+                  :to="pageSlug(link.link.slug)"
                   class="nav-link"
                 >
-                  <span class="nav-link-inner--text">{{ option.title }}</span>
-                </router-link>
+                  <span class="nav-link-inner--text">{{
+                    link.menu_link_title
+                  }}</span>
+                </n-link>
 
                 <base-dropdown
-                  v-if="option.children"
+                  v-if="link.children"
                   class="nav-item"
                   menu-classes="dropdown-menu-xl"
                 >
@@ -68,11 +67,11 @@
                     role="button"
                   >
                     <i class="ni ni-bold-down d-lg-none"></i>
-                    <span class="nav-link-inner--text">{{ option.title }}</span>
+                    <span class="nav-link-inner--text">{{ link.title }}</span>
                   </a>
                   <div class="dropdown-menu-inner">
-                    <router-link
-                      v-for="(child, index) in option.child"
+                    <!--   <router-link
+                      v-for="(child, index) in link.child"
                       :key="index"
                       :to="child.href"
                       class="media d-flex align-items-center"
@@ -85,7 +84,7 @@
                           {{ child.description }}
                         </p>
                       </div>
-                    </router-link>
+                    </router-link> -->
                   </div>
                 </base-dropdown>
               </template>
@@ -196,6 +195,11 @@ export default class headerStyle1 extends Vue {
 
   onTop(top: boolean) {
     this.isTop = top;
+  }
+
+  pageSlug(slug: string) {
+    const pageSlug = slug == `home` ? `/` : slug;
+    return pageSlug;
   }
 
   /*   async asyncData({ $axios, $payloadURL, route }) {

@@ -31,7 +31,7 @@
                 {{ data.Picture.Title }}
               </h4>
               <p class="lead text-italic text-white">
-                {{ data.Picture.Text }}
+                {{ data.Picture.Caption }}
               </p>
             </blockquote>
           </div>

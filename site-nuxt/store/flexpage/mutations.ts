@@ -1,6 +1,6 @@
-import { MutationTree } from 'vuex';
-import { PageState, HomePage, MainNavigation, FlexPage } from './types';
 import Vue from 'vue';
+import { MutationTree } from 'vuex';
+import { PageState, HomePage, FlexPage } from './types';
 
 /**
  * Article mutations
@@ -13,7 +13,6 @@ export const mutations: MutationTree<PageState> = {
   clear: (state) => {
     console.info('clearing the state');
     state.homePage = {} as HomePage;
-    state.mainNavigation = {} as MainNavigation;
     state.flexPages = [{}] as FlexPage[];
   },
   /**
@@ -46,41 +45,25 @@ export const mutations: MutationTree<PageState> = {
   },
 
   /**
-   * Adding the MainNavigation to the Page state
-   *
-   * @param {*} state
-   * @param {MainNavigation} data
-   */
-  setMainNavigation(state: PageState, { links }) {
-    console.info('setting MainNavagation to Page state');
-
-    const mainNav = new MainNavigation(links);
-    state.mainNavigation = mainNav;
-  },
-
-  /**
    * Adding the FlexPages tot the page state
    *
    * @param {PageState} state
    * @param {*} data
    */
-  setFlexPage(state: PageState, data) {
+  set(state: PageState, flexPages: FlexPage[]) {
     console.info('setting FlexPage to Page state');
-
-    const flexPages = [] as FlexPage[];
-
-    data.forEach((flexPg) => {
-      const flexPage = new FlexPage(
-        flexPg.Content,
-        flexPg.id,
-        flexPg.title,
-        flexPg.slug
-      );
-
-      flexPages.push(flexPage);
-    });
-
     state.flexPages = flexPages;
+  },
+
+  /**
+   * Set the FlexPage state
+   *
+   * @param {*} state
+   * @param {*} payload
+   */
+  setCurrentFlexPage(state, payload) {
+    state.currentFlexPage = payload;
+    console.log(state.currentFlexPage);
   },
 
   /**

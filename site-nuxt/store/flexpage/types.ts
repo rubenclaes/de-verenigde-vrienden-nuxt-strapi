@@ -15,7 +15,7 @@ import { Status } from '../type';
 export interface PageState {
   homePage: HomePage;
   flexPages: FlexPage[];
-  mainNavigation: MainNavigation;
+  currentFlexPage: FlexPage;
   status: Status;
 }
 
@@ -50,35 +50,16 @@ export class HomePage {
 }
 
 /**
- * MainNavigation class
- *
- * @export
- * @class MainNavigation
- */
-export class MainNavigation {
-  public links = [];
-
-  constructor(links: []) {
-    this.links = links;
-  }
-}
-
-/**
  * FlexPage class
  *
  * @export
- * @class FlexPage
+ * @interface FlexPage
  */
-export class FlexPage {
-  public content = [];
-  public id: number;
-  public title: string;
-  public slug: string;
-
-  constructor(content: [], id: number, title: string, slug: string) {
-    this.content = content;
-    this.id = id;
-    this.title = title;
-    this.slug = slug;
-  }
+export interface FlexPage {
+  content: [];
+  id: number;
+  title: string;
+  slug: string;
+  active: boolean;
+  meta: [];
 }

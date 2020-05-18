@@ -24,6 +24,7 @@
     </client-only>
 
     <nuxt keep-alive />
+
     <footer-style1></footer-style1>
   </div>
 </template>
@@ -34,6 +35,9 @@ import { Component, Vue } from 'nuxt-property-decorator';
 import BackToTop from '@/components/BackToTop.vue';
 import OfflineDetection from '@/components/OfflineDetection.vue';
 import IfBot from 'vue-if-bot/dist/vue-if-bot.es';
+
+import { menulinkVuexNamespace } from '../store/menulink/const';
+import { MainNavigationLink } from '../store/menulink/types';
 
 @Component({
   components: {
@@ -55,17 +59,7 @@ export default class appHeader extends Vue {
   logo = require('../assets/brand/logo_fulllogo_white.svg');
   brand = require('../assets/brand/logo_color3.svg');
 
-  //navItemList: object[] = [];
-
-  async asyncData() {
-    const mainNavigationData = await import(`~/static/data/index.json`);
-    console.log(mainNavigationData.content);
-
-    return { navItemList: mainNavigationData.content };
-    //this.navItemList = mainNavigationData;
-    //this.navItemList = mainNavigationData.content;
-    //console.log('hallo');
-    // return { navItemList: mainNavigationData.content };
-  }
+  @menulinkVuexNamespace.Getter('list')
+  private navItemList!: MainNavigationLink[];
 }
 </script>

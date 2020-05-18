@@ -1,14 +1,14 @@
 <template>
-  <!-- RecentWritings -->
+  <!-- LatestArticles -->
 
   <section class="section section-lg bg-secondary my-0 overflow-hidden blogs">
     <div class="container-fluid py-0 pb-200">
       <div class="row mb-md-5">
         <div class="col-md-8 mx-auto">
-          <h1 class="font-weight-light text-center">{{ this.data.Title }}</h1>
+          <h1 class="font-weight-light text-center">{{ this.data.title }}</h1>
 
           <p class="lead text-center">
-            {{ this.data.Text }}
+            {{ this.data.text }}
           </p>
         </div>
       </div>
@@ -18,7 +18,7 @@
       </client-only>
     </div>
   </section>
-  <!-- end RecentWritings -->
+  <!-- end LatestArticles -->
 </template>
 
 <script lang="ts">

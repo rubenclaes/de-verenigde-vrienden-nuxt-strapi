@@ -9,18 +9,14 @@
       :sitemapFlat="sitemapFlat"
       :sitemapNested="sitemapNested"
     /> -->
-    <div v-if="loading">
-      LOADING
-    </div>
-    <template v-else>
-      <template v-for="module in modules">
-        <component
-          :is="module.component"
-          :contentID="module.contentID"
-          :data="module.data"
-          :key="module.contentID"
-        />
-      </template>
+
+    <template v-for="module in modules">
+      <component
+        :is="module.component"
+        :contentID="module.contentID"
+        :data="module.data"
+        :key="module.id"
+      />
     </template>
   </div>
 </template>
@@ -35,10 +31,10 @@ import StrapiComponents from '../../strapi.component';
   components: {},
 })
 export default class FlexPageComponent extends Vue {
-  @pageVuexNamespace.Getter('loading')
-  private loading!: boolean;
+  /* @pageVuexNamespace.Getter('loading')
+  private loading!: boolean; */
 
-  @Prop({ type: Object })
+  @Prop({ type: Object, required: true })
   flexPage;
 
   @Prop({ type: Object })
@@ -55,9 +51,6 @@ export default class FlexPageComponent extends Vue {
 
   @Prop({ type: Array })
   sitemapNested;
-
-  @pageVuexNamespace.Getter('flexPages')
-  private flexPages!: FlexPage[];
 
   get modules() {
     return this.renderModules();
@@ -80,7 +73,7 @@ export default class FlexPageComponent extends Vue {
 
     // const modulesForThisContentZone = this.flexPage.Content[contentZoneName];
 
-    const componentsForThisDyamicContentZone = [
+    /*  const componentsForThisDyamicContentZone = [
       'Activiteiten',
       'Adres',
       'Banner',
@@ -95,23 +88,21 @@ export default class FlexPageComponent extends Vue {
         `Cannot render components for zone "${contentZoneName}". This does not appear to be a valid content zone for this page template.`
       );
       return;
-    }
-    this.flexPages[0].content.forEach((component: any) => {
+    } */
+    this.flexPage.Content.forEach((dynamicZone: any, index: number) => {
       const ComponentToRender =
-        StrapiComponents.moduleComponents[
-          this.renderComponent(component.__component)
-        ];
+        StrapiComponents.moduleComponents[dynamicZone.component];
 
       if (ComponentToRender) {
         modules.push({
           component: ComponentToRender,
-          contentID: component.id,
-          data: component,
+          contentID: dynamicZone.id,
+          id: index,
+          data: dynamicZone,
         });
-        console.log(modules);
       } else {
         console.error(
-          `No component found for the component. Cannot render module.`
+          `No component found for the dynamicZone. Cannot render dynamicZone.`
         );
       }
     });
@@ -142,8 +133,7 @@ export default class FlexPageComponent extends Vue {
   async created() {
     //console.log(this.homePageData.activiteitenData);
     //console.log(store.getters['page/homePageData']);
-
-    if (this.flexPages === null) {
+    /*    if (this.flexPages === null) {
       try {
         await this.$store.dispatch('flexpage/fetchFlexPageData');
       } catch (e) {
@@ -152,7 +142,7 @@ export default class FlexPageComponent extends Vue {
       }
     } else {
       console.log('return form state');
-    }
+    } */
   }
 }
 </script>

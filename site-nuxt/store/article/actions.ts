@@ -18,7 +18,7 @@ interface ArticleActionContext extends ActionContext<ArticleState, RootState> {}
  */
 export const actions: ActionTree<ArticleState, RootState> = {
   /**
-   * Fetch articles data en put them in the aticles state
+   * Fetch articles data en put them in the articles state
    */
   async fetchData({ commit }: ArticleActionContext) {
     console.info(`Fetching articles from API`);
@@ -26,12 +26,11 @@ export const actions: ActionTree<ArticleState, RootState> = {
     commit('setLoading', true);
 
     //await new Promise((resolve) => setTimeout(resolve, 10000));
-    await loadArticles().then((articles) => {
-      commit('setLoading', false);
-      commit('setSuccess', true);
-      commit('set', articles);
-      console.info(`Articles from API: %o`, articles);
-    });
+    const articles = await loadArticles();
+    commit('setLoading', false);
+    commit('setSuccess', true);
+    commit('set', articles);
+    console.info(`Articles from API: %o`, articles);
   },
 
   /**

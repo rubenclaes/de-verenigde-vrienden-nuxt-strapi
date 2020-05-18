@@ -114,7 +114,6 @@ import { Article } from '~/store/article/types';
     Badge: () => import('@/components/Badge.vue'),
     Icon: () => import('@/components/Icon.vue'),
     BaseInput: () => import('@/components/BaseInput.vue'),
-
     LazyImage: () => import('@/components/LazyImage.vue'),
   },
 
@@ -140,23 +139,30 @@ export default class ArticleView extends Vue {
     this.$router.push({ path: '/' });
   }
 
-  async middleware({ params, payload, store }) {
+  async asyncData({ params, error, payload, store }) {
     // Payload set during static generation
     // If a payload is provided,
     // no API request is made.
     if (payload) {
-      console.info('Payload');
-      return store.commit('article/setCurrentArticle', payload);
+      const { article } = payload;
+      console.info('Payload article: %o', article);
+      return { article: article };
+      // Overkill because why we want to store article data?
+      // return store.commit('article/setCurrentArticle', article);
     }
-    if (store.getters['article/list'].length != 0) {
+    /*  if (store.getters['article/list'].length != 0) {
       const article = store.getters['article/bySlug'](params.id);
       console.log(`Return from state: %o`, article);
       store.commit('article/setCurrentArticle', article);
     }
     if (store.getters['article/list'].length === 0) {
       console.info('Fetched from API' + params.id);
-      await store.dispatch('article/fetchArticleBySlug', params.id);
-    }
+      try {
+        await store.dispatch('article/fetchArticleBySlug', params.id);
+      } catch (e) {
+        error({ statusCode: 404, message: 'Post not found' });
+      }
+    } */
   }
 
   //get formattedDate() {

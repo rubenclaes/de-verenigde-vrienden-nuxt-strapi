@@ -14,3 +14,17 @@ export async function loadFlexPage() {
     throw error;
   }
 }
+
+/**
+ * Load an article with Slug
+ *
+ */
+export async function loadFlexPageBySlug(slug: string) {
+  try {
+    return await $axios.get(`flex-pages?slug=${slug}`).then((res) => {
+      return res.data[0];
+    });
+  } catch (error) {
+    throw error;
+  }
+}

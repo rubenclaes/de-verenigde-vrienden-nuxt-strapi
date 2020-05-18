@@ -2,7 +2,7 @@ import { ActionContext, ActionTree } from 'vuex/types';
 import { PageState } from './types';
 import { RootState } from '../type';
 
-import { loadFlexPage } from '../../lib/flexpages/api';
+import { loadFlexPage, loadFlexPageBySlug } from '../../lib/flexpages/api';
 
 /**
  * Action context specific to Page module
@@ -66,14 +66,27 @@ export const actions: ActionTree<PageState, RootState> = {
 
   async fetchFlexPageData({ commit }: PageActionContext) {
     commit('setLoading', true);
-
     //await new Promise((resolve) => setTimeout(resolve, 10000));
-
     console.info(`Fetching pagedata from API`);
-    await loadFlexPage().then((data) => {
-      commit('clear');
-      commit('setFlexPage', data);
+    const flexPage = await loadFlexPage();
+    commit('clear');
+    commit('setFlexPage', flexPage);
+    commit('setLoading', false);
+  },
+
+  /**
+   * Fetching an FlexPage with Slug and adding it to currentArticle state.
+   */
+  async fetchFlexPageBySlug({ commit }: PageActionContext, slug) {
+    commit('setLoading', true);
+    //await new Promise((resolve) => setTimeout(resolve, 10000));
+    await loadFlexPageBySlug(slug).then((flexPage) => {
+      //console.log(flexPage);
       commit('setLoading', false);
+      commit('setCurrentFlexPage', {
+        id: flexPage.id,
+        ...flexPage,
+      });
     });
   },
 };

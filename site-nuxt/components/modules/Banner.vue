@@ -9,10 +9,12 @@
       </div>
 
       <!-- You can add more ".slideshow-image" elements, but remember to update the "$items" variable on SCSS -->
-      <div class="slideshow" v-for="(slide, index) in slideshow" :key="index">
+      <div class="slideshow">
         <div
+          v-for="(slide, index) in data.slideshow.Picture"
+          :key="index"
           class="slideshow-image"
-          :style="{ backgroundImage: 'url(' + slide.image + ')' }"
+          :style="{ backgroundImage: 'url(' + slide.url + ')' }"
         ></div>
       </div>
     </div>
@@ -120,15 +122,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'nuxt-property-decorator';
 
 @Component({
   components: {},
 })
 export default class Header extends Vue {
-  data() {
+  @Prop({ type: Object, required: true })
+  data;
+
+  j() {
     return {
-      show: true,
       slideshow: [
         {
           image: require('../../assets/img/home/header/music/music-chart_1200.jpg'),
