@@ -45,7 +45,7 @@
             >
               <template v-if="link.active">
                 <n-link
-                  v-if="!link.children"
+                  v-if="!hasChildren(link.childlink)"
                   :to="pageSlug(link.link.slug)"
                   class="nav-link"
                 >
@@ -55,7 +55,7 @@
                 </n-link>
 
                 <base-dropdown
-                  v-if="link.children"
+                  v-if="hasChildren(link.childlink)"
                   class="nav-item"
                   menu-classes="dropdown-menu-xl"
                 >
@@ -67,24 +67,26 @@
                     role="button"
                   >
                     <i class="ni ni-bold-down d-lg-none"></i>
-                    <span class="nav-link-inner--text">{{ link.title }}</span>
+                    <span class="nav-link-inner--text">{{
+                      link.menu_link_title
+                    }}</span>
                   </a>
                   <div class="dropdown-menu-inner">
-                    <!--   <router-link
-                      v-for="(child, index) in link.child"
+                    <router-link
+                      v-for="(child, index) in link.childlink"
                       :key="index"
-                      :to="child.href"
+                      :to="pageSlug(child.flex_page.slug)"
                       class="media d-flex align-items-center"
                     >
                       <div class="media-body ml-3">
                         <h6 class="heading text-success mb-md-1">
-                          {{ child.title }}
+                          {{ child.child_link_title }}
                         </h6>
                         <p class="description d-none d-md-inline-block mb-0">
                           {{ child.description }}
                         </p>
                       </div>
-                    </router-link> -->
+                    </router-link>
                   </div>
                 </base-dropdown>
               </template>
@@ -200,6 +202,10 @@ export default class headerStyle1 extends Vue {
   pageSlug(slug: string) {
     const pageSlug = slug == `home` ? `/` : `/${slug}`;
     return pageSlug;
+  }
+
+  hasChildren(childlink: any) {
+    return childlink.length != 0 ? true : false;
   }
 
   /*   async asyncData({ $axios, $payloadURL, route }) {

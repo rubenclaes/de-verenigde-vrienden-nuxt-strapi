@@ -5,14 +5,6 @@
       <section class="section section-lg">
         <div class="container">
           <div class="row row-grid align-items-center">
-            <div class="back-top hidden-lg col-lg-12 col-md-12">
-              <base-button
-                size="lg"
-                type="secondary"
-                icon="ni ni-bold-left"
-                @click="goToHome()"
-              >naar home</base-button>
-            </div>
             <div class="col-md-6">
               <div data-aos="fade-in" data-aos-delay="150" class="pl-md-5">
                 <h1>Drumband</h1>
@@ -41,9 +33,15 @@
                     class="svg-bg"
                   >
                     <polygon points="0,52 583,95 0,95" class="fill-default" />
-                    <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default" />
+                    <polygon
+                      points="0,42 583,95 683,0 0,95"
+                      opacity=".2"
+                      class="fill-default"
+                    />
                   </svg>
-                  <h4 class="display-3 font-weight-bold text-white">Repetitie</h4>
+                  <h4 class="display-3 font-weight-bold text-white">
+                    Repetitie
+                  </h4>
                   <p class="lead text-italic text-white">
                     Deze ritmebende oefent één maal per maand in Heusden en één
                     maal per maand in Hechtel
@@ -92,7 +90,12 @@
                 <ul class="list-unstyled mt-5">
                   <li class="py-2">
                     <div class="d-flex align-items-center">
-                      <badge type="success" circle class="mr-3" icon="ni ni-like-2"></badge>
+                      <badge
+                        type="success"
+                        circle
+                        class="mr-3"
+                        icon="ni ni-like-2"
+                      ></badge>
                       <p>
                         Drumband De Toekomst was in de jaren ’90 een stille dood
                         gestorven, maar in 2002 is er een nieuwe start gemaakt
@@ -102,10 +105,15 @@
                   </li>
                   <li class="py-2">
                     <div class="d-flex align-items-center">
-                      <badge type="success" circle class="mr-3" icon="ni ni-calendar-grid-58"></badge>
+                      <badge
+                        type="success"
+                        circle
+                        class="mr-3"
+                        icon="ni ni-calendar-grid-58"
+                      ></badge>
                       <p>
-                        Het 100-jarig bestaan van de harmonie is aanleiding om de
-                        vroegere leden, intussen allemaal volwassen mannen en
+                        Het 100-jarig bestaan van de harmonie is aanleiding om
+                        de vroegere leden, intussen allemaal volwassen mannen en
                         vrouwen geworden, nog eens samen te brengen en de
                         trommelstokken opnieuw ter hand te nemen.
                       </p>
@@ -113,7 +121,12 @@
                   </li>
                   <li class="py-2">
                     <div class="d-flex align-items-center">
-                      <badge type="success" circle class="mr-3" icon="ni ni-check-bold"></badge>
+                      <badge
+                        type="success"
+                        circle
+                        class="mr-3"
+                        icon="ni ni-check-bold"
+                      ></badge>
                       <p>
                         Sindsdien repeteert de drumband regelmatig en neemt het
                         deel aan de activiteiten van de harmonie, zoals het

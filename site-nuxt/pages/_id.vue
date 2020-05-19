@@ -21,25 +21,24 @@ import { FlexPage } from '../store/flexpage/types';
   },
 })
 export default class IndexPage extends Vue {
-  /* @pageVuexNamespace.Getter('currentFlexPage')
-  private flexPage!: FlexPage; */
+  /* @pageVuexNamespace.Getter('currentFlexPage')*/
 
-  /*   head() {
+  private flexPage!: FlexPage;
+
+  head() {
     return {
-      title: this.flexPages
-        ? this.flexPages[0].slug
-        : 'KH de Verenigde Vrienden',
+      title: this.flexPage ? this.flexPage.slug : 'KH de Verenigde Vrienden',
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: this.flexPages
-            ? this.flexPages[0].slug
+          content: this.flexPage
+            ? this.flexPage.slug
             : 'KH de Verenigde Vrienden',
         },
       ],
     };
-  } */
+  }
 
   async asyncData({ params, payload, store }) {
     // Payload set during static generation
