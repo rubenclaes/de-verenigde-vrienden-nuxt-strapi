@@ -54,10 +54,10 @@
               >
                 <div class="d-flex align-items-center">
                   <span class="badge badge-circle badge-primary mr-3">
-                    <i :class="icon(bullet.Name)"></i>
+                    <i :class="icon(bullet.name)"></i>
                   </span>
 
-                  <p>{{ bullet.Value }}</p>
+                  <p>{{ bullet.value }}</p>
                 </div>
               </li>
             </ul>

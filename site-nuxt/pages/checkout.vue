@@ -11,13 +11,20 @@
 
             <cart></cart>
           </div>
-          <div v-if="checkoutStatus() === 'successful'" class="col-md-8 order-md-1">
+          <div
+            v-if="checkoutStatus() === 'successful'"
+            class="col-md-8 order-md-1"
+          >
             <h4 class="mb-3">1. Bestelling</h4>
           </div>
           <div v-else class="col-md-8 order-md-1">
-            <h4 class="mb-3">Betalingsgegevens</h4>
+            <h4 class="mb-3">Bestelling</h4>
 
-            <form class="needs-validation" v-on:submit.prevent="onSubmit" novalidate>
+            <form
+              class="needs-validation"
+              v-on:submit.prevent="onSubmit"
+              novalidate
+            >
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="firstName">Voornaam</label>
@@ -30,7 +37,9 @@
                     :disabled="processing"
                     type="text"
                   ></base-input>
-                  <div class="invalid-feedback">Valid first name is required.</div>
+                  <div class="invalid-feedback">
+                    Valid first name is required.
+                  </div>
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="lastName">Achternaam</label>
@@ -43,7 +52,9 @@
                     :disabled="processing"
                     type="text"
                   ></base-input>
-                  <div class="invalid-feedback">Valid last name is required.</div>
+                  <div class="invalid-feedback">
+                    Valid last name is required.
+                  </div>
                 </div>
               </div>
 
@@ -57,9 +68,9 @@
                   :disabled="processing"
                   alternative
                 ></base-input>
-                <div
-                  class="invalid-feedback"
-                >Please enter a valid email address for shipping updates.</div>
+                <div class="invalid-feedback">
+                  Please enter a valid email address for shipping updates.
+                </div>
               </div>
 
               <div class="mb-3">
@@ -73,16 +84,24 @@
                   :disabled="processing"
                   alternative
                 ></base-input>
-                <div class="invalid-feedback">Please enter your shipping address.</div>
+                <div class="invalid-feedback">
+                  Please enter your shipping address.
+                </div>
               </div>
 
               <div class="row">
                 <div class="col-md-5 mb-3">
                   <label for="country">Land</label>
-                  <select class="custom-select d-block w-100" id="country" required>
+                  <select
+                    class="custom-select d-block w-100"
+                    id="country"
+                    required
+                  >
                     <option selected>België</option>
                   </select>
-                  <div class="invalid-feedback">Please select a valid country.</div>
+                  <div class="invalid-feedback">
+                    Please select a valid country.
+                  </div>
                 </div>
 
                 <div class="col-md-3 mb-3">
@@ -106,9 +125,43 @@
 
               <div class="d-block my-3">
                 <tabs>
-                  <tab-pane title="Bancontact" :label="paymentMethods.bancontact.name"></tab-pane>
-                  <tab-pane title="Mastercard / Visa" :label="paymentMethods.card.name">
-                    <div class="form-control" ref="card"></div>
+                  <tab-pane
+                    title="Bancontact"
+                    :label="paymentMethods.bancontact.name"
+                  ></tab-pane>
+                  <tab-pane
+                    title="Mastercard / Visa"
+                    :label="paymentMethods.card.name"
+                  >
+                    <div class="row" v-show="(selectedRadio === 'card')">
+                      <div class="col-md-6 mb-3">
+                        <label for="cc-name">Naam op kaart</label>
+                        <base-input
+                          type="text"
+                          id="cc-name"
+                          placeholder
+                          required
+                          alternative
+                          :disabled="processing"
+                        ></base-input>
+
+                        <small class="text-muted"
+                          >Full name as displayed on card</small
+                        >
+                        <div class="invalid-feedback">
+                          Name on card is required
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="cc-number">Kredietkaartnummer</label>
+
+                        <div class="form-control" ref="card"></div>
+
+                        <div class="invalid-feedback">
+                          Credit card number is required
+                        </div>
+                      </div>
+                    </div>
                   </tab-pane>
                 </tabs>
                 <base-radio
@@ -118,7 +171,8 @@
                   :label="paymentMethods.bancontact.name"
                   @change="changeValue"
                   :disabled="processing"
-                >Bancontact</base-radio>
+                  >Bancontact</base-radio
+                >
 
                 <base-radio
                   v-if="false"
@@ -128,7 +182,8 @@
                   :label="paymentMethods.sepa_debit.name"
                   @change="changeValue"
                   :disabled="processing"
-                >IBAN</base-radio>
+                  >IBAN</base-radio
+                >
 
                 <base-radio
                   name="paymentMethod"
@@ -137,7 +192,8 @@
                   :label="paymentMethods.card.name"
                   @change="changeValue"
                   :disabled="processing"
-                >Mastercard / Visa</base-radio>
+                  >Mastercard / Visa</base-radio
+                >
                 <base-radio
                   v-if="false"
                   name="paymentMethod"
@@ -146,29 +202,8 @@
                   :label="paymentMethods.paymentRequestBtn.name"
                   @change="changeValue"
                   :disabled="processing"
-                >Apple Pay / Google Pay</base-radio>
-
-                <div class="row">
-                  <div class="col-md-6 mb-3">
-                    <label for="cc-name">Name on card</label>
-                    <base-input
-                      type="text"
-                      id="cc-name"
-                      placeholder
-                      required
-                      alternative
-                      :disabled="processing"
-                    ></base-input>
-
-                    <small class="text-muted">Full name as displayed on card</small>
-                    <div class="invalid-feedback">Name on card is required</div>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <label for="cc-number">Creditcard nummer</label>
-
-                    <div class="invalid-feedback">Credit card number is required</div>
-                  </div>
-                </div>
+                  >Apple Pay / Google Pay</base-radio
+                >
               </div>
 
               <hr class="mb-4" />
@@ -185,7 +220,9 @@
                 class="btn btn-primary btn-lg btn-block"
                 @click="handleSubmit()"
                 :disabled="!isLoggedIn() || numberOfItems() <= 0"
-              >Betaal {{ price() | euro }}</button>
+              >
+                Betaal {{ price() | euro }}
+              </button>
             </form>
           </div>
         </div>
@@ -194,7 +231,10 @@
           <div class="col-lg-10">
             <div class="row mt-3">
               <div class="col-6">
-                <a href="mailto:info@deverenigdevriendenheusden.be" class="text-light">
+                <a
+                  href="mailto:info@deverenigdevriendenheusden.be"
+                  class="text-light"
+                >
                   <small>Problemen?</small>
                 </a>
               </div>

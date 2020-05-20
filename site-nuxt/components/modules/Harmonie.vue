@@ -44,8 +44,8 @@
             class="info info-horizontal info-hover-primary"
           >
             <div class="description pl-4">
-              <h5 class="title">{{ bullet.Name }}</h5>
-              <p>{{ bullet.Value }}</p>
+              <h5 class="title">{{ bullet.name }}</h5>
+              <p>{{ bullet.value }}</p>
             </div>
           </div>
         </div>

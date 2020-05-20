@@ -42,8 +42,9 @@
               <div class="col-lg-3 order-lg-2 mb-5">
                 <div class="card-profile-image">
                   <LazyImage
-                    srcData="dirigent/dirigent3.jpeg"
-                    fetchMode="srcset"
+                    fetchMode="cloudinary"
+                    :placeholder="lqip()"
+                    :srcData="image()"
                     extraCss="rounded-circle"
                   />
                 </div>
@@ -124,14 +125,14 @@ export default class ProfilePage extends Vue {
   lqip() {
     //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
 
-    let image = `https://res.cloudinary.com/deverenigdevrienden/images/t_lqip/${this.data.Picture.Picture[0].provider_metadata.public_id}/${this.data.Picture.Picture[0].name}`;
+    let image = `https://res.cloudinary.com/deverenigdevrienden/images/t_lqip/${this.data.profile_image.provider_metadata.public_id}/${this.data.profile_image.name}`;
     return image;
   }
 
   image() {
     //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
 
-    let image = `https://res.cloudinary.com/deverenigdevrienden/images/${this.data.Picture.Picture[0].provider_metadata.public_id}/${this.data.Picture.Picture[0].name}`;
+    let image = `https://res.cloudinary.com/deverenigdevrienden/images/${this.data.profile_image.provider_metadata.public_id}/${this.data.profile_image.name}`;
     return image;
   }
 

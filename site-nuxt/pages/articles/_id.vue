@@ -92,6 +92,16 @@
                     extraCss="rounded shadow-lg"
                   />
                 </div>
+
+                <iframe
+                  src="https://player.vimeo.com/video/418127706"
+                  width="640"
+                  height="360"
+                  frameborder="0"
+                  allow="autoplay; fullscreen"
+                  allowfullscreen
+                ></iframe>
+
                 <div class="col-lg-11">
                   <template>
                     <div v-html="$md.render(article.description)"></div>
@@ -112,7 +122,8 @@ import { articleVuexNamespace } from '~/store/article/const';
 import { Article } from '~/store/article/types';
 
 @Component({
-  layout: 'appHeader',
+  layout: 'default',
+
   components: {
     Logo: () => import('@/components/Logo.vue'),
     BaseButton: () => import('@/components/BaseButton.vue'),
@@ -133,6 +144,8 @@ export default class ArticleView extends Vue {
 
   @articleVuexNamespace.Getter('formattedDate')
   private formattedDate!: Date;
+
+  videoID = '418127706';
 
   data() {
     return {
