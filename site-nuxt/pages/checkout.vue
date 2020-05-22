@@ -133,7 +133,7 @@
                     title="Mastercard / Visa"
                     :label="paymentMethods.card.name"
                   >
-                    <div class="row" v-show="(selectedRadio === 'card')">
+                    <div class="row">
                       <div class="col-md-6 mb-3">
                         <label for="cc-name">Naam op kaart</label>
                         <base-input
@@ -563,6 +563,8 @@ export default class CheckoutPage extends Vue {
       paymentIntent
     );
 
+    console.log(paymentIntent);
+
     console.log(data.paymentIntent.status);
 
     if (
@@ -635,6 +637,8 @@ export default class CheckoutPage extends Vue {
   handlePayment(paymentResponse) {
     console.log(paymentResponse);
     const { paymentIntent, error } = paymentResponse;
+
+    console.log(paymentResponse);
 
     if (error) {
       console.error(error.message);
