@@ -11,6 +11,8 @@ import { pageVuexNamespace } from '../store/flexpage/const';
 import { FlexPage } from '../store/flexpage/types';
 
 @Component({
+  layout: 'default',
+
   components: {
     FlexPage: () =>
       import(
@@ -22,10 +24,6 @@ export default class IndexPage extends Vue {
   /* @pageVuexNamespace.Getter('currentFlexPage')*/
 
   private flexPage!: FlexPage;
-
-  layout() {
-    return this.flexPage.layout;
-  }
 
   head() {
     return {
