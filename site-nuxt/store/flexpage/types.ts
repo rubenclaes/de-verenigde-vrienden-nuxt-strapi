@@ -61,5 +61,6 @@ export interface FlexPage {
   title: string;
   slug: string;
   active: boolean;
+  layout: string;
   meta: [];
 }

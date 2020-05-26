@@ -30,7 +30,7 @@ export const actions: ActionTree<ArticleState, RootState> = {
     commit('setLoading', false);
     commit('setSuccess', true);
     commit('set', articles);
-    console.info(`Articles from API: %o`, articles);
+    //console.info(`Articles from API: %o`, articles);
   },
 
   /**

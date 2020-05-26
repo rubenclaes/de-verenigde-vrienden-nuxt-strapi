@@ -94,14 +94,14 @@
           </ul>
 
           <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-            <li class="nav-item" v-if="false">
+            <li v-if="numberOfItems() > 0" class="nav-item">
               <router-link class="nav-link nav-link-icon" to="/checkout">
                 <i class="fa fa-shopping-cart"></i>
                 <span class="nav-link-inner--text d-lg-none"
                   >Winkelmandje
                 </span>
                 <client-only>
-                  <badge type="white" rounded>{{ cartItems }}</badge>
+                  <badge type="white" rounded>{{ numberOfItems() }}</badge>
                 </client-only>
               </router-link>
             </li>
@@ -180,8 +180,7 @@ export default class headerStyle1 extends Vue {
   brandImg!: String;
   @Prop({ type: Array })
   navItemList!: [];
-  @Prop({ type: Number })
-  cartItems!: Number;
+
   @Prop({ type: Boolean, default: true })
   styledLogo!: Boolean;
 
@@ -204,6 +203,10 @@ export default class headerStyle1 extends Vue {
 
   hasChildren(childlink: any) {
     return childlink.length != 0 ? true : false;
+  }
+
+  numberOfItems() {
+    return this.$store.getters['cart/numberOfItems'];
   }
 
   /*   async asyncData({ $axios, $payloadURL, route }) {

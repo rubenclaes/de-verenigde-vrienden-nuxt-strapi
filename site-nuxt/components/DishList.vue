@@ -5,11 +5,12 @@
     header-classes="bg-white pb-5"
     body-classes="px-lg-5 py-lg-5"
     class="border-0"
-    v-if="currentDiningDay"
   >
     <template #image>
       <LazyImage
-        :srcData="diningday.image.url"
+        fetchMode="cloudinary"
+        :placeholder="lqip()"
+        :srcData="image()"
         extraCss="card-img-top cardThumbnail"
       />
     </template>
@@ -27,11 +28,24 @@
         <small>Kies je gerecht:</small>
       </div>
       <div class="list-group list-group-flush">
-        <dish-preview
-          v-for="dish in currentDiningDay.dishes"
-          :key="dish.id"
-          :dish="dish"
-        ></dish-preview>
+        <div v-if="loading">
+          <div class="text-center">
+            <b-spinner
+              style="width: 3rem; height: 3rem;"
+              label="Large Spinner"
+              type="grow"
+            ></b-spinner>
+          </div>
+        </div>
+        <template v-else>
+          <client-only>
+            <dish-preview
+              v-for="dish in currentDiningDay.dishes"
+              :key="dish.id"
+              :dish="dish"
+            ></dish-preview>
+          </client-only>
+        </template>
       </div>
     </template>
   </card>
@@ -44,15 +58,20 @@ import { diningDayVuexNamespace } from '~/store/diningday/const';
 
 @Component({
   components: {
-    Card: () => import('@/components/Card.vue'),
+    Card: (/* webpackChunkName: 'card' */) => import('@/components/Card.vue'),
 
-    Icon: () => import('@/components/Icon.vue'),
+    Icon: (/* webpackChunkName: 'icont' */) => import('@/components/Icon.vue'),
 
-    DishPreview: () => import('@/components/DishPreview.vue'),
-    LazyImage: () => import('@/components/LazyImage.vue'),
+    DishPreview: (/* webpackChunkName: 'dish-preview' */) =>
+      import('@/components/DishPreview.vue'),
+    LazyImage: (/* webpackChunkName: 'lazy-image' */) =>
+      import('@/components/LazyImage.vue'),
   },
 })
 export default class DishList extends Vue {
+  @diningDayVuexNamespace.Getter('loading')
+  private loading!: boolean;
+
   @diningDayVuexNamespace.Getter('currentDiningDay')
   private currentDiningDay!: DiningDay;
 
@@ -67,6 +86,20 @@ export default class DishList extends Vue {
 
   @Prop({ type: Object })
   diningday!: DiningDay;
+
+  lqip() {
+    //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
+
+    let image = `https://res.cloudinary.com/deverenigdevrienden/images/t_lqip/${this.diningday.image.provider_metadata.public_id}/${this.diningday.image.name}`;
+    return image;
+  }
+
+  image() {
+    //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
+
+    let image = `https://res.cloudinary.com/deverenigdevrienden/images/${this.diningday.image.provider_metadata.public_id}/${this.diningday.image.name}`;
+    return image;
+  }
 
   /**
    * We use created here instead of mounted because it doesn’t need to be rerun if we leave this layout and come back to it.

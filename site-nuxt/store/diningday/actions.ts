@@ -23,33 +23,33 @@ export const actions: ActionTree<DiningDayState, RootState> = {
 
     //await new Promise(resolve => setTimeout(resolve, 10000));
 
-    await loadDiningdays()
-      .then(diningdays => {
-        commit('setLoading', false);
-        commit('setSuccess', true);
-        commit('set', diningdays);
-        //console.info(`Dining Days: %o`, diningdays);
-      })
-      .catch(err => {
-        console.error('error', err);
-      });
+    const diningdays = await loadDiningdays();
+
+    commit('setLoading', false);
+    commit('setSuccess', true);
+    commit('set', diningdays);
+    //console.info(`Dining Days: %o`, diningdays);
   },
 
   /**
    * Fetching a DiningDay with ID and adding it to currentDiningDay state.
    */
   async fetchDiningDay({ commit }: DiningDayActionContext, id) {
-    const diningday = await loadDiningday(id).catch(err => {
-      console.error('error', err);
-    });
+    console.info(`Fetching diningday from API`);
+    commit('clear');
+    commit('setLoading', true);
 
+    const diningday = await loadDiningday(id);
+
+    commit('setLoading', false);
+    commit('setSuccess', true);
     //console.info(diningday);
 
     commit('setCurrentDiningDay', {
       id: diningday.id,
-      ...diningday
+      ...diningday,
     });
-  }
+  },
 };
 
 export default actions;
