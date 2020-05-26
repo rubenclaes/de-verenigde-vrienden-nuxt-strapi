@@ -25,204 +25,236 @@
               v-on:submit.prevent="onSubmit"
               novalidate
             >
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="firstName">Voornaam</label>
+              <ValidationObserver v-slot="{ invalid }">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label class="form-control-label" for="firstName"
+                      >Voornaam</label
+                    >
 
-                  <base-input
-                    id="firstName"
-                    v-model="paymentInfo.firstName"
-                    alternative
-                    required
-                    :disabled="processing"
-                    type="text"
-                  ></base-input>
-                  <div class="invalid-feedback">
-                    Valid first name is required.
-                  </div>
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label for="lastName">Achternaam</label>
-
-                  <base-input
-                    id="lastName"
-                    v-model="paymentInfo.lastName"
-                    alternative
-                    required
-                    :disabled="processing"
-                    type="text"
-                  ></base-input>
-                  <div class="invalid-feedback">
-                    Valid last name is required.
-                  </div>
-                </div>
-              </div>
-
-              <div class="mb-3">
-                <label for="email">E-mail</label>
-                <base-input
-                  type="email"
-                  id="email"
-                  v-model="paymentInfo.email"
-                  placeholder="you@outlook.com"
-                  :disabled="processing"
-                  alternative
-                ></base-input>
-                <div class="invalid-feedback">
-                  Please enter a valid email address for shipping updates.
-                </div>
-              </div>
-
-              <div class="mb-3">
-                <label for="address">Adres</label>
-                <base-input
-                  type="text"
-                  id="address"
-                  v-model="paymentInfo.address"
-                  placeholder="Kerkenblook z/n"
-                  required
-                  :disabled="processing"
-                  alternative
-                ></base-input>
-                <div class="invalid-feedback">
-                  Please enter your shipping address.
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-5 mb-3">
-                  <label for="country">Land</label>
-                  <select
-                    class="custom-select d-block w-100"
-                    id="country"
-                    required
-                  >
-                    <option selected>België</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    Please select a valid country.
-                  </div>
-                </div>
-
-                <div class="col-md-3 mb-3">
-                  <label for="zip">Postcode</label>
-                  <base-input
-                    type="number"
-                    id="zip"
-                    v-model="paymentInfo.zip"
-                    placeholder
-                    required
-                    :disabled="processing"
-                    alternative
-                  ></base-input>
-                  <div class="invalid-feedback">Postcode code required.</div>
-                </div>
-              </div>
-
-              <hr class="mb-4" />
-
-              <h4 class="mb-3">Betaling</h4>
-
-              <div class="d-block my-3">
-                <tabs>
-                  <tab-pane
-                    title="Bancontact"
-                    :label="paymentMethods.bancontact.name"
-                  ></tab-pane>
-                  <tab-pane
-                    title="Mastercard / Visa"
-                    :label="paymentMethods.card.name"
-                  >
-                    <div class="row">
-                      <div class="col-md-6 mb-3">
-                        <label for="cc-name">Naam op kaart</label>
+                    <ValidationProvider
+                      name="paymentInfo.name"
+                      rules="required|min:1"
+                    >
+                      <div slot-scope="{ errors, valid }">
                         <base-input
+                          id="firstName"
+                          v-model="paymentInfo.firstName"
+                          alternative
+                          required
+                          :valid="valid ? true : null"
+                          :disabled="processing"
                           type="text"
-                          id="cc-name"
+                          :error="errors[0]"
+                        ></base-input>
+                      </div>
+                    </ValidationProvider>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <label class="form-control-label" for="lastName"
+                      >Achternaam</label
+                    >
+
+                    <ValidationProvider
+                      name="paymentInfo.name"
+                      rules="required|min:1"
+                    >
+                      <div slot-scope="{ errors, valid }">
+                        <base-input
+                          id="lastName"
+                          v-model="paymentInfo.lastName"
+                          alternative
+                          required
+                          :disabled="processing"
+                          type="text"
+                          :valid="valid ? true : null"
+                          :error="errors[0]"
+                        ></base-input>
+                      </div>
+                    </ValidationProvider>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-control-label" for="email">E-mail</label>
+                  <ValidationProvider
+                    name="paymentInfo.email"
+                    rules="required|min:3|email"
+                  >
+                    <div slot-scope="{ errors, valid }">
+                      <base-input
+                        type="email"
+                        id="email"
+                        name="email"
+                        v-model="paymentInfo.email"
+                        placeholder="you@outlook.com"
+                        :disabled="processing"
+                        alternative
+                        :valid="valid ? true : null"
+                        :error="errors[0]"
+                      ></base-input>
+                    </div>
+                  </ValidationProvider>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-control-label" for="address">Adres</label>
+                  <ValidationProvider
+                    name="paymentInfo.address"
+                    rules="required|min:1"
+                  >
+                    <div slot-scope="{ errors, valid }">
+                      <base-input
+                        type="text"
+                        id="address"
+                        v-model="paymentInfo.address"
+                        placeholder="Kerkenblook z/n"
+                        required
+                        :disabled="processing"
+                        alternative
+                        :valid="valid ? true : null"
+                        :error="errors[0]"
+                      ></base-input>
+                    </div>
+                  </ValidationProvider>
+
+                  <div class="invalid-feedback">
+                    Please enter your shipping address.
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-3 mb-3">
+                    <label class="form-control-label" for="zip">Postcode</label>
+
+                    <ValidationProvider
+                      name="paymentInfo.zip"
+                      rules="required|numeric"
+                      immediate
+                    >
+                      <div slot-scope="{ errors, valid }">
+                        <base-input
+                          type="number"
+                          id="zip"
+                          v-model="paymentInfo.zip"
                           placeholder
                           required
-                          alternative
                           :disabled="processing"
+                          alternative
+                          :valid="errors[0] ? false : true"
+                          :error="errors[0]"
                         ></base-input>
+                      </div>
+                    </ValidationProvider>
+                  </div>
+                </div>
 
-                        <small class="text-muted"
-                          >Full name as displayed on card</small
-                        >
-                        <div class="invalid-feedback">
-                          Name on card is required
+                <hr class="mb-4" />
+
+                <h4 class="mb-3">Betaling</h4>
+
+                <div class="d-block my-3">
+                  <tabs>
+                    <tab-pane
+                      title="Bancontact"
+                      :label="paymentMethods.bancontact.name"
+                    ></tab-pane>
+                    <tab-pane
+                      title="Mastercard / Visa"
+                      :label="paymentMethods.card.name"
+                    >
+                      <div class="row">
+                        <div class="col-md-6 mb-3">
+                          <label for="cc-name">Naam op kaart</label>
+                          <base-input
+                            type="text"
+                            id="cc-name"
+                            placeholder
+                            required
+                            alternative
+                            :disabled="processing"
+                          ></base-input>
+
+                          <small class="text-muted"
+                            >Full name as displayed on card</small
+                          >
+                          <div class="invalid-feedback">
+                            Name on card is required
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="cc-number">Kredietkaartnummer</label>
+
+                          <div class="form-control" ref="card"></div>
+
+                          <div class="invalid-feedback">
+                            Credit card number is required
+                          </div>
                         </div>
                       </div>
-                      <div class="col-md-6 mb-3">
-                        <label for="cc-number">Kredietkaartnummer</label>
+                    </tab-pane>
+                  </tabs>
+                  <base-radio
+                    name="paymentMethod"
+                    class="mb-3"
+                    :value="selectedRadio"
+                    :label="paymentMethods.bancontact.name"
+                    @change="changeValue"
+                    :disabled="processing"
+                    >Bancontact</base-radio
+                  >
 
-                        <div class="form-control" ref="card"></div>
+                  <base-radio
+                    v-if="false"
+                    name="paymentMethod"
+                    class="mb-3"
+                    :value="selectedRadio"
+                    :label="paymentMethods.sepa_debit.name"
+                    @change="changeValue"
+                    :disabled="processing"
+                    >IBAN</base-radio
+                  >
 
-                        <div class="invalid-feedback">
-                          Credit card number is required
-                        </div>
-                      </div>
-                    </div>
-                  </tab-pane>
-                </tabs>
-                <base-radio
-                  name="paymentMethod"
-                  class="mb-3"
-                  :value="selectedRadio"
-                  :label="paymentMethods.bancontact.name"
-                  @change="changeValue"
+                  <base-radio
+                    name="paymentMethod"
+                    class="mb-3"
+                    :value="selectedRadio"
+                    :label="paymentMethods.card.name"
+                    @change="changeValue"
+                    :disabled="processing"
+                    >Mastercard / Visa</base-radio
+                  >
+                  <base-radio
+                    v-if="false"
+                    name="paymentMethod"
+                    class="mb-3"
+                    :value="selectedRadio"
+                    :label="paymentMethods.paymentRequestBtn.name"
+                    @change="changeValue"
+                    :disabled="processing"
+                    >Apple Pay / Google Pay</base-radio
+                  >
+                </div>
+
+                <hr class="mb-4" />
+                <button
+                  v-if="processing"
+                  class="btn btn-primary btn-lg btn-block"
+                  @click="handleSubmit()"
                   :disabled="processing"
-                  >Bancontact</base-radio
                 >
-
-                <base-radio
-                  v-if="false"
-                  name="paymentMethod"
-                  class="mb-3"
-                  :value="selectedRadio"
-                  :label="paymentMethods.sepa_debit.name"
-                  @change="changeValue"
-                  :disabled="processing"
-                  >IBAN</base-radio
+                  <b-spinner small type="grow"></b-spinner>Even geduld...
+                </button>
+                <button
+                  v-else
+                  class="btn btn-primary btn-lg btn-block"
+                  @click="handleSubmit()"
+                  :disabled="!isLoggedIn() || numberOfItems() <= 0 || invalid"
                 >
-
-                <base-radio
-                  name="paymentMethod"
-                  class="mb-3"
-                  :value="selectedRadio"
-                  :label="paymentMethods.card.name"
-                  @change="changeValue"
-                  :disabled="processing"
-                  >Mastercard / Visa</base-radio
-                >
-                <base-radio
-                  v-if="false"
-                  name="paymentMethod"
-                  class="mb-3"
-                  :value="selectedRadio"
-                  :label="paymentMethods.paymentRequestBtn.name"
-                  @change="changeValue"
-                  :disabled="processing"
-                  >Apple Pay / Google Pay</base-radio
-                >
-              </div>
-
-              <hr class="mb-4" />
-              <button
-                v-if="processing"
-                class="btn btn-primary btn-lg btn-block"
-                @click="handleSubmit()"
-                :disabled="processing"
-              >
-                <b-spinner small type="grow"></b-spinner>Even geduld...
-              </button>
-              <button
-                v-else
-                class="btn btn-primary btn-lg btn-block"
-                @click="handleSubmit()"
-                :disabled="!isLoggedIn() || numberOfItems() <= 0"
-              >
-                Betaal {{ price() | euro }}
-              </button>
+                  Betaal {{ price() | euro }}
+                </button>
+              </ValidationObserver>
             </form>
           </div>
         </div>
@@ -248,6 +280,7 @@
 
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator';
+import { ValidationObserver, ValidationProvider } from 'vee-validate';
 
 import { cartVuexNamespace } from '~/store/cart/const';
 
@@ -258,6 +291,8 @@ import { v4 as uuidv4 } from 'uuid';
   layout: 'appColor',
 
   components: {
+    ValidationObserver,
+    ValidationProvider,
     BaseButton: () => import('@/components/BaseButton.vue'),
 
     Badge: () => import('@/components/Badge.vue'),
@@ -551,20 +586,15 @@ export default class CheckoutPage extends Vue {
     interval?: number;
     start?: number;
   }) {
-    const endStates = [
-      'succeeded',
-      'processing',
-      'canceled',
-      'requires_payment_method',
-    ];
+    const endStates = ['succeeded', 'processing', 'canceled'];
+
     // Retrieve the PaymentIntent status from our server.
     const { data } = await this.$store.dispatch(
       'cart/fetchPaymentIntent',
       paymentIntent
     );
 
-    console.log(paymentIntent);
-
+    console.log(data.paymentIntent);
     console.log(data.paymentIntent.status);
 
     if (
@@ -635,10 +665,7 @@ export default class CheckoutPage extends Vue {
   }
 
   handlePayment(paymentResponse) {
-    console.log(paymentResponse);
     const { paymentIntent, error } = paymentResponse;
-
-    console.log(paymentResponse);
 
     if (error) {
       console.error(error.message);
@@ -664,7 +691,7 @@ export default class CheckoutPage extends Vue {
         confirmButtonText: 'Ok',
       });
       this.$store.commit('cart/setCheckoutStatus', 'successful');
-      this.$router.push('invoice');
+      this.$router.push('/invoice');
     } else if (paymentIntent.status === 'processing') {
       // Success! Now waiting for payment confirmation. Update the interface to display the confirmation screen.
 
@@ -677,7 +704,7 @@ export default class CheckoutPage extends Vue {
       console.error(new Error('Er is een fout opgetreden met de betaling'));
       this.$swal.fire({
         title: 'Fout!',
-        text: 'Er is een fout opgetreden met de betaling.',
+        text: 'De betaling is geannuleerd.',
         icon: 'error',
         confirmButtonText: 'Ok',
       });

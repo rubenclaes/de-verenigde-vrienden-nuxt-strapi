@@ -4,6 +4,11 @@ label {
   font-size: $font-size-sm;
 }
 
+.form-control-label {
+  color: $gray-700;
+  font-weight: $font-weight-bold;
+}
+
 .form-control {
   font-size: $input-btn-font-size;
 

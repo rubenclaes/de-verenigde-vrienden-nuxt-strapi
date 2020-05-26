@@ -1,0 +1,60 @@
+@media (max-width: 59.9375em) {
+  .node__header--banner {
+    display: none;
+  }
+}
+@media (min-width: 60em) {
+  .node__header--banner {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50%;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.75);
+    transition: opacity 0.4s ease;
+    opacity: 1;
+  }
+  .node__header--banner.js-toggle-menu {
+    opacity: 0;
+  }
+  .node__header--banner .banner--wrapper {
+    max-width: 665px;
+    margin: 0 0 0 auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+  }
+}
+@media (min-width: 60em) and (max-width: 59.9375em) {
+  .node__header--banner .banner--wrapper {
+    justify-content: center;
+  }
+}
+@media (min-width: 60em) {
+  .node__header--banner .banner--scroller {
+    height: 40px;
+  }
+  .node__header--banner .banner--scroller svg {
+    height: 100%;
+    width: auto;
+  }
+  .node__header--banner .banner--scroller svg path:nth-child(2) {
+    -webkit-animation: 2s ease 1.15s infinite normal forwards running scroller;
+    animation: 2s ease 1.15s infinite normal forwards running scroller;
+  }
+  .node__header--banner .banner--scroller svg circle {
+    -webkit-animation: 2s ease 1s infinite normal forwards running scroller-dot;
+    animation: 2s ease 1s infinite normal forwards running scroller-dot;
+  }
+  .node__header--banner .banner--text {
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.125rem;
+    margin-left: 35px;
+  }
+}
+@media (min-width: 60em) and (max-width: 59.9375em) {
+  .node__header--banner .banner--text {
+    display: none;
+  }
+}

@@ -51,7 +51,7 @@
                       name="email"
                       type="email"
                       alternative
-                      placeholder="Email"
+                      placeholder="you@outlook.com"
                       v-model="email"
                       addon-left-icon="ni ni-email-83"
                       :error="errors[0]"

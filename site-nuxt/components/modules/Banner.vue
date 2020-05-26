@@ -76,6 +76,35 @@
         <span></span>
       </a>
     </div>-->
+    <div class="node__header--banner">
+      <a
+        href="#scroll-to"
+        aria-label="Get to know our solutions"
+        class="banner--wrapper"
+      >
+        <div class="banner--scroller">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 40">
+            <path
+              d="M11.766 0A11.779 11.779 0 000 11.766v16.468a11.766 11.766 0 0023.531 0V11.766A11.779 11.779 0 0011.766 0zm9.366 28.234a9.366 9.366 0 01-18.732 0V11.766a9.366 9.366 0 0118.732 0zm0 0"
+              fill="#fff"
+              opacity=".5"
+            ></path>
+            <path
+              d="M10.726 20.114v-.022 9.388l-2.958-2.951a.775.775 0 00-1.09 0l-.452.459a.768.768 0 000 1.084l5.056 5.059a.773.773 0 001.088 0l5.056-5.058a.769.769 0 000-1.084l-.459-.459a.76.76 0 00-.541-.225.737.737 0 00-.532.224l-2.968 2.985v-9.41a.8.8 0 00-.787-.778h-.65a.78.78 0 00-.763.788z"
+              fill="#fff"
+            ></path>
+            <circle cx="12" cy="10" r="2" fill="#fff"></circle>
+          </svg>
+        </div>
+        <div class="banner--text">
+          <div
+            class="field field-node-- field-name-field-banner-text field-type-string field-label-hidden field__item"
+          >
+            Get to know our solutions
+          </div>
+        </div>
+      </a>
+    </div>
   </section>
 
   <!--  <parallax-style1
@@ -359,19 +388,5 @@ $scale-base-1: (1 + $scale / 100%);
   100% {
     opacity: 0;
   }
-}
-
-/* Enter and leave animations can use different */
-/* durations and timing functions.              */
-.slide-fade-enter-active {
-  transition: all 1s ease;
-}
-.slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
-  transform: translateX(10px);
-  opacity: 0;
 }
 </style>
