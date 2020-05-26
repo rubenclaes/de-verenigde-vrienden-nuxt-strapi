@@ -101,7 +101,7 @@
                   >Winkelmandje
                 </span>
                 <client-only>
-                  <badge type="white" rounded>{{ numberOfItems() }}</badge>
+                  <badge type="white" rounded>{{ cartItems }}</badge>
                 </client-only>
               </router-link>
             </li>
@@ -180,15 +180,13 @@ export default class headerStyle1 extends Vue {
   brandImg!: String;
   @Prop({ type: Array })
   navItemList!: [];
+  @Prop({ type: Number })
+  cartItems!: Number;
   @Prop({ type: Boolean, default: true })
   styledLogo!: Boolean;
 
   goTocontact() {
     this.$router.push({ name: 'index', hash: '#contact' });
-  }
-
-  numberOfItems() {
-    return this.$store.getters['cart/numberOfItems'];
   }
 
   onPin(pin: boolean) {

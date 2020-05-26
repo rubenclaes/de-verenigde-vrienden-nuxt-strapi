@@ -118,7 +118,7 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator';
       ),
   },
 })
-export default class ProfilePage extends Vue {
+export default class ProfileTemplate extends Vue {
   @Prop({ type: Object, required: true })
   data;
 

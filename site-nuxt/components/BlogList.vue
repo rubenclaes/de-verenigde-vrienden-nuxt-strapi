@@ -1,55 +1,43 @@
-<!-- components/BlogList -->
-
 <template>
-  <div>
-    <div class="row">
-      <template v-if="loading">
-        loading
-      </template>
-      <div
-        v-else
-        class="col-lg-3"
-        v-for="article in articles"
-        :key="article.id"
+  <div class="row">
+    <template v-if="loading">
+      <div class="text-center">
+        <b-spinner
+          style="width: 3rem; height: 3rem;"
+          label="Large Spinner"
+          type="grow"
+        ></b-spinner>
+      </div>
+    </template>
+    <div v-else class="col-lg-3" v-for="article in articles" :key="article.id">
+      <n-link
+        :to="{ name: 'articles-id', params: { id: article.slug } }"
+        tag="a"
       >
-        <n-link
-          :to="{ name: 'articles-id', params: { id: article.slug } }"
-          tag="a"
-        >
-          <div class="card card-blog card-background" data-animation="zooming">
-            <!-- Fallback content -->
-            <div
-              class="full-background"
-              :style="{ backgroundImage: 'url(' + article.image.url + ')' }"
-            ></div>
+        <div class="card card-blog card-background" data-animation="zooming">
+          <!-- Fallback content -->
+          <div
+            class="full-background"
+            :style="{ backgroundImage: 'url(' + article.image.url + ')' }"
+          ></div>
 
-            <div class="card-body">
-              <div class="content-bottom">
-                <badge
-                  v-if="article.Categories[0].Tag1"
-                  type="default"
-                  rounded
-                  >{{ article.Categories[0].Tag1 }}</badge
-                >
-                <badge
-                  v-if="article.Categories[0].Tag2"
-                  type="default"
-                  rounded
-                  >{{ article.Categories[0].Tag2 }}</badge
-                >
-                <badge
-                  v-if="article.Categories[0].Tag3"
-                  type="default"
-                  rounded
-                  >{{ article.Categories[0].Tag3 }}</badge
-                >
+          <div class="card-body">
+            <div class="content-bottom">
+              <badge v-if="article.Categories[0].Tag1" type="default" rounded>{{
+                article.Categories[0].Tag1
+              }}</badge>
+              <badge v-if="article.Categories[0].Tag2" type="default" rounded>{{
+                article.Categories[0].Tag2
+              }}</badge>
+              <badge v-if="article.Categories[0].Tag3" type="default" rounded>{{
+                article.Categories[0].Tag3
+              }}</badge>
 
-                <h5 class="card-title text-primary">{{ article.name }}</h5>
-              </div>
+              <h5 class="card-title text-primary">{{ article.name }}</h5>
             </div>
           </div>
-        </n-link>
-      </div>
+        </div>
+      </n-link>
     </div>
   </div>
 </template>
@@ -76,9 +64,6 @@ export default class BlogList extends Vue {
 
   @articleVuexNamespace.Getter('loading')
   private loading!: boolean;
-
-  @Prop({ type: Object })
-  article!: Article;
 
   @Prop({ type: String, default: 'ni ni-note-03' })
   icon!: String;

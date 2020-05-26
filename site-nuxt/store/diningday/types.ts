@@ -18,6 +18,7 @@ export interface DiningDay {
   date: Date;
   active: boolean;
   description: string;
+  slug: string;
   image: {
     id: number;
     name: string;

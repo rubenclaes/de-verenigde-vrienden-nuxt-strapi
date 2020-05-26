@@ -10,12 +10,21 @@
       :sitemapNested="sitemapNested"
     /> -->
 
-    <template v-for="module in modules">
+    <template v-for="component in templateComponents">
       <component
-        :is="module.component"
-        :contentID="module.contentID"
-        :data="module.data"
-        :key="module.id"
+        :is="component.component"
+        :contentID="component.contentID"
+        :data="component.data"
+        :key="component.id"
+      />
+    </template>
+
+    <template v-for="component in contentComponents">
+      <component
+        :is="component.component"
+        :contentID="component.contentID"
+        :data="component.data"
+        :key="component.id"
       />
     </template>
   </div>
@@ -52,8 +61,12 @@ export default class FlexPageComponent extends Vue {
   @Prop({ type: Array })
   sitemapNested;
 
-  get modules() {
-    return this.renderModules();
+  get contentComponents() {
+    return this.renderContentComponents();
+  }
+
+  get templateComponents() {
+    return this.renderTemplateComponents();
   }
 
   renderComponent(component: string) {
@@ -67,7 +80,31 @@ export default class FlexPageComponent extends Vue {
     );
   }
 
-  renderModules() {
+  renderTemplateComponents() {
+    let templateComponents: object[] = [];
+    // Render Template DynamicZone
+    this.flexPage.Template.forEach((component: any, index: number) => {
+      const ComponentToRender =
+        StrapiComponents.pageTemplateComponents[component.template];
+
+      if (ComponentToRender) {
+        templateComponents.push({
+          component: ComponentToRender,
+          contentID: component.id,
+          id: index,
+          data: component,
+        });
+      } else {
+        console.error(
+          `No template component found for the dynamicZone. Cannot render dynamicZone.`
+        );
+      }
+    });
+
+    return templateComponents;
+  }
+
+  renderContentComponents() {
     let modules: object[] = [];
     const contentZoneName = 'this.name';
 
@@ -89,6 +126,8 @@ export default class FlexPageComponent extends Vue {
       );
       return;
     } */
+
+    // Render Content DynamicZone
     this.flexPage.Content.forEach((dynamicZone: any, index: number) => {
       const ComponentToRender =
         StrapiComponents.moduleComponents[dynamicZone.component];
@@ -106,6 +145,7 @@ export default class FlexPageComponent extends Vue {
         );
       }
     });
+
     return modules;
   }
 

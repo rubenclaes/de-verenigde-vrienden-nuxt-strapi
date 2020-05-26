@@ -37,7 +37,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 import { Dish } from '../store/diningday/types';
 
 @Component({
-  components: { BaseButton: () => import('@/components/BaseButton.vue') }
+  components: { BaseButton: () => import('@/components/BaseButton.vue') },
 })
 export default class DishPreview extends Vue {
   @Prop({ type: Object, required: true })
@@ -49,7 +49,7 @@ export default class DishPreview extends Vue {
 
   data() {
     return {
-      tempcart: [] // this object should be the same as the json store object, with an additional param, quantity
+      tempcart: [], // this object should be the same as the json store object, with an additional param, quantity
     };
   }
 
@@ -57,7 +57,7 @@ export default class DishPreview extends Vue {
     this.$store.dispatch('cart/addProductToCart', dish);
     this.$toasted.success(`${dish.name} toegevoegd in mandje.`, {
       duration: 2000,
-      position: 'bottom-center'
+      position: 'bottom-center',
     });
   }
 }

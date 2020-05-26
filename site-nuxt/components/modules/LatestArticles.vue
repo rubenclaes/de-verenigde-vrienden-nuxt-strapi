@@ -1,6 +1,5 @@
 <template>
   <!-- LatestArticles -->
-
   <section class="section section-lg bg-secondary my-0 overflow-hidden blogs">
     <div class="container-fluid py-0 pb-200">
       <div class="row mb-md-5">

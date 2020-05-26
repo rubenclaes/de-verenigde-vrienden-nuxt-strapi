@@ -11,24 +11,33 @@ export const getters: GetterTree<DiningDayState, RootState> = {
     return state.diningDays;
   },
 
-  selected: state => {
+  selected: (state) => {
     const diningDay = state.diningDays.find(
-      diningDay => diningDay.id === state.selected
+      (diningDay) => diningDay.id === state.selected
     );
     return diningDay;
   },
 
-  dishesById: state => (id: number) => {
+  dishesById: (state) => (id: number) => {
     if (state.diningDays[0])
-      return state.diningDays[0].dishes.find(dish => dish.id === id);
+      return state.diningDays[0].dishes.find((dish) => dish.id === id);
+  },
+
+  // Method-Style Access
+  diningDayBySlug: (state) => (slug: string) => {
+    return state.diningDays.find((diningDay) => diningDay.slug === slug);
   },
 
   loading(state) {
     return state.status.loading;
   },
 
+  currentDiningDay(state) {
+    return state.currentDiningDay;
+  },
+
   // Fetch the total number of items in the cart
-  totalNumberOfDiningDaysItems: state => {
+  totalNumberOfDiningDaysItems: (state) => {
     return state.diningDays.length;
   },
 
@@ -37,7 +46,7 @@ export const getters: GetterTree<DiningDayState, RootState> = {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
     };
     let time = new Date(state.currentDiningDay.created_at);
     return time.toLocaleDateString('nl-BE', options);
@@ -48,7 +57,7 @@ export const getters: GetterTree<DiningDayState, RootState> = {
     //return (user && user.email) || '';
     const latestDiningDay = state.diningDays[state.diningDays.length - 1];
     return latestDiningDay;
-  }
+  },
 };
 
 export default getters;

@@ -12,6 +12,7 @@ export const initState = (): DiningDayState => ({
     description: '',
     date: new Date(),
     active: false,
+    slug: '',
     image: {
       id: 0,
       name: '',
@@ -27,8 +28,8 @@ export const initState = (): DiningDayState => ({
       updated_at: new Date(),
       provider_metadata: {
         public_id: '',
-        resource_type: ''
-      }
+        resource_type: '',
+      },
     },
 
     created_at: new Date(),
@@ -39,7 +40,7 @@ export const initState = (): DiningDayState => ({
       number: 0,
       bus: 'string',
       town: 'string',
-      postal_code: 0
+      postal_code: 0,
     },
     dishes: [
       {
@@ -66,17 +67,17 @@ export const initState = (): DiningDayState => ({
           updated_at: new Date(),
           provider_metadata: {
             public_id: '',
-            resource_type: ''
-          }
-        }
-      }
-    ]
+            resource_type: '',
+          },
+        },
+      },
+    ],
   },
   status: {
     loading: false,
     success: false,
-    error: false
-  }
+    error: false,
+  },
 });
 
 export default initState;

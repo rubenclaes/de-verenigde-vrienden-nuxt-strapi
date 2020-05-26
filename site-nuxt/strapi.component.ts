@@ -1,9 +1,5 @@
-// Our Strapi Modules
-
-// Our Strapi PageTemplates
-//import OneColumnTemplate from './components/templates/OneColumnTemplate';
-
 export default {
+  // Our Strapi Modules
   moduleComponents: {
     Activiteiten: () => import('@/components/modules/Activiteiten.vue'),
     Banner: () => import('@/components/modules/Banner.vue'),
@@ -13,7 +9,10 @@ export default {
     Jeugdorkest: () => import('@/components/modules/Jeugdorkest.vue'),
     LatestArticles: () => import('@/components/modules/LatestArticles.vue'),
     Address: () => import('@/components/modules/Address.vue'),
-    ProfilePage: () => import('@/components/modules/ProfilePage.vue'),
   },
-  pageTemplateComponents: {},
+  // Our Strapi PageTemplates
+  pageTemplateComponents: {
+    WebShopTemplate: () => import('@/components/templates/WebShopTemplate.vue'),
+    ProfileTemplate: () => import('@/components/templates/ProfileTemplate.vue'),
+  },
 };

@@ -25,14 +25,14 @@
             <client-only>
               <b-carousel id="carousel3" no-animation controls indicators>
                 <b-carousel-slide
-                  v-for="(slide, itemObjKey) in data.Slider"
-                  :key="slide.id"
+                  v-for="(slide, index) in data.picture"
+                  :key="index"
                 >
                   <template v-slot:img>
                     <LazyImage
                       fetchMode="cloudinary"
-                      :placeholder="lqip(itemObjKey)"
-                      :srcData="image(itemObjKey)"
+                      :placeholder="lqip(slide)"
+                      :srcData="image(slide)"
                       extraCss="d-block img-fluid w-100"
                       height="480"
                     />
@@ -71,18 +71,18 @@ export default class Activiteiten extends Vue {
     };
   }
 
-  lqip(key: number = 0) {
+  lqip(slide: any) {
     //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
 
-    let image = `https://res.cloudinary.com/deverenigdevrienden/images/t_lqip/${this.data.Slider[key].Picture[0].provider_metadata.public_id}/${this.data.Slider[key].Picture[0].name}`;
-    return image;
+    let url = `https://res.cloudinary.com/deverenigdevrienden/images/t_lqip/${slide.provider_metadata.public_id}/${slide.name}`;
+    return url;
   }
 
-  image(key: number = 0) {
+  image(slide: any) {
     //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
 
-    let image = `https://res.cloudinary.com/deverenigdevrienden/images/${this.data.Slider[key].Picture[0].provider_metadata.public_id}/${this.data.Slider[key].Picture[0].name}`;
-    return image;
+    let url = `https://res.cloudinary.com/deverenigdevrienden/images/${slide.provider_metadata.public_id}/${slide.name}`;
+    return url;
   }
 }
 </script>

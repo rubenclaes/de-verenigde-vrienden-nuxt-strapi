@@ -6,6 +6,7 @@
       :styled-logo="true"
       class-name="header-global"
       :navItemList="navItemList"
+      :cartItems="numberOfItems"
     ></header-style1>
 
     <IfBot>
@@ -36,6 +37,7 @@ import BackToTop from '@/components/BackToTop.vue';
 import OfflineDetection from '@/components/OfflineDetection.vue';
 import IfBot from 'vue-if-bot/dist/vue-if-bot.es';
 
+import { cartVuexNamespace } from '~/store/cart/const';
 import { menulinkVuexNamespace } from '../store/menulink/const';
 import { MainNavigationLink } from '../store/menulink/types';
 
@@ -61,6 +63,9 @@ export default class appHeader extends Vue {
 
   @menulinkVuexNamespace.Getter('list')
   private navItemList!: MainNavigationLink[];
+
+  @cartVuexNamespace.Getter('numberOfItems')
+  private numberOfItems!: number;
 
   /*  scrollToHash() {
     var hash = this.$nuxt.$route.hash;
