@@ -11,13 +11,8 @@
 
             <cart></cart>
           </div>
-          <div
-            v-if="checkoutStatus() === 'successful'"
-            class="col-md-8 order-md-1"
-          >
-            <h4 class="mb-3">1. Bestelling</h4>
-          </div>
-          <div v-else class="col-md-8 order-md-1">
+
+          <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Bestelling</h4>
 
             <form
@@ -133,7 +128,7 @@
                       rules="required|numeric"
                       immediate
                     >
-                      <div slot-scope="{ errors, valid }">
+                      <div slot-scope="{ errors }">
                         <base-input
                           type="number"
                           id="zip"
