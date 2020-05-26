@@ -15,13 +15,12 @@
 }
 
 .headroom--not-top {
-  background-color: rgba(255, 255, 255, 0.75);
-  box-shadow: 0 1px 10px rgba(130, 130, 134, 0.1);
-
-  /*   padding-top: 0.5rem;
-  padding-bottom: 0.5rem; */
-  /* background-color: theme-color('default') !important; */
-  /* box-shadow: 0 1px 10px rgba(130, 130, 134, 0.1); */
+  background: linear-gradient(
+    180deg,
+    #121a39,
+    rgba(18, 26, 57, 0.5) 60%,
+    rgba(18, 26, 57, 0)
+  );
 }
 
 .headroom--not-top:focus,

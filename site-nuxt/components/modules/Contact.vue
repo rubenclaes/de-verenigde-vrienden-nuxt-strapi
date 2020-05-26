@@ -80,7 +80,7 @@
                   :disabled="invalid"
                   round
                 >
-                  <icon name="ni ni-send" size="sm"></icon>Verstuur
+                  <icon name="ni ni-send" size="sm"></icon>&nbsp; Verstuur
                 </b-button>
               </ValidationObserver>
             </card>

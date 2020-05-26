@@ -16,6 +16,7 @@
       >
         <div class="card card-blog card-background" data-animation="zooming">
           <!-- Fallback content -->
+
           <div
             class="full-background"
             :style="{ backgroundImage: 'url(' + article.image.url + ')' }"
