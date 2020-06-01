@@ -13,26 +13,26 @@ export const getters: GetterTree<CartState, RootState> = {
     return state.items;
   },
 
-  cartProducts: (state, getters, rootState) => {
+  cartProducts: (state, getters, rootState, rootGetters) => {
     if (!state.items.length) return 0;
 
     if (!rootState.diningday.diningDays.length) return 0;
 
-    return state.items.map(({ id, quantity }) => {
-      const product = rootState.diningday.diningDays[0].dishes.find(
-        product => product.id === id
-      );
+    return state.items.map(({ id, quantity, shopId }) => {
+      const product = rootGetters['diningday/diningDayById'](
+        shopId
+      ).dishes.find((product) => product.id === id);
       if (product)
         return {
           id: product.id,
           title: product.name,
           price: product.price,
-          quantity
+          quantity,
         };
     });
   },
 
-  cartTotalPrice: (state, getters, rootState, rootGetters) => {
+  cartTotalPrice: (state, getters, rootState, rootGetters): number => {
     if (!state.items.length) return 0;
 
     if (!rootState.diningday.diningDays.length) return 0;
@@ -40,21 +40,25 @@ export const getters: GetterTree<CartState, RootState> = {
     return state.items.reduce(
       (total, item) =>
         total +
-        rootGetters['diningday/dishesById'](item.id).price * item.quantity,
+        rootGetters['diningday/dishById'](
+          item.id,
+          rootGetters['diningday/diningDayById'](item.shopId)
+        ).price *
+          item.quantity,
       0
     );
   },
 
-  numberOfItems: state => {
+  numberOfItems: (state) => {
     return state.items.reduce(
       (accumulator, item) => accumulator + item.quantity,
       0
     );
   },
 
-  checkoutStatus: state => {
+  checkoutStatus: (state) => {
     return state.checkoutStatus;
-  }
+  },
 };
 
 export default getters;

@@ -12,7 +12,6 @@
             <div class="row justify-content-center">
               <div class="col-xl-5 col-lg-6 col-md-8 px-5">
                 <h1 class="text-white">{{ data.pageheader.title }}</h1>
-
                 <p class="text-lead text-white">{{ data.pageheader.lead }}</p>
               </div>
             </div>
@@ -25,10 +24,11 @@
           <div class="col-lg-10">
             <!-- start DishList -->
             <dish-list class="mt--200" :diningday="data.shop"></dish-list>
+            <!-- end DishList -->
             <div class="text-center">
-              <n-link to="/checkout" tag="a" class="btn btn-primary my-4"
-                >Verder naar bestellen</n-link
-              >
+              <n-link to="/checkout" tag="a" class="btn btn-primary my-4">
+                Verder naar afrekenen
+              </n-link>
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, namespace, Prop } from 'nuxt-property-decorator';
+import { Component, Vue, Prop } from 'nuxt-property-decorator';
 
 @Component({
   components: {

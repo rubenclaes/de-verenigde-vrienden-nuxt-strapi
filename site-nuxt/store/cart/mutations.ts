@@ -55,9 +55,10 @@ export const mutations: MutationTree<CartState> = {
    * @param {*} state
    * @param {*} { id }
    */
-  pushProductToCart(state, { id }) {
+  pushProductToCart(state, { id, shopId }) {
     state.items.push({
       id,
+      shopId,
       quantity: 1,
     });
   },

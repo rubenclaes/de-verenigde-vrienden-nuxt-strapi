@@ -13,41 +13,12 @@ import { Status } from '../type';
  * @interface PageState
  */
 export interface PageState {
-  homePage: HomePage;
   flexPages: FlexPage[];
   currentFlexPage: FlexPage;
   status: Status;
 }
 
 // Models
-
-/**
- * HomePage class
- *
- * @export
- * @class HomePage
- */
-export class HomePage {
-  public harmonieData = [];
-  public activiteitenData = [];
-  public jeugdorkestData = [];
-  public adresData = [];
-  public recentNieuwsData = [];
-
-  constructor(
-    harmonieData: [],
-    activiteitenData: [],
-    jeugdorkestData: [],
-    adresData: [],
-    recentNieuwsData: []
-  ) {
-    this.harmonieData = harmonieData;
-    this.activiteitenData = activiteitenData;
-    this.jeugdorkestData = jeugdorkestData;
-    this.adresData = adresData;
-    this.recentNieuwsData = recentNieuwsData;
-  }
-}
 
 /**
  * FlexPage class

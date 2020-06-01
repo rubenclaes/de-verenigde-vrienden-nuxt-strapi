@@ -88,6 +88,7 @@ export default class FlexPageComponent extends Vue {
         StrapiComponents.pageTemplateComponents[component.template];
 
       if (ComponentToRender) {
+        console.log(component.template);
         templateComponents.push({
           component: ComponentToRender,
           contentID: component.id,

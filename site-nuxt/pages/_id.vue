@@ -48,9 +48,10 @@ export default class IndexPage extends Vue {
     if (payload) {
       console.info('Payload page: %o', payload);
       const { page } = payload;
+
       return { flexPage: page };
-    } /* else {
-      // this is just to get the npmr run dev working in not fully static mode
+    } else {
+      // this is just to get the npm run dev working in not fully static mode
       if (store.getters['flexpage/list'].length != 0) {
         const page = store.getters['flexpage/bySlug'](params.id);
         console.log(`Return from state: %o`, page);
@@ -69,7 +70,7 @@ export default class IndexPage extends Vue {
           // error({ statusCode: 404, message: 'Post not found' });
         }
       }
-    } */
+    }
   }
 }
 </script>

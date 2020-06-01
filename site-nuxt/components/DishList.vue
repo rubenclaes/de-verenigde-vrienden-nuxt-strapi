@@ -16,17 +16,16 @@
     </template>
 
     <icon :name="icon" :type="type" rounded class="mb-4"></icon>
-    <h6 v-bind:class="textColor" class="text-uppercase">
-      {{ diningday.name }}
-    </h6>
-    <p class="description mt-3">
-      {{ diningday.description || 'Geen omschrijving' }}
-    </p>
+
+    <h4 v-bind:class="textColor" class="text-uppercase">
+      {{ diningday.title }}
+    </h4>
+
+    <template v-if="diningday.description">
+      <div v-html="$md.render(diningday.description)"></div>
+    </template>
 
     <template>
-      <div class="text-center text-muted mb-4">
-        <small>Kies je gerecht:</small>
-      </div>
       <div class="list-group list-group-flush">
         <div v-if="loading">
           <div class="text-center">
@@ -43,6 +42,7 @@
               v-for="dish in currentDiningDay.dishes"
               :key="dish.id"
               :dish="dish"
+              :shopId="currentDiningDay.id"
             ></dish-preview>
           </client-only>
         </template>
@@ -58,14 +58,16 @@ import { diningDayVuexNamespace } from '~/store/diningday/const';
 
 @Component({
   components: {
-    Card: (/* webpackChunkName: 'card' */) => import('@/components/Card.vue'),
+    Card: () => import(/* webpackChunkName: 'card' */ '@/components/Card.vue'),
 
-    Icon: (/* webpackChunkName: 'icont' */) => import('@/components/Icon.vue'),
+    Icon: () => import(/* webpackChunkName: 'icont' */ '@/components/Icon.vue'),
 
-    DishPreview: (/* webpackChunkName: 'dish-preview' */) =>
-      import('@/components/DishPreview.vue'),
-    LazyImage: (/* webpackChunkName: 'lazy-image' */) =>
-      import('@/components/LazyImage.vue'),
+    DishPreview: () =>
+      import(
+        /* webpackChunkName: 'dish-preview' */ '@/components/DishPreview.vue'
+      ),
+    LazyImage: () =>
+      import(/* webpackChunkName: 'lazy-image' */ '@/components/LazyImage.vue'),
   },
 })
 export default class DishList extends Vue {
@@ -105,6 +107,7 @@ export default class DishList extends Vue {
    * We use created here instead of mounted because it doesn’t need to be rerun if we leave this layout and come back to it.
    */
   async created() {
+    // We need to get all products and set the state
     if (this.$store.getters['diningday/list'].length === 0) {
       return await this.$store.dispatch(
         'diningday/fetchDiningDay',

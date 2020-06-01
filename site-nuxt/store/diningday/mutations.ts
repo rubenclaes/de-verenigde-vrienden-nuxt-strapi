@@ -16,7 +16,7 @@ export const mutations: MutationTree<DiningDayState> = {
   },
 
   /**
-   * Adding DiningDay models to the Resturant array in the state
+   * Adding DiningDay models to the diningDays array in state
    *
    * @param state
    * @param diningDay
@@ -30,13 +30,13 @@ export const mutations: MutationTree<DiningDayState> = {
    *  Clearing the DiningDay state
    *
    */
-  clear: state => {
+  clear: (state) => {
     console.info('clearing store');
     state.diningDays = [];
   },
 
-  sort: state => {
-    state.diningDays.sort(function(a, b) {
+  sort: (state) => {
+    state.diningDays.sort(function (a, b) {
       return a.id - b.id || a.name.localeCompare(b.name);
     });
   },
@@ -56,7 +56,7 @@ export const mutations: MutationTree<DiningDayState> = {
     Vue.set(state.status, 'success', success);
     //state.status.success = success;
     //console.info('successfully fetched diningdays -->' + state.status.success);
-  }
+  },
 
   /*  setDiningDay(
     state,

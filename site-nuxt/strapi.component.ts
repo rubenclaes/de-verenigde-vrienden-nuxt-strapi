@@ -9,6 +9,7 @@ export default {
     Jeugdorkest: () => import('@/components/modules/Jeugdorkest.vue'),
     LatestArticles: () => import('@/components/modules/LatestArticles.vue'),
     Address: () => import('@/components/modules/Address.vue'),
+    ImageWithText: () => import('@/components/modules/ImageWithText.vue'),
   },
   // Our Strapi PageTemplates
   pageTemplateComponents: {

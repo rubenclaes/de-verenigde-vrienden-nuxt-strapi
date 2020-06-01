@@ -103,7 +103,7 @@
                 ></iframe>
 
                 <div class="col-lg-11">
-                  <template>
+                  <template v-if="article.description">
                     <div v-html="$md.render(article.description)"></div>
                   </template>
                 </div>

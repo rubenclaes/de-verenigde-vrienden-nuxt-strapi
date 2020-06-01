@@ -1,11 +1,9 @@
 <!-- components/DishPreview.vue -->
-
 <template>
-  <a href="#!" class="list-group-item list-group-item-action">
+  <div class="list-group-item list-group-item-action">
     <div class="row align-items-center">
       <div class="col-auto">
         <!-- Avatar -->
-
         <img
           alt="Image placeholder"
           src="http://placehold.it/80x80"
@@ -29,11 +27,11 @@
         >
       </div>
     </div>
-  </a>
+  </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'nuxt-property-decorator';
 import { Dish } from '../store/diningday/types';
 
 @Component({
@@ -42,6 +40,9 @@ import { Dish } from '../store/diningday/types';
 export default class DishPreview extends Vue {
   @Prop({ type: Object, required: true })
   dish!: Dish;
+
+  @Prop({ type: Number, required: true })
+  shopId!: number;
 
   quantity = 1;
 
@@ -54,8 +55,9 @@ export default class DishPreview extends Vue {
   }
 
   addToCart(dish: Dish) {
-    this.$store.dispatch('cart/addProductToCart', dish);
-    this.$toasted.success(`${dish.name} toegevoegd in mandje.`, {
+    const product = { product: dish, shopId: this.shopId };
+    this.$store.dispatch('cart/addProductToCart', product);
+    this.$toasted.success(`${dish.name} toegevoegd in mandje`, {
       duration: 2000,
       position: 'bottom-center',
     });

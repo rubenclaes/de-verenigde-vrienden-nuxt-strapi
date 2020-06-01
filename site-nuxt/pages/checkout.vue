@@ -150,11 +150,15 @@
                 <h4 class="mb-3">Betaling</h4>
 
                 <div class="d-block my-3">
+                  <label class="form-control-label" for="card"
+                    >Kaartinformatie</label
+                  >
+                  <div
+                    class="form-control input-group-alternative"
+                    ref="card"
+                    v-show="payment === 'card'"
+                  ></div>
                   <tabs>
-                    <tab-pane
-                      title="Bancontact"
-                      :label="paymentMethods.bancontact.name"
-                    ></tab-pane>
                     <tab-pane
                       title="Mastercard / Visa"
                       :label="paymentMethods.card.name"
@@ -181,14 +185,16 @@
                         <div class="col-md-6 mb-3">
                           <label for="cc-number">Kredietkaartnummer</label>
 
-                          <div class="form-control" ref="card"></div>
-
                           <div class="invalid-feedback">
                             Credit card number is required
                           </div>
                         </div>
                       </div>
                     </tab-pane>
+                    <tab-pane
+                      title="Bancontact"
+                      :label="paymentMethods.bancontact.name"
+                    ></tab-pane>
                   </tabs>
                   <base-radio
                     name="paymentMethod"
@@ -275,12 +281,12 @@
 
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator';
-import { ValidationObserver, ValidationProvider } from 'vee-validate';
-
-import { cartVuexNamespace } from '~/store/cart/const';
 
 import { loadStripe } from '@stripe/stripe-js';
 import { v4 as uuidv4 } from 'uuid';
+import { ValidationObserver, ValidationProvider } from 'vee-validate';
+
+import { cartVuexNamespace } from '~/store/cart/const';
 
 @Component({
   layout: 'appColor',
@@ -288,16 +294,22 @@ import { v4 as uuidv4 } from 'uuid';
   components: {
     ValidationObserver,
     ValidationProvider,
-    BaseButton: () => import('@/components/BaseButton.vue'),
 
-    Badge: () => import('@/components/Badge.vue'),
-    Icon: () => import('@/components/Icon.vue'),
-    BaseInput: () => import('@/components/BaseInput.vue'),
-    BaseCheckbox: () => import('@/components/BaseCheckbox.vue'),
-    BaseRadio: () => import('@/components/BaseRadio.vue'),
-    Cart: () => import('@/components/Cart.vue'),
-    Tabs: () => import('@/components/Tabs/Tabs.vue'),
-    TabPane: () => import('@/components/Tabs/TabPane.vue'),
+    Badge: () =>
+      import(/* webpackChunkName: 'badge' */ '@/components/Badge.vue'),
+
+    BaseInput: () =>
+      import(/* webpackChunkName: 'base-input' */ '@/components/BaseInput.vue'),
+
+    BaseRadio: () =>
+      import(/* webpackChunkName: 'base-radio' */ '@/components/BaseRadio.vue'),
+    Cart: () => import(/* webpackChunkName: 'cart' */ '@/components/Cart.vue'),
+    Tabs: () =>
+      import(/* webpackChunkName: 'tabs' */ '@/components/Tabs/Tabs.vue'),
+    TabPane: () =>
+      import(
+        /* webpackChunkName: 'tab-pane' */ '@/components/Tabs/TabPane.vue'
+      ),
   },
 })
 export default class CheckoutPage extends Vue {
@@ -422,7 +434,7 @@ export default class CheckoutPage extends Vue {
 
     await this.loadStripe();
 
-    this.createAndMountFormElements();
+    await this.createAndMountFormElements();
 
     // Monitor succesfull Bancontact Payments
     await this.monitorPaymentStatus();
@@ -453,15 +465,15 @@ export default class CheckoutPage extends Vue {
     }
   }
 
-  createAndMountFormElements() {
-    let elements = this.stripe.elements();
+  async createAndMountFormElements() {
+    const elements = this.stripe.elements();
 
-    this.$nextTick(() => {
-      if (this.$refs.card) {
-        this.card = elements.create('card', { style: this.style });
-        this.card.mount(this.$refs.card);
-      }
-    });
+    await this.$nextTick();
+    // The whole view is rendered, so I can safely access or query
+    if (this.$refs.card) {
+      this.card = elements.create('card', { style: this.style });
+      this.card.mount(this.$refs.card);
+    }
   }
 
   async pay() {

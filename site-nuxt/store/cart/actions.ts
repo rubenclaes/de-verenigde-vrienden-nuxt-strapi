@@ -29,13 +29,13 @@ export const actions: ActionTree<CartState, RootState> = {
 
     // create an order to process
     const response = await createOrder(payload, token)
-      .then(data => {
+      .then((data) => {
         // clear the cart
         commit('clear');
         commit('setCheckoutStatus', 'order_created');
         return data;
       })
-      .catch(err => {
+      .catch((err) => {
         commit('setCheckoutStatus', 'failed');
         // rollback to the cart saved before sending the request
         commit('set', { items: savedCartItems });
@@ -45,12 +45,12 @@ export const actions: ActionTree<CartState, RootState> = {
     return response;
   },
 
-  addProductToCart({ state, commit }, product) {
+  addProductToCart({ state, commit }, { product, shopId }) {
     commit('setCheckoutStatus', null);
     //if (product.inventory > 0) {
-    const cartItem = state.items.find(item => item.id === product.id);
-    if (!cartItem) {
-      commit('pushProductToCart', { id: product.id });
+    const cartItem = state.items.find((item) => item.id === product.id);
+    if (typeof cartItem === 'undefined') {
+      commit('pushProductToCart', { id: product.id, shopId: shopId });
     } else {
       commit('incrementItemQuantity', cartItem);
     }
@@ -70,15 +70,15 @@ export const actions: ActionTree<CartState, RootState> = {
     const token = rootState.auth.token;
 
     const response = await fetchPaymentIntent(paymentIntent, token)
-      .then(response => {
+      .then((response) => {
         return response;
       })
-      .catch(err => {
+      .catch((err) => {
         throw err;
       });
 
     return response;
-  }
+  },
 };
 
 export default actions;

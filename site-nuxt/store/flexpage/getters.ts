@@ -1,5 +1,5 @@
 import { GetterTree } from 'vuex/types';
-import { PageState, HomePage, FlexPage } from './types';
+import { PageState, FlexPage } from './types';
 import { RootState } from '../type';
 
 /**
@@ -9,21 +9,6 @@ import { RootState } from '../type';
 export const getters: GetterTree<PageState, RootState> = {
   loading(state: PageState) {
     return state.status.loading;
-  },
-
-  /**
-   * Getter for HomePage state
-   *
-   * @param {*} state
-   * @returns {(HomePage | null)}
-   */
-  homePageData(state): HomePage | null {
-    if (Object.keys(state.homePage).length === 0) {
-      console.warn(`HomePage is empty!`);
-      return null;
-    }
-    console.info(`return HomePage from state`);
-    return state.homePage;
   },
 
   /**

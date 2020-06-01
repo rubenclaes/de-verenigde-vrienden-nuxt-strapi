@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import { MutationTree } from 'vuex';
-import { PageState, HomePage, FlexPage } from './types';
+import { PageState, FlexPage } from './types';
 
 /**
- * Article mutations
+ * FlexPage mutations
  */
 export const mutations: MutationTree<PageState> = {
   /**
@@ -12,36 +12,7 @@ export const mutations: MutationTree<PageState> = {
    */
   clear: (state) => {
     console.info('clearing the state');
-    state.homePage = {} as HomePage;
     state.flexPages = [{}] as FlexPage[];
-  },
-  /**
-   * Adding HomePagedata to the Page state
-   *
-   * @param {*} state
-   * @param {HomePage} data
-   */
-  setHomePage(
-    state: PageState,
-    {
-      harmonieData,
-      activiteitenData,
-      jeugdorkestData,
-      adresData,
-      recentNieuwsData,
-    }
-  ) {
-    console.info('setting homePage to Page state');
-
-    const homePage = new HomePage(
-      harmonieData,
-      activiteitenData,
-      jeugdorkestData,
-      adresData,
-      recentNieuwsData
-    );
-
-    state.homePage = homePage;
   },
 
   /**

@@ -1,5 +1,5 @@
 import { GetterTree } from 'vuex/types';
-import { DiningDayState, DiningDay } from './types';
+import { DiningDayState, DiningDay, Dish } from './types';
 import { RootState } from '../type';
 
 /**
@@ -18,13 +18,18 @@ export const getters: GetterTree<DiningDayState, RootState> = {
     return diningDay;
   },
 
-  dishesById: (state) => (id: number) => {
-    if (state.diningDays[0])
-      return state.diningDays[0].dishes.find((dish) => dish.id === id);
+  // Method-Style Access
+  dishById: (state) => (id: number, diningDay: DiningDay): Dish | undefined => {
+    return diningDay.dishes.find((dish) => dish.id === id);
   },
 
   // Method-Style Access
-  diningDayBySlug: (state) => (slug: string) => {
+  diningDayById: (state) => (id: number): DiningDay | undefined => {
+    return state.diningDays.find((diningDay) => diningDay.id === id);
+  },
+
+  // Method-Style Access
+  diningDayBySlug: (state) => (slug: string): DiningDay | undefined => {
     return state.diningDays.find((diningDay) => diningDay.slug === slug);
   },
 
