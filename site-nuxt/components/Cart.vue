@@ -73,11 +73,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'nuxt-property-decorator';
 import { Item } from '../store/cart/types';
 
 @Component({
-  components: { BaseButton: () => import('@/components/BaseButton.vue') }
+  components: {
+    BaseButton: () =>
+      import(
+        /* webpackChunkName: 'base-button' */ '@/components/BaseButton.vue'
+      ),
+  },
 })
 export default class Cart extends Vue {
   removeFromCart(dish) {
