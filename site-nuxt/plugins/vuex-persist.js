@@ -8,7 +8,7 @@ export default ({ store }) => {
       // Function that passes the state and returns the state with only the objects you want to store.
       reducer: (state) => ({
         cart: state.cart,
-        // auth: state.auth
+        auth: state.auth,
         // getRidOfThisModule: state.getRidOfThisModule (No one likes it.)
       }),
     }).plugin(store);
