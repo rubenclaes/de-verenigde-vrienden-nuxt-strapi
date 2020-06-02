@@ -17,3 +17,19 @@ export async function createOrder(payload, token) {
     throw error;
   }
 }
+
+/**
+ * Load an order with idempotencyKey.
+ *
+ */
+export async function loadOrder(idempotencyKey: string | string[]) {
+  try {
+    return await $axios
+      .get(`orders/?idempotencyKey=${idempotencyKey}`)
+      .then((res) => {
+        return res.data[0];
+      });
+  } catch (error) {
+    throw error;
+  }
+}

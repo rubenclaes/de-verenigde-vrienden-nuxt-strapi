@@ -277,6 +277,8 @@ import { cartVuexNamespace } from '~/store/cart/const';
 @Component({
   layout: 'appColor',
 
+  middleware: ['authenticated'],
+
   components: {
     ValidationObserver,
     ValidationProvider,
@@ -315,6 +317,7 @@ export default class CheckoutPage extends Vue {
   // Global variables: PaymentIntent & PaymemtRequest object.
   private paymentIntent;
   private paymentRequest;
+  private order;
 
   $swal: any;
   private selectedRadio: string = 'bancontact';
@@ -386,10 +389,6 @@ export default class CheckoutPage extends Vue {
     };
   }
 
-  onSubmit() {
-    // DO Something
-  }
-
   async login() {
     try {
       await this.$store.dispatch('auth/login', {
@@ -415,9 +414,6 @@ export default class CheckoutPage extends Vue {
     await this.loadStripe();
 
     await this.createAndMountFormElements();
-
-    // Monitor succesfull Bancontact Payments
-    await this.monitorPaymentStatus();
   }
 
   async loadStripe() {
@@ -426,22 +422,6 @@ export default class CheckoutPage extends Vue {
       this.stripe = await loadStripe(stripeKey);
     } else {
       throw new Error('Stripe is not loaded!');
-    }
-  }
-
-  async monitorPaymentStatus() {
-    if (this.$route.query.source && this.$route.query.client_secret) {
-      // Update the interface to display the processing screen.
-      // mainElement.classList.add('checkout', 'success', 'processing');
-
-      const { source } = await this.stripe.retrieveSource({
-        id: this.$route.query.source,
-        client_secret: this.$route.query.client_secret,
-      });
-
-      await this.pollPaymentIntentStatus({
-        paymentIntent: source.metadata.paymentIntent,
-      });
     }
   }
 
@@ -536,7 +516,7 @@ export default class CheckoutPage extends Vue {
           },
         },
         redirect: {
-          return_url: window.location.href,
+          return_url: `${window.location.origin}/invoice?idempotencyKey=${this.order.idempotencyKey}`,
         },
         bancontact: { preferred_language: 'nl' },
         statement_descriptor: 'Eetdag KH De Verenigde Vrienden',
@@ -562,46 +542,8 @@ export default class CheckoutPage extends Vue {
     }
   }
 
-  async pollPaymentIntentStatus({
-    paymentIntent,
-    timeout = 30000,
-    interval = 500,
-    start = Date.now(),
-  }: {
-    paymentIntent;
-    timeout?: number;
-    interval?: number;
-    start?: number;
-  }) {
-    const endStates = ['succeeded', 'processing', 'canceled'];
-
-    // Retrieve the PaymentIntent status from our server.
-    const { data } = await this.$store.dispatch(
-      'cart/fetchPaymentIntent',
-      paymentIntent
-    );
-
-    //console.log(data.paymentIntent);
-    //console.log(data.paymentIntent.status);
-
-    if (
-      !endStates.includes(data.paymentIntent.status) &&
-      Date.now() < start + timeout
-    ) {
-      // console.log('not done yet');
-      // console.log(Date.now() < start + timeout);
-      // Not done yet. Let's wait and check again.
-      setTimeout(this.pollPaymentIntentStatus, interval, { paymentIntent });
-    } else {
-      this.handlePayment(data);
-      if (!endStates.includes(data.paymentIntent.status)) {
-        // Status has not changed yet. Let's time out.
-        console.warn(new Error('Polling timed out.'));
-      }
-    }
-  }
-
   async handleSubmit() {
+    // Disable the Pay button to prevent multiple click events.
     this.processing = true;
 
     // Retrieve the user information from the form.
@@ -610,93 +552,38 @@ export default class CheckoutPage extends Vue {
     // Create Payment intends for IBAN and Card
 
     // Create Source for Bancontact
-    await this.$store
-      .dispatch('cart/createOrder', {
+    try {
+      const response = await this.$store.dispatch('cart/createOrder', {
         amount: this.price(),
         dishes: this.productsInCart(),
         address: address,
         currency: 'eur',
         zip: zip.toString(),
         stripeIdempotency: uuidv4(),
-      })
-      .then((data) => {
-        // The order is successfully been submitted.'
-
-        const { clientSecret, order, paymentIntent } = data;
-        /* console.info(clientSecret);
-        console.info(order);
-        console.info(paymentIntent); */
-
-        this.paymentIntent = paymentIntent;
-        this.emptyCart();
-        this.pay();
-      })
-      .catch((err) => {
-        this.processing = false;
-
-        if (err.response && err.response.status === 400) {
-          throw new Error(
-            err.response.statusText + ' ' + err.response.data.message
-          );
-        }
-
-        if (err.response && err.response.status === 403) {
-          throw new Error(err.response.statusText + ' Not found');
-        }
-        if (err.response && err.response.status === 401) {
-          throw new Error(err.response.statusText + ' Token expired');
-        }
-        alert(err.response.data.message);
       });
-  }
 
-  handlePayment(paymentResponse) {
-    const { paymentIntent, error } = paymentResponse;
+      const { clientSecret, order, paymentIntent } = response;
+      this.paymentIntent = paymentIntent;
+      this.order = order;
+      this.emptyCart();
+      //console.log(order);
+      this.pay();
+    } catch (err) {
+      this.processing = false;
 
-    console.log(paymentResponse);
+      if (err.response && err.response.status === 400) {
+        throw new Error(
+          err.response.statusText + ' ' + err.response.data.message
+        );
+      }
 
-    if (error) {
-      console.error(error.message);
-      this.$swal.fire({
-        title: 'Fout!',
-        text: 'Er is een fout opgetreden met de betaling.',
-        icon: 'error',
-        confirmButtonText: 'Ok',
-      });
-    } else if (paymentIntent.status === 'succeeded') {
-      // Success! Payment is confirmed. Update the interface to display the confirmation screen.
-
-      // Update the note about receipt and shipping (the payment has been fully confirmed by the bank).
-      console.log(
-        `We hebben zojuist een e-mail verzonden met bevestiging van de betaling. Breng deze mee naar de eetdag.`
-      );
-
-      this.$swal.fire({
-        title: 'Bedankt!',
-        text:
-          'We hebben zojuist een e-mail verzonden met bevestiging van de betaling. Breng deze mee naar de eetdag.',
-        icon: 'success',
-        confirmButtonText: 'Ok',
-      });
-      this.$store.commit('cart/setCheckoutStatus', 'successful');
-
-      this.$router.push({ path: '/invoice' });
-    } else if (paymentIntent.status === 'processing') {
-      // Success! Now waiting for payment confirmation. Update the interface to display the confirmation screen.
-
-      // Update the note about receipt and shipping (the payment is not yet confirmed by the bank).
-      console.log(
-        'We’ll send your receipt and ship your items as soon as your payment is confirmed.'
-      );
-    } else {
-      // Payment has failed.
-      console.error(new Error('Er is een fout opgetreden met de betaling'));
-      this.$swal.fire({
-        title: 'Fout!',
-        text: 'De betaling is geannuleerd.',
-        icon: 'error',
-        confirmButtonText: 'Ok',
-      });
+      if (err.response && err.response.status === 403) {
+        throw new Error(err.response.statusText + ' Not found');
+      }
+      if (err.response && err.response.status === 401) {
+        throw new Error(err.response.statusText + ' Token expired');
+      }
+      alert(err.response.data.message);
     }
   }
 

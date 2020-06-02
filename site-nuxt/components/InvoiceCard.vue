@@ -16,12 +16,12 @@
           <small class="d-block text-muted">tel: 011 43 13 89</small>
         </div>
         <div class="col-lg-3 col-md-5 text-left mt-3">
-          <h4 class="mb-1">Billed to:</h4>
-          <span class="d-block">James Thompson</span>
+          <h4 class="mb-1">Adres begunstigde:</h4>
+          <!-- <span class="d-block">James Thompson</span> -->
           <p>
-            Bld Mihail Kogalniceanu,<br />
-            7652 Bucharest,<br />
-            Romania
+            {{ order.address }},<br />
+            {{ order.zip }}<br />
+            België
           </p>
         </div>
       </div>
@@ -29,7 +29,7 @@
       <div class="row justify-content-md-between">
         <div class="col-md-4">
           <h3 class="mt-3 text-left">
-            Invoice no <br /><small class="mr-2">#0453119</small>
+            Order nr. <br /><small class="mr-2">#{{ order.id }}</small>
           </h3>
         </div>
         <div class="col-lg-4 col-md-5">
@@ -52,35 +52,25 @@
             <thead class="bg-default">
               <tr>
                 <th scope="col" class="text-right text-white">Item</th>
-                <th scope="col" class="text-right text-white">Qty</th>
-                <th scope="col" class="text-right text-white">Rate</th>
-                <th scope="col" class="text-right text-white">Amount</th>
+                <th scope="col" class="text-right text-white">#</th>
+                <th scope="col" class="text-right text-white">Prijs</th>
+                <th scope="col" class="text-right text-white">Totaal</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Premium Support</td>
-                <td>1</td>
-                <td>$ 9.00</td>
-                <td>$ 9.00</td>
-              </tr>
-              <tr>
-                <td>BLK Design System PRO</td>
-                <td>3</td>
-                <td>$ 100.00</td>
-                <td>$ 300.00</td>
-              </tr>
-              <tr>
-                <td>Parts for service</td>
-                <td>1</td>
-                <td>$ 89.00</td>
-                <td>$ 89.00</td>
+              <tr v-for="dish in order.dishes" :key="dish.id">
+                <td>{{ dish.title }}</td>
+                <td>{{ dish.quantity }}</td>
+                <td>{{ dish.price | euro }}</td>
+                <td>{{ (dish.price * dish.quantity) | euro }}</td>
               </tr>
             </tbody>
             <tfoot>
               <tr>
-                <th class="h4">Total</th>
-                <th colspan="3" class="text-right h4">$ 750</th>
+                <th class="h4">Totaal</th>
+                <th colspan="3" class="text-right h4">
+                  {{ this.order.amount | euro }}
+                </th>
               </tr>
             </tfoot>
           </table>
@@ -90,14 +80,14 @@
 
     <template class="text-right" #footer>
       <div class="col-md-5 ml-auto">
-        <h5>Thank you!</h5>
+        <h5>Alvast bedankt!</h5>
         <p class="description">
-          If you encounter any issues related to the invoice you can contact us
-          at:
+          Als u problemen ondervindt met betrekking tot de bestelling, kunt u
+          contact met ons opnemen
         </p>
         <h6 class="d-block">
           email:
-          <small class="text-muted">support@cretive-tim.com</small>
+          <small class="text-muted">info@deverenigdevriendenheusden.be</small>
         </h6>
       </div>
     </template>
@@ -106,6 +96,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Order } from '../store/cart/types';
 
 @Component({
   components: {
@@ -126,6 +117,9 @@ export default class InvoiceCard extends Vue {
 
   @Prop({ type: String, default: 'text-primary' })
   textColor!: String;
+
+  @Prop({ type: Object, required: true })
+  order!: Order;
 
   private image = require('../assets/brand/logo_color3.svg');
 }

@@ -2,7 +2,7 @@ import { ActionContext, ActionTree } from 'vuex/types';
 import { RootState } from '../type';
 import { CartState } from './types';
 
-import { createOrder } from '../../lib/orders/api';
+import { createOrder, loadOrder } from '../../lib/orders/api';
 import { fetchPaymentIntent } from '../../lib/payment-intents/api';
 
 /**
@@ -36,6 +36,16 @@ export const actions: ActionTree<CartState, RootState> = {
     });
     commit('clear');
     commit('setCheckoutStatus', 'order_created');
+    return order;
+  },
+
+  async fetchOrder({ commit }: CartActionContext, idempotencyKey) {
+    const order = await loadOrder(idempotencyKey);
+
+    /*  commit('setCurrentArticle', {
+      id: article.id,
+      ...article,
+    }); */
     return order;
   },
 
