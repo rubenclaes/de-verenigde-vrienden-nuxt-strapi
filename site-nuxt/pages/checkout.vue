@@ -113,10 +113,6 @@
                       ></base-input>
                     </div>
                   </ValidationProvider>
-
-                  <div class="invalid-feedback">
-                    Please enter your shipping address.
-                  </div>
                 </div>
 
                 <div class="row">
@@ -150,52 +146,6 @@
                 <h4 class="mb-3">Betaling</h4>
 
                 <div class="d-block my-3">
-                  <label class="form-control-label" for="card"
-                    >Kaartinformatie</label
-                  >
-                  <div
-                    class="form-control input-group-alternative"
-                    ref="card"
-                    v-show="selectedRadio === 'card'"
-                  ></div>
-                  <tabs>
-                    <tab-pane
-                      title="Mastercard / Visa"
-                      :label="paymentMethods.card.name"
-                    >
-                      <div class="row">
-                        <div class="col-md-6 mb-3">
-                          <label for="cc-name">Naam op kaart</label>
-                          <base-input
-                            type="text"
-                            id="cc-name"
-                            placeholder
-                            required
-                            alternative
-                            :disabled="processing"
-                          ></base-input>
-
-                          <small class="text-muted"
-                            >Full name as displayed on card</small
-                          >
-                          <div class="invalid-feedback">
-                            Name on card is required
-                          </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                          <label for="cc-number">Kredietkaartnummer</label>
-
-                          <div class="invalid-feedback">
-                            Credit card number is required
-                          </div>
-                        </div>
-                      </div>
-                    </tab-pane>
-                    <tab-pane
-                      title="Bancontact"
-                      :label="paymentMethods.bancontact.name"
-                    ></tab-pane>
-                  </tabs>
                   <base-radio
                     name="paymentMethod"
                     class="mb-3"
@@ -236,6 +186,42 @@
                     :disabled="processing"
                     >Apple Pay / Google Pay</base-radio
                   >
+
+                  <div class="row" v-show="selectedRadio === 'card'">
+                    <div class="col-md-6 mb-3">
+                      <label class="form-control-label" for="cc-name"
+                        >Naam op kaart</label
+                      >
+                      <base-input
+                        type="text"
+                        id="cc-name"
+                        placeholder
+                        required
+                        alternative
+                        :disabled="processing"
+                      ></base-input>
+
+                      <small class="text-muted"
+                        >Volledige naam zoals weergegeven wordt op kaart</small
+                      >
+                      <div class="invalid-feedback">
+                        Name on card is required
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-control-label" for="card"
+                        >Kredietkaartnummer</label
+                      >
+                      <div
+                        class="form-control input-group-alternative"
+                        ref="card"
+                        v-show="selectedRadio === 'card'"
+                      ></div>
+                      <div class="invalid-feedback">
+                        Credit card number is required
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <hr class="mb-4" />
@@ -698,7 +684,7 @@ export default class CheckoutPage extends Vue {
         confirmButtonText: 'Ok',
       });
       this.$store.commit('cart/setCheckoutStatus', 'successful');
-      this.$router.push('/invoice');
+      this.$router.push({ path: '/invoice' });
     } else if (paymentIntent.status === 'processing') {
       // Success! Now waiting for payment confirmation. Update the interface to display the confirmation screen.
 
@@ -740,10 +726,6 @@ export default class CheckoutPage extends Vue {
 
   price(): number {
     return this.$store.getters['cart/cartTotalPrice'];
-  }
-
-  token() {
-    return this.$store.getters['auth/token'];
   }
 
   isLoggedIn(): boolean {
