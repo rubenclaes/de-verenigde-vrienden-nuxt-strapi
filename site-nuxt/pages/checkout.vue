@@ -290,12 +290,6 @@ import { cartVuexNamespace } from '~/store/cart/const';
     BaseRadio: () =>
       import(/* webpackChunkName: 'base-radio' */ '@/components/BaseRadio.vue'),
     Cart: () => import(/* webpackChunkName: 'cart' */ '@/components/Cart.vue'),
-    Tabs: () =>
-      import(/* webpackChunkName: 'tabs' */ '@/components/Tabs/Tabs.vue'),
-    TabPane: () =>
-      import(
-        /* webpackChunkName: 'tab-pane' */ '@/components/Tabs/TabPane.vue'
-      ),
   },
 })
 export default class CheckoutPage extends Vue {
@@ -587,8 +581,8 @@ export default class CheckoutPage extends Vue {
       paymentIntent
     );
 
-    console.log(data.paymentIntent);
-    console.log(data.paymentIntent.status);
+    //console.log(data.paymentIntent);
+    //console.log(data.paymentIntent.status);
 
     if (
       !endStates.includes(data.paymentIntent.status) &&
@@ -635,7 +629,6 @@ export default class CheckoutPage extends Vue {
 
         this.paymentIntent = paymentIntent;
         this.emptyCart();
-
         this.pay();
       })
       .catch((err) => {
@@ -660,6 +653,8 @@ export default class CheckoutPage extends Vue {
   handlePayment(paymentResponse) {
     const { paymentIntent, error } = paymentResponse;
 
+    console.log(paymentResponse);
+
     if (error) {
       console.error(error.message);
       this.$swal.fire({
@@ -673,7 +668,7 @@ export default class CheckoutPage extends Vue {
 
       // Update the note about receipt and shipping (the payment has been fully confirmed by the bank).
       console.log(
-        'We just sent your receipt to your email address, and your items will be on their way shortly.'
+        `We hebben zojuist een e-mail verzonden met bevestiging van de betaling. Breng deze mee naar de eetdag.`
       );
 
       this.$swal.fire({
@@ -684,6 +679,7 @@ export default class CheckoutPage extends Vue {
         confirmButtonText: 'Ok',
       });
       this.$store.commit('cart/setCheckoutStatus', 'successful');
+
       this.$router.push({ path: '/invoice' });
     } else if (paymentIntent.status === 'processing') {
       // Success! Now waiting for payment confirmation. Update the interface to display the confirmation screen.
@@ -733,4 +729,3 @@ export default class CheckoutPage extends Vue {
   }
 }
 </script>
-<style></style>

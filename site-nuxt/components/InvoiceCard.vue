@@ -11,9 +11,9 @@
         <div class="col-md-4 text-left">
           <img class="mb-2 w-100" :src="image" alt="Logo" />
           <h6>
-            St. Independence Embankment, 050105 Bucharest, Romania
+            Kerkenblookstraat zn, 3550 Heusden-Zolder
           </h6>
-          <small class="d-block text-muted">tel: +4 (074) 1090873</small>
+          <small class="d-block text-muted">tel: 011 43 13 89</small>
         </div>
         <div class="col-lg-3 col-md-5 text-left mt-3">
           <h4 class="mb-1">Billed to:</h4>

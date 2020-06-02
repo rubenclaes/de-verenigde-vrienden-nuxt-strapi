@@ -23,7 +23,9 @@
         <div class="row justify-content-center">
           <div class="col-lg-10">
             <!-- start DishList -->
+
             <dish-list class="mt--200" :diningday="data.shop"></dish-list>
+
             <!-- end DishList -->
             <div class="text-center">
               <n-link to="/checkout" tag="a" class="btn btn-primary my-4">
