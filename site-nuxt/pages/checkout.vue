@@ -277,8 +277,6 @@ import { cartVuexNamespace } from '~/store/cart/const';
 @Component({
   layout: 'appColor',
 
-  middleware: ['authenticated'],
-
   components: {
     ValidationObserver,
     ValidationProvider,

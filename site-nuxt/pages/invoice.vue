@@ -71,8 +71,9 @@ export default class InvoicePage extends Vue {
   }
 
   async created() {
-    if (this.$route.query.idempotencyKey) {
-      const order = await loadOrder(this.$route.query.idempotencyKey);
+    const idempotencyKey = this.$route.query.idempotencyKey;
+    if (idempotencyKey && typeof idempotencyKey === 'string') {
+      const order = await loadOrder(idempotencyKey);
 
       console.log(order);
       this.order = order;
