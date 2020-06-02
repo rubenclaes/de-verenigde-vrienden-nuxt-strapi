@@ -28,21 +28,15 @@ export const actions: ActionTree<CartState, RootState> = {
     commit('setCheckoutStatus', 'request');
 
     // create an order to process
-    const response = await createOrder(payload, token)
-      .then((data) => {
-        // clear the cart
-        commit('clear');
-        commit('setCheckoutStatus', 'order_created');
-        return data;
-      })
-      .catch((err) => {
-        commit('setCheckoutStatus', 'failed');
-        // rollback to the cart saved before sending the request
-        commit('set', { items: savedCartItems });
-        throw err;
-      });
-
-    return response;
+    const order = await createOrder(payload, token).catch((err) => {
+      commit('setCheckoutStatus', 'failed');
+      // rollback to the cart saved before sending the request
+      commit('set', { items: savedCartItems });
+      throw err;
+    });
+    commit('clear');
+    commit('setCheckoutStatus', 'order_created');
+    return order;
   },
 
   addProductToCart({ state, commit }, { product, shopId }) {
