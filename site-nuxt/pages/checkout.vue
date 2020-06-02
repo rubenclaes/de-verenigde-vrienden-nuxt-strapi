@@ -156,7 +156,7 @@
                   <div
                     class="form-control input-group-alternative"
                     ref="card"
-                    v-show="payment === 'card'"
+                    v-show="selectedRadio === 'card'"
                   ></div>
                   <tabs>
                     <tab-pane

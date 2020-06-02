@@ -11,7 +11,9 @@ import { pageVuexNamespace } from '../store/flexpage/const';
 import { FlexPage } from '../store/flexpage/types';
 
 @Component({
-  layout: 'default',
+  layout: ({ store }) => {
+    return store.getters['flexpage/layout'];
+  },
 
   components: {
     FlexPage: () =>
@@ -21,10 +23,9 @@ import { FlexPage } from '../store/flexpage/types';
   },
 })
 export default class IndexPage extends Vue {
-  /* @pageVuexNamespace.Getter('currentFlexPage')*/
-
   private flexPage!: FlexPage;
 
+  // TODO: meta tags from strapi
   head() {
     return {
       title: this.flexPage ? this.flexPage.slug : 'KH de Verenigde Vrienden',
@@ -48,9 +49,10 @@ export default class IndexPage extends Vue {
     if (payload) {
       console.info('Payload page: %o', payload);
       const { page } = payload;
+      store.commit('flexpage/setCurrentFlexPage', page);
 
       return { flexPage: page };
-    } else {
+    } /* else {
       // this is just to get the npm run dev working in not fully static mode
       if (store.getters['flexpage/list'].length != 0) {
         const page = store.getters['flexpage/bySlug'](params.id);
@@ -70,7 +72,7 @@ export default class IndexPage extends Vue {
           // error({ statusCode: 404, message: 'Post not found' });
         }
       }
-    }
+    } */
   }
 }
 </script>

@@ -185,7 +185,7 @@ export default class headerStyle1 extends Vue {
   styledLogo!: Boolean;
 
   goTocontact() {
-    this.$router.push({ name: 'index', hash: '#contact' });
+    this.$router.push({ path: '/', hash: '#contact' });
   }
 
   onPin(pin: boolean) {

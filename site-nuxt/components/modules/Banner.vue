@@ -159,22 +159,6 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator';
 export default class Header extends Vue {
   @Prop({ type: Object, required: true })
   data;
-
-  j() {
-    return {
-      slideshow: [
-        {
-          image: require('../../assets/img/home/header/music/music-chart_1200.jpg'),
-        },
-        {
-          image: require('../../assets/img/home/header/music/shiny-trumpet-instrument-valves-and-mouthpiece.jpeg'),
-        },
-        {
-          image: require('../../assets/img/home/header/music/silver-trumpet-buttons-and-valves.jpeg'),
-        },
-      ],
-    };
-  }
 }
 </script>
 <style scoped lang="scss">

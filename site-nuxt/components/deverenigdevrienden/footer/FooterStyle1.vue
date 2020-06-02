@@ -93,7 +93,7 @@ export default class footerStyle1 extends Vue {
   year = new Date().getFullYear();
 
   goTocontact() {
-    this.$router.push({ name: 'index', hash: '#contact' });
+    this.$router.push({ path: '/', hash: '#contact' });
   }
 }
 </script>

@@ -40,6 +40,11 @@ export const getters: GetterTree<PageState, RootState> = {
   bySlug: (state) => (slug: string) => {
     return state.flexPages.find((flexPage) => flexPage.slug === slug);
   },
+
+  layout(state) {
+    // return state.currentFlexPage.layout;
+    return state.currentFlexPage.layout;
+  },
 };
 
 export default getters;
