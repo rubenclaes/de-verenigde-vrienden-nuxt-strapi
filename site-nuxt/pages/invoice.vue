@@ -54,7 +54,6 @@ export default class InvoicePage extends Vue {
   private stripe;
 
   private order = null;
-  fetchOnServer: false;
 
   $swal: any;
 
