@@ -166,6 +166,8 @@ export default class Contact extends Vue {
     message: '',
   };
 
+  $swal: any;
+
   encode(data) {
     return Object.keys(data)
       .map(
@@ -183,7 +185,14 @@ export default class Contact extends Vue {
         ...this.formData,
       }),
     })
-      .then(() => console.log('succes'))
+      .then(() =>
+        this.$swal.fire({
+          title: 'Bedankt!',
+          text: 'Uw e-mail is verzonden.',
+          icon: 'success',
+          confirmButtonText: 'Ok',
+        })
+      )
       .catch((error) => alert(error));
   }
 
