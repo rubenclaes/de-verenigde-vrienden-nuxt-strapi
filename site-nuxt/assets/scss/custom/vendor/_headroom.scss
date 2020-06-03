@@ -1,0 +1,29 @@
+.headroom {
+  will-change: transform;
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.5s ease !important;
+  background-color: inherit;
+}
+.headroom--pinned {
+  @extend .position-fixed;
+  transform: translateY(0%);
+}
+
+.headroom--unpinned {
+  @extend .position-fixed;
+  transform: translateY(-100%);
+}
+
+.headroom--not-top {
+  background: linear-gradient(
+    180deg,
+    #121a39,
+    rgba(18, 26, 57, 0.5) 60%,
+    rgba(18, 26, 57, 0)
+  );
+}
+
+.headroom--not-top:focus,
+.headroom--not-top:hover {
+  background-color: theme-color('default') !important;
+}

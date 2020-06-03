@@ -1,0 +1,169 @@
+.section {
+  position: relative;
+  padding-top: $spacer * 4;
+  padding-bottom: $spacer * 4;
+}
+
+.section-xl {
+  padding-top: $spacer * 8;
+  padding-bottom: $spacer * 8;
+}
+
+.section-lg {
+  padding-top: $spacer * 6;
+  padding-bottom: $spacer * 6;
+}
+
+.section-sm {
+  padding-top: $spacer * 2;
+  padding-bottom: $spacer * 2;
+}
+
+// Section shaped
+.section-shaped {
+  position: relative;
+  overflow: hidden;
+}
+
+// Skew
+
+.skew-separator {
+  overflow: hidden;
+}
+
+.skew-separator.skew-top:after {
+  height: 370px !important;
+  top: -220px !important;
+}
+
+.skew-separator:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 800px;
+  transform: skewY(-8deg);
+  background: #f9f9f9;
+  top: 88%;
+  z-index: 1;
+}
+
+.skew-separator .container {
+  z-index: 2 !important;
+  position: relative !important;
+}
+
+.skew-separator.skew-mini:after {
+  top: 79% !important;
+}
+
+// Page-Heaer
+.page-header .container {
+  height: 100%;
+  z-index: 1;
+}
+
+.page-header .category,
+.page-header .description {
+  color: #f4f5f7;
+}
+
+.page-header.page-header-small {
+  min-height: 60vh;
+  max-height: 440px;
+}
+
+.page-header.page-header-mini {
+  min-height: 40vh;
+  max-height: 340px;
+}
+
+.page-header .title {
+  margin-bottom: 15px;
+}
+
+.page-header .title + h4 {
+  margin-top: 10px;
+}
+
+.page-header.header-filter:after {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.page-header .page-header-image {
+  position: absolute;
+  background-size: cover;
+  background-position: 50%;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.page-header.header-filter {
+  position: relative;
+}
+
+.page-header.header-filter .container {
+  z-index: 2;
+  position: relative;
+}
+
+.page-header.header-filter:before {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  left: 0;
+  top: 0;
+  content: '';
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.page-header .container {
+  padding-top: 16vh;
+  padding-bottom: 16vh;
+}
+
+// Hero sections
+.section-hero {
+  @include media-breakpoint-up(md) {
+    height: 100vh;
+    min-height: 500px;
+  }
+}
+
+// Profile cover
+.section-profile-cover {
+  height: 580px;
+  background-size: cover;
+  background-position: center center;
+}
+
+@include media-breakpoint-down(md) {
+  .section-profile-cover {
+    height: 400px;
+  }
+}
+
+.floating-cards {
+  -webkit-perspective: 1500px;
+  perspective: 1500px;
+  position: relative;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.floating-cards > div {
+  position: absolute;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.floating-cards .shine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+}
