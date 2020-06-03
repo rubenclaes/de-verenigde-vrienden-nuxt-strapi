@@ -11,6 +11,7 @@
             name="contact"
             id="contact"
             method="POST"
+            v-on:submit.prevent="handleSubmit"
             data-netlify="true"
             netlify-honeypot="bot-field"
           >
@@ -40,7 +41,7 @@
                       placeholder="Naam"
                       type="text"
                       addon-left-icon="ni ni-circle-08"
-                      v-model="model.name"
+                      v-model="formData.name"
                       :error="errors[0]"
                     ></base-input>
                   </div>
@@ -52,7 +53,7 @@
                       type="email"
                       alternative
                       placeholder="you@outlook.com"
-                      v-model="email"
+                      v-model="formData.email"
                       addon-left-icon="ni ni-email-83"
                       :error="errors[0]"
                     ></base-input>
@@ -67,7 +68,7 @@
                         rows="4"
                         cols="80"
                         placeholder="Schrijf je bericht..."
-                        v-model="model.message"
+                        v-model="formData.message"
                       ></textarea>
                     </base-input>
                   </div>
@@ -159,11 +160,41 @@ export default class Contact extends Vue {
   @Prop({ type: Object, required: true })
   data;
 
-  private email = '';
-  private model = {
+  private formData = {
+    email: '',
     name: '',
     message: '',
   };
+
+  $swal: any;
+
+  encode(data) {
+    return Object.keys(data)
+      .map(
+        (key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
+      )
+      .join('&');
+  }
+
+  handleSubmit(e) {
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: this.encode({
+        'form-name': e.target.getAttribute('name'),
+        ...this.formData,
+      }),
+    })
+      .then(() =>
+        this.$swal.fire({
+          title: 'Bedankt!',
+          text: 'Uw e-mail is verzonden.',
+          icon: 'success',
+          confirmButtonText: 'Ok',
+        })
+      )
+      .catch((error) => alert(error));
+  }
 
   currentLocation = {};
   locationsVisibleOnMap = '';
