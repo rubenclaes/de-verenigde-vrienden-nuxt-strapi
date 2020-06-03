@@ -20,9 +20,9 @@ export const actions: ActionTree<AuthState, RootState> = {
 
     await login({
       identifier: identifier,
-      password: password
+      password: password,
     })
-      .then(response => {
+      .then((response) => {
         //console.log(response);
         const token = response.data.jwt;
         const user = response.data.user;
@@ -34,7 +34,7 @@ export const actions: ActionTree<AuthState, RootState> = {
         //$axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         commit('authSuccess', { token, user });
       })
-      .catch(err => {
+      .catch((err) => {
         commit('authError');
         console.error(`Trying to login failed: ${err}`);
         localStorage.removeItem('token');
@@ -56,9 +56,9 @@ export const actions: ActionTree<AuthState, RootState> = {
       $axios({
         url: 'http://localhost:3000/register',
         data: user,
-        method: 'POST'
+        method: 'POST',
       })
-        .then(resp => {
+        .then((resp) => {
           const token = resp.data.token;
           const user = resp.data.user;
           localStorage.setItem('token', token);
@@ -66,13 +66,13 @@ export const actions: ActionTree<AuthState, RootState> = {
           commit('auth_success', token, user);
           resolve(resp);
         })
-        .catch(err => {
+        .catch((err) => {
           commit('auth_error', err);
           localStorage.removeItem('token');
           reject(err);
         });
     });
-  }
+  },
 };
 
 export default actions;

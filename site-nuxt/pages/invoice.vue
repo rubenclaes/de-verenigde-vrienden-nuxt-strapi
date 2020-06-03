@@ -24,7 +24,7 @@
           <div class="col-lg-10">
             <template v-if="this.order">
               <!-- start Invoice -->
-              {{ this.order }}
+
               <invoice-card :order="this.order" class="mt--200"></invoice-card>
             </template>
           </div>

@@ -9,4 +9,16 @@ function fromMdtoHtml(markdownTxt) {
   return markdownTxt;
 }
 
-Vue.filter('fromMdtoHtml', val => fromMdtoHtml(val));
+function formattedDate(date) {
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
+  let time = new Date(date);
+  return time.toLocaleDateString('nl-BE', options);
+}
+
+Vue.filter('fromMdtoHtml', (val) => fromMdtoHtml(val));
+Vue.filter('formattedDate', (val) => formattedDate(val));

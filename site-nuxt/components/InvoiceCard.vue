@@ -34,12 +34,8 @@
         </div>
         <div class="col-lg-4 col-md-5">
           <div class="row mt-5">
-            <div class="col-md-6">Invoice date:</div>
-            <div class="col-md-6">06/03/2019</div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">Due date:</div>
-            <div class="col-md-6">11/03/2019</div>
+            <div class="col-md-6">Datum bestlling:</div>
+            <div class="col-md-6">{{ order.created_at | formattedDate }}</div>
           </div>
         </div>
       </div>
