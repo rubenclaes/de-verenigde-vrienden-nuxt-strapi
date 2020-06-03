@@ -8,6 +8,7 @@
       <div class="row justify-content-center mt--200">
         <div class="col-lg-8">
           <form
+            v-on:submit.prevent
             name="contact"
             id="contact"
             method="POST"
