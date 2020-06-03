@@ -77,7 +77,7 @@
       </a>
     </div>-->
     <div class="node__header--banner">
-      <a
+      <!--  <a
         href="#scroll-to"
         aria-label="Get to know our solutions"
         class="banner--wrapper"
@@ -103,7 +103,7 @@
             Get to know our solutions
           </div>
         </div>
-      </a>
+      </a> -->
     </div>
   </section>
 
