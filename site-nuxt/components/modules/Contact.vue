@@ -8,7 +8,6 @@
       <div class="row justify-content-center mt--200">
         <div class="col-lg-8">
           <form
-            v-on:submit.prevent
             name="contact"
             id="contact"
             method="POST"
@@ -74,13 +73,7 @@
                   </div>
                 </ValidationProvider>
 
-                <b-button
-                  block
-                  type="submit"
-                  variant="default"
-                  :disabled="invalid"
-                  round
-                >
+                <b-button block variant="default" :disabled="invalid" round>
                   <icon name="ni ni-send" size="sm"></icon>&nbsp; Verstuur
                 </b-button>
               </ValidationObserver>
