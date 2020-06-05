@@ -35,8 +35,9 @@
           </div>
         </div>
       </div>
+
       <div class="container">
-        <card shadow class="card-profile mt--200" no-body>
+        <card shadow class="card-profile mt--200 mb-5" no-body>
           <div class="px-4">
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2 mb-5">
@@ -54,38 +55,20 @@
               >
                 <div class="card-profile-actions py-4 mt-lg-0"></div>
               </div>
-              <div class="col-lg-4 order-lg-1">
+              <div class="col-lg-4 order-lg-1 mt-5">
                 <div class="card-profile-stats d-flex justify-content-center">
-                  <div>
-                    <span class="heading"></span>
-                    <span class="description"></span>
-                  </div>
-                  <div>
-                    <span class="heading"></span>
-                    <span class="description"></span>
-                  </div>
-                  <div>
-                    <span class="heading"></span>
-                    <span class="description"></span>
-                  </div>
+                  <base-button
+                    size="lg"
+                    type="secondary"
+                    icon="ni ni-bold-left"
+                    @click="goToHome()"
+                    >naar home</base-button
+                  >
                 </div>
               </div>
             </div>
 
-            <div class="back-top hidden-lg col-lg-12 col-md-12">
-              <base-button
-                size="lg"
-                type="secondary"
-                icon="ni ni-bold-left"
-                @click="goToHome()"
-                >naar home</base-button
-              >
-            </div>
-            <div class="text-center mt-5">
-              <div class="h6 font-weight-300"></div>
-            </div>
-
-            <div class="mt-5 py-5 border-top">
+            <div class="mt-5 py-5">
               <div class="row justify-content-center">
                 <div class="col-lg-9">
                   <template>
