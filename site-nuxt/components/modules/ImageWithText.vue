@@ -22,7 +22,7 @@
           :class="orderText(data.imagePosition)"
         >
           <div class="pr-md-5">
-            <h3>{{ data.title }}</h3>
+            <h1>{{ data.title }}</h1>
             <template v-if="data.text">
               <div v-html="$md.render(data.text)"></div>
             </template>

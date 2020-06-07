@@ -6,18 +6,12 @@
         <div class="col-md-6 order-md-2" data-aos="reveal-img">
           <div class="rounded shadow-lg overflow-hidden">
             <client-only>
-              <b-carousel
-                id="carousel1"
-                controls
-                no-animation
-                :interval="0"
-                indicators
-              >
+              <b-carousel id="carousel1" controls no-animation indicators>
                 <!-- Slides with img slot -->
                 <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
                 <b-carousel-slide
-                  v-for="(slide, itemObjKey) in data.Slider"
-                  :key="slide.id"
+                  v-for="(picture, itemObjKey) in data.Slider.picture"
+                  :key="picture.id"
                 >
                   <template v-slot:img>
                     <LazyImage
@@ -39,25 +33,25 @@
               name="ni ni ni-satisfied"
               class="mb-5 floating"
               size="lg"
-              type="info"
+              type="success"
               shadow
               rounded
             ></icon>
-            <h1 id="jeugdorkest">{{ data.Title }}</h1>
-            <p class="lead">{{ data.Text }}</p>
+            <h1 id="jeugdorkest">{{ data.title }}</h1>
+            <p class="lead">{{ data.text }}</p>
 
             <ul class="list-unstyled mt-5">
               <li
-                v-for="bullet in data.Bullet_points"
+                v-for="bullet in data.BulletPoints"
                 :key="bullet.id"
                 class="py-2"
               >
                 <div class="d-flex align-items-center">
-                  <span class="badge badge-circle badge-primary mr-3">
-                    <i :class="icon(bullet.name)"></i>
+                  <span class="badge badge-circle badge-success mr-3">
+                    <i :class="icon(bullet.icon)"></i>
                   </span>
 
-                  <p>{{ bullet.value }}</p>
+                  <p>{{ bullet.text }}</p>
                 </div>
               </li>
             </ul>
@@ -88,16 +82,12 @@ export default class Jeugdorkest extends Vue {
   }
 
   lqip(key: number = 0) {
-    //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
-
-    let image = `https://res.cloudinary.com/deverenigdevrienden/images/t_lqip/${this.data.Slider[key].Picture[0].provider_metadata.public_id}/${this.data.Slider[key].Picture[0].name}`;
+    let image = `https://res.cloudinary.com/deverenigdevrienden/images/t_lqip/${this.data.Slider.picture[key].provider_metadata.public_id}/${this.data.Slider.picture[key].name}`;
     return image;
   }
 
   image(key: number = 0) {
-    //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
-
-    let image = `https://res.cloudinary.com/deverenigdevrienden/images/${this.data.Slider[key].Picture[0].provider_metadata.public_id}/${this.data.Slider[key].Picture[0].name}`;
+    let image = `https://res.cloudinary.com/deverenigdevrienden/images/${this.data.Slider.picture[key].provider_metadata.public_id}/${this.data.Slider.picture[key].name}`;
     return image;
   }
 }

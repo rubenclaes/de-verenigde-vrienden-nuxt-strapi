@@ -19,22 +19,24 @@
 
           <div
             class="full-background"
-            :style="{ backgroundImage: 'url(' + article.image.url + ')' }"
+            :style="{
+              backgroundImage: 'url(' + article.header.image.url + ')',
+            }"
           ></div>
 
           <div class="card-body">
             <div class="content-bottom">
-              <badge v-if="article.Categories[0].Tag1" type="default" rounded>{{
-                article.Categories[0].Tag1
-              }}</badge>
-              <badge v-if="article.Categories[0].Tag2" type="default" rounded>{{
-                article.Categories[0].Tag2
-              }}</badge>
-              <badge v-if="article.Categories[0].Tag3" type="default" rounded>{{
-                article.Categories[0].Tag3
-              }}</badge>
+              <badge
+                v-for="tag in article.Tags"
+                :key="tag.id"
+                type="white"
+                rounded
+                >{{ tag.tag }}</badge
+              >
 
-              <h5 class="card-title text-primary">{{ article.name }}</h5>
+              <h5 class="card-title card-category text-white">
+                {{ article.title }}
+              </h5>
             </div>
           </div>
         </div>
@@ -87,7 +89,7 @@ export default class BlogList extends Vue {
     console.info('Fetched articles from store');
   }
 
-  /* lqip() {
+  /*   lqip() {
     //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
     let image = `https://res.cloudinary.com/deverenigdevrienden/images/t_lqip/${this.article.Picture.Picture[0].provider_metadata.public_id}/${this.article.Picture.Picture[0].name}`;
     return image;

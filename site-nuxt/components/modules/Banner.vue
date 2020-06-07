@@ -11,8 +11,8 @@
       <!-- You can add more ".slideshow-image" elements, but remember to update the "$items" variable on SCSS -->
       <div class="slideshow">
         <div
-          v-for="(slide, index) in data.slideshow.Picture"
-          :key="index"
+          v-for="slide in data.carousel"
+          :key="slide.id"
           class="slideshow-image"
           :style="{ backgroundImage: 'url(' + slide.url + ')' }"
         ></div>

@@ -26,12 +26,12 @@
                   class="fill-default"
                 />
               </svg>
-              {{ data.Picture.Picture.url }}
+
               <h4 class="display-3 font-weight-bold text-white">
-                {{ data.Picture.Title }}
+                {{ data.CardBlockquote.title }}
               </h4>
               <p class="lead text-italic text-white">
-                {{ data.Picture.Caption }}
+                {{ data.CardBlockquote.text }}
               </p>
             </blockquote>
           </div>
@@ -39,13 +39,13 @@
 
         <div class="col-md-6 order-md-2" data-aos="reveal-up">
           <div
-            v-for="bullet in data.Bullet_points"
-            :key="bullet.id"
+            v-for="listItem in data.List"
+            :key="listItem.id"
             class="info info-horizontal info-hover-primary"
           >
             <div class="description pl-4">
-              <h5 class="title">{{ bullet.name }}</h5>
-              <p>{{ bullet.value }}</p>
+              <h5 class="title">{{ listItem.title }}</h5>
+              <p>{{ listItem.text }}</p>
             </div>
           </div>
         </div>
@@ -71,14 +71,14 @@ export default class Harmonie extends Vue {
   lqip() {
     //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
 
-    let image = `https://res.cloudinary.com/deverenigdevrienden/images/t_lqip/${this.data.Picture.Picture[0].provider_metadata.public_id}/${this.data.Picture.Picture[0].name}`;
+    let image = `https://res.cloudinary.com/deverenigdevrienden/images/t_lqip/${this.data.CardBlockquote.picture.provider_metadata.public_id}/${this.data.CardBlockquote.picture.name}`;
     return image;
   }
 
   image() {
     //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
 
-    let image = `https://res.cloudinary.com/deverenigdevrienden/images/${this.data.Picture.Picture[0].provider_metadata.public_id}/${this.data.Picture.Picture[0].name}`;
+    let image = `https://res.cloudinary.com/deverenigdevrienden/images/${this.data.CardBlockquote.picture.provider_metadata.public_id}/${this.data.CardBlockquote.picture.name}`;
     return image;
   }
 }
