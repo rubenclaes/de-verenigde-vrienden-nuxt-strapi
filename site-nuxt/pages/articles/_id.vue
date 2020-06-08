@@ -1,118 +1,30 @@
 <template>
-  <div class="profile-page">
-    <section class="section-shaped my-0 skew-separator skew-mini">
-      <div class="page-header page-header-small header-filter">
-        <div
-          class="page-header-image"
-          :style="{ backgroundImage: 'url(' + article.image.url + ')' }"
-        ></div>
-        <div class="container">
-          <div class="header-body text-center mb-7">
-            <div class="row justify-content-center">
-              <div class="col-xl-5 col-lg-6 col-md-8 px-5">
-                <h1 class="text-white">{{ article.name }}</h1>
-
-                <p class="text-lead text-white">Door goedlieve swinnen</p>
-              </div>
-            </div>
+  <div>
+    <Header :data="blogPost.header"></Header>
+    <section class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto">
+            <a
+              :href="`https://twitter.com/intent/tweet?text=${blogPost.name}?&url=https://www.deverenigdevriendenheusden.be${this.$route.fullPath}`"
+              target="_blank"
+              class="btn rounded-circle btn-icon-only btn-icon btn-twitter"
+            >
+              <i class="fa fa-twitter"></i>
+            </a>
+            <a
+              :href="`https://www.facebook.com/sharer/sharer.php?u=https://www.deverenigdevriendenheusden.be${this.$route.fullPath}`"
+              target="_blank"
+              class="btn rounded-circle btn-icon-only btn-icon btn-facebook"
+            >
+              <i class="fa fa-facebook"></i>
+            </a>
           </div>
         </div>
       </div>
-      <div class="container">
-        <card shadow class="card-profile mt--300" no-body>
-          <div class="px-4">
-            <b-breadcrumb class="bg-transparent">
-              <b-breadcrumb-item to="/">Home</b-breadcrumb-item>
-              <b-breadcrumb-item to="/nieuws">Nieuws</b-breadcrumb-item>
-              <b-breadcrumb-item active="active">
-                {{ article.name }}
-              </b-breadcrumb-item>
-            </b-breadcrumb>
-            <div class="row justify-content-center">
-              <div class="col-lg-3 order-lg-2"></div>
-              <div
-                class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center"
-              >
-                <div class="card-profile-actions py-4 mt-lg-0">
-                  <a
-                    :href="`https://twitter.com/intent/tweet?text=${this.article.name}?&url=https://www.deverenigdevriendenheusden.be${this.$route.fullPath}`"
-                    target="_blank"
-                    class="btn rounded-circle btn-icon-only btn-icon btn-twitter"
-                  >
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                  <a
-                    :href="`https://www.facebook.com/sharer/sharer.php?u=https://www.deverenigdevriendenheusden.be${this.$route.fullPath}`"
-                    target="_blank"
-                    class="btn rounded-circle btn-icon-only btn-icon btn-facebook"
-                  >
-                    <i class="fa fa-facebook"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="col-lg-4 order-lg-1">
-                <div class="card-profile-stats d-flex justify-content-center">
-                  <div>
-                    <span class="heading"></span>
-                    <span class="description"></span>
-                  </div>
-                  <div>
-                    <span class="heading"></span>
-                    <span class="description"></span>
-                  </div>
-                  <div>
-                    <span class="heading"></span>
-                    <span class="description"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="back-top hidden-lg col-lg-12 col-md-12">
-              <base-button
-                size="lg"
-                type="secondary"
-                icon="ni ni-bold-left"
-                @click="goToHome()"
-                >naar home</base-button
-              >
-            </div>
-            <div class="text-center mt-5">
-              <h3>{{ article.name }}</h3>
-              <div class="h6 font-weight-300">
-                <i class="ni location_pin mr-2"></i>
-                Gepost op {{ formattedDate }}
-              </div>
-            </div>
-            <div class="py-5 border-top">
-              <div class="row justify-content-center">
-                <div class="col-md-6">
-                  <LazyImage
-                    :srcData="article.image.url"
-                    extraCss="rounded shadow-lg"
-                  />
-                </div>
-
-                <!--        <iframe
-                  src="https://player.vimeo.com/video/418127706"
-                  width="640"
-                  height="360"
-                  frameborder="0"
-                  allow="autoplay; fullscreen"
-                  allowfullscreen
-                ></iframe> -->
-
-                <div class="col-lg-11">
-                  <template v-if="article.description">
-                    <div v-html="$md.render(article.description)"></div>
-                  </template>
-                </div>
-              </div>
-            </div>
-          </div>
-        </card>
-      </div>
     </section>
+
+    <BlogPost :blogPost="blogPost"></BlogPost>
   </div>
 </template>
 
@@ -125,13 +37,20 @@ import { Article } from '~/store/article/types';
   layout: 'default',
 
   components: {
-    Logo: () => import('@/components/Logo.vue'),
+    BlogPost: () =>
+      import(
+        /* webpackChunkName: 'blog-post' */ '@/components/strapi/BlogPost.vue'
+      ),
+
+    Header: () =>
+      import(
+        /* webpackChunkName: 'header' */ '@/components/modules/blocks/Header.vue'
+      ),
+
     BaseButton: () => import('@/components/BaseButton.vue'),
-    Card: () => import('@/components/Card.vue'),
+
     Badge: () => import('@/components/Badge.vue'),
     Icon: () => import('@/components/Icon.vue'),
-    BaseInput: () => import('@/components/BaseInput.vue'),
-    LazyImage: () => import('@/components/LazyImage.vue'),
   },
 
   /* validate({ params: { article } }) {
@@ -139,18 +58,14 @@ import { Article } from '~/store/article/types';
   } */
 })
 export default class ArticleView extends Vue {
-  @articleVuexNamespace.Getter('currentArticle')
-  private article!: Article;
+  private blogPost!: Article;
 
   @articleVuexNamespace.Getter('formattedDate')
   private formattedDate!: Date;
 
-  videoID = '418127706';
-
   data() {
     return {
       id: this.$route.params.id,
-      //article: null
     };
   }
 
@@ -163,23 +78,30 @@ export default class ArticleView extends Vue {
     // If a payload is provided,
     // no API request is made.
     if (payload) {
+      console.info('Payload article: %o', payload);
       const { article } = payload;
-      console.info('Payload article: %o', article);
-      return { article: article };
+
+      return { blogPost: article };
       // Overkill because why we want to store article data?
       // return store.commit('article/setCurrentArticle', article);
-    }
-    /*  if (store.getters['article/list'].length != 0) {
-      const article = store.getters['article/bySlug'](params.id);
-      console.log(`Return from state: %o`, article);
-      store.commit('article/setCurrentArticle', article);
-    }
-    if (store.getters['article/list'].length === 0) {
-      console.info('Fetched from API' + params.id);
-      try {
-        await store.dispatch('article/fetchArticleBySlug', params.id);
-      } catch (e) {
-        error({ statusCode: 404, message: 'Post not found' });
+    } /* else {
+      // this is just to get the npm run dev working in not fully static mode
+      if (store.getters['article/list'].length != 0) {
+        const article = store.getters['article/bySlug'](params.id);
+        console.log(`Return from state: %o`, article);
+        store.commit('article/setCurrentArticle', article);
+      }
+      if (store.getters['article/list'].length === 0) {
+        console.info('Fetched from API' + params.id);
+
+        try {
+          await store.dispatch('article/fetchArticleBySlug', params.id);
+          const article = store.getters['article/currentArticle'];
+          return { blogPost: article };
+        } catch (e) {
+          console.log(e);
+          // error({ statusCode: 404, message: 'Post not found' });
+        }
       }
     } */
   }
@@ -208,7 +130,7 @@ export default class ArticleView extends Vue {
   //}
 
   head() {
-    return {
+    /*   return {
       title: this.article.name,
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
@@ -285,7 +207,7 @@ export default class ArticleView extends Vue {
           content: `${this.article.image.url}`,
         },
       ],
-    };
+    }; */
   }
 }
 </script>

@@ -5,7 +5,6 @@
       <div class="row row-grid align-items-center">
         <div class="col-md-6" :class="orderImage(data.imagePosition)">
           <div class="card bg-default shadow border-0">
-            {{ data }}
             <template v-if="data.picture">
               <LazyImage
                 fetchMode="cloudinary"

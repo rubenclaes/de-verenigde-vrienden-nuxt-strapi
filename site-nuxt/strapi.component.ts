@@ -1,10 +1,7 @@
 export default {
   // Our Strapi Modules
   moduleComponents: {
-    /*
-
-
-    ImportantMessage: () => import('@/components/modules/ImportantMessage.vue'), */
+    /* ImportantMessage: () => import('@/components/modules/ImportantMessage.vue'), */
     Banner: () => import('@/components/modules/Banner.vue'),
     Jeugdorkest: () => import('@/components/modules/Jeugdorkest.vue'),
     Harmonie: () => import('@/components/modules/Harmonie.vue'),
@@ -17,10 +14,11 @@ export default {
       import('@/components/modules/section/ImageWithText.vue'),
 
     Header: () => import('@/components/modules/blocks/Header.vue'),
-    /*
 
-
-    ImageWithText: () => import('@/components/modules/ImageWithText.vue'), */
+    Quote: () => import('@/components/modules/blog/Quote.vue'),
+    Slider: () => import('@/components/modules/blog/Slider.vue'),
+    RichText: () => import('@/components/modules/blog/RichText.vue'),
+    Video: () => import('@/components/modules/blog/Video.vue'),
   },
   // Our Strapi PageTemplates
   pageTemplateComponents: {

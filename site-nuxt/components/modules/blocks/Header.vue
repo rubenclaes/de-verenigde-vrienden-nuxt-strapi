@@ -30,5 +30,9 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator';
 export default class Header extends Vue {
   @Prop({ type: Object, required: true })
   data;
+
+  scale() {
+    this.data.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${this.data.image.public_id}${this.data.image.ext}`;
+  }
 }
 </script>

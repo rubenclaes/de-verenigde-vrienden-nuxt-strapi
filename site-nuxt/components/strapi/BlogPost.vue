@@ -10,15 +10,6 @@
       :sitemapNested="sitemapNested"
     /> -->
 
-    <template v-for="component in templateComponents">
-      <component
-        :is="component.component"
-        :contentID="component.contentID"
-        :data="component.data"
-        :key="component.id"
-      />
-    </template>
-
     <template v-for="component in contentComponents">
       <component
         :is="component.component"
@@ -32,19 +23,14 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator';
 
-import { FlexPage } from '../../store/flexpage/types';
-import { pageVuexNamespace } from '../../store/flexpage/const';
 import StrapiComponents from '../../strapi.component';
 
 @Component({
   components: {},
 })
-export default class FlexPageComponent extends Vue {
-  /* @pageVuexNamespace.Getter('loading')
-  private loading!: boolean; */
-
+export default class BlogPost extends Vue {
   @Prop({ type: Object, required: true })
-  flexPage;
+  blogPost;
 
   @Prop({ type: Object })
   pageInSitemap;
@@ -65,60 +51,25 @@ export default class FlexPageComponent extends Vue {
     return this.renderContentComponents();
   }
 
-  get templateComponents() {
-    return this.renderTemplateComponents();
-  }
-
   renderComponent(component: string) {
     const split = component.split('.');
     const components = {
-      blocks: { pageheader: 'Header' },
-      section: {
-        profile: 'ProfileCard',
-        banner: 'Banner',
-        jeugdorkest: 'Jeugdorkest',
-        harmonie: 'Harmonie',
-        activiteiten: 'Activiteiten',
-        recente_blogposts: 'LatestArticles',
-        address: 'Address',
-        contact_form: 'Contact',
-        image_with_text: 'ImageWithText',
+      blog: {
+        rich_text: 'RichText',
+        slider: 'Slider',
+        video: 'Video',
+        quote: 'Quote',
       },
     };
     //console.info(split[1].replace(/-/g, '_'));
     return components[split[0]][split[1].replace(/-/g, '_')];
   }
 
-  renderTemplateComponents() {
-    let templateComponents: object[] = [];
-    // Render Template DynamicZone
-    this.flexPage.Template.forEach((component: any, index: number) => {
-      const ComponentToRender =
-        StrapiComponents.pageTemplateComponents[component.template];
-
-      if (ComponentToRender) {
-        console.log(component.template);
-        templateComponents.push({
-          component: ComponentToRender,
-          contentID: component.id,
-          id: index,
-          data: component,
-        });
-      } else {
-        console.error(
-          `No template component found for the dynamicZone. Cannot render dynamicZone.`
-        );
-      }
-    });
-
-    return templateComponents;
-  }
-
   renderContentComponents() {
     let modules: object[] = [];
 
     // Render Content DynamicZone
-    this.flexPage.Content.forEach((dynamicZone: any, index: number) => {
+    this.blogPost.content.forEach((dynamicZone: any, index: number) => {
       const component = this.renderComponent(dynamicZone.__component);
       const ComponentToRender = StrapiComponents.moduleComponents[component];
 
