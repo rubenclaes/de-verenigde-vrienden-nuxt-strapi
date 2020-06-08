@@ -64,12 +64,20 @@ export const getters: GetterTree<ArticleState, RootState> = {
    * @returns
    */
   latestArticles(state): Article[] {
-    const latestArticles = state.articles.slice(0, 3);
+    const latestArticles = state.articles.slice(0, 4);
+
     if (latestArticles.length === 0) {
       console.warn(`The store is Empty`);
+      return latestArticles;
     }
+
+    const sortedArticles = latestArticles.sort(
+      (a, b) =>
+        new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+    );
+
     console.info(`return latest articles from store`);
-    return latestArticles;
+    return sortedArticles;
   },
 };
 

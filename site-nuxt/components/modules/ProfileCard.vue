@@ -66,14 +66,14 @@ export default class ProfileCard extends Vue {
   lqip() {
     //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
 
-    let image = `https://res.cloudinary.com/deverenigdevrienden/images/t_lqip/${this.data.profile_image.provider_metadata.public_id}/${this.data.profile_image.name}`;
+    let image = `https://res.cloudinary.com/deverenigdevrienden/images/t_lqip/${this.data.picture.provider_metadata.public_id}/${this.data.picture.name}`;
     return image;
   }
 
   image() {
     //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
 
-    let image = `https://res.cloudinary.com/deverenigdevrienden/images/${this.data.profile_image.provider_metadata.public_id}/${this.data.profile_image.name}`;
+    let image = `https://res.cloudinary.com/deverenigdevrienden/images/${this.data.picture.provider_metadata.public_id}/${this.data.picture.name}`;
     return image;
   }
 

@@ -35,6 +35,7 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator';
 import { FlexPage } from '../../store/flexpage/types';
 import { pageVuexNamespace } from '../../store/flexpage/const';
 import StrapiComponents from '../../strapi.component';
+import Jeugdorkest from '../modules/Jeugdorkest.vue';
 
 @Component({
   components: {},
@@ -70,14 +71,23 @@ export default class FlexPageComponent extends Vue {
   }
 
   renderComponent(component: string) {
-    console.log(
-      component.split(`.`)[1].charAt(0).toUpperCase() +
-        component.split(`.`)[1].slice(1)
-    );
-    return (
-      component.split(`.`)[1].charAt(0).toUpperCase() +
-      component.split(`.`)[1].slice(1)
-    );
+    const split = component.split('.');
+    const components = {
+      blocks: { pageheader: 'Header' },
+      section: {
+        profile: 'ProfileCard',
+        banner: 'Banner',
+        jeugdorkest: 'Jeugdorkest',
+        harmonie: 'Harmonie',
+        activiteiten: 'Activiteiten',
+        recente_blogposts: 'LatestArticles',
+        address: 'Address',
+        contact_form: 'Contact',
+        image_with_text: 'ImageWithText',
+      },
+    };
+    //console.info(split[1].replace(/-/g, '_'));
+    return components[split[0]][split[1].replace(/-/g, '_')];
   }
 
   renderTemplateComponents() {
@@ -107,31 +117,11 @@ export default class FlexPageComponent extends Vue {
 
   renderContentComponents() {
     let modules: object[] = [];
-    const contentZoneName = 'this.name';
-
-    // const modulesForThisContentZone = this.flexPage.Content[contentZoneName];
-
-    /*  const componentsForThisDyamicContentZone = [
-      'Activiteiten',
-      'Adres',
-      'Banner',
-      'Contact',
-      'Harmonie',
-      'Jeugdorkest',
-      'RecentWritings',
-    ];
-
-    if (componentsForThisDyamicContentZone === undefined) {
-      console.error(
-        `Cannot render components for zone "${contentZoneName}". This does not appear to be a valid content zone for this page template.`
-      );
-      return;
-    } */
 
     // Render Content DynamicZone
     this.flexPage.Content.forEach((dynamicZone: any, index: number) => {
-      const ComponentToRender =
-        StrapiComponents.moduleComponents[dynamicZone.component];
+      const component = this.renderComponent(dynamicZone.__component);
+      const ComponentToRender = StrapiComponents.moduleComponents[component];
 
       if (ComponentToRender) {
         modules.push({
@@ -142,7 +132,7 @@ export default class FlexPageComponent extends Vue {
         });
       } else {
         console.error(
-          `No component found for the dynamicZone. Cannot render dynamicZone.`
+          `No component found for the dynamicZone ${dynamicZone.__component}. Cannot render.`
         );
       }
     });

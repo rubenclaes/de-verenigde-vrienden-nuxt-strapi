@@ -2,7 +2,6 @@ export default {
   // Our Strapi Modules
   moduleComponents: {
     /*
-    ,
 
 
     ImportantMessage: () => import('@/components/modules/ImportantMessage.vue'), */
@@ -13,6 +12,11 @@ export default {
     LatestArticles: () => import('@/components/modules/LatestArticles.vue'),
     Address: () => import('@/components/modules/Address.vue'),
     Contact: () => import('@/components/modules/Contact.vue'),
+    ProfileCard: () => import('@/components/modules/ProfileCard.vue'),
+    ImageWithText: () =>
+      import('@/components/modules/section/ImageWithText.vue'),
+
+    Header: () => import('@/components/modules/blocks/Header.vue'),
     /*
 
 

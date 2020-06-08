@@ -5,7 +5,8 @@
       <div class="row row-grid align-items-center">
         <div class="col-md-6" :class="orderImage(data.imagePosition)">
           <div class="card bg-default shadow border-0">
-            <template v-if="data.image">
+            {{ data }}
+            <template v-if="data.picture">
               <LazyImage
                 fetchMode="cloudinary"
                 :placeholder="lqip()"
@@ -22,7 +23,6 @@
           :class="orderText(data.imagePosition)"
         >
           <div class="pr-md-5">
-            <h1>{{ data.title }}</h1>
             <template v-if="data.text">
               <div v-html="$md.render(data.text)"></div>
             </template>
@@ -69,18 +69,13 @@ export default class ImageWithText extends Vue {
   }
 
   lqip() {
-    //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
-
-    let image = `https://res.cloudinary.com/deverenigdevrienden/images/t_lqip/${this.data.image.Picture[0].provider_metadata.public_id}/${this.data.image.Picture[0].name}`;
+    let image = `https://res.cloudinary.com/deverenigdevrienden/images/t_lqip/${this.data.picture.provider_metadata.public_id}/${this.data.picture.name}`;
     return image;
   }
 
   image() {
-    //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
-
-    let image = `https://res.cloudinary.com/deverenigdevrienden/images/${this.data.image.Picture[0].provider_metadata.public_id}/${this.data.image.Picture[0].name}`;
+    let image = `https://res.cloudinary.com/deverenigdevrienden/images/${this.data.picture.provider_metadata.public_id}/${this.data.picture.name}`;
     return image;
   }
 }
 </script>
-<style></style>
