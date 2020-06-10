@@ -10,15 +10,6 @@
       :sitemapNested="sitemapNested"
     /> -->
 
-    <template v-for="component in templateComponents">
-      <component
-        :is="component.component"
-        :contentID="component.contentID"
-        :data="component.data"
-        :key="component.id"
-      />
-    </template>
-
     <template v-for="component in contentComponents">
       <component
         :is="component.component"
@@ -65,10 +56,6 @@ export default class FlexPageComponent extends Vue {
     return this.renderContentComponents();
   }
 
-  get templateComponents() {
-    return this.renderTemplateComponents();
-  }
-
   renderComponent(component: string) {
     const split = component.split('.');
     const components = {
@@ -83,35 +70,11 @@ export default class FlexPageComponent extends Vue {
         address: 'Address',
         contact_form: 'Contact',
         image_with_text: 'ImageWithText',
+        webshop: 'WebShop',
       },
     };
     //console.info(split[1].replace(/-/g, '_'));
     return components[split[0]][split[1].replace(/-/g, '_')];
-  }
-
-  renderTemplateComponents() {
-    let templateComponents: object[] = [];
-    // Render Template DynamicZone
-    this.flexPage.Template.forEach((component: any, index: number) => {
-      const ComponentToRender =
-        StrapiComponents.pageTemplateComponents[component.template];
-
-      if (ComponentToRender) {
-        console.log(component.template);
-        templateComponents.push({
-          component: ComponentToRender,
-          contentID: component.id,
-          id: index,
-          data: component,
-        });
-      } else {
-        console.error(
-          `No template component found for the dynamicZone. Cannot render dynamicZone.`
-        );
-      }
-    });
-
-    return templateComponents;
   }
 
   renderContentComponents() {

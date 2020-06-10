@@ -22,7 +22,7 @@ export const getters: GetterTree<PageState, RootState> = {
       console.warn(`FlexPages state is empty!`);
       return null;
     } */
-    console.info(`returning FlexPages from state`);
+    console.info(`return FlexPages from state`);
     return state.flexPages;
   },
 

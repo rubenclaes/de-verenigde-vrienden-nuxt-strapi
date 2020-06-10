@@ -1,13 +1,13 @@
 import { $axios } from '../../utils/api';
 
 /**
- * Load flexpages.
+ * Load products.
  *
  */
-export async function loadFlexPage() {
+export async function loadProducts() {
   try {
     //await new Promise((resolve) => setTimeout(resolve, 10000));
-    return await $axios.get(`flex-pages`).then((res) => {
+    return await $axios.get(`products`).then((res) => {
       return res.data;
     });
   } catch (error) {
@@ -16,12 +16,12 @@ export async function loadFlexPage() {
 }
 
 /**
- * Load an flexpage with a Slug
+ * Load a product with name
  *
  */
-export async function loadFlexPageBySlug(slug: string) {
+export async function loadProductByName(name: string) {
   try {
-    return await $axios.get(`flex-pages?slug=${slug}`).then((res) => {
+    return await $axios.get(`products?name=${name}`).then((res) => {
       return res.data[0];
     });
   } catch (error) {

@@ -62,9 +62,6 @@ export default class BlogList extends Vue {
   @Prop({ type: String })
   max!: number;
 
-  @articleVuexNamespace.Getter('latestArticles')
-  private articles!: Article[];
-
   @articleVuexNamespace.Getter('loading')
   private loading!: boolean;
 
@@ -77,6 +74,12 @@ export default class BlogList extends Vue {
   @Prop({ type: String, default: 'text-primary' })
   textColor!: String;
 
+  @articleVuexNamespace.Getter('latestArticles')
+  private articles!: Article[];
+
+  /**
+   * We use created here instead of mounted because it doesn’t need to be rerun if we leave this layout and come back to it.
+   */
   async created() {
     if (this.articles.length === 0) {
       try {
@@ -86,7 +89,7 @@ export default class BlogList extends Vue {
         console.error('Error', e);
       }
     }
-    console.info('Fetched articles from store');
+    console.info('Return articles from state');
   }
 
   /*   lqip() {

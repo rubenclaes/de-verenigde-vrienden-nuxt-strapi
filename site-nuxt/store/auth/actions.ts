@@ -33,6 +33,7 @@ export const actions: ActionTree<AuthState, RootState> = {
         //localStorage.setItem('token', token);
         //$axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         commit('authSuccess', { token, user });
+        console.info('logged in!');
       })
       .catch((err) => {
         commit('authError');

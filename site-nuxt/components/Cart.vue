@@ -113,11 +113,14 @@ export default class Cart extends Vue {
    * We use created here instead of mounted because it doesn’t need to be rerun if we leave this layout and come back to it.
    */
   async created() {
-    if (this.$store.getters['diningday/list'].length === 0) {
-      return await this.$store.dispatch('diningday/fetchData');
-    } else {
-      console.info('diningday Store not empty --> fetching data from store');
+    if (this.$store.getters['product/list'].length === 0) {
+      try {
+        return await this.$store.dispatch('product/fetchProducts');
+      } catch (error) {
+        console.error(error);
+      }
     }
+    console.info('Return data from state');
   }
 }
 </script>

@@ -12,6 +12,7 @@ export default {
     ProfileCard: () => import('@/components/modules/ProfileCard.vue'),
     ImageWithText: () =>
       import('@/components/modules/section/ImageWithText.vue'),
+    WebShop: () => import('@/components/modules/section/WebShop.vue'),
 
     Header: () => import('@/components/modules/blocks/Header.vue'),
 
@@ -19,9 +20,5 @@ export default {
     Slider: () => import('@/components/modules/blog/Slider.vue'),
     RichText: () => import('@/components/modules/blog/RichText.vue'),
     Video: () => import('@/components/modules/blog/Video.vue'),
-  },
-  // Our Strapi PageTemplates
-  pageTemplateComponents: {
-    WebShopTemplate: () => import('@/components/templates/WebShopTemplate.vue'),
   },
 };

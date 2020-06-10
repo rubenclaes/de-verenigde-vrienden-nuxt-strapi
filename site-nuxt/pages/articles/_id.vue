@@ -84,7 +84,7 @@ export default class ArticleView extends Vue {
       return { blogPost: article };
       // Overkill because why we want to store article data?
       // return store.commit('article/setCurrentArticle', article);
-    } /* else {
+    } else {
       // this is just to get the npm run dev working in not fully static mode
       if (store.getters['article/list'].length != 0) {
         const article = store.getters['article/bySlug'](params.id);
@@ -103,7 +103,7 @@ export default class ArticleView extends Vue {
           // error({ statusCode: 404, message: 'Post not found' });
         }
       }
-    } */
+    }
   }
 
   //get formattedDate() {
