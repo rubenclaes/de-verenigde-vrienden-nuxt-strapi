@@ -20,7 +20,7 @@
           <div
             class="full-background"
             :style="{
-              backgroundImage: 'url(' + article.header.image.url + ')',
+              backgroundImage: 'url(' + image(article.header.image) + ')',
             }"
           ></div>
 
@@ -49,6 +49,7 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator';
 import { Article } from '../store/article/types';
 import { articleVuexNamespace } from '../store/article/const';
+import { Image } from '../store/type';
 
 @Component({
   components: {
@@ -98,11 +99,20 @@ export default class BlogList extends Vue {
     return image;
   }
 
+
+
   image() {
     //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
 
     let image = `https://res.cloudinary.com/deverenigdevrienden/images/${this.article.Picture.Picture[0].provider_metadata.public_id}/${this.article.Picture.Picture[0].name}`;
     return image;
   } */
+
+  image(image: Image) {
+    //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
+
+    let url = `https://res.cloudinary.com/deverenigdevrienden/images/q_auto/f_auto/${image.provider_metadata.public_id}/${image.name}`;
+    return url;
+  }
 }
 </script>

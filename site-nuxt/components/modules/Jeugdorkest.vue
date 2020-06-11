@@ -87,7 +87,7 @@ export default class Jeugdorkest extends Vue {
   }
 
   image(key: number = 0) {
-    let image = `https://res.cloudinary.com/deverenigdevrienden/images/${this.data.Slider.picture[key].provider_metadata.public_id}/${this.data.Slider.picture[key].name}`;
+    let image = `https://res.cloudinary.com/deverenigdevrienden/images/q_auto/f_auto/${this.data.Slider.picture[key].provider_metadata.public_id}/${this.data.Slider.picture[key].name}`;
     return image;
   }
 }

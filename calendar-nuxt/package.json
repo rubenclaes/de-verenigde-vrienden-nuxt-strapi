@@ -1,0 +1,30 @@
+{
+  "name": "calendar-nuxt",
+  "version": "1.0.0",
+  "description": "My breathtaking Nuxt.js project",
+  "author": "Ruben Claes",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt-ts",
+    "build": "nuxt-ts build",
+    "generate": "nuxt-ts generate",
+    "start": "nuxt-ts start"
+  },
+  "dependencies": {
+    "nuxt-property-decorator": "^2.7.2",
+    "nuxt": "^2.12.2",
+    "@nuxt/typescript-runtime": "^0.4.9",
+    "vuesax": "^4.0.1-alpha.20",
+    "@nuxtjs/axios": "^5.11.0",
+    "@nuxtjs/pwa": "^3.0.0-0",
+    "@nuxtjs/dotenv": "^1.4.1"
+  },
+  "devDependencies": {
+    "@nuxt/typescript-build": "^1.0.2",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "prettier": "^2.0.5",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2"
+  }
+}
