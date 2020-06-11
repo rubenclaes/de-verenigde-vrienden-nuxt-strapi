@@ -51,3 +51,22 @@ export interface Image {
   created_at: Date;
   updated_at: Date;
 }
+
+export interface User {
+  id: number;
+  username: string;
+  email: string;
+  provider: string;
+  confirmed: boolean;
+  blocked: boolean;
+  role: number;
+  created_at: Date;
+  updated_at: Date;
+}
+
+export interface Role {
+  id: number;
+  name: String;
+  description: String;
+  type: String;
+}

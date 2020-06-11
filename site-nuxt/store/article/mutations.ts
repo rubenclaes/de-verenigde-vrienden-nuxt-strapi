@@ -47,7 +47,7 @@ export const mutations: MutationTree<ArticleState> = {
    */
   sort: (state) => {
     state.articles.sort(function (a, b) {
-      return a.id - b.id || a.name.localeCompare(b.name);
+      return a.id - b.id || a.title.localeCompare(b.title);
     });
   },
 

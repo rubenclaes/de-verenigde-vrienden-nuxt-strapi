@@ -3,7 +3,6 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
-          <h6 class="category">March 1, 2019</h6>
           <div v-html="$md.render(data.text)"></div>
         </div>
       </div>

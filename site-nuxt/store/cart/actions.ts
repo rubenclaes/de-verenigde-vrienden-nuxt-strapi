@@ -39,8 +39,15 @@ export const actions: ActionTree<CartState, RootState> = {
     return order;
   },
 
-  async fetchOrder({ commit }: CartActionContext, idempotencyKey) {
-    const order = await loadOrder(idempotencyKey);
+  async fetchOrder(
+    { commit, state, rootState }: CartActionContext,
+    idempotencyKey
+  ) {
+    if (!rootState.auth.token.length) throw new Error('Not logged in!');
+
+    const token = rootState.auth.token;
+
+    const order = await loadOrder(idempotencyKey, token);
 
     /*  commit('setCurrentArticle', {
       id: article.id,

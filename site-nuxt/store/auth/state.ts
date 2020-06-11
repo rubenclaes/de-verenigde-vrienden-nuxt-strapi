@@ -1,4 +1,5 @@
 import { AuthState } from './types';
+import { User } from '../type';
 
 /**
  * Cart state initializer
@@ -7,22 +8,7 @@ export const initState = (): AuthState => ({
   status: '',
 
   token: '',
-  user: {
-    id: 0,
-    username: '',
-    email: '',
-    provider: 'local',
-    confirmed: true,
-    blocked: null,
-    role: {
-      id: 1,
-      name: 'Authenticated',
-      description: 'Default role given to authenticated user.',
-      type: 'authenticated'
-    },
-    created_at: new Date(),
-    updated_at: new Date()
-  }
+  user: {} as User,
 });
 
 export default initState;

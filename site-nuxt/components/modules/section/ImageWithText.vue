@@ -4,16 +4,14 @@
     <div class="container">
       <div class="row row-grid align-items-center">
         <div class="col-md-6" :class="orderImage(data.imagePosition)">
-          <div class="card bg-default shadow border-0">
-            <template v-if="data.picture">
-              <LazyImage
-                fetchMode="cloudinary"
-                :placeholder="lqip()"
-                :srcData="image()"
-                extraCss="img-fluid floating"
-              />
-            </template>
-          </div>
+          <template v-if="data.picture">
+            <LazyImage
+              fetchMode="cloudinary"
+              :placeholder="lqip()"
+              :srcData="image()"
+              extraCss="shadow img-fluid"
+            />
+          </template>
         </div>
         <div
           data-aos="fade-in"

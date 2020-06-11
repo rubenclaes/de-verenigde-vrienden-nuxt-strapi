@@ -4,7 +4,14 @@
     <section class="section">
       <div class="container">
         <div class="row">
-          <div class="col-md-8 ml-auto mr-auto">
+          <div class="col-md-8 mr-auto">
+            <base-button
+              size="lg"
+              type="secondary"
+              icon="ni ni-bold-left"
+              @click="goToHome()"
+              >naar home</base-button
+            >
             <a
               :href="`https://twitter.com/intent/tweet?text=${blogPost.name}?&url=https://www.deverenigdevriendenheusden.be${this.$route.fullPath}`"
               target="_blank"
@@ -69,10 +76,6 @@ export default class ArticleView extends Vue {
     };
   }
 
-  goToHome() {
-    this.$router.push({ path: '/' });
-  }
-
   async asyncData({ params, error, payload, store }) {
     // Payload set during static generation
     // If a payload is provided,
@@ -84,12 +87,13 @@ export default class ArticleView extends Vue {
       return { blogPost: article };
       // Overkill because why we want to store article data?
       // return store.commit('article/setCurrentArticle', article);
-    } else {
+    } /* else {
       // this is just to get the npm run dev working in not fully static mode
       if (store.getters['article/list'].length != 0) {
         const article = store.getters['article/bySlug'](params.id);
         console.log(`Return from state: %o`, article);
         store.commit('article/setCurrentArticle', article);
+        return { blogPost: article };
       }
       if (store.getters['article/list'].length === 0) {
         console.info('Fetched from API' + params.id);
@@ -103,7 +107,7 @@ export default class ArticleView extends Vue {
           // error({ statusCode: 404, message: 'Post not found' });
         }
       }
-    }
+    } */
   }
 
   //get formattedDate() {
@@ -129,16 +133,20 @@ export default class ArticleView extends Vue {
   // return this.article.createdAt;
   //}
 
+  goToHome() {
+    this.$router.push({ path: '/' });
+  }
   head() {
-    /*   return {
-      title: this.article.name,
+    return {
+      title: this.blogPost.title,
+
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {
           hid: `keywords`,
           name: 'keywords',
           property: 'keywords',
-          content: `${this.article.Categories[0].Tag1}, ${this.article.Categories[0].Tag2}, ${this.article.Categories[0].Tag3}`,
+          content: `${this.blogPost.Tags.join(' ,')}`,
         },
         {
           hid: `og:url`,
@@ -156,19 +164,19 @@ export default class ArticleView extends Vue {
           hid: `og:title`,
           name: 'og:title',
           property: 'og:title',
-          content: `${this.article.name}`,
+          content: `${this.blogPost.title}`,
         },
-        {
+        /*  {
           hid: `og:description`,
           name: 'og:description',
           property: 'og:description',
-          content: `${this.article.description.substring(50, 150)}`,
-        },
+          content: `${this.blogPost.content.text.substring(50, 150)}`,
+        }, */
         {
           hid: `og:image`,
           name: 'og:image',
           property: 'og:image',
-          content: `${this.article.image.url}`,
+          content: `${this.blogPost.header.image.url}`,
         },
         {
           hid: `og:site_name`,
@@ -192,22 +200,22 @@ export default class ArticleView extends Vue {
           hid: `twitter:title`,
           name: 'twitter:title',
           property: 'twitter:title',
-          content: `${this.article.name}`,
+          content: `${this.blogPost.title}`,
         },
-        {
+        /*     {
           hid: `twitter:description`,
           name: 'twitter:description',
           property: 'twitter:description',
-          content: `${this.article.description.substring(50, 150)}`,
-        },
+          content: `${this.blogPost.content.text.substring(50, 150)}`,
+        }, */
         {
           hid: `twitter:image`,
           name: 'twitter:imgae',
           property: 'twitter:image',
-          content: `${this.article.image.url}`,
+          content: `${this.blogPost.header.image.url}`,
         },
       ],
-    }; */
+    };
   }
 }
 </script>
