@@ -111,7 +111,7 @@ export default class BlogList extends Vue {
   image(image: Image) {
     //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
 
-    let url = `https://res.cloudinary.com/deverenigdevrienden/images/q_auto/${image.provider_metadata.public_id}/${image.name}`;
+    let url = `https://res.cloudinary.com/deverenigdevrienden/images/q_auto/f_auto/${image.provider_metadata.public_id}/${image.name}`;
     return url;
   }
 }

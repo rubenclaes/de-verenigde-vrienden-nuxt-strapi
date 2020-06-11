@@ -78,7 +78,7 @@ export default class Activiteiten extends Vue {
   image(slide: any) {
     //demo-res.cloudinary.com/images/ltepu4mm0qzw6lkfxt1m/basketball-game-in-college.jpg
 
-    let url = `https://res.cloudinary.com/deverenigdevrienden/images/q_auto/${slide.provider_metadata.public_id}/${slide.name}`;
+    let url = `https://res.cloudinary.com/deverenigdevrienden/images/q_auto/f_auto/${slide.provider_metadata.public_id}/${slide.name}`;
     return url;
   }
 }
