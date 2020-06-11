@@ -1,7 +1,7 @@
 <template>
   <!-- LatestArticles -->
   <section class="section section-lg bg-secondary my-0 overflow-hidden blogs">
-    <div class="container-fluid py-0 pb-200">
+    <div class="container-fluid py-0">
       <div class="row mb-md-5">
         <div class="col-md-8 mx-auto">
           <h1 class="font-weight-light text-center">{{ this.data.title }}</h1>

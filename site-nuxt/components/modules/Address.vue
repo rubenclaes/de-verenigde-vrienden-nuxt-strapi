@@ -18,18 +18,14 @@
 
           <h1 class="font-weight-light">{{ data.title }}</h1>
 
-          <a
-            v-for="address in data.address"
-            :key="address.id"
-            :href="address.map_url"
-            target="blank"
-          >
+          <a :href="data.address.map_url" target="blank">
             <p class="lead text-primary">
               <icon name="ni ni-map-big" size="sm" type="primary"></icon
-              >&nbsp;{{ address.street }} {{ address.number }} {{ address.bus }}
+              >&nbsp;{{ data.address.street }} {{ data.address.number }}
+              {{ data.address.bus }}
             </p>
             <p class="lead text-primary">
-              {{ address.zip }} {{ address.city }}
+              {{ data.address.zip }} {{ data.address.city }}
             </p>
           </a>
         </div>

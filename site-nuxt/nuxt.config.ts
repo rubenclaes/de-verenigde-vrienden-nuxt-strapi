@@ -11,10 +11,9 @@ declare var window: MyWindow;
 
 const dynamicRoutes = async () => {
   const routesForArticles = await axios
-    .get(`${process.env.API_URL}/restaurants`)
+    .get(`${process.env.API_URL}/blog-posts`)
     .then((res) => {
       return res.data.map((article) => {
-        article.image.url = `https://res.cloudinary.com/deverenigdevrienden/image/upload/c_scale,q_auto,w_490/${article.image.public_id}${article.image.ext}`;
         return {
           route: `/articles/${article.slug}`,
           payload: { article: article },
@@ -119,6 +118,7 @@ const config: Configuration = {
     '~/plugins/lazysizes.client.js',
     '~/plugins/vue-headroom.client.js',
     '~/plugins/vue-observe-visibility.client.js',
+    '~/plugins/vue-glide.client.js',
 
     { src: '~/plugins/sweetalert.ts', mode: 'client' },
     { src: '~/plugins/vuex-persist', mode: 'client' },

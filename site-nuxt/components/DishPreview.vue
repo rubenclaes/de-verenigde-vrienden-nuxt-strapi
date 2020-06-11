@@ -41,9 +41,6 @@ export default class DishPreview extends Vue {
   @Prop({ type: Object, required: true })
   dish!: Dish;
 
-  @Prop({ type: Number, required: true })
-  shopId!: number;
-
   quantity = 1;
 
   //$bvToast: any;
@@ -55,7 +52,7 @@ export default class DishPreview extends Vue {
   }
 
   addToCart(dish: Dish) {
-    const product = { product: dish, shopId: this.shopId };
+    const product = { product: dish };
     this.$store.dispatch('cart/addProductToCart', product);
     this.$toasted.success(`${dish.name} toegevoegd in mandje`, {
       duration: 2000,

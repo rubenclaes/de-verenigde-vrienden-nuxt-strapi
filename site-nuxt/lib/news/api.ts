@@ -10,10 +10,7 @@ const cloudinary =
 export async function loadArticles() {
   try {
     // new Promise((resolve) => setTimeout(resolve, 10000));
-    return await $axios.get(`restaurants`).then((res) => {
-      res.data.map((article) => {
-        article.image.url = `${cloudinary}${article.image.public_id}${article.image.ext}`;
-      });
+    return await $axios.get(`blog-posts`).then((res) => {
       return res.data;
     });
   } catch (error) {
@@ -27,8 +24,7 @@ export async function loadArticles() {
  */
 export async function loadArticle(id: number) {
   try {
-    return await $axios.get(`restaurants/${id}`).then((res) => {
-      res.data.image.url = `${cloudinary}/${res.data.image.public_id}${res.data.image.ext}`;
+    return await $axios.get(`blog-posts/${id}`).then((res) => {
       return res.data[0];
     });
   } catch (error) {
@@ -42,8 +38,7 @@ export async function loadArticle(id: number) {
  */
 export async function loadArticleBySlug(slug: string) {
   try {
-    return await $axios.get(`restaurants?slug=${slug}`).then((res) => {
-      res.data[0].image.url = `${cloudinary}${res.data[0].image.public_id}${res.data[0].image.ext}`;
+    return await $axios.get(`blog-posts?slug=${slug}`).then((res) => {
       return res.data[0];
     });
   } catch (error) {

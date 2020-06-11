@@ -1,7 +1,6 @@
 <template>
   <!-- Activiteiten -->
-
-  <section class="section section-lg lazyload" id="section10" :style="styles()">
+  <section class="section section-lg lazyload" :style="styles()">
     <div class="container py-0 pb-lg">
       <div class="row justify-content-between align-items-center">
         <div class="col-lg-5 mb-5 mb-lg-0" data-aos="reveal-up">
@@ -14,25 +13,23 @@
             rounded
           ></icon>
 
-          <h1 class="font-weight-light">{{ data.Title }}</h1>
+          <h1 class="font-weight-light">{{ data.title }}</h1>
           <h3 class="text-info">• • •</h3>
-          <p class="lead mt-4">{{ data.Text }}</p>
+          <p class="lead mt-4">{{ data.text }}</p>
         </div>
         <div class="col-lg-6 mb-lg-auto">
-          <div
-            class="rounded shadow-lg overflow-hidden transform-perspective-right"
-          >
+          <div class="rounded shadow-lg overflow-hidden">
             <client-only>
               <b-carousel id="carousel3" no-animation controls indicators>
                 <b-carousel-slide
-                  v-for="(slide, index) in data.picture"
+                  v-for="(picture, index) in data.Slider.picture"
                   :key="index"
                 >
                   <template v-slot:img>
                     <LazyImage
                       fetchMode="cloudinary"
-                      :placeholder="lqip(slide)"
-                      :srcData="image(slide)"
+                      :placeholder="lqip(picture)"
+                      :srcData="image(picture)"
                       extraCss="d-block img-fluid w-100"
                       height="480"
                     />

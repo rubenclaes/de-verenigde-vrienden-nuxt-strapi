@@ -1,5 +1,5 @@
 import { MutationTree } from 'vuex';
-import { AuthState, User } from './types';
+import { AuthState } from './types';
 
 /**
  * Cart mutations
@@ -22,7 +22,7 @@ export const mutations: MutationTree<AuthState> = {
   logout(state) {
     state.status = '';
     state.token = '';
-  }
+  },
 };
 
 export default mutations;

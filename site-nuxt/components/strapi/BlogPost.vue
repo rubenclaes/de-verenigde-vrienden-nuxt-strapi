@@ -23,19 +23,14 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator';
 
-import { FlexPage } from '../../store/flexpage/types';
-import { pageVuexNamespace } from '../../store/flexpage/const';
 import StrapiComponents from '../../strapi.component';
 
 @Component({
   components: {},
 })
-export default class FlexPageComponent extends Vue {
-  /* @pageVuexNamespace.Getter('loading')
-  private loading!: boolean; */
-
+export default class BlogPost extends Vue {
   @Prop({ type: Object, required: true })
-  flexPage;
+  blogPost;
 
   @Prop({ type: Object })
   pageInSitemap;
@@ -59,18 +54,11 @@ export default class FlexPageComponent extends Vue {
   renderComponent(component: string) {
     const split = component.split('.');
     const components = {
-      blocks: { pageheader: 'Header' },
-      section: {
-        profile: 'ProfileCard',
-        banner: 'Banner',
-        jeugdorkest: 'Jeugdorkest',
-        harmonie: 'Harmonie',
-        activiteiten: 'Activiteiten',
-        recente_blogposts: 'LatestArticles',
-        address: 'Address',
-        contact_form: 'Contact',
-        image_with_text: 'ImageWithText',
-        webshop: 'WebShop',
+      blog: {
+        rich_text: 'RichText',
+        slider: 'Slider',
+        video: 'Video',
+        quote: 'Quote',
       },
     };
     //console.info(split[1].replace(/-/g, '_'));
@@ -81,7 +69,7 @@ export default class FlexPageComponent extends Vue {
     let modules: object[] = [];
 
     // Render Content DynamicZone
-    this.flexPage.Content.forEach((dynamicZone: any, index: number) => {
+    this.blogPost.content.forEach((dynamicZone: any, index: number) => {
       const component = this.renderComponent(dynamicZone.__component);
       const ComponentToRender = StrapiComponents.moduleComponents[component];
 

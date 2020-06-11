@@ -268,7 +268,19 @@
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator';
 
-import { loadStripe } from '@stripe/stripe-js';
+import {
+  loadStripe,
+  Stripe,
+  ConfirmCardPaymentData,
+  PaymentIntent,
+  ConfirmBancontactPaymentData,
+  StripeCardElement,
+  StripeIbanElement,
+  StripePaymentRequestButtonElement,
+  StripeElement,
+  StripeElementType,
+  StripeElements,
+} from '@stripe/stripe-js';
 import { v4 as uuidv4 } from 'uuid';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 
@@ -305,16 +317,21 @@ export default class CheckoutPage extends Vue {
     zip: 3550,
   };
 
-  private stripe;
+  private stripe!: Stripe | null;
 
   // Stripe Elements
+  private element!: StripeElement;
+  private cardElement!: StripeCardElement;
+  private ibanElement!: StripeIbanElement;
+  private prButtonElement!: StripePaymentRequestButtonElement;
+
   private card;
   private iban;
   private prButton;
 
   // Global variables: PaymentIntent & PaymemtRequest object.
-  private paymentIntent;
-  private paymentRequest;
+  private paymentIntent!: PaymentIntent;
+  private paymentRequest!: PaymentRequest;
   private order;
 
   $swal: any;
@@ -355,27 +372,29 @@ export default class CheckoutPage extends Vue {
   };
 
   // Prepare the styles for Elements.
-  private style = {
-    base: {
-      iconColor: '#666ee8',
-      color: '#31325f',
-      fontWeight: 400,
-      fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-      fontSmoothing: 'antialiased',
-      fontSize: '15px',
-      '::placeholder': {
-        color: '#aab7c4',
+  private options = {
+    style: {
+      base: {
+        iconColor: '#666ee8',
+        color: '#31325f',
+        fontWeight: 400,
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '15px',
+        '::placeholder': {
+          color: '#aab7c4',
+        },
+        ':-webkit-autofill': {
+          color: '#666ee8',
+        },
       },
-      ':-webkit-autofill': {
-        color: '#666ee8',
-      },
-    },
-    invalid: {
-      color: '#fa755a',
-      iconColor: '#fa755a',
-      ':-webkit-autofill': {
+      invalid: {
         color: '#fa755a',
+        iconColor: '#fa755a',
+        ':-webkit-autofill': {
+          color: '#fa755a',
+        },
       },
     },
   };
@@ -408,29 +427,33 @@ export default class CheckoutPage extends Vue {
     if (!this.isLoggedIn()) {
       this.login();
     }
-
-    await this.loadStripe();
-
-    await this.createAndMountFormElements();
-  }
-
-  async loadStripe() {
     const stripeKey = process.env.stripePublicKey;
     if (stripeKey) {
-      this.stripe = await loadStripe(stripeKey);
+      await this.loadStripe(stripeKey);
+      await this.createAndMountFormElements();
     } else {
-      throw new Error('Stripe is not loaded!');
+      console.error('stripe not loaded!');
+    }
+  }
+
+  async loadStripe(stripeKey: string) {
+    try {
+      this.stripe = await loadStripe(stripeKey);
+    } catch (e) {
+      console.log(e);
     }
   }
 
   async createAndMountFormElements() {
-    const elements = this.stripe.elements();
-
-    await this.$nextTick();
-    // The whole view is rendered, so I can safely access or query
-    if (this.$refs.card) {
-      this.card = elements.create('card', { style: this.style });
-      this.card.mount(this.$refs.card);
+    if (this.stripe) {
+      const elements = this.stripe.elements();
+      const cardElement: StripeElementType = 'card';
+      await this.$nextTick();
+      // The whole view is rendered, so I can safely access or query
+      if (this.$refs.card) {
+        this.card = elements.create(cardElement);
+        this.card.mount(this.$refs.card);
+      }
     }
   }
 
@@ -443,19 +466,21 @@ export default class CheckoutPage extends Vue {
     // Disable the Pay button to prevent multiple click events.
     this.processing = true;
 
-    if (payment === 'card') {
-      // Let Stripe.js handle the confirmation of the PaymentIntent with the card Element.
-      const cardPaymentData = {
+    if (payment === 'card' && this.paymentIntent.client_secret) {
+      /*     // Let Stripe.js handle the confirmation of the PaymentIntent with the card Element.
+      const cardPaymentData: ConfirmCardPaymentData = {
         payment_method: {
-          card: this.card,
           billing_details: {
-            name,
+            name: name,
+            email: email,
             address: {
               country: 'BE',
               line1: address,
-              postal_code: zip,
+              postal_code: zip.toString(),
             },
-            email: email,
+          },
+          metadata: {
+            order_id: this.order.id,
           },
         },
       };
@@ -480,7 +505,7 @@ export default class CheckoutPage extends Vue {
               console.info('payment succeeded');
             }
           }
-        });
+        }); */
     } else if (payment === 'iban') {
       // Confirm the PaymentIntent with the IBAN Element.
       console.log('iban');
@@ -499,44 +524,42 @@ export default class CheckoutPage extends Vue {
       );
       handlePayment(response); */
     } else {
-      // Prepare all the Stripe source common data.
-      const sourceData = {
-        type: payment,
-        amount: this.paymentIntent.amount,
-        currency: this.paymentIntent.currency,
-        owner: {
-          name,
-          email,
-          address: {
-            country: 'BE',
-            line1: address,
-            postal_code: zip,
+      // Prepare all the Stripe common data.
+      const confirmBancontactPaymentData: ConfirmBancontactPaymentData = {
+        payment_method: {
+          billing_details: {
+            name: name,
+            email: email,
+            address: {
+              country: 'BE',
+              line1: address,
+              postal_code: zip.toString(),
+            },
+          },
+          metadata: {
+            order_id: this.order.id,
           },
         },
-        redirect: {
-          return_url: `${window.location.origin}/invoice?idempotencyKey=${this.order.idempotencyKey}`,
-        },
-        bancontact: { preferred_language: 'nl' },
-        statement_descriptor: 'Eetdag KH De Verenigde Vrienden',
-        metadata: {
-          paymentIntent: this.paymentIntent.id,
-        },
+        return_url: `${window.location.origin}/invoice?idempotencyKey=${this.order.idempotencyKey}`,
       };
 
-      // Create a Stripe source with the common data and extra information.
-      await this.stripe.createSource(sourceData).then((result) => {
+      if (this.stripe && this.paymentIntent.client_secret) {
+        const {
+          paymentIntent,
+          error,
+        } = await this.stripe.confirmBancontactPayment(
+          this.paymentIntent.client_secret,
+          confirmBancontactPaymentData
+        );
+
         this.processing = false;
-        if (result.error) {
-          // Show error to your customer
+
+        if (error) {
+          // Inform the customer that there was an error.
           this.$store.commit('cart/setCheckoutStatus', 'failed');
-          console.error(new Error(result.error.message));
-        } else {
-          //console.info(result.source.redirect.url);
-          //console.info(result.source.metadata.paymentIntent);
-          // Immediately redirect the customer.
-          window.location.href = result.source.redirect.url;
+          console.error(new Error(error.message));
         }
-      });
+      }
     }
   }
 
@@ -549,16 +572,19 @@ export default class CheckoutPage extends Vue {
 
     // Create Payment intends for IBAN and Card
 
-    // Create Source for Bancontact
     try {
-      const response = await this.$store.dispatch('cart/createOrder', {
-        amount: this.price(),
-        dishes: this.productsInCart(),
-        address: address,
-        currency: 'eur',
-        zip: zip.toString(),
-        stripeIdempotency: uuidv4(),
-      });
+      const response = await this.$store.dispatch(
+        'cart/createOrder',
+        {
+          amount: this.price(),
+          dishes: this.productsInCart(),
+          address: address,
+          currency: 'eur',
+          zip: zip.toString(),
+          stripeIdempotency: uuidv4(),
+        },
+        this.$store.getters['auth/token']
+      );
 
       const { clientSecret, order, paymentIntent } = response;
       this.paymentIntent = paymentIntent;
@@ -581,6 +607,7 @@ export default class CheckoutPage extends Vue {
       if (err.response && err.response.status === 401) {
         throw new Error(err.response.statusText + ' Token expired');
       }
+
       alert(err.response.data.message);
     }
   }

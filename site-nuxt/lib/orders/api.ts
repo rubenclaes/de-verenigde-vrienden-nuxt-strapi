@@ -22,10 +22,13 @@ export async function createOrder(payload, token) {
  * Load an order with idempotencyKey.
  *
  */
-export async function loadOrder(idempotencyKey: string | string[]) {
+export async function loadOrder(idempotencyKey: string | string[], token) {
   try {
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
     return await $axios
-      .get(`orders/?idempotencyKey=${idempotencyKey}`)
+      .get(`orders/?idempotencyKey=${idempotencyKey}`, config)
       .then((res) => {
         return res.data[0];
       });

@@ -8,11 +8,10 @@
         </h1>
       </div>
 
-      <!-- You can add more ".slideshow-image" elements, but remember to update the "$items" variable on SCSS -->
       <div class="slideshow">
         <div
-          v-for="(slide, index) in data.slideshow.Picture"
-          :key="index"
+          v-for="slide in data.carousel"
+          :key="slide.id"
           class="slideshow-image"
           :style="{ backgroundImage: 'url(' + slide.url + ')' }"
         ></div>
@@ -263,15 +262,13 @@ $scale-base-1: (1 + $scale / 100%);
 
 // Presentational stuff
 .text-box {
+  padding: 1em 1em;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
   z-index: 99;
   text-align: center;
-  font-family: Raleway, sans-serif;
-  font-weight: 300;
-  text-transform: uppercase;
   background-color: rgba(255, 255, 255, 0.75);
   box-shadow: 0 1em 2em -1em rgba(0, 0, 0, 0.5);
 
@@ -282,7 +279,6 @@ $scale-base-1: (1 + $scale / 100%);
   }
   small {
     display: block;
-    text-transform: lowercase;
     font-size: 0.7em;
 
     &:first-child {
@@ -293,6 +289,24 @@ $scale-base-1: (1 + $scale / 100%);
     &:last-child {
       border-top: 1px solid rgba(0, 0, 0, 0.25);
       padding-top: 0.5em;
+    }
+  }
+
+  p {
+    font-size: 0.7em;
+  }
+}
+
+@media (max-width: 59.9375em) {
+  .text-box {
+    padding: 1em 1em;
+    small {
+      display: block;
+      font-size: 0.5em;
+    }
+
+    p {
+      font-size: 0.5em;
     }
   }
 }

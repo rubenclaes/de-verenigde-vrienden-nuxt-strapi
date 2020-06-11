@@ -64,6 +64,22 @@ export default class InvoicePage extends Vue {
     };
   }
 
+  async login() {
+    try {
+      await this.$store.dispatch('auth/login', {
+        identifier: process.env.strapiUser,
+        password: process.env.strapiPassword,
+      });
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        throw new Error('Bad credentials or Token expired');
+      }
+      throw error;
+    }
+  }
+  isLoggedIn(): boolean {
+    return this.$store.getters['auth/isLoggedIn'];
+  }
   async mounted() {
     await this.loadStripe();
     // Monitor succesfull Bancontact Payments
@@ -71,9 +87,16 @@ export default class InvoicePage extends Vue {
   }
 
   async created() {
+    // Fetch token
+    if (!this.isLoggedIn()) {
+      await this.login();
+    }
     const idempotencyKey = this.$route.query.idempotencyKey;
     if (idempotencyKey && typeof idempotencyKey === 'string') {
-      const order = await loadOrder(idempotencyKey);
+      const order = await loadOrder(
+        idempotencyKey,
+        this.$store.getters['auth/token']
+      );
 
       console.log(order);
       this.order = order;
@@ -94,13 +117,13 @@ export default class InvoicePage extends Vue {
       // Update the interface to display the processing screen.
       // mainElement.classList.add('checkout', 'success', 'processing');
 
-      const { source } = await this.stripe.retrieveSource({
-        id: this.$route.query.source,
+      const { paymentIntent } = await this.stripe.paymentIntents.retrieve({
+        id: this.$route.query.payment_intent,
         client_secret: this.$route.query.client_secret,
       });
 
       await this.pollPaymentIntentStatus({
-        paymentIntent: source.metadata.paymentIntent,
+        paymentIntent: paymentIntent,
       });
     }
   }
