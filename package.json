@@ -7,5 +7,6 @@
     "generate:site-nuxt": "npm --prefix site-nuxt run generate",
     "build:calendar-nuxt": "npm --prefix calendar-nuxt run build",
     "generate:calendar-nuxt": "npm --prefix calendar-nuxt run generate"
-  }
+  },
+  "dependencies": {}
 }

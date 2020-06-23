@@ -1,21 +1,22 @@
-import Vue from 'vue'
-import { AclInstaller, AclCreate, AclRule } from 'vue-acl'
-import router from '@/router'
+import Vue from 'vue';
+import { AclInstaller, AclCreate, AclRule } from 'vue-acl';
+import router from '@/router';
 
-Vue.use(AclInstaller)
+Vue.use(AclInstaller);
 
-let initialRole = 'admin'
+let initialRole = 'public';
 
-const userInfo = JSON.parse(localStorage.getItem('userInfo'))
-if (userInfo && userInfo.userRole) initialRole = userInfo.userRole
+const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+if (userInfo && userInfo.userRole) initialRole = userInfo.userRole;
 
 export default new AclCreate({
-  initial  : initialRole,
-  notfound : '/pages/not-authorized',
+  initial: initialRole,
+  notfound: '/pages/not-authorized',
   router,
-  acceptLocalRules : true,
+  acceptLocalRules: true,
   globalRules: {
-    admin  : new AclRule('admin').generate(),
-    editor : new AclRule('editor').or('admin').generate()
-  }
-})
+    public: new AclRule('public').generate(),
+    admin: new AclRule('admin').generate(),
+    editor: new AclRule('editor').or('admin').generate(),
+  },
+});

@@ -67,7 +67,6 @@ export default {
     Textarea: 'Textarea',
     FormLayouts: 'Form Layouts',
     FormWizard: 'Form Wizard',
-    FormValidation: 'Form Validation',
     FormInputGroup: 'Form Input Group',
     Pages: 'Pages',
     Authentication: 'Authentication',
@@ -127,7 +126,8 @@ export default {
     Documentation: 'Documentation',
     RaiseSupport: 'Raise Support',
     demoTitle: 'Card Title',
-    demoText: 'Cake sesame snaps cupcake gingerbread danish I love gingerbread. Apple pie pie jujubes chupa chups muffin halvah lollipop. Chocolate cake oat cake tiramisu marzipan sugar plum. Donut sweet pie oat cake dragée fruitcake cotton candy lemon drops.'
+    demoText:
+      'Cake sesame snaps cupcake gingerbread danish I love gingerbread. Apple pie pie jujubes chupa chups muffin halvah lollipop. Chocolate cake oat cake tiramisu marzipan sugar plum. Donut sweet pie oat cake dragée fruitcake cotton candy lemon drops.',
   },
   de: {
     Dashboard: 'Instrumententafel',
@@ -196,7 +196,6 @@ export default {
     Textarea: 'Textbereich',
     FormLayouts: 'Formularlayouts',
     FormWizard: 'Formzauberer',
-    FormValidation: 'Formularvalidierung',
     FormInputGroup: 'Formulareingabegruppe',
     Pages: 'Seiten',
     Authentication: 'Authentifizierung',
@@ -256,7 +255,8 @@ export default {
     Documentation: 'Dokumentation',
     RaiseSupport: 'Unterstützung erheben',
     demoTitle: 'Kartentitel',
-    demoText: 'Kuchen Sesam Schnaps Cupcake Lebkuchen Dänisch Ich liebe Lebkuchen. Apfelkuchen-Torte-Jujuben chupa chups muffin halvah Lutscher. Schokoladenkuchenhaferkuchen Tiramisu-Marzipanzuckerpflaume. Donut süße Kuchen Hafer Kuchen Dragée Obstkuchen Zuckerwatte Zitrone Tropfen.'
+    demoText:
+      'Kuchen Sesam Schnaps Cupcake Lebkuchen Dänisch Ich liebe Lebkuchen. Apfelkuchen-Torte-Jujuben chupa chups muffin halvah Lutscher. Schokoladenkuchenhaferkuchen Tiramisu-Marzipanzuckerpflaume. Donut süße Kuchen Hafer Kuchen Dragée Obstkuchen Zuckerwatte Zitrone Tropfen.',
   },
   fr: {
     Dashboard: 'Tableau de bord',
@@ -269,7 +269,7 @@ export default {
     FullCalendar: 'Calendrier complet',
     SimpleCalendar: 'Calendrier simple',
     Shop: 'Boutique',
-    ItemDetails: 'Détails de l\'article',
+    ItemDetails: "Détails de l'article",
     Cart: 'Chariot',
     WishList: 'Liste de souhaits',
     Checkout: 'Check-out',
@@ -321,15 +321,15 @@ export default {
     Checkbox: 'Case à cocher',
     Radio: 'Radio',
     Input: 'Contribution',
-    NumberInput: 'Nombre d\'entrée',
+    NumberInput: "Nombre d'entrée",
     Textarea: 'Textarea',
     FormLayouts: 'Dispositions de formulaire',
     FormWizard: 'Assistant de formulaire',
-    FormValidation: 'Validation du formulaire',
+
     FormInputGroup: 'Groupe de saisie de formulaire',
     Pages: 'Pages',
     Authentication: 'Authentification',
-    Login: 'S\'identifier',
+    Login: "S'identifier",
     Register: 'registre',
     ForgotPassword: 'Mot de passe oublié',
     ResetPassword: 'réinitialiser le mot de passe',
@@ -346,7 +346,7 @@ export default {
     View: 'Vue',
     Edit: 'Modifier',
     UserSettings: 'Paramètres utilisateur',
-    Invoice: 'Facture d\'achat',
+    Invoice: "Facture d'achat",
     FAQ: 'FAQ',
     Search: 'Chercher',
     KnowledgeBase: 'Base de connaissances',
@@ -362,7 +362,7 @@ export default {
     DragAndDrop: 'Drag & Drop',
     Datepicker: 'Sélecteur de date',
     DatetimePicker: 'Sélecteur de date / heure',
-    AccessControl: 'Contrôle d\'accès',
+    AccessControl: "Contrôle d'accès",
     I18n: 'I18n',
     Carousel: 'Carrousel',
     Clipboard: 'Presse-papiers',
@@ -385,7 +385,8 @@ export default {
     Documentation: 'Documentation',
     RaiseSupport: 'Augmenter le soutien',
     demoTitle: 'Titre de la carte',
-    demoText: 'Le gâteau au sésame s\'enclenche au petit pain au pain d\'épices danois J\'adore le pain d\'épices. Tarte aux pommes et jujubes chupa chups muffin halvah sucette. Tiramisu gâteau au chocolat gâteau d\'avoine tiramisu prune sucre. Donut tarte sucrée gâteau à l\'avoine dragée gouttes de fruits gâteau au citron en barbe à papa.'
+    demoText:
+      "Le gâteau au sésame s'enclenche au petit pain au pain d'épices danois J'adore le pain d'épices. Tarte aux pommes et jujubes chupa chups muffin halvah sucette. Tiramisu gâteau au chocolat gâteau d'avoine tiramisu prune sucre. Donut tarte sucrée gâteau à l'avoine dragée gouttes de fruits gâteau au citron en barbe à papa.",
   },
   pt: {
     Dashboard: 'painel de controle',
@@ -454,7 +455,7 @@ export default {
     Textarea: 'Textarea',
     FormLayouts: 'Layouts de formulário',
     FormWizard: 'Assistente de Formulário',
-    FormValidation: 'Validação de Formulário',
+
     FormInputGroup: 'Grupo de entrada de formulário',
     Pages: 'PÁGINAS',
     Authentication: 'Autenticação',
@@ -514,6 +515,7 @@ export default {
     Documentation: 'Documentação',
     RaiseSupport: 'Levantar Suporte',
     demoTitle: 'Título do cartão',
-    demoText: 'O sésamo do bolo agarra dinamarquês do pão-de-espécie do queque eu amo o pão-de-espécie. Torta de torta de maçã jujuba chupa chups muffin halvah pirulito. Ameixa do açúcar do maçapão do tiramisu do bolo da aveia do bolo de chocolate. Bolo de aveia de torta doce rosquinha dragée fruitcake algodão doce gotas de limão.'
-  }
-}
+    demoText:
+      'O sésamo do bolo agarra dinamarquês do pão-de-espécie do queque eu amo o pão-de-espécie. Torta de torta de maçã jujuba chupa chups muffin halvah pirulito. Ameixa do açúcar do maçapão do tiramisu do bolo da aveia do bolo de chocolate. Bolo de aveia de torta doce rosquinha dragée fruitcake algodão doce gotas de limão.',
+  },
+};

@@ -77,6 +77,7 @@ import {
   email,
   min,
   numeric,
+  max,
 } from 'vee-validate/dist/rules';
 import { ValidationProvider, extend } from 'vee-validate';
 
@@ -92,6 +93,31 @@ extend('is_time', {
     return valid;
   },
   message: 'Gelieve een tijd in te vullen!',
+});
+
+extend('min', {
+  ...min,
+  message: 'Dit veld moet minimum 3 karakters bevatten',
+});
+
+extend('max', {
+  ...max,
+  message: 'Dit veld mag maximum 10 karakters bevatten',
+});
+
+extend('required', {
+  ...required,
+  message: 'Dit veld is verplicht in te vullen',
+});
+
+extend('email', {
+  ...email,
+  message: 'Dit veld bevat een onjuist email formaat',
+});
+
+extend('confirmed', {
+  ...confirmed,
+  message: 'This field confirmation does not match',
 });
 
 // Google Maps
