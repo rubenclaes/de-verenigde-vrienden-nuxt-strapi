@@ -5,7 +5,6 @@ import { AuthState } from './types';
 import { login } from '../../lib/auth/local/api';
 
 import { $axios } from '~/utils/api';
-import cookies from 'js-cookie';
 
 /**
  * Action context specific to Auth module
@@ -57,7 +56,6 @@ export const actions: ActionTree<AuthState, RootState> = {
     return new Promise((resolve, reject) => {
       commit('logout');
       this.$axios.setToken(false);
-      cookies.remove('x-access-token');
       // commit('REMOVE_TOKEN');
       //localStorage.removeItem('token');
       //delete $axios.defaults.headers.common['Authorization'];
