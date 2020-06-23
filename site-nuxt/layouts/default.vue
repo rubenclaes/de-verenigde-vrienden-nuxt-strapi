@@ -8,9 +8,9 @@
       :navItemList="navItemList"
     ></header-style1>
 
-    <IfBot>
-      <CookieControl />
-    </IfBot>
+    <client-only>
+      <vue-if-bot> <CookieControl /> </vue-if-bot>
+    </client-only>
 
     <client-only>
       <offline-detection
@@ -34,7 +34,7 @@ import { Component, Vue } from 'nuxt-property-decorator';
 
 import BackToTop from '@/components/BackToTop.vue';
 import OfflineDetection from '@/components/OfflineDetection.vue';
-import IfBot from 'vue-if-bot/dist/vue-if-bot.es';
+import VueIfBot from 'vue-if-bot';
 
 import { menulinkVuexNamespace } from '../store/menulink/const';
 import { MainNavigationLink } from '../store/menulink/types';
@@ -43,7 +43,7 @@ import { MainNavigationLink } from '../store/menulink/types';
   components: {
     BackToTop,
     OfflineDetection,
-    IfBot,
+    VueIfBot: () => import('vue-if-bot'),
     HeaderStyle1: () =>
       import(
         /* webpackChunkName: 'header-style1' */ '@/components/deverenigdevrienden/Header/HeaderStyle1.vue'
