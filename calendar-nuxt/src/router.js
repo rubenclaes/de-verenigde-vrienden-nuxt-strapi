@@ -51,13 +51,31 @@ const router = new Router({
           name: 'dashboard-analytics',
           component: () => import('./views/DashboardAnalytics.vue'),
           meta: {
-            rule: 'public',
+            rule: 'admin',
           },
         },
         {
           path: '/dashboard/ecommerce',
           name: 'dashboard-ecommerce',
           component: () => import('./views/DashboardECommerce.vue'),
+          meta: {
+            rule: 'admin',
+          },
+        },
+
+        {
+          path: '/offerte-ventilatie',
+          name: 'offerte-ventilatie',
+          component: () => import('./views/OfferteVentilatie.vue'),
+          meta: {
+            rule: 'admin',
+          },
+        },
+
+        {
+          path: '/delivery',
+          name: 'delivery',
+          component: () => import('./views/Delivery.vue'),
           meta: {
             rule: 'admin',
           },

@@ -5,6 +5,7 @@ import { AuthState } from './types';
 import { login } from '../../lib/auth/local/api';
 
 import { $axios } from '~/utils/api';
+import cookies from 'js-cookie';
 
 /**
  * Action context specific to Auth module
@@ -27,6 +28,11 @@ export const actions: ActionTree<AuthState, RootState> = {
         const token = response.data.jwt;
         const user = response.data.user;
 
+        this.$axios.setToken(token, 'Bearer');
+
+        /*   const expiryTime = new Date(new Date().getTime() + expiresIn * 1000);
+        cookies.set('x-access-token', token, { expires: expiryTime }); */
+
         //console.log('User profile', response.data.user);
         //console.log('User token', response.data.jwt);
 
@@ -42,11 +48,19 @@ export const actions: ActionTree<AuthState, RootState> = {
       });
   },
 
+  async refreshToken({ dispatch }) {
+    //const {token, expiresIn} = await this.$axios.$post('refresh-token');
+    // dispatch('setToken', {token, expiresIn});
+  },
+
   logout({ commit }) {
     return new Promise((resolve, reject) => {
       commit('logout');
-      localStorage.removeItem('token');
-      delete $axios.defaults.headers.common['Authorization'];
+      this.$axios.setToken(false);
+      cookies.remove('x-access-token');
+      // commit('REMOVE_TOKEN');
+      //localStorage.removeItem('token');
+      //delete $axios.defaults.headers.common['Authorization'];
       resolve();
     });
   },

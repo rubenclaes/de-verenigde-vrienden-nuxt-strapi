@@ -18,7 +18,6 @@
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
-
 export default [
   // {
   //   url: "/apps/email",
@@ -27,6 +26,14 @@ export default [
   //   icon: "MailIcon",
   //   i18n: "Email",
   // },
+
+  {
+    url: '/offerte-ventilatie',
+    slug: 'offerte-ventilatie',
+    name: 'Offerte Ventilatie',
+    icon: 'InfoIcon',
+    i18n: 'Offerte Ventilatie',
+  },
   {
     url: null,
     name: 'Dashboard',
@@ -39,15 +46,15 @@ export default [
         url: '/dashboard/analytics',
         name: 'Analytics',
         slug: 'dashboard-analytics',
-        i18n: 'Analytics'
+        i18n: 'Analytics',
       },
       {
         url: '/dashboard/ecommerce',
         name: 'eCommerce',
         slug: 'dashboard-ecommerce',
-        i18n: 'eCommerce'
-      }
-    ]
+        i18n: 'eCommerce',
+      },
+    ],
   },
   {
     header: 'Apps',
@@ -59,21 +66,21 @@ export default [
         name: 'Email',
         slug: 'email',
         icon: 'MailIcon',
-        i18n: 'Email'
+        i18n: 'Email',
       },
       {
         url: '/apps/chat',
         name: 'Chat',
         slug: 'chat',
         icon: 'MessageSquareIcon',
-        i18n: 'Chat'
+        i18n: 'Chat',
       },
       {
         url: '/apps/todo',
         name: 'Todo',
         slug: 'todo',
         icon: 'CheckSquareIcon',
-        i18n: 'Todo'
+        i18n: 'Todo',
       },
       {
         url: '/apps/calendar/vue-simple-calendar',
@@ -81,7 +88,7 @@ export default [
         slug: 'calendar-simple-calendar',
         icon: 'CalendarIcon',
         tagColor: 'success',
-        i18n: 'Calendar'
+        i18n: 'Calendar',
       },
       {
         url: null,
@@ -93,27 +100,27 @@ export default [
             url: '/apps/eCommerce/shop',
             name: 'Shop',
             slug: 'ecommerce-shop',
-            i18n: 'Shop'
+            i18n: 'Shop',
           },
           {
             url: '/apps/eCommerce/item/',
             name: 'Item Details',
             slug: 'ecommerce-item-detail-view',
-            i18n: 'ItemDetails'
+            i18n: 'ItemDetails',
           },
           {
             url: '/apps/eCommerce/wish-list',
             name: 'Wish List',
             slug: 'ecommerce-wish-list',
-            i18n: 'WishList'
+            i18n: 'WishList',
           },
           {
             url: '/apps/eCommerce/checkout',
             name: 'Checkout',
             slug: 'ecommerce-checkout',
-            i18n: 'Checkout'
-          }
-        ]
+            i18n: 'Checkout',
+          },
+        ],
       },
       {
         url: null,
@@ -125,23 +132,23 @@ export default [
             url: '/apps/user/user-list',
             name: 'List',
             slug: 'app-user-list',
-            i18n: 'List'
+            i18n: 'List',
           },
           {
             url: '/apps/user/user-view/268',
             name: 'View',
             slug: 'app-user-view',
-            i18n: 'View'
+            i18n: 'View',
           },
           {
             url: '/apps/user/user-edit/268',
             name: 'Edit',
             slug: 'app-user-edit',
-            i18n: 'Edit'
-          }
-        ]
-      }
-    ]
+            i18n: 'Edit',
+          },
+        ],
+      },
+    ],
   },
   {
     header: 'UI',
@@ -160,15 +167,15 @@ export default [
             url: '/ui-elements/data-list/list-view',
             name: 'List View',
             slug: 'data-list-list-view',
-            i18n: 'ListView'
+            i18n: 'ListView',
           },
           {
             url: '/ui-elements/data-list/thumb-view',
             name: 'Thumb View',
             slug: 'data-list-thumb-view',
-            i18n: 'ThumbView'
-          }
-        ]
+            i18n: 'ThumbView',
+          },
+        ],
       },
       {
         url: null,
@@ -180,22 +187,22 @@ export default [
             url: '/ui-elements/grid/vuesax',
             name: 'Vuesax',
             slug: 'grid-vuesax',
-            i18n: 'Vuesax'
+            i18n: 'Vuesax',
           },
           {
             url: '/ui-elements/grid/tailwind',
             name: 'Tailwind',
             slug: 'grid-tailwind',
-            i18n: 'Tailwind'
-          }
-        ]
+            i18n: 'Tailwind',
+          },
+        ],
       },
       {
         url: '/ui-elements/colors',
         name: 'Colors',
         slug: 'colors',
         icon: 'DropletIcon',
-        i18n: 'Colors'
+        i18n: 'Colors',
       },
       {
         url: null,
@@ -207,33 +214,33 @@ export default [
             url: '/ui-elements/card/basic',
             name: 'Basic',
             slug: 'basic-cards',
-            i18n: 'Basic'
+            i18n: 'Basic',
           },
           {
             url: '/ui-elements/card/statistics',
             name: 'Statistics',
             slug: 'statistics-cards',
-            i18n: 'Statistics'
+            i18n: 'Statistics',
           },
           {
             url: '/ui-elements/card/analytics',
             name: 'Analytics',
             slug: 'analytics-cards',
-            i18n: 'Analytics'
+            i18n: 'Analytics',
           },
           {
             url: '/ui-elements/card/card-actions',
             name: 'Card Actions',
             slug: 'card-actions',
-            i18n: 'CardActions'
+            i18n: 'CardActions',
           },
           {
             url: '/ui-elements/card/card-colors',
             name: 'Card Colors',
             slug: 'card-colors',
-            i18n: 'CardColors'
-          }
-        ]
+            i18n: 'CardColors',
+          },
+        ],
       },
       {
         url: null,
@@ -245,135 +252,135 @@ export default [
             url: '/components/alert',
             name: 'Alert',
             slug: 'component-alert',
-            i18n: 'Alert'
+            i18n: 'Alert',
           },
           {
             url: '/components/avatar',
             name: 'Avatar',
             slug: 'component-avatar',
-            i18n: 'Avatar'
+            i18n: 'Avatar',
           },
           {
             url: '/components/breadcrumb',
             name: 'Breadcrumb',
             slug: 'component-breadcrumb',
-            i18n: 'Breadcrumb'
+            i18n: 'Breadcrumb',
           },
           {
             url: '/components/button',
             name: 'Button',
             slug: 'component-button',
-            i18n: 'Button'
+            i18n: 'Button',
           },
           {
             url: '/components/button-group',
             name: 'Button Group',
             slug: 'component-button-group',
-            i18n: 'ButtonGroup'
+            i18n: 'ButtonGroup',
           },
           {
             url: '/components/chip',
             name: 'Chip',
             slug: 'component-chip',
-            i18n: 'Chip'
+            i18n: 'Chip',
           },
           {
             url: '/components/collapse',
             name: 'Collapse',
             slug: 'component-collapse',
-            i18n: 'Collapse'
+            i18n: 'Collapse',
           },
           {
             url: '/components/dialogs',
             name: 'Dialogs',
             slug: 'component-dialog',
-            i18n: 'Dialogs'
+            i18n: 'Dialogs',
           },
           {
             url: '/components/divider',
             name: 'Divider',
             slug: 'component-divider',
-            i18n: 'Divider'
+            i18n: 'Divider',
           },
           {
             url: '/components/dropdown',
             name: 'DropDown',
             slug: 'component-drop-down',
-            i18n: 'DropDown'
+            i18n: 'DropDown',
           },
           {
             url: '/components/list',
             name: 'List',
             slug: 'component-list',
-            i18n: 'List'
+            i18n: 'List',
           },
           {
             url: '/components/loading',
             name: 'Loading',
             slug: 'component-loading',
-            i18n: 'Loading'
+            i18n: 'Loading',
           },
           {
             url: '/components/navbar',
             name: 'Navbar',
             slug: 'component-navbar',
-            i18n: 'Navbar'
+            i18n: 'Navbar',
           },
           {
             url: '/components/notifications',
             name: 'Notifications',
             slug: 'component-notifications',
-            i18n: 'Notifications'
+            i18n: 'Notifications',
           },
           {
             url: '/components/pagination',
             name: 'Pagination',
             slug: 'component-pagination',
-            i18n: 'Pagination'
+            i18n: 'Pagination',
           },
           {
             url: '/components/popup',
             name: 'Popup',
             slug: 'component-popup',
-            i18n: 'Popup'
+            i18n: 'Popup',
           },
           {
             url: '/components/progress',
             name: 'Progress',
             slug: 'component-progress',
-            i18n: 'Progress'
+            i18n: 'Progress',
           },
           {
             url: '/components/sidebar',
             name: 'Sidebar',
             slug: 'component-sidebar',
-            i18n: 'Sidebar'
+            i18n: 'Sidebar',
           },
           {
             url: '/components/slider',
             name: 'Slider',
             slug: 'component-slider',
-            i18n: 'Slider'
+            i18n: 'Slider',
           },
           {
             url: '/components/tabs',
             name: 'Tabs',
             slug: 'component-tabs',
-            i18n: 'Tabs'
+            i18n: 'Tabs',
           },
           {
             url: '/components/tooltip',
             name: 'Tooltip',
             slug: 'component-tooltip',
-            i18n: 'Tooltip'
+            i18n: 'Tooltip',
           },
           {
             url: '/components/upload',
             name: 'Upload',
             slug: 'component-upload',
-            i18n: 'Upload'
-          }
-        ]
+            i18n: 'Upload',
+          },
+        ],
       },
       {
         url: null,
@@ -386,89 +393,89 @@ export default [
             name: 'Select',
             icon: 'PocketIcon',
             slug: 'extra-component-select',
-            i18n: 'Select'
+            i18n: 'Select',
           },
           {
             url: '/extensions/quill-editor',
             name: 'Quill Editor',
             icon: 'EditIcon',
             slug: 'extra-component-quill-editor',
-            i18n: 'QuillEditor'
+            i18n: 'QuillEditor',
           },
           {
             url: '/extensions/drag-and-drop',
             name: 'Drag & Drop',
             icon: 'DropletIcon',
             slug: 'extra-component-drag-and-drop',
-            i18n: 'DragAndDrop'
+            i18n: 'DragAndDrop',
           },
           {
             url: '/extensions/datepicker',
             name: 'Datepicker',
             icon: 'CalendarIcon',
             slug: 'extra-component-datepicker',
-            i18n: 'Datepicker'
+            i18n: 'Datepicker',
           },
           {
             url: '/extensions/datetime-picker',
             name: 'Datetime Picker',
             icon: 'ClockIcon',
             slug: 'extra-component-datetime-picker',
-            i18n: 'DatetimePicker'
+            i18n: 'DatetimePicker',
           },
           {
             url: '/extensions/access-control',
             name: 'Access Control',
             slug: 'extra-component-access-control',
-            i18n: 'AccessControl'
+            i18n: 'AccessControl',
           },
           {
             url: '/extensions/i18n',
             name: 'I18n',
             slug: 'extra-component-i18n',
-            i18n: 'I18n'
+            i18n: 'I18n',
           },
           {
             url: '/extensions/carousel',
             name: 'Carousel',
             icon: 'LayersIcon',
             slug: 'extra-component-carousel',
-            i18n: 'Carousel'
+            i18n: 'Carousel',
           },
           {
             url: '/extensions/clipboard',
             name: 'Clipboard',
             icon: 'CopyIcon',
             slug: 'extra-component-clipboard',
-            i18n: 'Clipboard'
+            i18n: 'Clipboard',
           },
           {
             url: '/extensions/context-menu',
             name: 'Context Menu',
             icon: 'MoreHorizontalIcon',
             slug: 'extra-component-context-menu',
-            i18n: 'ContextMenu'
+            i18n: 'ContextMenu',
           },
           {
             url: '/extensions/star-ratings',
             name: 'Star Ratings',
             icon: 'StarIcon',
             slug: 'extra-component-star-ratings',
-            i18n: 'StarRatings'
+            i18n: 'StarRatings',
           },
           {
             url: '/extensions/autocomplete',
             name: 'Autocomplete',
             icon: 'Edit3Icon',
             slug: 'extra-component-autocomplete',
-            i18n: 'Autocomplete'
+            i18n: 'Autocomplete',
           },
           {
             url: '/extensions/tree',
             name: 'Tree',
             icon: 'GitPullRequestIcon',
             slug: 'extra-component-tree',
-            i18n: 'Tree'
+            i18n: 'Tree',
           },
           // {
           //   name: "Import/Export",
@@ -482,25 +489,25 @@ export default [
             name: 'Import',
             icon: 'HomeIcon',
             slug: 'import',
-            i18n: 'Import'
+            i18n: 'Import',
           },
           {
             url: '/import-export/export',
             name: 'Export',
             icon: 'HomeIcon',
             slug: 'export',
-            i18n: 'Export'
+            i18n: 'Export',
           },
           {
             url: '/import-export/export-selected',
             name: 'Export Selected',
             icon: 'HomeIcon',
             slug: 'export-selected',
-            i18n: 'ExportSelected'
-          }
-        ]
-      }
-    ]
+            i18n: 'ExportSelected',
+          },
+        ],
+      },
+    ],
   },
   {
     header: 'Forms & Table',
@@ -523,83 +530,83 @@ export default [
             url: '/forms/form-elements/switch',
             name: 'Switch',
             slug: 'form-element-switch',
-            i18n: 'Switch'
+            i18n: 'Switch',
           },
           {
             url: '/forms/form-elements/checkbox',
             name: 'Checkbox',
             slug: 'form-element-checkbox',
-            i18n: 'Checkbox'
+            i18n: 'Checkbox',
           },
           {
             url: '/forms/form-elements/radio',
             name: 'Radio',
             slug: 'form-element-radio',
-            i18n: 'Radio'
+            i18n: 'Radio',
           },
           {
             url: '/forms/form-elements/input',
             name: 'Input',
             slug: 'form-element-input',
-            i18n: 'Input'
+            i18n: 'Input',
           },
           {
             url: '/forms/form-elements/number-input',
             name: 'Number Input',
             slug: 'form-element-number-input',
-            i18n: 'NumberInput'
+            i18n: 'NumberInput',
           },
           {
             url: '/forms/form-elements/textarea',
             name: 'Textarea',
             slug: 'form-element-textarea',
-            i18n: 'Textarea'
-          }
-        ]
+            i18n: 'Textarea',
+          },
+        ],
       },
       {
         url: '/forms/form-layouts',
         name: 'Form Layouts',
         icon: 'PackageIcon',
         slug: 'forms-form-layouts',
-        i18n: 'FormLayouts'
+        i18n: 'FormLayouts',
       },
       {
         url: '/forms/form-wizard',
         name: 'Form Wizard',
         icon: 'PackageIcon',
         slug: 'extra-component-form-wizard',
-        i18n: 'FormWizard'
+        i18n: 'FormWizard',
       },
       {
         url: '/forms/form-validation',
         name: 'Form Validation',
         icon: 'CheckCircleIcon',
         slug: 'extra-component-form-validation',
-        i18n: 'FormValidation'
+        i18n: 'FormValidation',
       },
       {
         url: '/forms/form-input-group',
         name: 'Form Input Group',
         icon: 'MenuIcon',
         slug: 'extra-component-form-input-group',
-        i18n: 'FormInputGroup'
+        i18n: 'FormInputGroup',
       },
       {
         url: '/ui-elements/table',
         name: 'Table',
         slug: 'table',
         icon: 'GridIcon',
-        i18n: 'Table'
+        i18n: 'Table',
       },
       {
         url: '/ui-elements/ag-grid-table',
         name: 'agGrid Table',
         slug: 'ag-grid-table',
         icon: 'GridIcon',
-        i18n: 'agGridTable'
-      }
-    ]
+        i18n: 'agGridTable',
+      },
+    ],
   },
   {
     header: 'Pages',
@@ -611,42 +618,42 @@ export default [
         slug: 'page-profile',
         name: 'Profile',
         icon: 'UserIcon',
-        i18n: 'Profile'
+        i18n: 'Profile',
       },
       {
         url: '/pages/user-settings',
         slug: 'page-user-settings',
         name: 'User Settings',
         icon: 'SettingsIcon',
-        i18n: 'UserSettings'
+        i18n: 'UserSettings',
       },
       {
         url: '/pages/faq',
         slug: 'page-faq',
         name: 'FAQ',
         icon: 'HelpCircleIcon',
-        i18n: 'FAQ'
+        i18n: 'FAQ',
       },
       {
         url: '/pages/knowledge-base',
         slug: 'page-knowledge-base',
         name: 'Knowledge Base',
         icon: 'InfoIcon',
-        i18n: 'KnowledgeBase'
+        i18n: 'KnowledgeBase',
       },
       {
         url: '/pages/search',
         slug: 'page-search',
         name: 'Search',
         icon: 'SearchIcon',
-        i18n: 'Search'
+        i18n: 'Search',
       },
       {
         url: '/pages/invoice',
         slug: 'page-invoice',
         name: 'Invoice',
         icon: 'InfoIcon',
-        i18n: 'Invoice'
+        i18n: 'Invoice',
       },
       {
         url: null,
@@ -659,37 +666,37 @@ export default [
             name: 'Login',
             slug: 'pages-login',
             i18n: 'Login',
-            target: '_blank'
+            target: '_blank',
           },
           {
             url: '/pages/register',
             name: 'Register',
             slug: 'pages-register',
             i18n: 'Register',
-            target: '_blank'
+            target: '_blank',
           },
           {
             url: '/pages/forgot-password',
             name: 'Forgot Password',
             slug: 'pages-forgot-password',
             i18n: 'ForgotPassword',
-            target: '_blank'
+            target: '_blank',
           },
           {
             url: '/pages/reset-password',
             name: 'Reset Password',
             slug: 'pages-reset-password',
             i18n: 'ResetPassword',
-            target: '_blank'
+            target: '_blank',
           },
           {
             url: '/pages/lock-screen',
             name: 'Lock Screen',
             slug: 'pages-lock-screen',
             i18n: 'LockScreen',
-            target: '_blank'
-          }
-        ]
+            target: '_blank',
+          },
+        ],
       },
       {
         url: null,
@@ -703,7 +710,7 @@ export default [
             slug: 'page-not-authorized',
             icon: 'XCircleIcon',
             i18n: 'NotAuthorized',
-            target: '_blank'
+            target: '_blank',
           },
           {
             url: '/pages/maintenance',
@@ -711,7 +718,7 @@ export default [
             slug: 'page-maintenance',
             icon: 'AnchorIcon',
             i18n: 'Maintenance',
-            target: '_blank'
+            target: '_blank',
           },
           {
             url: '/pages/comingsoon',
@@ -719,25 +726,25 @@ export default [
             name: 'Coming Soon',
             icon: 'ClockIcon',
             i18n: 'ComingSoon',
-            target: '_blank'
+            target: '_blank',
           },
           {
             url: '/pages/error-404',
             name: '404',
             slug: 'page-error-404',
             i18n: '404',
-            target: '_blank'
+            target: '_blank',
           },
           {
             url: '/pages/error-500',
             name: '500',
             slug: 'page-error-500',
             i18n: '500',
-            target: '_blank'
-          }
-        ]
-      }
-    ]
+            target: '_blank',
+          },
+        ],
+      },
+    ],
   },
   {
     header: 'Charts & Maps',
@@ -756,30 +763,30 @@ export default [
             url: '/charts-and-maps/charts/apex-charts',
             name: 'Apex Charts',
             slug: 'extra-component-charts-apex-charts',
-            i18n: 'ApexCharts'
+            i18n: 'ApexCharts',
           },
           {
             url: '/charts-and-maps/charts/chartjs',
             name: 'chartjs',
             slug: 'extra-component-charts-chartjs',
-            i18n: 'chartjs'
+            i18n: 'chartjs',
           },
           {
             url: '/charts-and-maps/charts/echarts',
             name: 'echarts',
             slug: 'extra-component-charts-echarts',
-            i18n: 'echarts'
-          }
-        ]
+            i18n: 'echarts',
+          },
+        ],
       },
       {
         url: '/charts-and-maps/maps/google-map',
         name: 'Google Map',
         icon: 'MapIcon',
         slug: 'extra-component-maps-google-map',
-        i18n: 'GoogleMap'
-      }
-    ]
+        i18n: 'GoogleMap',
+      },
+    ],
   },
   {
     header: 'Others',
@@ -795,7 +802,7 @@ export default [
           {
             url: null,
             name: 'Menu Level 2.1',
-            i18n: 'MenuLevel2p1'
+            i18n: 'MenuLevel2p1',
           },
           {
             url: null,
@@ -805,23 +812,23 @@ export default [
               {
                 url: null,
                 name: 'Menu Level 3.1',
-                i18n: 'MenuLevel3p1'
+                i18n: 'MenuLevel3p1',
               },
               {
                 url: null,
                 name: 'Menu Level 3.2',
-                i18n: 'MenuLevel3p2'
-              }
-            ]
-          }
-        ]
+                i18n: 'MenuLevel3p2',
+              },
+            ],
+          },
+        ],
       },
       {
         url: null,
         name: 'Disabled Menu',
         icon: 'EyeOffIcon',
         i18n: 'DisabledMenu',
-        isDisabled: true
+        isDisabled: true,
       },
       {
         url: null,
@@ -830,12 +837,13 @@ export default [
         i18n: 'Support',
         submenu: [
           {
-            url: 'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/documentation/',
+            url:
+              'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/documentation/',
             name: 'Documentation',
             icon: 'BookOpenIcon',
             slug: 'external',
             i18n: 'Documentation',
-            target: '_blank'
+            target: '_blank',
           },
           {
             url: 'https://pixinvent.ticksy.com/',
@@ -843,11 +851,10 @@ export default [
             icon: 'LifeBuoyIcon',
             slug: 'external',
             i18n: 'RaiseSupport',
-            target: '_blank'
-          }
-        ]
-      }
-    ]
-  }
-]
-
+            target: '_blank',
+          },
+        ],
+      },
+    ],
+  },
+];
