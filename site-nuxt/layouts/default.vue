@@ -17,7 +17,7 @@
         onlineClass="notification notification-online"
         offlineClass="notification notification-offline"
       >
-        <template v-slot:offline>
+        <template #offline>
           <span>Je hebt geen internetverbinding.</span>
         </template>
       </offline-detection>
@@ -32,7 +32,6 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
 
-import BackToTop from '@/components/BackToTop.vue';
 import OfflineDetection from '@/components/OfflineDetection.vue';
 import VueIfBot from 'vue-if-bot';
 
@@ -41,7 +40,6 @@ import { MainNavigationLink } from '../store/menulink/types';
 
 @Component({
   components: {
-    BackToTop,
     OfflineDetection,
     VueIfBot: () => import('vue-if-bot'),
     HeaderStyle1: () =>

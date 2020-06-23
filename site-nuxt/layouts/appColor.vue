@@ -31,7 +31,6 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
 
-import BackToTop from '@/components/BackToTop.vue';
 import OfflineDetection from '@/components/OfflineDetection.vue';
 import IfBot from 'vue-if-bot/dist/vue-if-bot.es';
 
@@ -40,7 +39,6 @@ import { MainNavigationLink } from '../store/menulink/types';
 
 @Component({
   components: {
-    BackToTop,
     OfflineDetection,
     IfBot,
     HeaderStyle2: () =>

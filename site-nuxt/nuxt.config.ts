@@ -150,6 +150,7 @@ const config: Configuration = {
     [
       'nuxt-cookie-control',
       {
+        controlButton: false,
         barPosition: 'bottom-right',
         blockIframe: true,
         colors: {
