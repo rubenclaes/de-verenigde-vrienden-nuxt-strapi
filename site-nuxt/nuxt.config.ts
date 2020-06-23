@@ -340,7 +340,7 @@ const config: Configuration = {
   sentry: {
     dsn: process.env.SENTRY_DSN,
     publishRelease: true,
-    disabled: false,
+    disabled: IS_DEV,
     config: {}, // Additional config
   },
 

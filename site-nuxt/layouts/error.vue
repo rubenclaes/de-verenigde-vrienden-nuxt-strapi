@@ -27,6 +27,14 @@
               {{ error }}
             </h4>
           </template>
+
+          <base-button
+            size="sm"
+            type="primary"
+            icon="ni ni-bold-left"
+            @click="goToHome()"
+            >naar home</base-button
+          >
         </div>
       </div>
     </div>
@@ -37,6 +45,15 @@
 export default {
   props: ['error'],
   layout: 'appHeader', // you can set a custom layout for the error page
+  components: {
+    BaseButton: () => import('@/components/BaseButton.vue'),
+  },
+
+  methods: {
+    goToHome() {
+      this.$router.push({ path: '/' });
+    },
+  },
 };
 </script>
 
