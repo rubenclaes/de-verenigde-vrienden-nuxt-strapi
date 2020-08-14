@@ -67,7 +67,7 @@ export const getters: GetterTree<ArticleState, RootState> = {
     const latestArticles = state.articles.slice(0, 4);
 
     if (latestArticles.length === 0) {
-      console.warn(`The store is Empty`);
+      console.warn(`Articles state is Empty`);
       return latestArticles;
     }
 

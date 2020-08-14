@@ -56,13 +56,13 @@ export default class IndexPage extends Vue {
       // this is just to get the npm run dev working in not fully static mode
       if (store.getters['flexpage/list'].length != 0) {
         const page = store.getters['flexpage/bySlug'](params.id);
-        console.log(`Return from state: %o`, page);
+        console.info(`PageData from state: %o`, page);
         store.commit('flexpage/setCurrentFlexPage', page);
         return { flexPage: page };
       }
       if (store.getters['flexpage/list'].length === 0) {
         const param = params.id == undefined ? `home` : params.id;
-        console.info('Fetched from API' + param);
+        console.info('PageData from API');
 
         try {
           await store.dispatch('flexpage/fetchFlexPageBySlug', param);

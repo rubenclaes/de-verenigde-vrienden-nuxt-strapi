@@ -18,11 +18,9 @@ export const getters: GetterTree<PageState, RootState> = {
    * @returns {(FlexPage[] )}
    */
   list: (state): FlexPage[] => {
-    /*  if (state.flexPages.length === 0) {
+    if (state.flexPages.length === 0) {
       console.warn(`FlexPages state is empty!`);
-      return null;
-    } */
-    console.info(`return FlexPages from state`);
+    }
     return state.flexPages;
   },
 
