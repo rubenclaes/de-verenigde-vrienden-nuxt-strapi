@@ -37,6 +37,21 @@ export default {
         });
     });
   },
+
+  fetchDataListItemsByYear({ commit }) {
+    return new Promise((resolve, reject) => {
+      axios
+        .get('/prijs?Year=2020')
+        .then((response) => {
+          console.log(response.data);
+          commit('SET_PRODUCTS', response.data);
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  },
   // fetchEventLabels({ commit }) {
   //   return new Promise((resolve, reject) => {
   //     axios.get("/api/apps/calendar/labels")

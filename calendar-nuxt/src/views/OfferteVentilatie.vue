@@ -1,6 +1,6 @@
 <template>
   <div id="faq-page">
-    <h4>Invulblad Ventilatie</h4>
+    <h4>Offerte Ventilatie</h4>
     <form-wizard
       color="rgba(var(--vs-primary), 1)"
       :title="null"
@@ -9,16 +9,51 @@
       @on-complete="formSubmitted"
     >
       <tab-content title="Kies artikels" class="mb-5">
+        <vx-card
+          ref="filterCard"
+          title="Filters"
+          class="user-list-filters mb-8"
+          actionButtons
+          @refresh="resetColFilters"
+          @remove="resetColFilters"
+        >
+          <div class="vx-row">
+            <div class="vx-col md:w-1/2 sm:w-1/2 w-full">
+              <label class="text-sm opacity-75">Categoriëen</label>
+              <v-select
+                multiple
+                :closeOnSelect="false"
+                :options="categoryOptions"
+                v-model="categoryFilter"
+                class="mb-4 md:mb-0"
+              />
+            </div>
+            <div class="vx-col md:w-1/2 sm:w-1/2 w-full">
+              <label class="text-sm opacity-75">Prijs</label>
+              <v-select
+                :options="statusOptions"
+                :clearable="false"
+                v-model="statusFilter"
+                class="mb-4 md:mb-0"
+              />
+            </div>
+          </div>
+        </vx-card>
+
         <!-- tab 1 content -->
-        <vs-collapse type="margin" accordion class="p-0">
-          <vs-collapse-item class="faq-bg rounded-lg">
-            <div slot="header">1. Dakdoorvoer</div>
+        <vs-collapse accordion class="p-0">
+          <vs-collapse-item
+            v-for="(category, index) in categoryOptions"
+            class="faq-bg rounded-lg"
+            :key="index"
+          >
+            <div slot="header">{{ index + 1 + '. ' + category.label }}</div>
 
             <vs-table
               multiple
               v-model="selected"
               @selected="handleSelected"
-              :data="products"
+              :data="filteredArticles(category.value)"
             >
               <template slot="thead">
                 <vs-th>Diameter</vs-th>
@@ -27,193 +62,15 @@
 
               <template slot-scope="{ data }">
                 <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
-                  <vs-td :data="data[indextr].Diameter">
-                    {{ data[indextr].Diameter }} (mm)
+                  <vs-td :data="data[indextr].article.Diameter">
+                    {{ data[indextr].article.Diameter }} (mm)
                   </vs-td>
-                  <vs-td :data="data[indextr].Name">
-                    {{ data[indextr].Name }}
+                  <vs-td :data="data[indextr].article.Name">
+                    {{ data[indextr].article.Name }}
                   </vs-td>
                 </vs-tr>
               </template>
             </vs-table>
-          </vs-collapse-item>
-
-          <vs-collapse-item class="faq-bg rounded-lg">
-            <div slot="header">2. Opbouw muurrooster</div>
-
-            Nunc auctor et leo vitae suscipit. Nullam aliquet purus scelerisque
-            enim hendrerit tristique. Maecenas tincidunt dui arcu, a aliquet
-            nisl venenatis vitae. Praesent mauris ligula, porta at maximus ac,
-            rutrum vitae sapien. Donec a sapien id erat dapibus dignissim
-            sodales in est. Donec gravida dapibus sapien at sollicitudin.
-            Maecenas iaculis quam ex,
-            <br /><br />
-            eu aliquam erat sagittis eget. Suspendisse mollis felis nec ipsum
-            vehicula, at posuere libero viverra. Nam hendrerit dapibus eleifend.
-            Aliquam elit nulla, tincidunt pellentesque enim mollis, consectetur
-            placerat enim. Integer condimentum tristique ante et ullamcorper.
-            Mauris placerat pretium ex. Nam aliquam sed tortor sit amet
-            <br /><br />
-            efficitur. Mauris quis faucibus nulla. Pellentesque egestas non
-            ipsum vel maximus.
-          </vs-collapse-item>
-
-          <vs-collapse-item class="faq-bg rounded-lg">
-            <div slot="header">3. Comfoflat (Kunststof flexibel plat)</div>
-
-            Suspendisse aliquet condimentum diam, sed aliquam nisl dapibus et.
-            Aliquam euismod ullamcorper dolor eu
-          </vs-collapse-item>
-
-          <vs-collapse-item class="faq-bg rounded-lg">
-            <div slot="header">4. Comfotube (Kunststof flexibel rond)</div>
-
-            Suspendisse aliquet condimentum diam, sed aliquam nisl dapibus et.
-            Aliquam euismod ullamcorper dolor eu imperdiet. Nullam eget odio at
-            magna gravida suscipit sed vestibulum odio. Maecenas porta elit vel
-            lectus molestie, eget aliquam enim feugiat. Vivamus nec faucibus
-            nisl. Nunc venenatis tempus finibus.
-          </vs-collapse-item>
-
-          <vs-collapse-item class="faq-bg rounded-lg">
-            <div slot="header">5. CK300 (Kunststof vaste buis)</div>
-
-            Suspendisse aliquet condimentum diam, sed aliquam nisl dapibus et.
-            Aliquam euismod ullamcorper dolor eu imperdiet. Nullam eget odio at
-            magna gravida suscipit sed vestibulum odio. Maecenas porta elit vel
-            lectus molestie, eget aliquam enim feugiat. Vivamus nec faucibus
-            nisl. Nunc venenatis tempus finibus.
-          </vs-collapse-item>
-
-          <vs-collapse-item class="faq-bg rounded-lg">
-            <div slot="header">6. Geluidsdempers</div>
-
-            Suspendisse aliquet condimentum diam, sed aliquam nisl dapibus et.
-            Aliquam euismod ullamcorper dolor eu imperdiet. Nullam eget odio at
-            magna gravida suscipit sed vestibulum odio. Maecenas porta elit vel
-            lectus molestie, eget aliquam enim feugiat. Vivamus nec faucibus
-            nisl. Nunc venenatis tempus finibus.
-          </vs-collapse-item>
-
-          <vs-collapse-item>
-            <div slot="header">7. Spiraliet</div>
-
-            Suspendisse aliquet condimentum diam, sed aliquam nisl dapibus et.
-            Aliquam euismod ullamcorper dolor eu imperdiet. Nullam eget odio at
-            magna gravida suscipit sed vestibulum odio. Maecenas porta elit vel
-            lectus molestie, eget aliquam enim feugiat. Vivamus nec faucibus
-            nisl. Nunc venenatis tempus finibus.
-          </vs-collapse-item>
-
-          <vs-collapse-item>
-            <div slot="header">8. Isolatie 25mm</div>
-
-            Suspendisse aliquet condimentum diam, sed aliquam nisl dapibus et.
-            Aliquam euismod ullamcorper dolor eu imperdiet. Nullam eget odio at
-            magna gravida suscipit sed vestibulum odio. Maecenas porta elit vel
-            lectus molestie, eget aliquam enim feugiat. Vivamus nec faucibus
-            nisl. Nunc venenatis tempus finibus.
-          </vs-collapse-item>
-
-          <vs-collapse-item>
-            <div slot="header">9. Aluminium-Tape</div>
-
-            Suspendisse aliquet condimentum diam, sed aliquam nisl dapibus et.
-            Aliquam euismod ullamcorper dolor eu imperdiet. Nullam eget odio at
-            magna gravida suscipit sed vestibulum odio. Maecenas porta elit vel
-            lectus molestie, eget aliquam enim feugiat. Vivamus nec faucibus
-            nisl. Nunc venenatis tempus finibus.
-          </vs-collapse-item>
-
-          <vs-collapse-item>
-            <div slot="header">10. Stokbouten en toebehoren</div>
-
-            Suspendisse aliquet condimentum diam, sed aliquam nisl dapibus et.
-            Aliquam euismod ullamcorper dolor eu imperdiet. Nullam eget odio at
-            magna gravida suscipit sed vestibulum odio. Maecenas porta elit vel
-            lectus molestie, eget aliquam enim feugiat. Vivamus nec faucibus
-            nisl. Nunc venenatis tempus finibus.
-          </vs-collapse-item>
-
-          <vs-collapse-item>
-            <div slot="header">11. Pluggen</div>
-
-            Suspendisse aliquet condimentum diam, sed aliquam nisl dapibus et.
-            Aliquam euismod ullamcorper dolor eu imperdiet. Nullam eget odio at
-            magna gravida suscipit sed vestibulum odio. Maecenas porta elit vel
-            lectus molestie, eget aliquam enim feugiat. Vivamus nec faucibus
-            nisl. Nunc venenatis tempus finibus.
-          </vs-collapse-item>
-
-          <vs-collapse-item>
-            <div slot="header">12. Toezichtluiken</div>
-
-            Suspendisse aliquet condimentum diam, sed aliquam nisl dapibus et.
-            Aliquam euismod ullamcorper dolor eu imperdiet. Nullam eget odio at
-            magna gravida suscipit sed vestibulum odio. Maecenas porta elit vel
-            lectus molestie, eget aliquam enim feugiat. Vivamus nec faucibus
-            nisl. Nunc venenatis tempus finibus.
-          </vs-collapse-item>
-
-          <vs-collapse-item>
-            <div slot="header">13. Ventilatie-unit (D-Systeem)</div>
-
-            Suspendisse aliquet condimentum diam, sed aliquam nisl dapibus et.
-            Aliquam euismod ullamcorper dolor eu imperdiet. Nullam eget odio at
-            magna gravida suscipit sed vestibulum odio. Maecenas porta elit vel
-            lectus molestie, eget aliquam enim feugiat. Vivamus nec faucibus
-            nisl. Nunc venenatis tempus finibus.
-          </vs-collapse-item>
-
-          <vs-collapse-item>
-            <div slot="header">
-              14. ComfoCool (Optioneel, prijs aan te vragen)
-            </div>
-
-            Suspendisse aliquet condimentum diam, sed aliquam nisl dapibus et.
-            Aliquam euismod ullamcorper dolor eu imperdiet. Nullam eget odio at
-            magna gravida suscipit sed vestibulum odio. Maecenas porta elit vel
-            lectus molestie, eget aliquam enim feugiat. Vivamus nec faucibus
-            nisl. Nunc venenatis tempus finibus.
-          </vs-collapse-item>
-
-          <vs-collapse-item>
-            <div slot="header">15. Ventielen</div>
-
-            Suspendisse aliquet condimentum diam, sed aliquam nisl dapibus et.
-            Aliquam euismod ullamcorper dolor eu imperdiet. Nullam eget odio at
-            magna gravida suscipit sed vestibulum odio. Maecenas porta elit vel
-            lectus molestie, eget aliquam enim feugiat. Vivamus nec faucibus
-            nisl. Nunc venenatis tempus finibus.
-          </vs-collapse-item>
-
-          <vs-collapse-item>
-            <div slot="header">16. LAN- Module (Internetverbinding)</div>
-
-            Suspendisse aliquet condimentum diam, sed aliquam nisl dapibus et.
-            Aliquam euismod ullamcorper dolor eu imperdiet. Nullam eget odio at
-            magna gravida suscipit sed vestibulum odio. Maecenas porta elit vel
-            lectus molestie, eget aliquam enim feugiat. Vivamus nec faucibus
-            nisl. Nunc venenatis tempus finibus.
-          </vs-collapse-item>
-
-          <vs-collapse-item>
-            <div slot="header">17. Inregelen installatie</div>
-
-            Suspendisse aliquet condimentum diam, sed aliquam nisl dapibus et.
-            Aliquam euismod ullamcorper dolor eu imperdiet. Nullam eget odio at
-            magna gravida suscipit sed vestibulum odio. Maecenas porta elit vel
-            lectus molestie, eget aliquam enim feugiat. Vivamus nec faucibus
-            nisl. Nunc venenatis tempus finibus.
-          </vs-collapse-item>
-          <vs-collapse-item>
-            <div slot="header">18. Plaatsing (Boringen inbegrepen)</div>
-
-            Suspendisse aliquet condimentum diam, sed aliquam nisl dapibus et.
-            Aliquam euismod ullamcorper dolor eu imperdiet. Nullam eget odio at
-            magna gravida suscipit sed vestibulum odio. Maecenas porta elit vel
-            lectus molestie, eget aliquam enim feugiat. Vivamus nec faucibus
-            nisl. Nunc venenatis tempus finibus.
           </vs-collapse-item>
         </vs-collapse>
       </tab-content>
@@ -243,18 +100,18 @@
 
                 <!-- HEADER -->
                 <template slot="thead">
-                  <vs-th class="pointer-events-none">NAAM</vs-th>
+                  <vs-th class="pointer-events-none">Item</vs-th>
+                  <vs-th class="pointer-events-none">Kostprijs</vs-th>
                   <vs-th class="pointer-events-none">#</vs-th>
-                  <vs-th class="pointer-events-none">Prijs Offerte</vs-th>
+
                   <vs-th class="pointer-events-none" v-if="showDiscount"
                     >Korting (%)</vs-th
                   >
                   <vs-th class="pointer-events-none" v-if="showDiscount"
-                    >Lambrechts</vs-th
+                    >Winst</vs-th
                   >
-                  <vs-th class="pointer-events-none" v-if="showDiscount"
-                    >WINST</vs-th
-                  >
+                  <vs-th class="pointer-events-none">Korting Kl.</vs-th>
+                  <vs-th class="pointer-events-none">Totaal</vs-th>
                 </template>
 
                 <!-- DATA -->
@@ -263,6 +120,51 @@
                     <vs-td :data="data[index].Name">{{
                       data[index].Name
                     }}</vs-td>
+                    <vs-td :data="data[index].GrossPrice"
+                      >&euro; {{ data[index].GrossPrice }}</vs-td
+                    >
+                    <vs-td class="md:w-1/6 lg:w-1/6 xl:w-1/6">
+                      <vx-input-group>
+                        <vs-input
+                          v-model="numberOfArticles[data[index].Guid]"
+                          size="small"
+                          placeholder="0"
+                          type="number"
+                        />
+
+                        <template slot="append">
+                          <div class="append-text bg-primary">
+                            <span>{{ data[index].article.Unit }}</span>
+                          </div>
+                        </template>
+                      </vx-input-group>
+                    </vs-td>
+
+                    <vs-td
+                      class="md:w-1/6 lg:w-1/6 xl:w-1/6"
+                      v-if="showDiscount"
+                      :data="data[index].rate"
+                    >
+                      <vx-input-group>
+                        <vs-input
+                          v-model="numberOfArticles[data[index].article.Guid]"
+                          size="small"
+                          :value="data[index].article.ClientDiscount"
+                          :placeholder="data[index].article.ClientDiscount"
+                        />
+
+                        <template slot="append">
+                          <div class="append-text bg-danger">
+                            <span>%</span>
+                          </div>
+                        </template>
+                      </vx-input-group></vs-td
+                    >
+
+                    <vs-td v-if="showDiscount" :data="data[index].amount"
+                      >{{ data[index].amount }} &euro;</vs-td
+                    >
+
                     <vs-td class="md:w-1/6 lg:w-1/6 xl:w-1/6">
                       <vx-input-group>
                         <vs-input
@@ -273,41 +175,18 @@
 
                         <template slot="append">
                           <div class="append-text bg-primary">
-                            <span>st</span>
+                            <span>%</span>
                           </div>
                         </template>
                       </vx-input-group>
                     </vs-td>
-                    <vs-td :data="data[index].rate"
-                      >{{
-                        total(
-                          data[index].prijs[0].GrossPrice,
-                          numberOfArticles[index]
-                        )
-                      }}
-                      euro
-                    </vs-td>
-                    <vs-td
-                      class="md:w-1/6 lg:w-1/6 xl:w-1/6"
-                      v-if="showDiscount"
-                      :data="data[index].rate"
-                    >
-                      <vx-input-group>
-                        <vs-input size="small" placeholder="0" />
 
-                        <template slot="append">
-                          <div class="append-text bg-danger">
-                            <span>%</span>
-                          </div>
-                        </template>
-                      </vx-input-group></vs-td
-                    >
-                    <vs-td v-if="showDiscount" :data="data[index].rate"
-                      >{{ data[index].rate }} USD</vs-td
-                    >
-                    <vs-td v-if="showDiscount" :data="data[index].amount"
-                      >{{ data[index].amount }} USD</vs-td
-                    >
+                    <vs-td :data="data[index].rate">
+                      &euro;
+                      {{
+                        total(data[index].GrossPrice, numberOfArticles[index])
+                      }}
+                    </vs-td>
                   </vs-tr>
                 </template>
               </vs-table>
@@ -368,8 +247,8 @@
         </div>
       </tab-content>
 
-      <!-- tab 3 content -->
-      <tab-content title="Step 3" class="mb-5">
+      <!-- tab 4 content -->
+      <tab-content title="Step 4" class="mb-5">
         <div class="vx-row">
           <div class="vx-col md:w-1/2 w-full">
             <vs-input
@@ -425,19 +304,75 @@
 
 <script>
 import moduleDataList from '@/store/data-list/moduleDataList.js';
-
+import vSelect from 'vue-select';
 import { FormWizard, TabContent } from 'vue-form-wizard';
 import 'vue-form-wizard/dist/vue-form-wizard.min.css';
 
 export default {
-  components: { FormWizard, TabContent },
+  components: { FormWizard, TabContent, vSelect },
 
   data() {
     return {
+      // Filter Options
+
+      faqFilter: 1,
+
+      categoryFilter: { label: 'All', value: 'all' },
+      categoryOptions: [
+        { label: 'Dakdoorvoer', value: 'Dakdoorvoer' },
+        { label: 'Opbouw muurrooster', value: 'Opbouw_Muurrooster' },
+        { label: 'Comfoflat (Kunststof flexibel plat)', value: 'Comfoflat' },
+        { label: 'Comfotube (Kunststof flexibel rond)', value: 'Comfotube' },
+        { label: 'CK300 (Kunststof vaste buis)', value: 'CK300' },
+        { label: 'Geluidsdempers', value: 'Geluidsdempers' },
+        { label: 'Spiraliet', value: 'Spiraliet' },
+        { label: 'Isolatie 25mm', value: 'Isolatie' },
+        { label: 'Aluminium-Tape', value: 'Aluminium_Tape' },
+        { label: 'Stokbouten en toebehoren', value: 'Stokbouten_Toebehoren' },
+        { label: 'Pluggen', value: 'Pluggen' },
+        { label: 'Toezichtluiken', value: 'Toezichtluiken' },
+        { label: 'Ventilatie-unit (D-Systeem)', value: 'Ventilatie_Unit' },
+        {
+          label: 'ComfoCool (Optioneel, prijs aan te vragen)',
+          value: 'ComfoCool',
+        },
+        { label: 'Ventielen', value: 'Ventielen' },
+        {
+          label: 'LAN- Module (Internetverbinding)',
+          value: 'LAN',
+        },
+        { label: 'Inregelen installatie', value: 'Inregelen_Installatie' },
+        { label: 'Plaatsing (Boringen inbegrepen)', value: 'Plaatsing' },
+      ],
+      statusFilter: { label: 'All', value: 'all' },
+      statusOptions: [
+        { label: 'All', value: 'all' },
+        { label: 'Active', value: 'active' },
+        { label: 'Deactivated', value: 'deactivated' },
+        { label: 'Blocked', value: 'blocked' },
+      ],
+
+      isVerifiedFilter: { label: 'All', value: 'all' },
+      isVerifiedOptions: [
+        { label: 'All', value: 'all' },
+        { label: 'Yes', value: 'yes' },
+        { label: 'No', value: 'no' },
+      ],
+
+      departmentFilter: { label: 'All', value: 'all' },
+      departmentOptions: [
+        { label: 'All', value: 'all' },
+        { label: 'Sales', value: 'sales' },
+        { label: 'Development', value: 'development' },
+        { label: 'Management', value: 'management' },
+      ],
+
+      searchQuery: '',
+
       selected: [],
       showDiscount: false,
 
-      numberOfArticles: [],
+      numberOfArticles: ['1'],
       transparent: 'transparent',
       passengers: 1,
       firstName: '',
@@ -470,12 +405,54 @@ export default {
     };
   },
 
+  watch: {
+    categoryFilter(obj) {
+      console.log(obj);
+      this.setColumnFilter('role', obj.value);
+    },
+  },
+
   computed: {
     products() {
       return this.$store.state.dataList.products;
     },
+
+    filteredFaq() {
+      return this.products.filter((faq) => {
+        if (this.faqFilter === 1) return faq.categoryId === 1;
+        else if (this.faqFilter === 2)
+          return (
+            faq.categoryId === 2 &&
+            faq.ans.toLowerCase().includes(this.faqSearchQuery.toLowerCase())
+          );
+        else if (this.faqFilter === 3)
+          return (
+            faq.categoryId === 3 &&
+            faq.ans.toLowerCase().includes(this.faqSearchQuery.toLowerCase())
+          );
+        else if (this.faqFilter === 4)
+          return (
+            faq.categoryId === 4 &&
+            faq.ans.toLowerCase().includes(this.faqSearchQuery.toLowerCase())
+          );
+        else if (this.faqFilter === 5)
+          return (
+            faq.categoryId === 5 &&
+            faq.ans.toLowerCase().includes(this.faqSearchQuery.toLowerCase())
+          );
+      });
+    },
   },
   methods: {
+    filteredArticles(filter) {
+      const articles = this.$store.state.dataList.products;
+      return articles.filter((article) => article.article.Category === filter);
+    },
+    setColumnFilter(column, val) {
+      console.log(val);
+    },
+    resetColFilters() {},
+    updateSearchQuery(val) {},
     total(price, amount) {
       return parseFloat(price) * parseFloat(amount);
     },
@@ -497,7 +474,7 @@ export default {
       this.$store.registerModule('dataList', moduleDataList);
       moduleDataList.isRegistered = true;
     }
-    this.$store.dispatch('dataList/fetchDataListItems');
+    this.$store.dispatch('dataList/fetchDataListItemsByYear');
   },
 };
 </script>

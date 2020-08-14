@@ -340,7 +340,7 @@ const config: Configuration = {
   sentry: {
     dsn: process.env.SENTRY_DSN,
     publishRelease: true,
-    disabled: IS_DEV,
+    disabled: true,
     config: {}, // Additional config
   },
 
@@ -373,6 +373,9 @@ const config: Configuration = {
     },
   },
 
+  /*
+   ** Static generation
+   */
   generate: {
     fallback: true,
     routes: dynamicRoutes,
