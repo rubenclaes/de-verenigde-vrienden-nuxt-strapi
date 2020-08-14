@@ -1,7 +1,7 @@
 {
   "name": "de-verenigde-vrienden-nuxt-strapi",
-  "version": "2.0.1",
-  "description": "A Nuxt.js satic site with Strapi backend",
+  "version": "2.1.0",
+  "description": "A Nuxt.js fully satic site for Harmonie De Verenigde Vrienden",
   "author": "Ruben Claes",
   "private": true,
   "scripts": {
