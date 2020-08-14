@@ -34,7 +34,7 @@
     "bootstrap-vue": "^2.15.0",
     "lazysizes": "^5.2.2",
     "nouislider": "^14.1.1",
-    "nuxt": "2.13.1",
+    "nuxt": "2.13.2",
     "nuxt-cookie-control": "^1.8.6",
     "nuxt-gmaps": "^1.2.5",
     "nuxt-property-decorator": "^2.7.2",

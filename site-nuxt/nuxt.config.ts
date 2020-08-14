@@ -52,14 +52,13 @@ const config: Configuration = {
   target: 'static',
 
   publicRuntimeConfig: {
-    baseURL: process.env.BASE_URL,
+    baseURL: process.env.API_URL || 'http://localhost:1338',
+    strapiUser: process.env.STRAPI_IDENTIFIER,
+    strapiPassword: process.env.STRAPI_PASSWORD,
+    stripePublicKey: process.env.STRIPE_PUBLIC_KEY,
   },
 
-  privateRuntimeConfig: {
-    strapiUser: process.env.STRAPI_IDENTIFIER || '',
-    strapiPassword: process.env.STRAPI_PASSWORD || '',
-    stripePublicKey: process.env.STRIPE_PUBLIC_KEY || '',
-  },
+  privateRuntimeConfig: {},
 
   /*
    ** Headers of the page
