@@ -35,7 +35,7 @@
     "dotenv": "^8.2.0",
     "lazysizes": "^5.2.2",
     "nouislider": "^14.1.1",
-    "nuxt": "^2.13.0-26491697.9b29124d",
+    "nuxt-edge": "^2.13.0-26491697.9b29124d",
     "nuxt-cookie-control": "^1.8.6",
     "nuxt-gmaps": "^1.2.5",
     "nuxt-property-decorator": "^2.7.2",
