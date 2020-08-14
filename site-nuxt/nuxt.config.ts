@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { Configuration } from '@nuxt/types';
-require('./utils/config');
 
 const IS_DEV = process.env.NODE_ENV !== 'production';
 
@@ -52,7 +51,11 @@ const config: Configuration = {
   mode: 'universal',
   target: 'static',
 
-  env: {
+  publicRuntimeConfig: {
+    baseURL: process.env.BASE_URL,
+  },
+
+  privateRuntimeConfig: {
     strapiUser: process.env.STRAPI_IDENTIFIER || '',
     strapiPassword: process.env.STRAPI_PASSWORD || '',
     stripePublicKey: process.env.STRIPE_PUBLIC_KEY || '',
