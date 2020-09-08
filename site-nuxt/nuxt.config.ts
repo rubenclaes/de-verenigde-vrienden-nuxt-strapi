@@ -356,7 +356,7 @@ const config: Configuration = {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxt/typescript-build'],
+  buildModules: ['@nuxt/typescript-build' ,  '@nuxtjs/composition-api'],
 
   /*
    ** Build configuration
@@ -379,6 +379,8 @@ const config: Configuration = {
    ** Static generation
    */
   generate: {
+
+    interval: 2000,
     fallback: true,
     routes: dynamicRoutes,
   },

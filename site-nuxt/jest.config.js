@@ -2,6 +2,7 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
     '^~/(.*)$': '<rootDir>/$1',
+    '@nuxtjs/composition-api': '@nuxtjs/composition-api/lib/cjs/entrypoint.js',
     '^vue$': 'vue/dist/vue.common.js'
   },
   moduleFileExtensions: ['ts', 'js', 'vue', 'json'],

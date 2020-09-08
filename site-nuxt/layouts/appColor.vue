@@ -9,7 +9,9 @@
     ></header-style2>
 
     <IfBot>
-      <CookieControl />
+      <client-only>
+        <CookieControl />
+      </client-only>
     </IfBot>
 
     <client-only>
