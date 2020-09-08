@@ -16,8 +16,9 @@
     "testc": "tsc -p tsconfig.json",
     "lint": "tslint --project .",
     "lintfix": "tslint --fix --project .",
+    "export": "nuxt-ts export",
     "serve": "nuxt-ts serve",
-    "static": "npm run build:static && npm run export"
+    "static": "npm run generate"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^2.0.0",
