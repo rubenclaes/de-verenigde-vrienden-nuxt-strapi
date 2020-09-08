@@ -8,6 +8,14 @@
       :navItemList="navItemList"
     ></header-style2>
 
+    <client-only>
+      <back-to-top bottom="50px" right="50px">
+        <button type="button" class="btn btn-primary btn-to-top">
+          <i class="fa fa-chevron-up"></i>
+        </button>
+      </back-to-top>
+    </client-only>
+
     <IfBot>
       <client-only>
         <CookieControl />

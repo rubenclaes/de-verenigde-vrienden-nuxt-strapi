@@ -121,6 +121,7 @@ const config: Configuration = {
     '~/plugins/vue-headroom.client.js',
     '~/plugins/vue-observe-visibility.client.js',
     '~/plugins/vue-glide.client.js',
+    '~/plugins/vue-backtotop.client.js',
 
     { src: '~/plugins/sweetalert.ts', mode: 'client' },
     { src: '~/plugins/vuex-persist', mode: 'client' },
@@ -356,7 +357,7 @@ const config: Configuration = {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxt/typescript-build' ,  '@nuxtjs/composition-api'],
+  buildModules: ['@nuxt/typescript-build', '@nuxtjs/composition-api'],
 
   /*
    ** Build configuration
@@ -379,7 +380,6 @@ const config: Configuration = {
    ** Static generation
    */
   generate: {
-
     interval: 2000,
     fallback: true,
     routes: dynamicRoutes,
