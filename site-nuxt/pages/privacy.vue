@@ -240,8 +240,8 @@ import { Component, Vue } from 'nuxt-property-decorator';
     Card: () => import('@/components/Card.vue'),
     Badge: () => import('@/components/Badge.vue'),
     Icon: () => import('@/components/Icon.vue'),
-    BaseInput: () => import('@/components/BaseInput.vue')
-  }
+    BaseInput: () => import('@/components/BaseInput.vue'),
+  },
 })
 export default class PrivacyPage extends Vue {
   private title: string = 'Privacy';
@@ -249,7 +249,7 @@ export default class PrivacyPage extends Vue {
   head() {
     return {
       title: this.title,
-      meta: [{ hid: 'og:title', property: 'og:title', content: this.title }]
+      meta: [{ hid: 'og:title', property: 'og:title', content: this.title }],
     };
   }
 }
