@@ -1,9 +1,9 @@
 <template>
   <div class="row">
     <template v-if="loading">
-      <div class="text-center">
+      <div class="col-lg-3 text-center">
         <b-spinner
-          style="width: 3rem; height: 3rem;"
+          style="width: 3rem; height: 3rem"
           label="Large Spinner"
           type="grow"
         ></b-spinner>
