@@ -21,9 +21,15 @@ export async function loadFlexPage() {
  */
 export async function loadFlexPageBySlug(slug: string) {
   try {
-    return await $axios.get(`flex-pages?slug=${slug}`).then((res) => {
-      return res.data[0];
-    });
+    return await $axios
+      .get(`flex-pages`, {
+        params: {
+          slug: slug,
+        },
+      })
+      .then((res) => {
+        return res.data[0];
+      });
   } catch (error) {
     throw error;
   }

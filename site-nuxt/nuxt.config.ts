@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { Configuration } from '@nuxt/types';
-require('./utils/config');
 
 const IS_DEV = process.env.NODE_ENV !== 'production';
 
@@ -52,11 +51,14 @@ const config: Configuration = {
   mode: 'universal',
   target: 'static',
 
-  env: {
-    strapiUser: process.env.STRAPI_IDENTIFIER || '',
-    strapiPassword: process.env.STRAPI_PASSWORD || '',
-    stripePublicKey: process.env.STRIPE_PUBLIC_KEY || '',
+  publicRuntimeConfig: {
+    baseURL: process.env.API_URL || 'http://localhost:1338',
+    strapiUser: process.env.STRAPI_IDENTIFIER,
+    strapiPassword: process.env.STRAPI_PASSWORD,
+    stripePublicKey: process.env.STRIPE_PUBLIC_KEY,
   },
+
+  privateRuntimeConfig: {},
 
   /*
    ** Headers of the page
@@ -119,6 +121,7 @@ const config: Configuration = {
     '~/plugins/vue-headroom.client.js',
     '~/plugins/vue-observe-visibility.client.js',
     '~/plugins/vue-glide.client.js',
+    '~/plugins/vue-backtotop.client.js',
 
     { src: '~/plugins/sweetalert.ts', mode: 'client' },
     { src: '~/plugins/vuex-persist', mode: 'client' },
@@ -150,6 +153,7 @@ const config: Configuration = {
     [
       'nuxt-cookie-control',
       {
+        controlButton: false,
         barPosition: 'bottom-right',
         blockIframe: true,
         colors: {
@@ -353,7 +357,7 @@ const config: Configuration = {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxt/typescript-build'],
+  buildModules: ['@nuxt/typescript-build', '@nuxtjs/composition-api'],
 
   /*
    ** Build configuration
@@ -372,7 +376,11 @@ const config: Configuration = {
     },
   },
 
+  /*
+   ** Static generation
+   */
   generate: {
+    interval: 2000,
     fallback: true,
     routes: dynamicRoutes,
   },

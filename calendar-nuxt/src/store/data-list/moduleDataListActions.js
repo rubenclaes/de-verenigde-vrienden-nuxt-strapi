@@ -7,28 +7,50 @@
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
-import axios from '@/axios.js'
+import axios from '@/axios.js';
 
 export default {
-  addItem ({ commit }, item) {
+  addItem({ commit }, item) {
     return new Promise((resolve, reject) => {
-      axios.post('/api/data-list/products/', {item})
+      axios
+        .post('/api/data-list/products/', { item })
         .then((response) => {
-          commit('ADD_ITEM', Object.assign(item, {id: response.data.id}))
-          resolve(response)
+          commit('ADD_ITEM', Object.assign(item, { id: response.data.id }));
+          resolve(response);
         })
-        .catch((error) => { reject(error) })
-    })
+        .catch((error) => {
+          reject(error);
+        });
+    });
   },
-  fetchDataListItems ({ commit }) {
+  fetchDataListItems({ commit }) {
     return new Promise((resolve, reject) => {
-      axios.get('/api/data-list/products')
+      axios
+        .get('/articles')
         .then((response) => {
-          commit('SET_PRODUCTS', response.data)
-          resolve(response)
+          console.log(response.data);
+          commit('SET_PRODUCTS', response.data);
+          resolve(response);
         })
-        .catch((error) => { reject(error) })
-    })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  },
+
+  fetchDataListItemsByYear({ commit }) {
+    return new Promise((resolve, reject) => {
+      axios
+        .get('/prijs?Year=2020')
+        .then((response) => {
+          console.log(response.data);
+          commit('SET_PRODUCTS', response.data);
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
   },
   // fetchEventLabels({ commit }) {
   //   return new Promise((resolve, reject) => {
@@ -40,26 +62,32 @@ export default {
   //       .catch((error) => { reject(error) })
   //   })
   // },
-  updateItem ({ commit }, item) {
+  updateItem({ commit }, item) {
     return new Promise((resolve, reject) => {
-      axios.post(`/api/data-list/products/${item.id}`, {item})
+      axios
+        .post(`/api/data-list/products/${item.id}`, { item })
         .then((response) => {
-          commit('UPDATE_PRODUCT', response.data)
-          resolve(response)
+          commit('UPDATE_PRODUCT', response.data);
+          resolve(response);
         })
-        .catch((error) => { reject(error) })
-    })
+        .catch((error) => {
+          reject(error);
+        });
+    });
   },
-  removeItem ({ commit }, itemId) {
+  removeItem({ commit }, itemId) {
     return new Promise((resolve, reject) => {
-      axios.delete(`/api/data-list/products/${itemId}`)
+      axios
+        .delete(`/api/data-list/products/${itemId}`)
         .then((response) => {
-          commit('REMOVE_ITEM', itemId)
-          resolve(response)
+          commit('REMOVE_ITEM', itemId);
+          resolve(response);
         })
-        .catch((error) => { reject(error) })
-    })
-  }
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  },
   // eventDragged({ commit }, payload) {
   //   return new Promise((resolve, reject) => {
   //     axios.post(`/api/apps/calendar/event/dragged/${payload.event.id}`, {payload: payload})
@@ -76,4 +104,4 @@ export default {
   //       .catch((error) => { reject(error) })
   //   })
   // },
-}
+};

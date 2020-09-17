@@ -1,18 +1,6 @@
 import axios from '../../../axios/index.js';
 import store from '../../../../store/store.js';
 
-// Token Refresh
-let isAlreadyFetchingAccessToken = false;
-let subscribers = [];
-
-function onAccessTokenFetched(access_token) {
-  subscribers = subscribers.filter((callback) => callback(access_token));
-}
-
-function addSubscriber(callback) {
-  subscribers.push(callback);
-}
-
 export default {
   init() {
     axios.interceptors.response.use(
@@ -46,10 +34,16 @@ export default {
       }
     );
   },
-  login(email, pwd) {
-    return axios.post('/auth/local', {
-      identifier: email,
-      password: pwd,
+
+  createDelivery(createDeliveryData) {
+    return axios.post('/retours', {
+      user: {
+        id: 1,
+      },
+      retourType: createDeliveryData.retourType,
+      customerName: createDeliveryData.customerName,
+      language: createDeliveryData.language,
+      contactPerson: createDeliveryData.contactPerson,
     });
   },
   registerUser(name, email, pwd) {

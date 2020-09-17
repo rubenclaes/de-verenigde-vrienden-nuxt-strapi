@@ -45,24 +45,23 @@ export default class IndexPage extends Vue {
     // Payload set during static generation
     // If a payload is provided,
     // no API request is made.
-
     if (payload) {
       console.info('Payload page: %o', payload);
       const { page } = payload;
       store.commit('flexpage/setCurrentFlexPage', page);
-
       return { flexPage: page };
-    } /*  else {
-      // this is just to get the npm run dev working in not fully static mode
+    } else {
+      // This is just to get the npm run dev working in not fully static mode
       if (store.getters['flexpage/list'].length != 0) {
         const page = store.getters['flexpage/bySlug'](params.id);
-        console.log(`Return from state: %o`, page);
+        console.info(`PageData from state: %o`, page);
         store.commit('flexpage/setCurrentFlexPage', page);
         return { flexPage: page };
       }
+
       if (store.getters['flexpage/list'].length === 0) {
         const param = params.id == undefined ? `home` : params.id;
-        console.info('Fetched from API' + param);
+        console.info('PageData from API');
 
         try {
           await store.dispatch('flexpage/fetchFlexPageBySlug', param);
@@ -73,7 +72,7 @@ export default class IndexPage extends Vue {
           // error({ statusCode: 404, message: 'Post not found' });
         }
       }
-    } */
+    }
   }
 }
 </script>

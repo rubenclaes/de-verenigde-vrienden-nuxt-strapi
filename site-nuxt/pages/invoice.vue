@@ -67,8 +67,8 @@ export default class InvoicePage extends Vue {
   async login() {
     try {
       await this.$store.dispatch('auth/login', {
-        identifier: process.env.strapiUser,
-        password: process.env.strapiPassword,
+        identifier: this.$config.strapiUser,
+        password: this.$config.strapiPassword,
       });
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -104,7 +104,7 @@ export default class InvoicePage extends Vue {
   }
 
   async loadStripe() {
-    const stripeKey = process.env.stripePublicKey;
+    const stripeKey = this.$config.stripePublicKey;
     if (stripeKey) {
       this.stripe = await loadStripe(stripeKey);
     } else {

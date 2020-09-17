@@ -13,19 +13,8 @@
               />
             </div>
           </div>
-          <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
+          <div class="order-lg-3 text-lg-right align-self-lg-center">
             <div class="card-profile-actions py-4 mt-lg-0"></div>
-          </div>
-          <div class="col-lg-4 order-lg-1 mt-5">
-            <div class="card-profile-stats d-flex justify-content-center">
-              <base-button
-                size="lg"
-                type="secondary"
-                icon="ni ni-bold-left"
-                @click="goToHome()"
-                >naar home</base-button
-              >
-            </div>
           </div>
         </div>
 

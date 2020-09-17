@@ -1,14 +1,6 @@
 <template>
   <footer class="footer">
     <div class="container">
-      <back-to-top
-        v-scroll-to="'#top'"
-        icon="ni ni-bold-up"
-        tag="a"
-        textColor="secondary"
-        size="lg"
-        iconOnly
-      ></back-to-top>
       <div class="row row-grid align-items-center my-md">
         <div class="col-lg-6">
           <h3
@@ -82,12 +74,8 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
 
-import BackToTop from '@/components/BackToTop.vue';
-
 @Component({
-  components: {
-    BackToTop,
-  },
+  components: {},
 })
 export default class footerStyle1 extends Vue {
   year = new Date().getFullYear();

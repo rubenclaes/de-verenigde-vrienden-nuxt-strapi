@@ -21,15 +21,13 @@ export const actions: ActionTree<ArticleState, RootState> = {
    * Fetch articles data en put them in the articles state
    */
   async fetchData({ commit }: ArticleActionContext) {
-    console.info(`Fetching articles from API`);
-    commit('clear');
     commit('setLoading', true);
-
     //await new Promise((resolve) => setTimeout(resolve, 10000));
     const articles = await loadArticles();
-    commit('setLoading', false);
+    commit('clear');
     commit('setSuccess', true);
     commit('set', articles);
+    commit('setLoading', false);
     //console.info(`Articles from API: %o`, articles);
   },
 

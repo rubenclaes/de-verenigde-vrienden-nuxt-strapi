@@ -163,6 +163,13 @@
         </vs-dropdown>
       </div>
 
+      <datepicker
+        :language="langNl"
+        name="start-time"
+        v-model="startDate"
+        class="pickatime"
+      ></datepicker>
+
       <ValidationProvider rules="required|is_time" immediate>
         <div slot-scope="{ errors }">
           <vs-input
@@ -305,7 +312,7 @@ import moduleCalendar from '@/store/calendar/moduleCalendar.js';
 require('vue-simple-calendar/static/css/default.css');
 
 import Datepicker from 'vuejs-datepicker';
-import { en, he } from 'vuejs-datepicker/src/locale';
+import { en, he, nl } from 'vuejs-datepicker/src/locale';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 
 export default {
@@ -329,6 +336,7 @@ export default {
 
       langHe: he,
       langEn: en,
+      langNl: nl,
 
       url: '',
       calendarView: 'month',

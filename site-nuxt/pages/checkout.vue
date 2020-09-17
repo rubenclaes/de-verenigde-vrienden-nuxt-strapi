@@ -409,8 +409,8 @@ export default class CheckoutPage extends Vue {
   async login() {
     try {
       await this.$store.dispatch('auth/login', {
-        identifier: process.env.strapiUser,
-        password: process.env.strapiPassword,
+        identifier: this.$config.strapiUser,
+        password: this.$config.strapiPassword,
       });
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -427,7 +427,7 @@ export default class CheckoutPage extends Vue {
     if (!this.isLoggedIn()) {
       this.login();
     }
-    const stripeKey = process.env.stripePublicKey;
+    const stripeKey = this.$config.stripePublicKey;
     if (stripeKey) {
       await this.loadStripe(stripeKey);
       await this.createAndMountFormElements();

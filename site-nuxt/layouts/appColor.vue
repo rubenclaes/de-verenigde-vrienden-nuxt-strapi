@@ -8,8 +8,18 @@
       :navItemList="navItemList"
     ></header-style2>
 
+    <client-only>
+      <back-to-top bottom="50px" right="50px">
+        <button type="button" class="btn btn-primary btn-to-top">
+          <i class="fa fa-chevron-up"></i>
+        </button>
+      </back-to-top>
+    </client-only>
+
     <IfBot>
-      <CookieControl />
+      <client-only>
+        <CookieControl />
+      </client-only>
     </IfBot>
 
     <client-only>
@@ -31,7 +41,6 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
 
-import BackToTop from '@/components/BackToTop.vue';
 import OfflineDetection from '@/components/OfflineDetection.vue';
 import IfBot from 'vue-if-bot/dist/vue-if-bot.es';
 
@@ -40,7 +49,6 @@ import { MainNavigationLink } from '../store/menulink/types';
 
 @Component({
   components: {
-    BackToTop,
     OfflineDetection,
     IfBot,
     HeaderStyle2: () =>
