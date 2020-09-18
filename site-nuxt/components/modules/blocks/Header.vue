@@ -1,8 +1,8 @@
 <template>
-  <div class="page-header page-header-small header-filter">
+  <div class="page-header page-header-small header-filter jarallax">
     <div
       data-aos="reveal-header-bg"
-      class="page-header-image"
+      class="jarallax-img page-header-image"
       :style="{ backgroundImage: 'url(' + data.image.url + ')' }"
     ></div>
     <div class="container">

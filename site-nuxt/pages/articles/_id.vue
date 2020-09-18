@@ -1,5 +1,12 @@
 <template>
   <div>
+    <div class="first jarallax">
+      <img
+        src="https://images.pexels.com/photos/2951096/pexels-photo-2951096.jpeg?cs=srgb&dl=photo-of-woman-wearing-head-scarf-2951096.jpg&fm=jpg"
+        class="jarallax-img"
+      />
+      <h1>Hello Jarallax</h1>
+    </div>
     <Header :data="blogPost.header"></Header>
     <section class="section">
       <div class="container">
@@ -219,3 +226,9 @@ export default class ArticleView extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.first {
+  height: 600px;
+}
+</style>

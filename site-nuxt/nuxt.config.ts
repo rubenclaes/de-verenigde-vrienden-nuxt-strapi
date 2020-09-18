@@ -113,6 +113,7 @@ const config: Configuration = {
    */
   plugins: [
     '~/plugins/aos.client.js',
+    '~/plugins/jarallax.client.js',
     '~/plugins/axios-accessor.ts',
 
     '~/plugins/notifier.js',
