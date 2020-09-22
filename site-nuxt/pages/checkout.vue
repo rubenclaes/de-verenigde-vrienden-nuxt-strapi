@@ -330,11 +330,10 @@ export default class CheckoutPage extends Vue {
   private prButton;
 
   // Global variables: PaymentIntent & PaymemtRequest object.
-  private paymentIntent!: PaymentIntent;
+  private clientSecret!: string;
   private paymentRequest!: PaymentRequest;
   private order;
 
-  $swal: any;
   private selectedRadio: string = 'bancontact';
 
   private paymentMethods = {
@@ -428,11 +427,12 @@ export default class CheckoutPage extends Vue {
       this.login();
     }
     const stripeKey = this.$config.stripePublicKey;
+
     if (stripeKey) {
       await this.loadStripe(stripeKey);
       await this.createAndMountFormElements();
     } else {
-      console.error('stripe not loaded!');
+      console.error('Stripe not loaded!');
     }
   }
 
@@ -457,16 +457,71 @@ export default class CheckoutPage extends Vue {
     }
   }
 
+  async handleSubmit() {
+    // Disable the Pay button to prevent multiple click events.
+    this.processing = true;
+
+    // Create Order and Paymentintend for IBAN and Card
+    await this.createOrder();
+
+    // Empty the cart if needed
+    this.emptyCart();
+
+    // Provide details and finilize payment
+    await this.pay();
+
+    // Enable Pay button
+    this.processing = false;
+  }
+
+  async createOrder() {
+    try {
+      // Retrieve the user information from the form.
+      const { address, firstName, lastName, email, zip } = this.paymentInfo;
+      const response = await this.$store.dispatch(
+        'cart/createOrder',
+        {
+          firstName: firstName,
+          lastName: lastName,
+          amount: this.price(),
+          dishes: this.productsInCart(),
+          address: address,
+          currency: 'eur',
+          zip: zip.toString(),
+          stripeIdempotency: uuidv4(),
+        },
+        this.$store.getters['auth/token']
+      );
+      const { order, clientSecret } = response;
+      this.clientSecret = clientSecret;
+      this.order = order;
+    } catch (err) {
+      this.processing = false;
+
+      if (err.response && err.response.status === 400) {
+        throw new Error(
+          err.response.statusText + ' ' + err.response.data.message
+        );
+      }
+
+      if (err.response && err.response.status === 403) {
+        throw new Error(err.response.statusText + ' Not found');
+      }
+      if (err.response && err.response.status === 401) {
+        throw new Error(err.response.statusText + ' Token expired');
+      }
+
+      alert(err);
+    }
+  }
+
   async pay() {
     // Retrieve the user information from the form.
     const { address, firstName, lastName, email, zip } = this.paymentInfo;
     const payment = this.selectedRadio;
     const name = firstName + ' ' + lastName;
 
-    // Disable the Pay button to prevent multiple click events.
-    this.processing = true;
-
-    if (payment === 'card' && this.paymentIntent.client_secret) {
+    if (payment === 'card') {
       /*     // Let Stripe.js handle the confirmation of the PaymentIntent with the card Element.
       const cardPaymentData: ConfirmCardPaymentData = {
         payment_method: {
@@ -523,7 +578,7 @@ export default class CheckoutPage extends Vue {
         }
       );
       handlePayment(response); */
-    } else {
+    } else if (payment === 'bancontact') {
       // Prepare all the Stripe common data.
       const confirmBancontactPaymentData: ConfirmBancontactPaymentData = {
         payment_method: {
@@ -543,16 +598,11 @@ export default class CheckoutPage extends Vue {
         return_url: `${window.location.origin}/invoice?idempotencyKey=${this.order.idempotencyKey}`,
       };
 
-      if (this.stripe && this.paymentIntent.client_secret) {
-        const {
-          paymentIntent,
-          error,
-        } = await this.stripe.confirmBancontactPayment(
-          this.paymentIntent.client_secret,
+      if (this.stripe) {
+        const { error } = await this.stripe.confirmBancontactPayment(
+          this.clientSecret,
           confirmBancontactPaymentData
         );
-
-        this.processing = false;
 
         if (error) {
           // Inform the customer that there was an error.
@@ -560,55 +610,6 @@ export default class CheckoutPage extends Vue {
           console.error(new Error(error.message));
         }
       }
-    }
-  }
-
-  async handleSubmit() {
-    // Disable the Pay button to prevent multiple click events.
-    this.processing = true;
-
-    // Retrieve the user information from the form.
-    const { address, firstName, lastName, email, zip } = this.paymentInfo;
-
-    // Create Payment intends for IBAN and Card
-
-    try {
-      const response = await this.$store.dispatch(
-        'cart/createOrder',
-        {
-          amount: this.price(),
-          dishes: this.productsInCart(),
-          address: address,
-          currency: 'eur',
-          zip: zip.toString(),
-          stripeIdempotency: uuidv4(),
-        },
-        this.$store.getters['auth/token']
-      );
-
-      const { clientSecret, order, paymentIntent } = response;
-      this.paymentIntent = paymentIntent;
-      this.order = order;
-      this.emptyCart();
-      //console.log(order);
-      this.pay();
-    } catch (err) {
-      this.processing = false;
-
-      if (err.response && err.response.status === 400) {
-        throw new Error(
-          err.response.statusText + ' ' + err.response.data.message
-        );
-      }
-
-      if (err.response && err.response.status === 403) {
-        throw new Error(err.response.statusText + ' Not found');
-      }
-      if (err.response && err.response.status === 401) {
-        throw new Error(err.response.statusText + ' Token expired');
-      }
-
-      alert(err.response.data.message);
     }
   }
 

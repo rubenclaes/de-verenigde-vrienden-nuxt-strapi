@@ -15,7 +15,7 @@ interface AuthActionContext extends ActionContext<AuthState, RootState> {}
  * Cart actions
  */
 export const actions: ActionTree<AuthState, RootState> = {
-  async login({ commit, state }, { identifier, password }) {
+  async login({ commit }, { identifier, password }) {
     commit('authRequest');
 
     await login({

@@ -219,3 +219,9 @@ export default class ArticleView extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.first {
+  height: 600px;
+}
+</style>

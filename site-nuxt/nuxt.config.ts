@@ -113,6 +113,7 @@ const config: Configuration = {
    */
   plugins: [
     '~/plugins/aos.client.js',
+    '~/plugins/jarallax.client.js',
     '~/plugins/axios-accessor.ts',
 
     '~/plugins/notifier.js',
@@ -228,10 +229,10 @@ const config: Configuration = {
     text: {
       barTitle: 'Cookies',
       barDescription:
-        'We gebruiken onze eigen cookies en cookies van derden, zodat we u deze website kunnen laten zien en beter kunnen begrijpen hoe u deze gebruikt, met het oog op het verbeteren van de diensten die we aanbieden. Als u doorgaat met browsen, zijn wij van mening dat u de cookies hebt geaccepteerd.',
-      acceptAll: 'Accepteer alles',
+        'We gebruiken cookies zodat deze website getoond kan worden en om beter te begrijpen hoe ze gebruikt wordt met het oog op verbetering.',
+      acceptAll: 'Cookies toestaan',
       declineAll: 'Verwijder alles',
-      manageCookies: 'Beheer cookies',
+      manageCookies: 'Details',
       unsaved: 'U hebt niet-opgeslagen instellingen',
       close: 'Sluit',
       save: 'Opslaan',
@@ -343,7 +344,7 @@ const config: Configuration = {
   sentry: {
     dsn: process.env.SENTRY_DSN,
     publishRelease: true,
-    disabled: false,
+    disabled: true,
     config: {}, // Additional config
   },
 

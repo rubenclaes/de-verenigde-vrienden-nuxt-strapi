@@ -10,9 +10,7 @@
       <div class="row justify-content-between">
         <div class="col-md-4 text-left">
           <img class="mb-2 w-100" :src="image" alt="Logo" />
-          <h6>
-            Kerkenblookstraat zn, 3550 Heusden-Zolder
-          </h6>
+          <h6>Kerkenblookstraat zn, 3550 Heusden-Zolder</h6>
           <small class="d-block text-muted">tel: 011 43 13 89</small>
         </div>
         <div class="col-lg-3 col-md-5 text-left mt-3">
@@ -78,8 +76,9 @@
       <div class="col-md-5 ml-auto">
         <h5>Alvast bedankt!</h5>
         <p class="description">
-          Als u problemen ondervindt met betrekking tot de bestelling, kunt u
-          contact met ons opnemen
+          Hou zeker uw e-mail in de gaten. Ook de spam folder. Als u problemen
+          ondervindt met betrekking tot de bestelling, kunt u contact met ons
+          opnemen.
         </p>
         <h6 class="d-block">
           email:

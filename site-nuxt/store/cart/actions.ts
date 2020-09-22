@@ -34,7 +34,7 @@ export const actions: ActionTree<CartState, RootState> = {
       commit('set', { items: savedCartItems });
       throw err;
     });
-    commit('clear');
+
     commit('setCheckoutStatus', 'order_created');
     return order;
   },

@@ -37,7 +37,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
 
-import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe, Stripe } from '@stripe/stripe-js';
 import { loadOrder } from '../lib/orders/api';
 
 @Component({
@@ -51,9 +51,12 @@ export default class InvoicePage extends Vue {
   private title: string = 'Invoice';
   private image = '../img/invoice/payment.jpg';
 
-  private stripe;
+  private stripe!: Stripe | null;
 
   private order = null;
+
+  private idempotencyKey: string = '';
+  private clientSecret: string = '';
 
   $swal: any;
 
@@ -62,6 +65,10 @@ export default class InvoicePage extends Vue {
       title: this.title,
       meta: [{ hid: 'og:title', property: 'og:title', content: this.title }],
     };
+  }
+
+  isLoggedIn(): boolean {
+    return this.$store.getters['auth/isLoggedIn'];
   }
 
   async login() {
@@ -77,14 +84,6 @@ export default class InvoicePage extends Vue {
       throw error;
     }
   }
-  isLoggedIn(): boolean {
-    return this.$store.getters['auth/isLoggedIn'];
-  }
-  async mounted() {
-    await this.loadStripe();
-    // Monitor succesfull Bancontact Payments
-    await this.monitorPaymentStatus();
-  }
 
   async created() {
     // Fetch token
@@ -92,77 +91,93 @@ export default class InvoicePage extends Vue {
       await this.login();
     }
     const idempotencyKey = this.$route.query.idempotencyKey;
+
     if (idempotencyKey && typeof idempotencyKey === 'string') {
+      this.idempotencyKey = idempotencyKey;
+    }
+
+    try {
       const order = await loadOrder(
-        idempotencyKey,
+        this.idempotencyKey,
         this.$store.getters['auth/token']
       );
 
-      console.log(order);
       this.order = order;
+    } catch (error) {
+      console.error(error);
     }
   }
 
-  async loadStripe() {
+  async mounted() {
     const stripeKey = this.$config.stripePublicKey;
-    if (stripeKey) {
-      this.stripe = await loadStripe(stripeKey);
-    } else {
-      throw new Error('Stripe is not loaded!');
+    const clientSecret = this.$route.query.payment_intent_client_secret;
+    if (clientSecret && typeof clientSecret === 'string') {
+      this.clientSecret = clientSecret;
+      console.log(this.clientSecret);
     }
+
+    if (stripeKey) {
+      await this.loadStripe(stripeKey);
+    } else {
+      console.error('Stripe not loaded!');
+    }
+
+    // Monitor succesfull Bancontact Payments
+    await this.pollPaymentIntentStatus({});
   }
 
-  async monitorPaymentStatus() {
-    if (this.$route.query.source && this.$route.query.client_secret) {
-      // Update the interface to display the processing screen.
-      // mainElement.classList.add('checkout', 'success', 'processing');
-
-      const { paymentIntent } = await this.stripe.paymentIntents.retrieve({
-        id: this.$route.query.payment_intent,
-        client_secret: this.$route.query.client_secret,
-      });
-
-      await this.pollPaymentIntentStatus({
-        paymentIntent: paymentIntent,
-      });
+  async loadStripe(stripeKey: string) {
+    try {
+      this.stripe = await loadStripe(stripeKey);
+    } catch (e) {
+      console.log(e);
     }
   }
 
   async pollPaymentIntentStatus({
-    paymentIntent,
     timeout = 30000,
     interval = 500,
     start = Date.now(),
   }: {
-    paymentIntent;
     timeout?: number;
     interval?: number;
     start?: number;
   }) {
-    const endStates = ['succeeded', 'processing', 'canceled'];
+    const endStates = [
+      'succeeded',
+      'processing',
+      'canceled',
+      'requires_payment_method',
+    ];
 
-    // Retrieve the PaymentIntent status from our server.
-    const { data } = await this.$store.dispatch(
-      'cart/fetchPaymentIntent',
-      paymentIntent
-    );
+    if (this.stripe) {
+      // Retrieve the PaymentIntent status from stripe.
+      const { paymentIntent, error } = await this.stripe.retrievePaymentIntent(
+        this.clientSecret
+      );
 
-    console.log(data.paymentIntent);
-    console.log(data.paymentIntent.status);
+      if (error) {
+        // Handle error here
+        console.error(error);
+      }
 
-    if (
-      !endStates.includes(data.paymentIntent.status) &&
-      Date.now() < start + timeout
-    ) {
-      // console.log('not done yet');
-      // console.log(Date.now() < start + timeout);
-      // Not done yet. Let's wait and check again.
-      setTimeout(this.pollPaymentIntentStatus, interval, { paymentIntent });
-    } else {
-      this.handlePayment(data);
-      if (!endStates.includes(data.paymentIntent.status)) {
-        // Status has not changed yet. Let's time out.
-        console.warn(new Error('Polling timed out.'));
+      if (paymentIntent) {
+        console.log(paymentIntent.status);
+        if (
+          !endStates.includes(paymentIntent.status) &&
+          Date.now() < start + timeout
+        ) {
+          // console.log('not done yet');
+          // console.log(Date.now() < start + timeout);
+          // Not done yet. Let's wait and check again.
+          setTimeout(this.pollPaymentIntentStatus, interval, { paymentIntent });
+        } else {
+          this.handlePayment({ paymentIntent, error });
+          if (!endStates.includes(paymentIntent.status)) {
+            // Status has not changed yet. Let's time out.
+            console.warn(new Error('Polling timed out.'));
+          }
+        }
       }
     }
   }
