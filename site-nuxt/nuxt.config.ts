@@ -364,6 +364,7 @@ const config: NuxtConfig = {
     '@nuxt/typescript-build',
     '@nuxtjs/composition-api',
     '@nuxtjs/color-mode',
+    '@nuxtjs/pwa',
   ],
 
   /*
