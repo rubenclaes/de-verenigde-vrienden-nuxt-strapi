@@ -629,7 +629,7 @@ export default class CheckoutPage extends Vue {
     return this.$store.getters['cart/cartProducts'];
   }
 
-  checkoutStatus() {
+  checkoutStatus(): string {
     return this.$store.getters['cart/checkoutStatus'];
   }
 

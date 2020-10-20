@@ -35,7 +35,9 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator';
 @Component({
   components: {
     DishList: () =>
-      import(/* webpackChunkName: 'dish-list' */ '@/components/DishList.vue'),
+      import(
+        /* webpackChunkName: 'dish-list' */ '@/components/deverenigdevrienden/dish/DishList.vue'
+      ),
 
     LazyImage: () =>
       import(/* webpackChunkName: 'lazy-image' */ '@/components/LazyImage.vue'),

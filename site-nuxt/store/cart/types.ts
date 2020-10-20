@@ -8,6 +8,7 @@ import { Dish } from '../diningday/types';
 
 export interface CartState {
   items: Item[];
+  selectedShopId: number;
   checkoutStatus: string;
 }
 

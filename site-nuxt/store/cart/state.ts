@@ -5,7 +5,8 @@ import { CartState } from './types';
  */
 export const initState = (): CartState => ({
   items: [],
-  checkoutStatus: 'idle'
+  selectedShopId: 0,
+  checkoutStatus: 'idle',
 });
 
 export default initState;

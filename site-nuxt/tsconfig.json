@@ -20,12 +20,18 @@
       "~/*": ["./*"],
       "@/*": ["./*"],
       "@/lib/*": ["./lib/*"],
-      "@/compontents/*": ["./components"],
+      "@/components/*": ["./components"],
       "@/pages/*": ["./pages/"],
       "@/store/*": ["./store/*"],
       "@/mixins/*": ["./mixins/*"]
     },
-    "types": ["@types/node", "@nuxt/types", "@nuxtjs/axios", "@types/jest"]
+    "types": [
+      "@types/node",
+      "@nuxt/types",
+      "@nuxtjs/axios",
+      "@types/jest",
+      "@nuxtjs/color-mode"
+    ]
   },
   "exclude": ["node_modules"]
 }

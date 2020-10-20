@@ -14,14 +14,13 @@
 
     <slot name="description"> </slot>
 
-    <dish-preview v-for="dish in products" :key="dish.id" :dish="dish">
-    </dish-preview>
+    <dish-preview v-for="dish in products" :key="dish.id" :dish="dish" />
   </card>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator';
-import { Product } from '../store/product/types';
+import { Product } from '@/store/product/types';
 
 @Component({
   components: {
@@ -31,7 +30,7 @@ import { Product } from '../store/product/types';
 
     DishPreview: () =>
       import(
-        /* webpackChunkName: 'dish-preview' */ '@/components/DishPreview.vue'
+        /* webpackChunkName: 'dish-preview' */ '@/components/deverenigdevrienden/dish/DishPreview.vue'
       ),
   },
 })

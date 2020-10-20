@@ -1,0 +1,23 @@
+:root {
+}
+
+.dark-mode {
+}
+
+.color-mode {
+}
+
+.sepia-mode {
+  .bg-secondary {
+    background-color: #f1e7d0 !important;
+  }
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--color);
+  transition: background-color 0.3s;
+}
+a {
+  color: var(--color-primary);
+}
