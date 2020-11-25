@@ -51,7 +51,6 @@ export default class IndexPage extends Vue {
       console.info('Payload page: %o', payload);
       const { page } = payload;
       store.commit('flexpage/setCurrentFlexPage', page);
-
       return { flexPage: page };
     } else {
       // This is just to get the npm run dev working in not fully static mode
