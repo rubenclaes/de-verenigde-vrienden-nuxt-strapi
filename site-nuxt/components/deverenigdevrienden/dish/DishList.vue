@@ -25,9 +25,7 @@ import { Product } from '@/store/product/types';
 @Component({
   components: {
     Card: () => import(/* webpackChunkName: 'card' */ '@/components/Card.vue'),
-
     Icon: () => import(/* webpackChunkName: 'icont' */ '@/components/Icon.vue'),
-
     DishPreview: () =>
       import(
         /* webpackChunkName: 'dish-preview' */ '@/components/deverenigdevrienden/dish/DishPreview.vue'

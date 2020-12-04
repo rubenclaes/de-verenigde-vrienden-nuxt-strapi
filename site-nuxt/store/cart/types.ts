@@ -6,14 +6,10 @@ import { Dish } from '../diningday/types';
 
 // Models
 
-export interface CartState {
-  items: Item[];
-  selectedShopId: number;
-  checkoutStatus: string;
-}
-
 export interface Item {
   id: number;
+  name: string;
+  price: number;
   quantity: number;
   shopId: number;
 }
@@ -28,4 +24,9 @@ export interface Order {
   status: string;
   zip: string;
   idempotencyKey: string;
+}
+
+export interface CartState {
+  items: Item[];
+  checkoutStatus: string;
 }

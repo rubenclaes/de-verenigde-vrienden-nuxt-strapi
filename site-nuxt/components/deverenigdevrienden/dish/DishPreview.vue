@@ -32,7 +32,8 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator';
-import { Dish } from '../../../store/diningday/types';
+import { Dish } from '@/store/diningday/types';
+import { Item } from '@/store/cart/types';
 
 @Component({
   components: { BaseButton: () => import('@/components/BaseButton.vue') },
@@ -42,8 +43,14 @@ export default class DishPreview extends Vue {
   dish!: Dish;
 
   addToCart(dish: Dish) {
-    const product = { product: dish };
-    this.$store.commit('cart/addProduct', product);
+    const itemToAdd: Item = {
+      id: dish.id,
+      price: dish.price,
+      name: dish.name,
+      quantity: 1,
+      shopId: 0,
+    };
+    this.$store.commit('cart/addToCart', itemToAdd);
     this.$toasted.success(
       `<strong>${dish.name}</strong>&nbsp;toegevoegd aan mandje`,
       {
@@ -54,7 +61,7 @@ export default class DishPreview extends Vue {
         action: {
           text: 'Cancel',
           onClick: (e, toastObject) => {
-            this.$store.commit('cart/remove', product);
+            this.$store.commit('cart/removeFromCart', dish);
             toastObject.goAway(0);
           },
         },

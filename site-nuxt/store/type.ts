@@ -1,9 +1,10 @@
 import { AuthState } from './auth/types';
-import { ProductState } from './product/types';
+import { DiningDayState } from './diningday/types';
+
 
 // RootState Interface
 export interface RootState {
-  product: ProductState;
+  diningday: DiningDayState;
   auth: AuthState;
 }
 

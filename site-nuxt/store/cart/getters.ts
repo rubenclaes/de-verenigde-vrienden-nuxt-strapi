@@ -12,31 +12,16 @@ export const getters: GetterTree<CartState, RootState> = {
     return state.items;
   },
 
-  cartProducts: (state, getters, rootState, rootGetters) => {
-    if (!state.items.length) return 0;
-
-    if (!rootState.product.products.length) return 0;
-
-    return state.items.map(({ id, quantity }) => {
-      const product = rootGetters['product/byId'](id);
-      if (product)
-        return {
-          id: product.id,
-          title: product.name,
-          price: product.price,
-          quantity,
-        };
-    });
-  },
-
   cartTotalPrice: (state, getters, rootState, rootGetters): number => {
     if (!state.items.length) return 0;
 
-    if (!rootState.product.products.length) return 0;
-
-    return state.items.reduce((total, item) => {
-      return total + rootGetters['product/byId'](item.id).price * item.quantity;
-    }, 0);
+    return state.items.reduce(
+      (total, item) =>
+        total +
+        item.price *
+        item.quantity,
+      0
+    );
   },
 
   numberOfItems: (state): number => {

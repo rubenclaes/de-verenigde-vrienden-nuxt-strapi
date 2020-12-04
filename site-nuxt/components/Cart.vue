@@ -2,15 +2,15 @@
 
 <template>
   <ul class="list-group mb-3">
-    <div v-if="productsInCart() && productsInCart().length > 0">
+    <div v-if="itemsInCart() && itemsInCart().length > 0">
       <li
-        v-for="product in productsInCart()"
+        v-for="product in itemsInCart()"
         :key="product.id"
         class="list-group-item d-flex justify-content-between align-items-center"
       >
         <div>
           <h6 class="my-0">
-            {{ product.title }}
+            {{ product.name }}
             <span class="badge badge-primary badge-pill"
               >&euro; {{ product.price }}</span
             >
@@ -86,11 +86,11 @@ import { Item } from '../store/cart/types';
 })
 export default class Cart extends Vue {
   removeFromCart(dish) {
-    this.$store.commit('cart/remove', dish);
+    this.$store.commit('cart/removeFromCart', dish);
   }
 
-  productsInCart() {
-    return this.$store.getters['cart/cartProducts'];
+  itemsInCart() {
+    return this.$store.getters['cart/list'];
   }
 
   incrementItemQuantity(id) {
