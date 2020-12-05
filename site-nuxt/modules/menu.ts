@@ -12,20 +12,18 @@ const menu: Module<Options> = async function (moduleOptions) {
   // expose the namespace / set a default
   if (!moduleOptions.namespace) moduleOptions.namespace = 'menu';
   const { namespace } = moduleOptions;
+  console.info(`Fetching menu ${process.env.API_URL}/main-navigation`);
 
   const loadMenu = async () => {
     try {
       //await new Promise((resolve) => setTimeout(resolve, 10000));
       return await axios
-        .get(`${process.env.API_URL}/main-navigation`, {
-          params: {
-            active: true,
-          },
-        })
+        .get(`${process.env.API_URL}/main-navigation`)
         .then((res) => {
-          return res.data.Link;
-        });
+          return res.data.Link.filter(link => link.active);;
+        })
     } catch (error) {
+      console.error(`Fetching the menu failed. ${error}`)
       throw error;
     }
   };
