@@ -225,7 +225,7 @@ const config: NuxtConfig = {
           gtag('js', new Date());
           gtag('config', 'GTM-TW8TSMW');
         },
-        declined: () => {},
+        declined: () => { },
       },
     ],
     text: {

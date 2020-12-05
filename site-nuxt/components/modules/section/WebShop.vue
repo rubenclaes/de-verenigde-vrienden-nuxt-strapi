@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-10">
         <!-- start DishList -->
-        <dish-list class="mt--200" :products="data.products">
+        <dish-list class="mt--200" :dishes="data.products">
           <template v-if="data.picture" #picture>
             <LazyImage
               fetchMode="cloudinary"

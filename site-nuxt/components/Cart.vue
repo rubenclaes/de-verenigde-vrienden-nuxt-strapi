@@ -4,28 +4,28 @@
   <ul class="list-group mb-3">
     <div v-if="itemsInCart() && itemsInCart().length > 0">
       <li
-        v-for="product in itemsInCart()"
-        :key="product.id"
+        v-for="item in itemsInCart()"
+        :key="item.id"
         class="list-group-item d-flex justify-content-between align-items-center"
       >
         <div>
           <h6 class="my-0">
-            {{ product.name }}
+            {{ item.name }}
             <span class="badge badge-primary badge-pill"
-              >&euro; {{ product.price }}</span
+              >&euro; {{ item.price }}</span
             >
           </h6>
         </div>
         <div class="btn-group mb-1">
           <base-button
-            @click="decrementItemQuantity(product.id)"
+            @click="decrementItemQuantity(item.id)"
             size="sm"
             type="info"
             icon="fa fa-minus"
             icon-only
           ></base-button>
           <base-button
-            @click="incrementItemQuantity(product.id)"
+            @click="incrementItemQuantity(item.id)"
             size="sm"
             type="info"
             icon="fa fa-plus"
@@ -33,11 +33,11 @@
           ></base-button>
         </div>
 
-        <span> {{ product.quantity }} </span>
+        <span> {{ item.quantity }} </span>
 
         <div class="col-auto">
           <base-button
-            @click="removeFromCart(product)"
+            @click="removeFromCart(item)"
             size="sm"
             type="danger"
             icon="fa fa-trash"
@@ -89,7 +89,7 @@ export default class Cart extends Vue {
     this.$store.commit('cart/removeFromCart', dish);
   }
 
-  itemsInCart() {
+  itemsInCart(): Item[] {
     return this.$store.getters['cart/list'];
   }
 
@@ -107,20 +107,6 @@ export default class Cart extends Vue {
 
   price(): number {
     return this.$store.getters['cart/cartTotalPrice'];
-  }
-
-  /**
-   * We use created here instead of mounted because it doesn’t need to be rerun if we leave this layout and come back to it.
-   */
-  async created() {
-    if (this.$store.getters['product/list'].length === 0) {
-      try {
-        return await this.$store.dispatch('product/fetchProducts');
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    console.info('Return data from state');
   }
 }
 </script>
