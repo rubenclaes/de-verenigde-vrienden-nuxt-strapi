@@ -20,5 +20,6 @@ export default {
     Slider: () => import('@/components/modules/blog/Slider.vue'),
     RichText: () => import('@/components/modules/blog/RichText.vue'),
     Video: () => import('@/components/modules/blog/Video.vue'),
+    Picture: () => import('@/components/modules/blog/Picture.vue'),
   },
 };
