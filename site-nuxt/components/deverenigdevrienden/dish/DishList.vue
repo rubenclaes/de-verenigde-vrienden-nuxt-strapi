@@ -14,24 +14,21 @@
 
     <slot name="description"> </slot>
 
-    <dish-preview v-for="dish in products" :key="dish.id" :dish="dish">
-    </dish-preview>
+    <dish-preview v-for="dish in dishes" :key="dish.id" :dish="dish" />
   </card>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator';
-import { Product } from '../store/product/types';
+import { Dish } from '~/store/diningday/types';
 
 @Component({
   components: {
     Card: () => import(/* webpackChunkName: 'card' */ '@/components/Card.vue'),
-
     Icon: () => import(/* webpackChunkName: 'icont' */ '@/components/Icon.vue'),
-
     DishPreview: () =>
       import(
-        /* webpackChunkName: 'dish-preview' */ '@/components/DishPreview.vue'
+        /* webpackChunkName: 'dish-preview' */ '@/components/deverenigdevrienden/dish/DishPreview.vue'
       ),
   },
 })
@@ -46,6 +43,6 @@ export default class DishList extends Vue {
   textColor!: String;
 
   @Prop({ type: Array })
-  products!: Product[];
+  dishes!: Dish[];
 }
 </script>

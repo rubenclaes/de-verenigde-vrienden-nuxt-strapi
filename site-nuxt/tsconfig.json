@@ -3,7 +3,7 @@
  */
 {
   "compilerOptions": {
-    "target": "es2018",
+    "target": "es2020",
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -13,6 +13,8 @@
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
     "noImplicitAny": false,
     "noEmit": true,
     "baseUrl": ".",
@@ -20,12 +22,18 @@
       "~/*": ["./*"],
       "@/*": ["./*"],
       "@/lib/*": ["./lib/*"],
-      "@/compontents/*": ["./components"],
+      "@/components/*": ["./components"],
       "@/pages/*": ["./pages/"],
       "@/store/*": ["./store/*"],
       "@/mixins/*": ["./mixins/*"]
     },
-    "types": ["@types/node", "@nuxt/types", "@nuxtjs/axios", "@types/jest"]
+    "types": [
+      "@types/node",
+      "@nuxt/types",
+      "@nuxtjs/axios",
+      "@types/jest",
+      "@nuxtjs/color-mode"
+    ]
   },
   "exclude": ["node_modules"]
 }

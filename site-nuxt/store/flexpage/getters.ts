@@ -1,6 +1,7 @@
 import { GetterTree } from 'vuex/types';
 import { PageState, FlexPage } from './types';
 import { RootState } from '../type';
+import { loadFlexPage } from '~/lib/flexpages/api';
 
 /**
  * Page getters

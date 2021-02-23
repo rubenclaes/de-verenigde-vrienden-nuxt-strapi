@@ -23,8 +23,9 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator';
 
-import { FlexPage } from '../../store/flexpage/types';
-import { pageVuexNamespace } from '../../store/flexpage/const';
+import { FlexPage } from '@/store/flexpage/types';
+import { pageVuexNamespace } from '@/store/flexpage/const';
+
 import StrapiComponents from '../../strapi.component';
 
 @Component({

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Configuration } from '@nuxt/types';
+import { NuxtConfig } from '@nuxt/types';
 
 const IS_DEV = process.env.NODE_ENV !== 'production';
 
@@ -47,8 +47,7 @@ const dynamicRoutes = async () => {
   return routes;
 };
 
-const config: Configuration = {
-  mode: 'universal',
+const config: NuxtConfig = {
   target: 'static',
 
   publicRuntimeConfig: {
@@ -104,7 +103,9 @@ const config: Configuration = {
   css: [
     '@/assets/vendor/font-awesome/css/font-awesome.css',
     '@/assets/vendor/nucleo/css/nucleo.css',
+
     '@/assets/scss/argon.scss',
+    '@/assets/main.scss',
     'aos/dist/aos.css',
   ],
 
@@ -113,7 +114,7 @@ const config: Configuration = {
    */
   plugins: [
     '~/plugins/aos.client.js',
-    '~/plugins/jarallax.client.js',
+
     '~/plugins/axios-accessor.ts',
 
     '~/plugins/notifier.js',
@@ -216,7 +217,7 @@ const config: Configuration = {
         async: true,
         cookies: ['_ga', '_gat_gtag_GTM-TW8TSMW', '_gid'],
         accepted: () => {
-          window.dataLayer.dataLayer = window.dataLayer || [];
+          window.dataLayer = window.dataLayer || [];
           function gtag(...args: any) {
             window.dataLayer.push(arguments);
           }
@@ -224,6 +225,7 @@ const config: Configuration = {
           gtag('js', new Date());
           gtag('config', 'GTM-TW8TSMW');
         },
+        declined: () => { },
       },
     ],
     text: {
@@ -358,7 +360,12 @@ const config: Configuration = {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxt/typescript-build', '@nuxtjs/composition-api'],
+  buildModules: [
+    '@nuxt/typescript-build',
+    '@nuxtjs/composition-api',
+    '@nuxtjs/color-mode',
+    '@nuxtjs/pwa',
+  ],
 
   /*
    ** Build configuration

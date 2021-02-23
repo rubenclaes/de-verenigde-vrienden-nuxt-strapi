@@ -50,17 +50,18 @@ export const mutations: MutationTree<CartState> = {
   },
 
   /**
-   * Add item to the cart
-   *
-   * @param {*} state
-   * @param {*} { id }
-   */
-  pushProductToCart(state, { id, shopId }) {
-    state.items.push({
-      id,
-      shopId,
-      quantity: 1,
-    });
+    * Add item to the cart
+    *
+    * @param {*} state
+    * @param {*} { id }
+    */
+  addToCart(state, itemToAdd: Item) {
+    const cartItem = state.items.find((item) => item.id === itemToAdd.id);
+    if (cartItem) {
+      console.log(cartItem);
+      return cartItem.quantity++;
+    }
+    state.items.push(itemToAdd);
   },
 
   /**
@@ -69,10 +70,10 @@ export const mutations: MutationTree<CartState> = {
    * @param {*} state
    * @param {*} item
    */
-  remove(state, item) {
-    const record = state.items.find((i) => i.id === item.id);
+  removeFromCart(state, item) {
+    const cartItem = state.items.find((i) => i.id === item.id);
 
-    if (record) {
+    if (cartItem) {
       const index = state.items.findIndex((i) => i.id === item.id);
       state.items.splice(index, 1);
     }

@@ -1,10 +1,12 @@
 <template>
   <div>
     <FlexPage :flexPage="flexPage"></FlexPage>
+    {{ $colorMode.preference }}
   </div>
 </template>
 
 <script lang="ts">
+import { NuxtApp } from '@nuxt/types/app';
 import { Component, Vue } from 'nuxt-property-decorator';
 
 import { pageVuexNamespace } from '../store/flexpage/const';
@@ -56,6 +58,7 @@ export default class IndexPage extends Vue {
         const page = store.getters['flexpage/bySlug'](params.id);
         console.info(`PageData from state: %o`, page);
         store.commit('flexpage/setCurrentFlexPage', page);
+
         return { flexPage: page };
       }
 
@@ -66,6 +69,7 @@ export default class IndexPage extends Vue {
         try {
           await store.dispatch('flexpage/fetchFlexPageBySlug', param);
           const page = store.getters['flexpage/currentFlexPage'];
+
           return { flexPage: page };
         } catch (e) {
           console.log(e);

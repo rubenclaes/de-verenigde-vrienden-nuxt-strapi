@@ -96,11 +96,11 @@ import { Order } from '../store/cart/types';
 @Component({
   components: {
     Card: () => import('@/components/Card.vue'),
-
+    LazyImage: () => import('@/components/LazyImage.vue'),
     Icon: () => import('@/components/Icon.vue'),
 
-    DishPreview: () => import('@/components/DishPreview.vue'),
-    LazyImage: () => import('@/components/LazyImage.vue'),
+    DishPreview: () =>
+      import('@/components/deverenigdevrienden/dish/DishPreview.vue'),
   },
 })
 export default class InvoiceCard extends Vue {

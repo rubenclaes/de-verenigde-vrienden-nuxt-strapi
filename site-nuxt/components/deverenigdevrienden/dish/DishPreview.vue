@@ -32,7 +32,8 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator';
-import { Dish } from '../store/diningday/types';
+import { Dish } from '@/store/diningday/types';
+import { Item } from '@/store/cart/types';
 
 @Component({
   components: { BaseButton: () => import('@/components/BaseButton.vue') },
@@ -41,23 +42,31 @@ export default class DishPreview extends Vue {
   @Prop({ type: Object, required: true })
   dish!: Dish;
 
-  quantity = 1;
-
-  //$bvToast: any;
-
-  data() {
-    return {
-      tempcart: [], // this object should be the same as the json store object, with an additional param, quantity
-    };
-  }
-
   addToCart(dish: Dish) {
-    const product = { product: dish };
-    this.$store.dispatch('cart/addProductToCart', product);
-    this.$toasted.success(`${dish.name} toegevoegd in mandje`, {
-      duration: 2000,
-      position: 'bottom-center',
-    });
+    const itemToAdd: Item = {
+      id: dish.id,
+      price: dish.price,
+      name: dish.name,
+      quantity: 1,
+      shopId: 0,
+    };
+    this.$store.commit('cart/addToCart', itemToAdd);
+    this.$toasted.success(
+      `<strong>${dish.name}</strong>&nbsp;toegevoegd aan mandje`,
+      {
+        iconPack: 'fontawesome',
+        duration: 2000,
+        position: 'bottom-right',
+        icon: 'check',
+        action: {
+          text: 'Cancel',
+          onClick: (e, toastObject) => {
+            this.$store.commit('cart/removeFromCart', dish);
+            toastObject.goAway(0);
+          },
+        },
+      }
+    );
   }
 }
 </script>

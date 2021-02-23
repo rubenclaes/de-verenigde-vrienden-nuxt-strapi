@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { createComponent, computed, ref } from '@vue/composition-api';
+import { createComponent, computed, ref } from '@nuxtjs/composition-api';
 
 export default createComponent({
   name: 'SkeletonBox',

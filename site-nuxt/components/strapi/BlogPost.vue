@@ -59,6 +59,7 @@ export default class BlogPost extends Vue {
         slider: 'Slider',
         video: 'Video',
         quote: 'Quote',
+        image: 'Picture',
       },
     };
     //console.info(split[1].replace(/-/g, '_'));

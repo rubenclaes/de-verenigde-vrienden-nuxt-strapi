@@ -28,7 +28,6 @@ export const mutations: MutationTree<DiningDayState> = {
 
   /**
    *  Clearing the DiningDay state
-   *
    */
   clear: (state) => {
     console.info('clearing store');

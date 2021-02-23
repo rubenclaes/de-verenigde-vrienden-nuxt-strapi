@@ -223,4 +223,3 @@ export default class headerStyle1 extends Vue {
   } */
 }
 </script>
-<style lang="scss"></style>
