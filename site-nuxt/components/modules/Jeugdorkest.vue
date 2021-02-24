@@ -1,6 +1,9 @@
 <template>
   <!-- Jeugdorkest -->
-  <section class="section bg-secondary section-lg">
+  <section
+    :id="`${this.data.__component}/${this.data.id}`"
+    class="section bg-secondary section-lg"
+  >
     <div class="container">
       <div class="row row-grid align-items-center">
         <div class="col-md-6 order-md-2" data-aos="reveal-img">
