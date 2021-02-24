@@ -43,7 +43,12 @@
               :key="index"
               class="nav-item"
             >
-              <template v-if="link.active">
+              <template
+                v-if="
+                  link.active &&
+                  link.__component === 'menulinks.main-navigation-link'
+                "
+              >
                 <n-link
                   v-if="!hasChildren(link.childlink)"
                   :to="pageSlug(link.link.slug)"
@@ -89,6 +94,22 @@
                     </router-link>
                   </div>
                 </base-dropdown>
+              </template>
+              <template
+                v-if="
+                  link.active &&
+                  link.__component === 'menulinks.main-navigation-scroll-link'
+                "
+              >
+                <div
+                  @click="scrollToComponent(link.scroll_to_component)"
+                  class="nav-link"
+                  :style="{ cursor: 'pointer' }"
+                >
+                  <span class="nav-link-inner--text">{{
+                    link.menu_link_title
+                  }}</span>
+                </div>
               </template>
             </li>
           </ul>
@@ -186,6 +207,10 @@ export default class headerStyle1 extends Vue {
 
   goTocontact() {
     this.$router.push({ path: '/', hash: '#contact' });
+  }
+
+  scrollToComponent(componentToScroll: string) {
+    this.$router.push({ path: '/', hash: `#${componentToScroll}` });
   }
 
   onPin(pin: boolean) {
