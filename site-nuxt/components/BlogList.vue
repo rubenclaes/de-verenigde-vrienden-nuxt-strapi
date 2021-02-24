@@ -7,6 +7,7 @@
           label="Large Spinner"
           type="grow"
         ></b-spinner>
+        Eventjes geduld... Nieuws komt eraan
       </div>
     </template>
     <div v-else class="col-lg-3" v-for="article in articles" :key="article.id">

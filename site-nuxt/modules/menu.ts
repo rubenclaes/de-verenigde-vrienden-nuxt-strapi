@@ -11,6 +11,7 @@ interface Options {
 const menu: Module<Options> = async function (moduleOptions) {
   // expose the namespace / set a default
   if (!moduleOptions.namespace) moduleOptions.namespace = 'menu';
+
   const { namespace } = moduleOptions;
   console.info(`Fetching menu ${process.env.API_URL}/main-navigation`);
 
@@ -20,7 +21,8 @@ const menu: Module<Options> = async function (moduleOptions) {
       return await axios
         .get(`${process.env.API_URL}/main-navigation`)
         .then((res) => {
-          return res.data.Link.filter(link => link.active);;
+          //console.info(res.data)
+          return res.data.links.filter(link => link.active);;
         })
     } catch (error) {
       console.error(`Fetching the menu failed. ${error}`)
