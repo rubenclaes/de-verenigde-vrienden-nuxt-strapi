@@ -26,7 +26,10 @@
           ></div>
 
           <div class="card-body">
-            <div class="content-bottom">
+            <div class="content-top">
+              <h4 class="card-title card-category text-white">
+                {{ article.title }}
+              </h4>
               <badge
                 v-for="tag in article.Tags"
                 :key="tag.id"
@@ -34,10 +37,6 @@
                 rounded
                 >{{ tag.tag }}</badge
               >
-
-              <h5 class="card-title card-category text-white">
-                {{ article.title }}
-              </h5>
             </div>
           </div>
         </div>
