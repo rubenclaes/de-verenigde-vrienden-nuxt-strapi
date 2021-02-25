@@ -9,7 +9,7 @@
               size="lg"
               type="secondary"
               icon="ni ni-bold-left"
-              @click="goToHome()"
+              @click.native="goToHome()"
               >naar home</base-button
             >
             <a
