@@ -37,6 +37,7 @@
           <ul
             v-if="isHovering || !isPinned || isTop"
             class="navbar-nav navbar-nav-hover align-items-lg-center"
+            slot-scope="{ closeMenu }"
           >
             <li
               v-for="(link, index) in navItemList"
@@ -102,7 +103,9 @@
                 "
               >
                 <div
-                  @click="scrollToComponent(link.scroll_to_component)"
+                  @click="
+                    scrollToComponent(link.scroll_to_component, closeMenu)
+                  "
                   class="nav-link"
                   :style="{ cursor: 'pointer' }"
                 >
@@ -209,7 +212,8 @@ export default class headerStyle1 extends Vue {
     this.$router.push({ path: '/', hash: '#contact' });
   }
 
-  scrollToComponent(componentToScroll: string) {
+  scrollToComponent(componentToScroll: string, closeMenu) {
+    closeMenu();
     this.$router.push({ path: '/', hash: `#${componentToScroll}` });
   }
 
