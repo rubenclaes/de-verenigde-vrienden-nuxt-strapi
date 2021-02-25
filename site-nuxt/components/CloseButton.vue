@@ -14,7 +14,7 @@
   </button>
 </template>
 <script lang="ts">
-ximport { Vue, Component, Prop, Emit } from 'nuxt-property-decorator';
+import { Vue, Component, Prop, Emit } from 'nuxt-property-decorator';
 
 @Component
 export default class CloseButton extends Vue {

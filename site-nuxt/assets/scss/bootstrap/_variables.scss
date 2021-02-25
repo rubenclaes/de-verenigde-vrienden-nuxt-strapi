@@ -31,7 +31,7 @@ $grays: map-merge(
     '600': $gray-600,
     '700': $gray-700,
     '800': $gray-800,
-    '900': $gray-900
+    '900': $gray-900,
   ),
   $grays
 );
@@ -63,7 +63,7 @@ $colors: map-merge(
     'cyan': $cyan,
     'white': $white,
     'gray': $gray-600,
-    'gray-dark': $gray-800
+    'gray-dark': $gray-800,
   ),
   $colors
 );
@@ -88,7 +88,7 @@ $theme-colors: map-merge(
     'warning': $warning,
     'danger': $danger,
     'light': $light,
-    'dark': $dark
+    'dark': $dark,
   ),
   $theme-colors
 );
@@ -129,18 +129,18 @@ $spacers: map-merge(
   (
     0: 0,
     1: (
-      $spacer * 0.25
+      $spacer * 0.25,
     ),
     2: (
-      $spacer * 0.5
+      $spacer * 0.5,
     ),
     3: $spacer,
     4: (
-      $spacer * 1.5
+      $spacer * 1.5,
     ),
     5: (
-      $spacer * 3
-    )
+      $spacer * 3,
+    ),
   ),
   $spacers
 );
@@ -154,7 +154,7 @@ $sizes: map-merge(
     50: 50%,
     75: 75%,
     100: 100%,
-    auto: auto
+    auto: auto,
   ),
   $sizes
 );
@@ -191,7 +191,7 @@ $grid-breakpoints: (
   sm: 576px,
   md: 768px,
   lg: 992px,
-  xl: 1200px
+  xl: 1200px,
 ) !default;
 
 @include _assert-ascending($grid-breakpoints, '$grid-breakpoints');
@@ -205,7 +205,7 @@ $container-max-widths: (
   sm: 540px,
   md: 720px,
   lg: 960px,
-  xl: 1140px
+  xl: 1140px,
 ) !default;
 
 @include _assert-ascending($container-max-widths, '$container-max-widths');
@@ -215,7 +215,7 @@ $container-max-widths: (
 // Set the number of columns and specify the width of the gutters.
 
 $grid-columns: 12 !default;
-$grid-gutter-width: 30px !default;
+$grid-gutter-width: 32px !default;
 
 // Components
 //
@@ -600,7 +600,7 @@ $custom-file-box-shadow: $input-box-shadow !default;
 $custom-file-button-color: $custom-file-color !default;
 $custom-file-button-bg: $input-group-addon-bg !default;
 $custom-file-text: (
-  en: 'Browse'
+  en: 'Browse',
 ) !default;
 
 // Form validation
