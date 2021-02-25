@@ -9,7 +9,7 @@
       <div class="header-body text-center mb-7">
         <div class="row justify-content-center">
           <div class="col-xl-5 col-lg-6 col-md-8 px-5">
-            <h2 class="display-2 text-white">{{ data.title }}</h2>
+            <h1 class=".heading-title text-white">{{ data.title }}</h1>
 
             <p class="text-lead text-white">
               {{ data.lead }}

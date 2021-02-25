@@ -171,7 +171,7 @@ $scale-base-1: (1 + $scale / 100%);
 
 .slideshow {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
 }
